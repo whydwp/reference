@@ -1,0 +1,87 @@
+<div class="container-fluid mimin-wrapper">
+  
+    <!-- start:Left Menu -->
+    <div id="left-menu">
+        <div class="sub-left-menu scroll">
+        <ul class="nav nav-list">
+            <li><div class="left-bg"></div></li>
+            <li class="time">
+                <h1 class="animated fadeInLeft">21:00</h1>
+                <p class="animated fadeInRight">Sat,October 1st 2029</p>
+            </li>
+            <li class="active">
+                <a href="{{ route('dashboard') }}">
+                    <span class="fa-home fa"></span> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('kelola-user') }}">
+                <span class="icon-user fa"></span> Profil
+                </a>
+            </li>
+            <li class="ripple">
+                <a class="tree-toggle nav-header">
+                <span class="fa-bolt fa"></span> Kategori
+                <span class="fa-angle-right fa right-arrow text-right"></span>
+                </a>
+                <ul class="nav nav-list tree">
+                <li><a href="">Kategori 1</a></li>
+                <li><a href="">Kategori 2</a></li>
+                <li><a href="">Kategori 3</a></li>
+                <li><a href="">Kategori 4</a></li>
+                <li><a href="">Kategori 5</a></li>
+                <li><a href="">Kategori 6</a></li>
+                <li><a href="">Kategori 7</a></li>
+                <li><a href="">Kategori 8</a></li>
+                <li><a href="">Kategori 9</a></li>
+                <li><a href="">Kategori 10</a></li>
+                <li><a href="">Kategori 11</a></li>
+                <li><a href="">Kategori 12</a></li>
+                <li><a href="">Kategori 13</a></li>
+                <li><a href="">Kategori 14</a></li>
+                </ul>
+            </li>                 
+            <li>
+                <a href="">
+                <span class="fa-cloud fa"></span> My References
+                </a>
+            </li>
+            <li>
+                <a href="">
+                <span class="fa-heart-o fa"></span> My Likes
+                </a>
+            </li>
+            <li>
+                <a href="">
+            <span class="fa fa-book"></span> Kelola Dokumen</a>
+            </li>
+            <li>
+            <a href="{{ route('kelola-user') }}">
+            <span class="fa icon-people"></span> Kelola User</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    <!-- end: Left Menu -->
+
+    <script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
