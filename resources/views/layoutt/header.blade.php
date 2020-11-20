@@ -6,9 +6,9 @@
                 <span class="top"></span>
                 <span class="middle"></span>
                 <span class="bottom"></span>
-                
+
             </div>
-            <a href="{{ route('dashboard') }}" class="navbar-brand"> 
+            <a href="{{ route('dashboard') }}" class="navbar-brand">
                 <b>REFERENCE</b>
             </a>
 
@@ -28,10 +28,12 @@
             <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="user-name"><span>Super-Admin</span></li>
                 <li class="dropdown avatar-dropdown">
-                    <img src="miminium-master/asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                    <img src="miminium-master/asset/img/avatar.jpg" class="img-circle avatar" alt="user name"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
                     <ul class="dropdown-menu user-dropdown">
-                        <li><a href="#"><span class="fa fa-user"></span> My Profile</a></li>
-                        <li><a href="{{ route('logout') }}"><span class="fa fa-power-off "> <b>Logout</b> </span></a></li>
+                        <li><a href="{{ route('profil') }}"><span class="fa fa-user"></span> My Profile</a></li>
+                        <li><a href="{{ route('logout') }}"><span class="fa fa-power-off "> <b>Logout</b> </span></a>
+                        </li>
                         <!-- <li role="separator" class="divider"></li>
                             <li class="more">
                                 <ul>
@@ -39,10 +41,10 @@
                                 </ul>
                             </li> -->
                     </ul>
-                </li>  
-                <li ><a href="#" class="opener-right-menu"><span class="fa fa-coffee"></span></a></li>
+                </li>
+                <li><a href="#" class="opener-right-menu"><span class="fa fa-coffee"></span></a></li>
             </ul>
         </div>
     </div>
 </nav>
-      <!-- end: Header -->
+<!-- end: Header -->

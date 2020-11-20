@@ -1,9 +1,9 @@
 <div id="right-menu" style="display: block; width: 230px;">
-    <div class="left-bg"></div>    
-    <a href="{{ route('dashboard') }}" class="navbar-brand"> 
+    <div class="left-bg"></div>
+    <a href="{{ route('dashboard') }}" class="navbar-brand">
         <b style="text-size:50px;">REFERENCE</b>
     </a>
-             
+
     <div id="right-menu-user" class="tab-pane fade in active">
         <div class="user col-md-12 scroll">
             <ul class="nav nav-list">
@@ -13,36 +13,36 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('kelola-user') }}">
-                    <span class="fa fa-user"></span> Profil
+                    <a href="href=" {{ route('profil') }}">
+                        <span class="fa fa-user"></span> Profil
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('kategori') }}" class="tree-toggle nav-header">
-                    <span class="fa-bolt fa"></span> Kategori
-                    </a>
-                </li>                 
-                <li>
-                    <a href="">
-                    <span class="fa-cloud fa"></span> My References
+                        <span class="fa-bolt fa"></span> Kategori
                     </a>
                 </li>
                 <li>
                     <a href="">
-                    <span class="fa-heart-o fa"></span> My Likes
+                        <span class="fa-cloud fa"></span> My References
                     </a>
                 </li>
                 <li>
                     <a href="">
-                    <span class="fa fa-book"></span> Kelola Dokumen</a>
+                        <span class="fa-heart-o fa"></span> My Likes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('kelola_document') }}">
+                        <span class="fa fa-book"></span> Kelola Dokumen</a>
                 </li>
                 <li>
                     <a href="{{ route('kelola-user') }}">
-                    <span class="fa fa-users"></span> Kelola User</a>
+                        <span class="fa fa-users"></span> Kelola User</a>
                 </li>
             </ul>
         </div>
     </div>
-               
-</div>  
-          <!-- end: right menu -->
+
+</div>
+<!-- end: right menu -->
