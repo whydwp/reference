@@ -1,10 +1,11 @@
 @extends('layoutt.master-template')
 
 @section('content-title')
-Create Document
+Document
 @endsection
 
 @section('content')
+
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -68,14 +69,16 @@ Create Document
         </div>
 
         <div class="form-group">
+            <a href="{{route('document.index')}}" class="btn btn-danger btn-xl">Kembali</a>
             <button type="submit" class="btn btn-success btn-xl">Simpan</button>
-            <a href="{{route('kelola_document')}}" class="btn btn-danger btn-xl">Kembali</a>
+
         </div>
 
 
     </div>
 
 </div>
+@include('layoutt.more')
 <script>
     function bacagambar(input) {
           if (input.files && input.files[0]) {
@@ -90,4 +93,5 @@ Create Document
           bacagambar(this);
       });
 </script>
+
 @endsection

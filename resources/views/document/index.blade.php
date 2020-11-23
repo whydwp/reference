@@ -16,7 +16,7 @@ Document
             kapasitas Documents</button>
     </div>
     <div class="col-md-6">
-        <a href="{{ route('add') }}" style=" margin-left: 10px !important;" class="btn btn-success"><span
+        <a href="{{ route('document.create') }}" style=" margin-left: 10px !important;" class="btn btn-success"><span
                 class=" glyphicon glyphicon-plus" "></span>
             Create</a>
     </div>

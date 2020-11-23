@@ -14,7 +14,7 @@ class KelolaDocumentController extends Controller
      */
     public function index(Request $request)
     {
-        return view('document.kelola_document');
+        return view('document.index');
     }
 
 
@@ -25,7 +25,7 @@ class KelolaDocumentController extends Controller
      */
     public function create()
     {
-        return view('document.add');
+        return view('document/create');
     }
 
 

@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="href=" {{ route('profil') }}">
+                    <a href="{{ route('profil') }}">
                         <span class="fa fa-user"></span> Profil
                     </a>
                 </li>
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('kelola_document') }}">
+                    <a href="{{ route('document.index') }}">
                         <span class="fa fa-book"></span> Kelola Dokumen</a>
                 </li>
                 <li>
