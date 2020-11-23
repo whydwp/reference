@@ -23,12 +23,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{route('reference.index')}}">
                         <span class="fa-cloud fa"></span> My References
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{route('like.index')}}">
                         <span class="fa-heart-o fa"></span> My Likes
                     </a>
                 </li>

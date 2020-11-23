@@ -28,6 +28,9 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/profil', 'ProfilController@index')->name('profil');
     // Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
     Route::resource('/document', 'KelolaDocumentController');
+    Route::resource('/like', 'MyLikeController');
+    Route::resource('/reference', 'MyReferenceController');
+
 
     Route::get('/kategori', function () {
         return view('general2.kategori');
