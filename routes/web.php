@@ -26,7 +26,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/kelola-user', 'KelolaUserController@index')->name('kelola-user');
     Route::get('/profil', 'ProfilController@index')->name('profil');
-    Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
+    // Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
     Route::resource('/document', 'KelolaDocumentController');
 
     Route::get('/kategori', function () {
