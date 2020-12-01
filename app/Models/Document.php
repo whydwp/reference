@@ -13,9 +13,11 @@ class Document extends Model
         'judul_dokumen',
         'deskripsi_dokumen',
         'tahun',
+        'tipe_dokumen',
         'publisher',
         'file',
         'jumlah_halaman',
+        'jumlah_like',
         'id_kategori'
     ];
     public function kategori()
