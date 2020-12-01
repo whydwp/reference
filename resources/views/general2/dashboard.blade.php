@@ -1,483 +1,348 @@
 @extends('layoutt.master-template')
 
-@section('content-title')
-    Dashboard
+@section('title')
+Dashboard
 @endsection
 
 @section('content')
 
-<div class="container-card">  
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Content Header (Page header) -->
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-6 -->
+
+            <!-- /.col-md-6 -->
         </div>
-    </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
 
-<div class="container-card">  
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img widht="200px" class="img-fluid"
+                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
+                        <h3>Pembangkit</h3>
+
+                        <div class="panel-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Likes : 12345</h6>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="media-heading">Dislike : 12345</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- /.col-md-6 -->
 
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
+            <!-- /.col-md-6 -->
         </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container-card">  
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" onclick="location.href='{{ route('kategori') }}';">
-        <div class="face face1">
-            <div class="content">
-                <img src="https://lh3.googleusercontent.com/proxy/lw1hS3LKE8AaXjHEeDhbie5D1wsV7-SKoEqI5QtKhlGArWs_KnHYuHVe1khhp5z_ijHvd1bzhsP3VVCmDTFbNx7y">
-                <h3>Pembangkit</h3>
-            </div>
-        </div>
-        <div class="face face2">
-            <div class="content">
-                <div class="panel-body">
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Jumlah Dokumen</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Likes</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="media-body">
-                            <h5 class="media-heading">Dislike</h5>
-                            <h5 class="media-heading">12345</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
 
 
-
-
-@include('layoutt.more')
 
 
 @endsection

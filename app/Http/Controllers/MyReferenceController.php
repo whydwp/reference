@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Document;
 
 class MyReferenceController extends Controller
 {
@@ -13,7 +14,10 @@ class MyReferenceController extends Controller
      */
     public function index()
     {
-        return view('reference.index');
+        $dokument = Document::all();
+        // $kategori = Kategori::all();
+        return view('reference.index', compact('dokument'));
+     
     }
 
     /**

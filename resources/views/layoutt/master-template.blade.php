@@ -1,95 +1,127 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html lang="en">
-<link type="text/css" rel="stylesheet" id="dark-mode-general-link">
-<link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
-<style lang="en" type="text/css" id="dark-mode-custom-style"></style>
 
 <head>
-
     <meta charset="utf-8">
-    <meta name="description" content="Reference Pusdiklat PLN">
-    <meta name="keyword" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reference</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!-- start: Css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('miminium-master/asset/css/bootstrap.min.css')}}">
-
-    <!-- plugins -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('miminium-master/asset/css/plugins/font-awesome.min.css')}}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('miminium-master/asset/css/plugins/datatables.bootstrap.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('miminium-master/asset/css/plugins/animate.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('cards/card.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('cards/card2.min.css')}}">
-    <!-- <link rel="stylesheet" type="text/css" href="cards/card3.min.css"> -->
-    <link href="{{ asset('miminium-master/asset/css/style.css')}}" rel="stylesheet">
-    <!-- end: Css -->
-
-    <link rel="shortcut icon" href="{{ asset('miminium-master/asset/img/logomi.png')}}">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
+    <title>AdminLTE 3 | Top Navigation + Sidebar</title>
+    <style>
+        i .tekan {
+            i:hover {
+                blue;
+            }
+        }
+    </style>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
+ <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  
+    <!-- Select2 -->
+<link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}">
+    </script>
+    <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    
+    <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
+    <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+    <script src=" {{asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
+    <script src=" {{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
 </head>
 
-<body id="mimin" class="dashboard">
-    @include('layoutt.header')
-    <div class="container-fluid mimin-wrapper">
+<body class="hold-transition sidebar-collapse layout-top-nav">
+    <div class="wrapper">
 
-        <!-- Start Content -->
-        <div id="content" style="padding-left: 0px; padding-right: 230px;">
+        <!-- Navbar -->
+        @include('layoutt.header')
+        <!-- /.navbar -->
 
-            <div class="panel box-shadow-none content-header">
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <h3 class="animated fadeInLeft">Reference</h3>
-                        <p class="animated fadeInDown">
-                            Welcome to Reference
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 top-20 padding-0">
-                <div class="col-md-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3>@yield('content-title')</h3>
-                        </div>
-                        <div class="panel-body">
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Main Sidebar Container -->
         @include('layoutt.sidebar')
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-sm-12">
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) -->
+                        <section class="content-header">
+                            <div class="container">
+                                <div class="row mb-4">
+                                    <div class="col-sm-12">
+                                        <h1>
+                                            @yield('title')
+                                        </h1>
+                                        <ol class="breadcrumb">
+                                            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                                            <li class="active"> / @yield('title')</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
-        <div id="ascrail2002" class="nicescroll-rails"
-            style="width: 26px; z-index: 230; cursor: -webkit-grab; position: absolute; top: 0px; left: 202px; height: 80px; display: none;">
-            <div
-                style="position: relative; top: 0px; float: right; width: 24px; height: 0px; background-color: rgb(33, 150, 243); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;">
-            </div>
-        </div>
-        <div id="ascrail2002-hr" class="nicescroll-rails"
-            style="height: 26px; z-index: 230; top: 54px; left: 0px; position: absolute; display: none;">
-            <div
-                style="position: relative; top: 0px; height: 24px; width: 0px; background-color: rgb(33, 150, 243); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;">
-            </div>
-        </div>
-        <div id="ascrail2003" class="nicescroll-rails"
-            style="width: 7px; z-index: 222; cursor: default; position: absolute; top: 169px; left: 1007px; height: 600px; opacity: 0;">
-            <div
-                style="position: relative; top: 0px; float: right; width: 5px; height: 459px; background-color: rgb(33, 150, 243); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;">
-            </div>
-        </div>
-        <div id="ascrail2003-hr" class="nicescroll-rails"
-            style="height: 7px; z-index: 222; top: 762px; left: 785px; position: absolute; cursor: default; display: none; width: 222px; opacity: 0;">
-            <div
-                style="position: relative; top: 0px; height: 5px; width: 229px; background-color: rgb(33, 150, 243); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;">
-            </div>
-        </div>
+                        <!-- Main content -->
+                        <section class="content">
+                            @yield('content')
+                            <!-- Small boxes (Stat box) -->
+
+                            <!-- /.row -->
+                            <!-- Main row -->
+
+                            <!-- /.row (main row) -->
+
+                        </section>
+                        <!-- /.content-header -->
+
+
+                        <!-- Main content -->
+
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+
+                    <!-- Control Sidebar -->
+
+                    <!-- /.control-sidebar -->
+
+                    <!-- Main Footer -->
+                    <footer class="main-footer">
+                        <!-- To the right -->
+                        <div class="float-right d-none d-sm-inline">
+                            Anything you want
+                        </div>
+                        <!-- Default to the left -->
+                        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All
+                        rights
+                        reserved.
+                    </footer>
+                </div>
+                <!-- ./wrapper -->
+
+                <!-- REQUIRED SCRIPTS -->
+
+                <!-- jQuery -->
+
 </body>
 
 </html>

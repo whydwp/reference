@@ -25,12 +25,13 @@ Route::namespace('Auth')->group(function () {
 Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/kelola-user', 'KelolaUserController@index')->name('kelola-user');
-    Route::get('/profil', 'ProfilController@index')->name('profil');
+    Route::resource('/profil', 'ProfilController');
     // Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
     Route::resource('/document', 'KelolaDocumentController');
     Route::resource('/like', 'MyLikeController');
     Route::resource('/reference', 'MyReferenceController');
-
+    // Route::get('/reference/index/{slug}', 'MyReferenceController@index')
+    // ->name('index');
 
     Route::get('/kategori', function () {
         return view('general2.kategori');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\KelolaUser;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class KelolaUserController extends Controller
      */
     public function index()
     {
-        return view('general2.kelola-user');
+        $data_user = User::paginate(10);
+        // $kategori = Kategori::all();
+        return view('general2.kelola-user', compact('data_user'));
     }
 
     /**
@@ -29,8 +32,8 @@ class KelolaUserController extends Controller
 
 
 
-        
-     /* @param  \Illuminate\Http\Request  $request
+
+    /* @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)

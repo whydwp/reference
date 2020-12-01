@@ -6,80 +6,71 @@ Profil
 
 @section('content')
 
-<div class="col-md-12">
-    <div class="col-md-12 panel">
 
-        <div class="col-md-12 panel-body" style="padding-bottom:30px;">
-            <div class="col-md-12">
-                <div class="row" style="margin-left:-3px !important;">
-                    <div class="col-sm-6">
-                        <div class="form-group" style="margin-top:40px !important;">
-                            <label>Foto Profil</label>
-                            <input type="file" name="gambar" class="form-control" id="preview_gambar" required>
-                            <span>isi png,jpg,jpng</span>
 
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <img class="" src="{{asset('image/user.png')}}" id="gambar_load" width="150px" alt="">
-                        </div>
-                    </div>
-                </div>
-                <form class="cmxform" id="signupForm" method="get" action="">
-                    <div class="col-md-6">
-                        <div class="form-group" style="margin-top:30px !important;">
-                            <label>Nama Lengkap</label>
-                            <input type="text" class="form-control" id="addressOne" aria-describedby="emailHelp"
-                                name="addressOne" value="Robby " />
-                        </div>
+<div class="card-body">
+    <form method="POST" action="{{ route('profile.update') }}">
+        @method('patch')
+        @csrf
 
-                        <div class="form-group" style="margin-top:30px !important;">
-                            <label>NIP</label>
-                            <input type="text" data-mask="numeric" class="form-control" id="addressOne"
-                                aria-describedby="emailHelp" name="addressOne" value="11190234 " />
-                        </div>
+        <div class="form-group row">
+            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                        <div class="form-group" style="margin-top:30px !important;">
-                            <label>Email</label>
-                            <input type="text" class="form-control" id="addressOne" aria-describedby="emailHelp"
-                                name="addressOne" value="Robby " />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group" style="margin-top:30px !important;">
-                            <label>Username</label>
-                            <input type="text" class="form-control" id="addressOne" aria-describedby="emailHelp"
-                                name="addressOne" value="Robby " />
-                        </div>
-                        <div class="form-group" style="margin-top:30px !important;">
-                            <label>Password</label>
-                            <input type="password" class="form-control" id="addressOne" aria-describedby="emailHelp"
-                                name="addressOne" value="Robby " />
-                        </div>
+            <div class="col-md-6">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                    value="{{ old('name', $user->full_name) }}" autocomplete="name" autofocus>
 
-                        <div class="form-group" style="margin-top:30px !important;">
-                            <label>Konfirmasi Password</label>
-                            <input type="password" class="form-control" id="addressOne" aria-describedby="emailHelp"
-                                name="addressOne" value="Robby " />
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group form-animate-checkbox" style="margin-top:40px !important;">
-                            <input type="checkbox" class="checkbox" id="validate_agree" name="validate_agree">
-                            <label>Please agree to our policy</label>
-                        </div>
-                        <button class="submit btn btn-danger" type="submit" value="Submit">Simpan</button>
-                    </div>
-                </form>
-
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
         </div>
-    </div>
+
+        <div class="form-group row">
+            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+            <div class="col-md-6">
+                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
+                    name="username" value="{{ old('username', $user->username) }}" autocomplete="username" autofocus>
+
+                @error('username')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+            <div class="col-md-6">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    value="{{ old('email', $user->email) }}" autocomplete="email">
+
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="form-group row mb-0">
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                    Update Profile
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
+
 @include('layoutt.more')
 
-<script>
+{{-- <script>
     function bacagambar(input) {
           if (input.files && input.files[0]) {
               var reader = new FileReader();
@@ -92,6 +83,6 @@ Profil
       $("#preview_gambar").change(function() {
           bacagambar(this);
       });
-</script>
+</script> --}}
 
 @endsection
