@@ -5,8 +5,13 @@ Document
 @endsection
 
 @section('content')
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+              
+               <div class="card">
 
-<div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Kelola Document</h3>
                 </div>
@@ -15,8 +20,8 @@ Document
             <button data-target="#modal-default" data-toggle="modal" type="button"
                 class="btn btn-raised btn-default"><span class="fas fa-plus-square"></span>
                 kapasitas Documents</button>
-                <a href="{{ route('document.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
-                    Create</a>
+                {{-- <a href="{{ route('document.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
+                    Create</a> --}}
         </div>
         <br/>
                 <div class="modal fade" id="modal-default">
@@ -48,28 +53,22 @@ Document
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label>Sort Order:</label>
-                                    <select class="select2" style="width: 100%;">
-                                        <option selected>ASC</option>
-                                        <option>DESC</option>
-                                        <option>Oprisonal</option>
-                                        <option>diskending</option>
+                                    <label>Sort berdasarkan :</label>
+                                    <select class="select2" style="width: 50%;">
+                                        <option selected>kategori</option>
+                                        <option>judul dokument</option>
+                                        <option>publisher</option>
+                                        <option>tahun</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label>Order By:</label>
-                                    <select class="select2" style="width: 100%;">
-                                        <option  selected>Title</option>
-                                        <option>Date</option>
-                                    </select>
-                                </div>
-                            </div>
+                           
                         </div>
+                        <form method="get" action="{{route('document.index')}}">
                         <div class="form-group">
+                            <label for="keyword" class="col-sm-2 control-label">Search</label>
                             <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here"
+                                <input type="search" class="form-control form-control-lg" name="keyword" value="{{Request::get('keyword')}}"
                                     value="Lorem ipsum">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
@@ -78,6 +77,7 @@ Document
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
 
@@ -119,34 +119,43 @@ Document
                                                             {{method_field('DELETE')}}
                                     <a href="" class="btn btn-round btn-warning btn-md"><i class="fa fa-edit" data-toggle="modal"
                                             data-target="#edit"></i></a> --}}
+                                            </form>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
-                   
                 </table>
-                {{-- <tfoot>
-                    <tr>
-                        <td>
-                            {{ $data_dokument->appends(Request::all())->links() }}
-                        </td>
-                    </tr>
-                </tfoot> --}}
+                
+                <tfoot>
+                     
+                   
+                 </tfoot>
+                     
                 </div>
                 <!-- /.card-body -->
             </div>
+</div>
+    <!-- /.col -->
+</div>
+    <!-- /.row -->
+</div>
+</div>
+    <!-- /.container-fluid -->
+</section>
+    <!-- /.content -->
 
 
 <script>
     $(function () {
     $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,
+    "paging": true,
+    "lengthChange": true,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+    
     });
   });
 </script>

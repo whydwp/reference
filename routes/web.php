@@ -21,6 +21,7 @@ Route::namespace('Auth')->group(function () {
     Route::post('login', 'LoginController@authenticate')->name('login');
     Route::get('logout', 'LoginController@logout')->name('logout');
 });
+// Route::put('/update/{id}', 'ProfilController@update');
 
 Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

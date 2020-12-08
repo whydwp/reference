@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
-@section('content-title')
-Document
+@section('title')
+masukan dokument
 @endsection
 
 @section('content')

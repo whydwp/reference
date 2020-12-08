@@ -15,9 +15,14 @@ class KelolaDocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data_dokument = Document::paginate(10);
+        $data_dokument = Document::paginate(100);
+        $filterKeyword = $request->get('keyword');
+        if ($filterKeyword) {
+            //dijalankan jika ada pencarian
+            $data_dokument = Document::where('judul_dokumen', 'LIKE', "%$filterKeyword%")->paginate(100);
+        }
         // $kategori = Kategori::all();
         return view('document.index', compact('data_dokument'));
     }

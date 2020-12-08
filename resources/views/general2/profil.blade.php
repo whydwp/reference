@@ -68,7 +68,6 @@ Profil
     </form>
 </div>
 
-@include('layoutt.more')
 
 {{-- <script>
     function bacagambar(input) {

@@ -192,13 +192,31 @@ My Reference
 </div> --}}
 <!-- /.content -->
 
+
 <div class="row mt-2">
     <div class="col-md-12">
         <div class="list-group">
+            
             <div class=" card list-group-item">
+                <div class="container" style="margin-bottom: 60px !important;">
+               <div class="col-md-8 offset-md-1">
+                   <div class="float-left">
+                      
+                   <i class="fas fa-cloud-upload-alt fa-2x" width="200px;"> cloud</i>
+                  
+                   </div>
+                   
+                   <div class="float-left" style="margin-left: 60px !important;">
+                    <h5>24 Mb</h5>
+                   <h5>  3 File</h5>
+                   </div>
+               </div>
+               </div>
+               <hr>
+               @foreach ($reference as $id)
                 <div class="row">
                     <div class="col-auto">
-                        <a href="#">
+                        <a href="{{route('reference.create')}}">
                             <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
                                 class="img-fluid" width="200px" height="100px">
                         </a>
@@ -209,8 +227,11 @@ My Reference
                                 <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
                                 aria-disabled="true">Distribusi</span>
                             </div>
-                            <h4 class="media-heading">Dokumen PLN2</h4>
-                            <p>Deskripsi jurnal</p>
+                           
+                             
+                        <h4 class="media-heading">{{ $id->judul_dokumen }}</h4>
+                        <p>{{$id->deskripsi_dokumen}}</p>
+                         
                             <a href="">
                                 <i class="fas fa-thumbs-up tekan"></i> 2819 Likes
                             </a>
@@ -222,124 +243,13 @@ My Reference
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class=" card list-group-item">
-                <div class="row">
-                    <div class="col-auto">
-                        <a href="#">
-                            <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
-                                class="img-fluid" width="200px" height="100px">
-                        </a>
-                    </div>
-                    <div class="col px-4">
-                        <div>
-                            <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
-                                aria-disabled="true">Distribusi</span>
-                            </div>
-                            <h4 class="media-heading">Dokumen PLN2</h4>
-                            <p>Deskripsi jurnal</p>
-                            <a href="">
-                                <i class="fas fa-thumbs-up tekan"></i> 2819 Likes
-                            </a>
-                            <a href=""> |
-                                <i class="fas fa-thumbs-down"></i> 2819 Dislikes
-                            </a>
-                            <a href=""> | <i class="fa-book fa"></i> Ini Publisher</a>
-                            <a href=""> | <i class="fa-calendar fa"></i> 2020</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" card list-group-item">
-                <div class="row">
-                    <div class="col-auto">
-                        <a href="#">
-                            <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
-                                class="img-fluid" width="200px" height="100px">
-                        </a>
-                    </div>
-                    <div class="col px-4">
-                        <div>
-                            <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
-                                aria-disabled="true">Distribusi</span>
-                            </div>
-                            <h4 class="media-heading">Dokumen PLN2</h4>
-                        <p href="">Deskripsi jurnal</p>
-                            <a href="">
-                                <i class="fas fa-thumbs-up tekan"></i> 2819 Likes
-                            </a>
-                            <a href=""> |
-                                <i class="fas fa-thumbs-down"></i> 2819 Dislikes
-                            </a>
-                            <a href=""> | <i class="fa-book fa"></i> Ini Publisher</a>
-                            <a href=""> | <i class="fa-calendar fa"></i> 2020</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" card list-group-item">
-                <div class="row">
-                    <div class="col-auto">
-                        <a href="#">
-                            <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
-                                class="img-fluid" width="200px" height="100px">
-                        </a>
-                    </div>
-                    <div class="col px-4">
-                        <div>
-                            <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
-                                aria-disabled="true">Distribusi</span>
-                            </div>
-                            <h4 class="media-heading">Dokumen PLN2</h4>
-                            <p>Deskripsi jurnal</p>
-                            <a href="">
-                                <i class="fas fa-thumbs-up tekan"></i> 2819 Likes
-                            </a>
-                            <a href=""> |
-                                <i class="fas fa-thumbs-down"></i> 2819 Dislikes
-                            </a>
-                            <a href=""> | <i class="fa-book fa"></i> Ini Publisher</a>
-                            <a href=""> | <i class="fa-calendar fa"></i> 2020</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class=" card list-group-item">
-                <div class="row">
-                    <div class="col-auto">
-                        <a href="#">
-                            <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
-                                class="img-fluid" width="200px" height="100px">
-                        </a>
-                    </div>
-                    <div class="col px-4">
-                        <div>
-                            <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
-                                aria-disabled="true">Distribusi</span>
-                            </div>
-                            <h4 class="media-heading">Dokumen PLN2</h4>
-                            <p>Deskripsi jurnal</p>
-                            <a href="">
-                                <i class="fas fa-thumbs-up tekan"></i> 2819 Likes
-                            </a>
-                            <a href=""> |
-                                <i class="fas fa-thumbs-down"></i> 2819 Dislikes
-                            </a>
-                            <a href=""> | <i class="fa-book fa"></i> Ini Publisher</a>
-                            <a href=""> | <i class="fa-calendar fa"></i> 2020</a>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
+                <hr/>
+              
             </div>
         </div>
     </div>
 </div>
 
-
-@include('layoutt.more')
 
 @endsection

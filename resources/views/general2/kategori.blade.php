@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-    Dokumen Pembangkit
+    Kategori
 @endsection
 
 @section('content')

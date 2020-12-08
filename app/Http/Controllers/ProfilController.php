@@ -15,7 +15,9 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        return view('profil.index');
+        $input = User::all();
+        return view('profil.index', compact('input')); 
+        // return view('profil.index');
     }
 
     /**
@@ -39,60 +41,60 @@ class ProfilController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\KelolaUser  $kelolaUser
-     * @return \Illuminate\Http\Response
-     */
-    public function show(KelolaUser $kelolaUser)
+    
+    public function show()
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\KelolaUser  $kelolaUser
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(KelolaUser $kelolaUser)
+ 
+    public function edit()
     {
         // return view('profil.edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\KelolaUser  $kelolaUser
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
+
+        $input = $request->all();
         $this->validate($request, [
             'full_name' => 'required|max:250',
             'username' => 'required|max:100|unique:users,username,' . $id,
             'email' => 'required|email|max:255|unique:users,email,' . $id,
-            'password' => 'sometimes|nullable|min:6'
+            'password' => 'sometimes|nullable|min:6',
+            'avatar_file' => 'sometimes|nullable|image|mimes:jpeg,jpg,png|max:2048'
 
         ]);
         Auth::user()->update([
             'full_name' => $request->full_name,
             'username' => $request->username,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->bcrypt(request('password')),
+            'avatar_file' => $request->avatar_file
+           
         ]);
+        if ($request->hasFile('avatar_file')) {
+            if ($request->file('avatar_file')->isValid()) {
+                Storage::disk('upload')->delete($user->avatar_file);
+
+                $avatar_file = $request->file('avatar_file');
+                $extention = $avatar_file->getClientOriginalExtension();
+                $namaFoto = "document/" . date('YmdHis') . "." . $extention;
+                $upload_path = 'uploads/document';
+                $request->file('avatar_file')->move($upload_path, $namaFoto);
+                $input['avatar_file'] = $namaFoto;
+            }
+        }
+        dd($user);
+        $user->save();
         return redirect()->route('profil.index')->with('status', 'User Berhasil Diupdate');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\KelolaUser  $kelolaUser
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(KelolaUser $kelolaUser)
+   
+    public function destroy()
     {
         //
     }

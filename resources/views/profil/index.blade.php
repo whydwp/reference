@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Profil
+Kelola Profil
 @endsection
 
 @section('content')
@@ -33,46 +33,42 @@ Profil
     <div class="card">
         <div class="card-body">
 <div class="tab-pane" id="settings">
-    <form class="form-horizontal">
+    <form class="login100-form validate-form" data-target="user" method="put" action="{{ route('profil.update',$input->full_name) }}"
+        enctype="multipart/form-data">   
+    @csrf
+    {{ method_field('PUT') }}
         <div class="form-group row">
-            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+            <label for="full_name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" value="{{Auth :: user()->full_name}}"id="inputName" >
+                <input type="text" id="full_name" name="full_name"class="form-control" value="{{Auth :: user()->full_name}}"id="inputName" >
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail"value="{{Auth :: user()->email}}">
+                <input type="email" class="form-control" name="email" id="email"value="{{Auth :: user()->email}}">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputName2" class="col-sm-2 col-form-label">Password</label>
+            <label for="username" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputName2" placeholder="Name">
+                <input type="username" name="username" id="username"class="form-control" value="{{Auth :: user()->username}}" placeholder="username">
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputName2" class="col-sm-2 col-form-label">Konfirmasi Password</label>
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputName2" placeholder="Name">
+                <input type="password" name="password" id="password"class="form-control"  placeholder="Name">
             </div>
         </div>
+      
         <div class="form-group row">
-            <label for="inputName2" class="col-sm-2 col-form-label">Gambar</label>
+            <label for="avatar_file" class="col-sm-2 col-form-label">Gambar</label>
             <div class="col-sm-10">
-                <input type="file" name="gambar" class="form-control" id="preview_gambar" required>
+                <input type="file" name="avartar_file" class="form-control" id="preview_gambar" required>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="offset-sm-2 col-sm-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                    </label>
-                </div>
-            </div>
-        </div>
+      
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
                 <button type="submit" class="btn btn-danger">Update</button>

@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>AdminLTE 3 | Top Navigation + Sidebar</title>
+    <title>Reference Learning</title>
     <style>
         i .tekan {
             i:hover {
@@ -45,8 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/demo.js')}}"></script>
-    <script src=" {{asset('admin/plugins/datatables/jquery.dataTables.js')}}"></script>
-    <script src=" {{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+   
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -111,9 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             Anything you want
                         </div>
                         <!-- Default to the left -->
-                        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All
-                        rights
-                        reserved.
+                        <strong>ini footer </strong>
                     </footer>
                 </div>
                 <!-- ./wrapper -->

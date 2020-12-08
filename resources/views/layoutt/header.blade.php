@@ -1,14 +1,14 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
         <a href="{{asset('admin/index3.html')}}" class="navbar-brand">
-            <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
+            <img src="{{asset('image/logo.jpg')}}" alt="logo pln"
                 class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">Reference Learning</span>
         </a>
 
 
 
-        <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        {{-- <div class="collapse navbar-collapse order-3" id="navbarCollapse">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
 
@@ -59,7 +59,7 @@
 
             <!-- SEARCH FORM -->
 
-        </div>
+        </div> --}}
 
         <!-- Right navbar links -->
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
