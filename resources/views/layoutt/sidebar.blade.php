@@ -1,4 +1,4 @@
-<aside class="main-sidebar control-sidebar sidebar-light-primary elevation-4" style="overflow-x :hidden;">
+<aside class=" main-sidebar control-sidebar sidebar-light-primary elevation-4" style="overflow-x :hidden;">
     <!-- Brand Logo -->
     <a href="{{asset('admin/index3.html')}}" class="brand-link">
         <img src="{{asset('image/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -7,7 +7,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar " >
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -27,13 +27,13 @@
                     <a href="{{route('dashboard')}}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                        Dashboard
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('profil.index') }}" class="nav-link">
-                        <i class="fas fa-address-card"></i>
+                        <i class="nav-icon fas fa-address-card"></i>
                         <p>
                             Kelola-profil
                         </p>
@@ -42,7 +42,7 @@
                
                 <li class="nav-item">
                     <a href="{{ route('kategori') }}" class="nav-link">
-                        <i class="fas fa-random"></i>
+                        <i class="nav-icon fas fa-random"></i>
                         <p>
                             Kategori
                         </p>
@@ -51,7 +51,7 @@
                {{-- @if(Auth::User()->user_type_id=='pusdiklat') --}}
                 <li class="nav-item">
                     <a href="{{route('reference.index')}}" class="nav-link">
-                        <i class="fas fa-chalkboard-teacher"></i>
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>
                             Reference
                         </p>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('like.index')}}" class="nav-link">
-                        <i class="fab fa-gratipay"></i>
+                        <i class="nav-icon fab fa-gratipay"></i>
                         <p>
                             Like
                         </p>
@@ -67,22 +67,22 @@
                 </li>
              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="nav-icon fas fa-file-alt"></i>
                     <p>
                         kelola-Dokument
-                        <i class="right fas fa-angle-left"></i>
+                        <i class="nav-icon right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('document.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Dokument</p>
+                    <li class="nav-item ">
+                        <a href="{{ route('document.index') }}" class="nav-link ini">
+                            <i class="nav-icon far fa-circle nav-icon"></i>
+                            <p >Dokument</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('document.create') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="nav-icon far fa-circle nav-icon"></i>
                             <p>Create Dokument</p>
                         </a>
                     </li>
@@ -100,7 +100,7 @@
                
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="fas fa-users-cog"></i>
+                        <i class="nav-icon fas fa-users-cog"></i>
                         <p>
                             kelola-user
                             <i class="right fas fa-angle-left"></i>
@@ -109,25 +109,25 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('kelola-user') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon far fa-circle nav-icon"></i>
                                 <p>ALL</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="../../index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon far fa-circle nav-icon"></i>
                                 <p>Super Admin</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class=" nav-icon far fa-circle nav-icon"></i>
                                 <p>Admin</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class=" nav-icon far fa-circle nav-icon"></i>
                                 <p>PLN</p>
                             </a>
                         </li>

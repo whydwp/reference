@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-My Reference
+Preview dokument
 @endsection
 
 @section('content')
@@ -34,9 +34,9 @@ My Reference
                <div class="row">
                 
                     <div class="col-auto">
-                       @foreach ($reference as $item)
-                       <iframe src="{{ $item->file }}" width="1000" height="800"></iframe>
-                     @endforeach
+                       {{-- @foreach ($reference as $item) --}}
+                       <iframe src="{{ asset('uploads/document/20201126085254.pdf') }}" width="1000" height="500"></iframe>
+                     {{-- @endforeach --}}
                     </div>
                     <div class="col px-4">
                         <div>

@@ -33,7 +33,7 @@ Kelola Profil
     <div class="card">
         <div class="card-body">
 <div class="tab-pane" id="settings">
-    <form class="login100-form validate-form" data-target="user" method="put" action="{{ route('profil.update',$input->full_name) }}"
+    <form class="login100-form validate-form" data-target="user" method="put" action=""
         enctype="multipart/form-data">   
     @csrf
     {{ method_field('PUT') }}

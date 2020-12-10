@@ -17,6 +17,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 blue;
             }
         }
+    .ini{
+        a:hover {
+        wihte;
+        }
+    }
     </style>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
