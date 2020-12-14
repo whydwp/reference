@@ -17,7 +17,7 @@ class MyReferenceController extends Controller
         // $reference = Document::;
         // // $kategori = Kategori::all();
         // return view('reference.index', compact('reference'));
-        $reference = Document::all();
+        $reference = Document::paginate(5);
         return view('reference.index', [
             'reference' => $reference
         ]);
@@ -31,8 +31,8 @@ class MyReferenceController extends Controller
      */
     public function create()
     {
-        $reference = Document::paginate(1);
-        return view('reference.create', compact('reference'));
+        // $reference = Document::paginate(1);
+        // return view('reference.create', compact('reference'));
     }
 
     /**
@@ -54,7 +54,8 @@ class MyReferenceController extends Controller
      */
     public function show($id)
     {
-        //
+        $reference = Document::findOrFail($id);
+        return view('reference.show', compact('reference'));
     }
 
     /**

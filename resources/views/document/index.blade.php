@@ -112,7 +112,8 @@ Document
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
-                                    <a class="btn btn-round btn-warning btn-md fa fa-edit" href=""></a>
+                                    
+                                    <a class="btn btn-round btn-warning btn-md fa fa-edit" href="{{ route('document.edit',[$row->id]) }}">EDIT</a>
                                     <button type="submit" class="btn btn-round btn-danger fas fa-trash-alt"></i></button>
                                     {{-- <form method="post" action="">
                                                             @csrf

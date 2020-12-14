@@ -1,7 +1,7 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
         <a href="{{asset('admin/index3.html')}}" class="navbar-brand">
-            <img src="{{asset('image/logo.jpg')}}" alt="logo pln"
+            <img src="https://timlo.net/wp-content/uploads/2020/04/Logo_PLN.jpg" alt="logo pln"
                 class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Reference Learning</span>
         </a>

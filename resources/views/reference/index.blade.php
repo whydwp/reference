@@ -139,7 +139,7 @@ My Reference
             </div>
             <div class="media-right">
                 <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1"
-                    role="button" aria-disabled="true">Distribusi</span>
+                    role="button" aria-disabled="true">pembelajaran</span>
             </div>
         </div>
 
@@ -178,7 +178,7 @@ My Reference
                         </div>
                         <div class="media-right">
                             <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
-                                aria-disabled="true">Distribusi</span>
+                                aria-disabled="true">pembelajaran</span>
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@ My Reference
                @foreach ($reference as $id)
                 <div class="row">
                     <div class="col-auto">
-                        <a href="{{route('reference.create')}}">
+                        <a href="{{route('reference.show',[$id->id])}}">
                             <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
                                 class="img-fluid" width="200px" height="100px">
                         </a>
@@ -224,8 +224,8 @@ My Reference
                     <div class="col px-4">
                         <div>
                             <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
-                                aria-disabled="true">Distribusi</span>
+                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#eeeeee;" tabindex="-1" role="button"
+                            aria-disabled="true">{{$id->kategori->kategori}}</span>
                             </div>
                            
                              
@@ -238,18 +238,31 @@ My Reference
                             <a href=""> |
                                 <i class="fas fa-thumbs-down"></i> 2819 Dislikes
                             </a>
-                            <a href=""> | <i class="fa-book fa"></i> Ini Publisher</a>
-                            <a href=""> | <i class="fa-calendar fa"></i> 2020</a>
+                            <a href=""> | <i class="fa-book fa"></i>{{$id->publisher}}</a>
+                            <a href=""> | <i class="fa-calendar fa"></i> {{$id->tahun}}</a>
                         </div>
                     </div>
                 </div>
             @endforeach
                 <hr/>
-              
+              <div class="d-block col-12 mt-4">{{ $reference->links() }}</div>
             </div>
         </div>
     </div>
 </div>
 
-
+<script>
+    $(function () {
+    $('#example2').DataTable({
+    "paging": true,
+    "lengthChange": true,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    "responsive": true,
+    
+    });
+  });
+</script>
 @endsection

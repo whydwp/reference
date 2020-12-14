@@ -33,10 +33,10 @@ Kelola Profil
     <div class="card">
         <div class="card-body">
 <div class="tab-pane" id="settings">
-    <form class="login100-form validate-form" data-target="user" method="put" action=""
+    {{-- <form class="login100-form validate-form" data-target="user" method="put" action="{{ route('profil.update',[$profil->id]) }}"
         enctype="multipart/form-data">   
     @csrf
-    {{ method_field('PUT') }}
+    {{ method_field('PUT') }} --}}
         <div class="form-group row">
             <label for="full_name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
@@ -74,7 +74,7 @@ Kelola Profil
                 <button type="submit" class="btn btn-danger">Update</button>
             </div>
         </div>
-    </form>
+    {{-- </form> --}}
 </div>
 </div>
 </div>

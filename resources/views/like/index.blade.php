@@ -19,7 +19,7 @@ My Like
                     <div class="col px-4">
                         <div>
                             <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;"
+                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#ffffff;"
                                     tabindex="-1" role="button" aria-disabled="true">Distribusi</span>
                             </div>
 
@@ -54,7 +54,7 @@ My Like
                     <div class="col px-4">
                         <div>
                            <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
+                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#ffffff;" tabindex="-1" role="button"
                                     aria-disabled="true">Transmisi</span>
                             </div>
 
@@ -89,7 +89,7 @@ My Like
                     <div class="col px-4">
                         <div>
                          <div class="float-right">
-                            <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1" role="button"
+                            <span href="#" class="btn btn-primary btn-lg disabled" style="color:#f3dddd;" tabindex="-1" role="button"
                                 aria-disabled="true">Niaga</span>
                         </div>
 

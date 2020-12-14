@@ -54,7 +54,7 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|max:250',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|max:250',
-            'file' => 'required|mimes:jpeg,jpg,png,pdf|max:2048',
+            'file' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
         ]);
@@ -90,9 +90,11 @@ class KelolaDocumentController extends Controller
      * @param  \App\Models\KelolaUser  $kelolaUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(KelolaUser $kelolaUser)
+    public function edit($id)
     {
-        //
+        $kategori = Kategori::all();
+        $document = Document::findOrFail($id);
+        return view('document.edit', compact('kategori', 'document'));
     }
 
     /**
@@ -102,9 +104,42 @@ class KelolaDocumentController extends Controller
      * @param  \App\Models\KelolaUser  $kelolaUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KelolaUser $kelolaUser)
-    {
-        //
+    public function update(Request $request, $id)
+    { {
+            $document = Document::findOrFail($id);
+
+            $input = $request->all();
+
+            $validator = Validator::make($input, [
+                'judul_dokumen' => 'required|max:250',
+                'deskripsi_dokumen' => 'required|max:250',
+                'tahun' => 'required|max:250',
+                'publisher' => 'required|max:250',
+                'jumlah_halaman' => 'required|max:250',
+                'file' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+                'id_kategori' => 'required|max:250',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('document.edit', [$id])->withErrors($validator);
+            }
+
+            if ($request->hasFile('file')) {
+                if ($request->file('file')->isValid()) {
+                    Storage::disk('upload')->delete($document->file);
+
+                    $file = $request->file('file');
+                    $extention = $file->getClientOriginalExtension();
+                    $namaFoto = "document/" . date('YmdHis') . "." . $extention;
+                    $upload_path = 'uploads/document';
+                    $request->file('file')->move($upload_path, $namaFoto);
+                    $input['file'] = $namaFoto;
+                }
+            }
+
+            $document->update($input);
+            return redirect()->route('document.index')->with('status', 'Produk Berhasil diupdate');
+        }
     }
 
     /**

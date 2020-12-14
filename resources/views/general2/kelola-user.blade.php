@@ -13,10 +13,51 @@ Kelola User
         </div>
  <br>
         <div class="col-md-10 offset-md-1 ">
-            <a href="{{ route('document.create') }}" style=" margin-left: 10px !important;" class="btn btn-success"><span
-                    class=" fas fa-plus-square"></span>
-                Create</a>
-            </div>
+           
+                    <button data-target="#modal-default" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
+                            class="fas fa-plus-square"></span>
+                        Create User</button>
+                    {{-- <a href="{{ route('document.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
+                    Create</a> --}}
+                </div>
+                <br />
+                <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Kapasitas</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Nama</label>
+                                    <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan nama"
+                                        required>
+                                        <label>Email</label>
+                                        <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan email" required>
+                                    <label>Username</label>
+                                    <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan username" required>
+                                   <label>Level</label>
+                                    <select id="user_type_id" name="user_type_id" class="form-control">
+                                        @foreach($data_user as $row )
+                                        <option value="{{ $row->kelolaUser->type }}">{{ $row->kelolaUser->type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                           
+                           
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
 
        
     
@@ -31,8 +72,7 @@ Kelola User
                             <th>Email</th>
                             <th>Username</th>
                             <th>Level</th>
-                            <th>User Entity</th>
-                            <th>user key</th>
+                            
                             <th>action</th>
                     
                         </tr>
@@ -45,15 +85,13 @@ Kelola User
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->username }}</td>
                             <td>{{ $row->kelolaUser->type}}</td>
-                            <td>{{ $row->user_entity_id}}</td>
-                            <td>{{ $row->user_key}}</td>
                             <td>
                                 <form method="post" action="{{ route('document.destroy',[$row->id]) }}"
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <a class="btn btn-round btn-warning btn-md fa fa-edit" href=""></a>
-                                    <button type="submit" class="btn btn-round btn-danger fa fa-trash"></button>
+                                    <button type="submit" class="btn btn-round btn-danger fas fa-trash-alt"></button>
                                     {{-- <form method="post" action="">
                                                             @csrf
                                                             {{method_field('DELETE')}}

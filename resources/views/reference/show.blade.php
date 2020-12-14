@@ -10,6 +10,7 @@ Preview dokument
 
 <div class="row mt-2">
     <div class="col-md-12">
+        
         <div class="list-group">
             
             <div class=" card list-group-item">
@@ -34,15 +35,17 @@ Preview dokument
                <div class="row">
                 
                     <div class="col-auto">
-                       {{-- @foreach ($reference as $item) --}}
-                       <iframe src="{{ asset('uploads/document/20201126085254.pdf') }}" width="1000" height="500"></iframe>
+                     {{-- @foreach ($reference as $item) --}}
+                         
+                     <iframe src="{{ asset('uploads/'.$reference->file) }}" width="1100" height="500"></iframe>
                      {{-- @endforeach --}}
+                     
                     </div>
                     <div class="col px-4">
                         <div>
                             <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#d43636;" tabindex="-1"
-                                    role="button" aria-disabled="true">Distribusi</span>
+                                <span href="#" class="btn btn-primary btn-lg disabled" style="color:#ffffff;" tabindex="-1"
+                                    role="button" aria-disabled="true">{{$reference->kategori->kategori}}</span>
                             </div>
                 
                             {{-- @foreach ($reference as $id)
@@ -55,8 +58,8 @@ Preview dokument
                             <a href=""> |
                                 <i class="fas fa-thumbs-down"></i> 2819 Dislikes
                             </a>
-                            <a href=""> | <i class="fa-book fa"></i> Ini Publisher</a>
-                            <a href=""> | <i class="fa-calendar fa"></i> 2020</a>
+                            <a href=""> | <i class="fa-book fa"></i>{{$reference->publisher}}</a>
+                            <a href=""> | <i class="fa-calendar fa"></i> {{$reference->tahun}}</a>
                         </div>
                     </div>
                 </div>

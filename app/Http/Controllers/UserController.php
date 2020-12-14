@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserType;
+use Storage;
 
 class UserController extends Controller
 {
@@ -60,7 +61,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profil = User::findOrFail($id);
+        return view('profil.index', compact('profil'));
     }
 
     /**
@@ -72,7 +74,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     { 
-            $user = User::findOrFail($id);
+            $profil = User::findOrFail($id);
 
             $input = $request->all();
 
@@ -84,12 +86,12 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->route('user.update', [$id])->withErrors($validator);
+                return redirect()->route('profil.edit', [$id])->withErrors($validator);
             }
 
             if ($request->hasFile('avatar_file')) {
                 if ($request->file('avatar_file')->isValid()) {
-                    Storage::disk('upload')->delete($user->avatar_file);
+                    Storage::disk('upload')->delete($profil->avatar_file);
 
                     $avatar_file = $request->file('avatar_file');
                     $extention = $avatar_file->getClientOriginalExtension();
@@ -100,8 +102,8 @@ class UserController extends Controller
                 }
             }
 
-            $user->update($input);
-            return redirect()->route('profil.index')->with('status', 'Kategori Berhasil diupdate');
+            $profil->update($input);
+            return redirect()->route('profil.index')->with('status', 'profil Berhasil diupdate');
         
     }
 
