@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\KelolaUser;
 use Illuminate\Http\Request;
 
 
@@ -16,6 +17,7 @@ class ProfilController extends Controller
     public function index()
     {
         $input = User::all();
+        // $kelolaUser = KelolaUser::all();
         return view('profil.index', compact('input')); 
         // return view('profil.index');
     }
@@ -42,9 +44,10 @@ class ProfilController extends Controller
     }
 
     
-    public function show()
+    public function show($id)
     {
-        //
+        $kelolaUser = KelolaUser::findOrFail($id);
+        return view('profil.index', compact('kelolaUser'));
     }
 
  

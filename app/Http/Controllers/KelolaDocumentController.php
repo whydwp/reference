@@ -50,7 +50,7 @@ class KelolaDocumentController extends Controller
         $data_dokument = $request->all();
         $validator = Validator::make($data_dokument, [
             'judul_dokumen' => 'required|max:250',
-            'deskripsi_dokumen' => 'required|max:250',
+            'deskripsi_dokumen' => 'required|max:25000',
             'tahun' => 'required|max:250',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|max:250',
@@ -112,7 +112,7 @@ class KelolaDocumentController extends Controller
 
             $validator = Validator::make($input, [
                 'judul_dokumen' => 'required|max:250',
-                'deskripsi_dokumen' => 'required|max:250',
+                'deskripsi_dokumen' => 'required|max:25000',
                 'tahun' => 'required|max:250',
                 'publisher' => 'required|max:250',
                 'jumlah_halaman' => 'required|max:250',

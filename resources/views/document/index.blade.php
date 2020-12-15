@@ -20,8 +20,8 @@ Document
             <button data-target="#modal-default" data-toggle="modal" type="button"
                 class="btn btn-raised btn-default"><span class="fas fa-plus-square"></span>
                 kapasitas Documents</button>
-                {{-- <a href="{{ route('document.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
-                    Create</a> --}}
+                <a href="{{ route('document.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
+                    Create</a>
         </div>
         <br/>
                 <div class="modal fade" id="modal-default">
@@ -54,7 +54,7 @@ Document
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Sort berdasarkan :</label>
-                                    <select class="select2" style="width: 50%;">
+                                    <select name="filter_periode" id="filter_periode" class="select2" style="width: 50%;">
                                         <option selected>kategori</option>
                                         <option>judul dokument</option>
                                         <option>publisher</option>
@@ -113,7 +113,7 @@ Document
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     
-                                    <a class="btn btn-round btn-warning btn-md fa fa-edit" href="{{ route('document.edit',[$row->id]) }}">EDIT</a>
+                                    <a class="btn btn-round btn-warning btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a>
                                     <button type="submit" class="btn btn-round btn-danger fas fa-trash-alt"></i></button>
                                     {{-- <form method="post" action="">
                                                             @csrf
@@ -146,6 +146,71 @@ Document
     <!-- /.content -->
 
 
+{{-- <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"> </script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"> </script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"> </script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"> </script>
+
+
+<script>
+    $(document).ready(function(){
+        var table = $('#table-product').DataTable({
+        pageLength: 10,
+        processing: true,
+        serverSide: true,
+        dom: '<"html5buttons">Blfrtip',
+        language: {
+                buttons: {
+                    colvis : 'show / hide', // label button show / hide
+                    colvisRestore: "Reset Kolom" //lael untuk reset kolom ke default
+                }
+        },
+        
+        
+        ajax: {
+            "url"  : "{{ route ('document.index') }}", 
+            "data" : function (d) {
+                    d.filter_periode = $('#filter_periode').val();
+            }
+        },
+        columns: [
+            {"data":"name"},
+            {"data":"satuan"},
+            {"data":"buy_price"},
+            {"data":"sell_price"},
+            {"data":"created_at"},
+        ],
+        columnDefs : [{
+            render : function (data,type,row){
+                return data + ' - ( ' + row['satuan'] + ')'; 
+            },
+            "targets" : 0
+            },
+            {"visible": false, "targets" : 1}
+        ],
+        });
+        
+    //filter berdasarkan Nama Product
+    $('.filter-name').keyup(function () {
+        table.column( $(this).data('column'))
+        .search( $(this).val() )
+        .draw();
+    });
+    //filter Berdasarkan satuan product
+    $('.filter-satuan').change(function () {
+        table.column( $(this).data('column'))
+        .search( $(this).val() )
+        .draw();
+    });
+    //filter Berdasarkan periode
+    $('#filter_periode').change(function () {
+        table.draw();
+    });
+    });
+</script> --}}
 <script>
     $(function () {
     $('#example2').DataTable({
@@ -165,6 +230,8 @@ Document
       $('.select2').select2()
     });
 </script>
+
+
 <!-- custom -->
 {{-- <script type="text/javascript">
     $(document).ready(function(){

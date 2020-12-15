@@ -25,6 +25,12 @@ Kelola Profil
         <li class="list-group-item">
             <b>Username</b> <a class="float-right">{{Auth :: user()->username}}</a>
         </li>
+        
+            
+        {{-- <li class="list-group-item">
+            <b>Type</b> <a class="float-right">{{ $kelolaUser->KelolaUser->type}}</a>
+        </li> --}}
+      
     </ul>
 </div>
 </div>

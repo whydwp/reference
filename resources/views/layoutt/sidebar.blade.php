@@ -21,10 +21,10 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
            
+            @if(Auth::user()->user_type_id == 1)
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               
                <li class="nav-item">
                     <a href="{{route('dashboard')}}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -137,6 +137,97 @@
                     </ul>
                 </li>
             </ul>
+            @elseif(Auth::user()->user_type_id == 2)
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                           with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a href="{{ route('profil.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-address-card"></i>
+                        <p>
+                            Kelola-profil
+                        </p>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="{{route('reference.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>
+                            Reference
+                        </p>
+                    </a>
+                </li>
+            
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>
+                            kelola-Dokumen
+                            <i class="nav-icon right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ">
+                            <a href="{{ route('document.index') }}" class="nav-link ini">
+                                <i class="nav-icon far fa-circle nav-icon"></i>
+                                <p>Dokumen</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('document.create') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle nav-icon"></i>
+                                <p>Create Dokument</p>
+                            </a>
+                        </li>
+            
+                    </ul>
+                </li>
+                {{-- <li class="nav-item">
+                                <a href="{{ route('document.index') }}" class="nav-link">
+                <i class="fas fa-file-alt"></i>
+                <p>
+                    kelola-document
+                </p>
+                </a>
+                </li> --}}
+            
+               
+            </ul>
+            @elseif(Auth::user()->user_type_id == 3)
+           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                           with font-awesome or any other icon font library -->
+               
+                <li class="nav-item">
+                    <a href="{{ route('profil.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-address-card"></i>
+                        <p>
+                            Kelola-profil
+                        </p>
+                    </a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="{{route('reference.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>
+                            Reference
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('like.index')}}" class="nav-link">
+                        <i class="nav-icon fab fa-gratipay"></i>
+                        <p>
+                            Like
+                        </p>
+                    </a>
+                </li>
+            
+               
+            </ul>
+            @endif
         </nav>
         <!-- /.sidebar-menu -->
     </div>

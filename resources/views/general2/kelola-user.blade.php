@@ -31,14 +31,16 @@ Kelola User
                                 </button>
                             </div>
                             <div class="modal-body">
+                                {{-- <form method="post" action="{{ route('kelola-user.store')}}" enctype="multipart/form-data">
+                                    @csrf --}}
                                 <div class="form-group">
                                     <label>Nama</label>
-                                    <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan nama"
-                                        required>
+                                    <input type="text" name="full_name" id="full_name"class="form-control" placeholder=" yuk masukan nama"
+                                        required value="{{old('full_name')}}">
                                         <label>Email</label>
-                                        <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan email" required>
+                                        <input type="text" name="email" class="form-control" placeholder=" yuk masukan email" value="{{old('email')}}"required>
                                     <label>Username</label>
-                                    <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan username" required>
+                                    <input type="text" name="username" class="form-control" placeholder=" yuk masukan username" required value="{{old('username')}}">
                                    <label>Level</label>
                                     <select id="user_type_id" name="user_type_id" class="form-control">
                                         @foreach($data_user as $row )
@@ -51,11 +53,12 @@ Kelola User
                            
                             <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary" href="">Save changes</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->
                     </div>
+                </form>
                     <!-- /.modal-dialog -->
                 </div>
 

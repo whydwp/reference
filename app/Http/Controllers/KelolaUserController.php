@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\KelolaUser;
 use Illuminate\Http\Request;
+use Validator;
+
 
 class KelolaUserController extends Controller
 {
@@ -17,7 +19,7 @@ class KelolaUserController extends Controller
     {
         $data_user = User::paginate(10);
         // $kategori = Kategori::all();
-        return view('general2.kelola-user', compact('data_user'));
+        return view('KelolaUser.index', compact('data_user'));
     }
 
     /**
@@ -38,7 +40,20 @@ class KelolaUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Kelola = $request->all();
+        $validator = Validator::make($Kelola, [
+                'full_name' => 'required|max:250',
+                'username' => 'required|max:25000',
+                'email' => 'required|max:250',
+                'user_type_id' => 'required|max:250',
+                
+
+            ]);
+        if ($validator->fails()) {
+            return redirect()->route('KelolaUser.index')->withErrors($validator)->withInput();
+        }
+        Document::create($Kelola);
+        return redirect()->route('KelolaUser.index')->with('status', 'User Berhasil Ditambahankan');
     }
 
     /**
