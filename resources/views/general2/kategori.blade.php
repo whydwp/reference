@@ -72,12 +72,12 @@
                                             </a>
                                             <!-- <a href="" class="buttonlikedislike" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_like}}" data-type="1" onclick="tekan(id)"> -->
                                             <!-- data-token="{{ csrf_token() }}" -->
-                                            <button class="tekan btn-outline-info" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_like}}" data-type="1" data-token="{{ csrf_token() }}">
-                                                <i class="fas fa-thumbs-up likebut {{$doc->id}}">{{$doc->jumlah_like}}</i> 
+                                            <button class="tekan btn-outline-info {{$doc->id}}" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_like}}" data-token="{{ csrf_token() }}" <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $doc->id]])->exists()) { ?> disabled <?php } ?> >
+                                                <i class="fas fa-thumbs-up likebut {{$doc->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $doc->id]])->exists() ? 'like-post' : '' }}">{{$doc->jumlah_like}}</i> 
                                             </button>
-                                            <button class="tekan" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_dislike}}" data-type="0" data-token="{{ csrf_token() }}"> 
+                                            <!-- <button class="tekan {{$doc->id}}" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_dislike}}" data-type="0" data-token="{{ csrf_token() }}"> 
                                                 <i class="fas fa-thumbs-down dislikebut {{$doc->id}}">{{$doc->jumlah_dislike}}</i> 
-                                            </button>
+                                            </button> -->
                                             <!-- <a href=""> | <i class="fa-book fa"></i> {{$doc->publisher}}</a> -->
                                             <!-- <a href=""> | <i class="fa-calendar fa"></i> {{$doc->tahun}}</a> -->
                                             <button>
@@ -97,7 +97,6 @@
                 </div>
             </div>
         </div>
-</div>
 <!-- <script>
     $(function () {axSetup({
         headers: {
@@ -148,9 +147,9 @@ $(document).on("click", ".tekan", function() {
     // function tekan(id) {
         var id = $(this).data('id');
         var jumlah = $(this).data('jumlah');
-        var type = $(this).data('type');
         var meta = $('meta[name=csrf-token]').attr('content');
-        console.log(meta);
+        // console.log(meta);
+        $('.likebut.'+id).addClass("like-post");
         
         $.ajax({
             url: 'likedislike',
@@ -159,7 +158,6 @@ $(document).on("click", ".tekan", function() {
             data: {
                 id: id,
                 jumlah: jumlah,
-                type: type,
                 _token: '{{ csrf_token() }}'
                 // _token:$(this).data('token')
             },
@@ -169,12 +167,10 @@ $(document).on("click", ".tekan", function() {
             success: function(response){
                 if(response.message == 'success') {
                     // var jumlah = response.jumlah;
-                    if(type == 1){
-                        $('.likebut.'+id).text(response.jumlah);
-                    }
-                    else if(type == 0){
-                        $('.dislikebut.'+id).text(response.jumlah);
-                    }
+                    // if(type == 1){
+                        $('.likebut.'+id).text(" "+response.jumlah);
+                        $('.tekan.'+id).attr("disabled", true);
+                    // }
                     // console.log(response.hem);
                     // console.log(response);
                 }
