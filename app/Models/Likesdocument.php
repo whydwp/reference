@@ -15,12 +15,12 @@ class Likesdocument extends Model
         'document_id'
     ];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function document()
+    public function Document()
     {
         return $this->belongsTo('App\Models\Document', 'document_id');
     }
@@ -59,4 +59,6 @@ class Likesdocument extends Model
         // dd($namakategori);
         return $namakategori;
     }
+
+
 }

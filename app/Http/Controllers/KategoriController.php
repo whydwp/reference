@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Document;
+use App\Models\Likesdocument;
 use Illuminate\Http\Request;
 use DB;
 use View;
+use Auth;
 
 class KategoriController extends Controller
 {
@@ -23,9 +25,6 @@ class KategoriController extends Controller
         $accesfuncdoc = new Document();
         $getdocument = $accesfuncdoc->getperkategori($id);
 
-        //partition to per 3 category
-        
-        // dd($getdocument);
         return view('general2.kategori',['datas'=>$getdocument, 'defaultkategori'=>$whatcategory]);
     }
 
@@ -72,31 +71,30 @@ class KategoriController extends Controller
         // $datasdoc = new Document();
         // $docs = $datasdoc->byid($id);
 
-        $docs = Document::find((int)$id);
+        $docs = Document::find($id);
         // dd($docs);
-        (int)$idcat = $docs->id_kategori;
+        $idcat = $docs->id_kategori;
         
         // $datascat = new Kategori();
         // $cat = $datascat->getCategory($idcat);
         $cat = Kategori::find($idcat);
         $likecat = $cat->jumlah_like;
-        $dislikecat = $cat->jumlah_dislike;
+        // $dislikecat = $cat->jumlah_dislike;
 
         $jumlah = $request->jumlah;
-        $type = $request->type;
+        // $type = $request->type;
         
         $changejumlah = $jumlah + 1 ;
         
         $values = [
             'message' => 'success',
             'id' => (int)$id,
-            'jumlah' => $changejumlah,
-            'type' => $type
+            'jumlah' => $changejumlah
             // 'hem' => $doctochange->jumlah_dislike
         ];
 
         // like or dislike
-        if($type == "1"){
+        // if($type == "1"){
             $changecat = $likecat + 1 ;
 
             Document::where('id', $id)->update([
@@ -105,19 +103,25 @@ class KategoriController extends Controller
             Kategori::where('id_kategori', $idcat)->update([
                 'jumlah_like' => $changecat
             ]);
-            return response()->json($values);
-        }
-        else if($type == "0"){
-            $changecat = $dislikecat + 1;
+            // if()
+            $newlikes = new Likesdocument();
+            $newlikes->user_id = Auth::user()->id;
+            $newlikes->document_id = $id;
+            if($newlikes->save()){
+                return response()->json($values);
+            }
+        // }
+        // else if($type == "0"){
+        //     $changecat = $dislikecat + 1;
 
-            Document::where('id', $id)->update([
-                'jumlah_dislike' => $changejumlah
-            ]);
-            Kategori::where('id_kategori', $idcat)->update([
-                'jumlah_dislike' => $changecat
-            ]);
-            return \response()->json($values);
-        }
+        //     Document::where('id', $id)->update([
+        //         'jumlah_dislike' => $changejumlah
+        //     ]);
+        //     Kategori::where('id_kategori', $idcat)->update([
+        //         'jumlah_dislike' => $changecat
+        //     ]);
+        //     return \response()->json($values);
+        // }
         
     }
 

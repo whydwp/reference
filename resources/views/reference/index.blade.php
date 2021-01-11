@@ -123,8 +123,8 @@ My Reference
                             </p>
                             <h5  id="id_kategori" name="id_kategori">Kategori :  {{$id->kategori->kategori}} </h5>
                             <br>
-                            <button href="javascript:void(0)" class="btn btn-outline-info" >
-                                <i class="fas fa-thumbs-up tekan"></i> {{$id->jumlah_like}}
+                            <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}" data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"  <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?> disabled <?php } ?>>
+                                <i class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}"> {{$id->jumlah_like}}</i> 
                             </button>
                             <a href="javascript:void(0)"> |
                                 <i class="far fa-eye"></i> {{$id->jumlah_view}}
@@ -154,5 +154,55 @@ My Reference
     </div>
 </div>
 
+<script>
+
+$(document).on("click", ".tekan", function() {
+    
+    // function tekan(id) {
+        var id = $(this).data('id');
+        var jumlah = $(this).data('jumlah');
+        var meta = $('meta[name=csrf-token]').attr('content');
+        // console.log(meta);
+        $('.likebut.'+id).addClass("like-post");
+        
+        $.ajax({
+            url: 'likedislike',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                id: id,
+                jumlah: jumlah,
+                _token: '{{ csrf_token() }}'
+                // _token:$(this).data('token')
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response){
+                if(response.message == 'success') {
+                    // var jumlah = response.jumlah;
+                    // if(type == 1){
+                        $('.likebut.'+id).text(" "+response.jumlah);
+                        $('.tekan.'+id).attr("disabled", true);
+                    // }
+                    // else if(type == 0){
+                    //     $('.dislikebut.'+id).text(response.jumlah);
+                    // }
+                    // console.log(response.hem);
+                    // console.log(response);
+                }
+                else {
+                    alert("gagal!!");
+                }
+            },
+            error: function(response){
+                var errors = response.responseJSON;
+                // $('#errorlog').text(errors);
+                console.log(errors);
+            }
+        })
+    })
+
+</script>
 
 @endsection
