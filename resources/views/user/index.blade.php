@@ -22,29 +22,30 @@ Document
                     </div>
                     <br />
                    
-                    <div class="row">
+    <div class="row">
         <div class="col-md-10 offset-md-1">
             <div class="row">
                 <div class="col-md-6">
                     <form method="get" action="">
                         <div class="form-group">
-                           <label>Cari Level</label>
-                            <select id="user_type_id" name="user_type_id" class="form-control select2" style="width: 50%;">
-                                @foreach($kelola as $row)
-                                <option selected="selected" value="{{ $row->user_type_id }}">{{ $row->type }}</option>
-                                @endforeach
+                            <label>Level</label>
+                        <select id="user_type_id" name="user_type_id" class="custom-select select2bs4" style="width: 50%;">
+                            <option selected disabled>Level</option>
+                            @foreach($kelola as $row)
+                            <option value="{{ $row->user_type_id }}">{{ $row->type }}</option>
+                            @endforeach
                             </select>
-                            <button type="submit" class="btn btn-info"><span
-                                    class="glyphicon glyphicon-search"></span>cari</button>
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
-    
+
                     </form>
                 </div>
-    
+
             </div>
-            
-        </div>
     </div>
+  
 
                     <!-- /.card-header -->
 

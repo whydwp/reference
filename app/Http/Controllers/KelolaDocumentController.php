@@ -63,7 +63,6 @@ class KelolaDocumentController extends Controller
     public function store(Request $request)
     {
         $data_dokument = $request->all();
-
         $validator = Validator::make($data_dokument, [
             'judul_dokumen' => 'required|max:250',
             'deskripsi_dokumen' => 'required|max:25000',

@@ -80,7 +80,7 @@ masukan dokument
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="cover" class="col-sm-4 control-label">File document</label>
+                        <label for="cover" class="col-sm-4 control-label">Upload Gambar</label>
                         <input type="file" name="cover" class="form-control" id="cover">
                     </div>
                 </div>

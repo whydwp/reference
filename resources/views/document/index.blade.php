@@ -56,12 +56,15 @@ Document
                                 <form method="get" action="{{route('document.index')}}">
                                 <div class="form-group">
                                     <label>Cari Kategori</label>
-                                    <select id="id_kategori" name="id_kategori" class="form-control select2" style="width: 50%;">
+                                    <select id="id_kategori" name="id_kategori" class="custom-select select2bs4" style="width: 50%;">
+                                        <option selected disabled>Kategori</option>
                                         @foreach($kategori as $row)
-                                        <option selected="selected"value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
+                                        <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
                                         @endforeach
                                     </select>
-                                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span>cari</button>
+                                  <button type="submit" class="btn btn-lg btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
                                 </div>
                                 
                                 </form>
@@ -121,7 +124,7 @@ Document
                         <tr>
                             <td>{{ $loop->iteration + ($data_dokument->perPage() * ($data_dokument->currentPage() - 1)) }}
                             </td>
-                            <td>{{ $row->judul_dokumen }}</td>
+                            <td>{{ str_limit($row->judul_dokumen , 50, ' ...') }}</td>
                             <td>{{ $row->tahun }}</td>
                             <td>{{ $row->jumlah_halaman }}</td>
                             <td>{{ $row->publisher }}</td>

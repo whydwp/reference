@@ -15,19 +15,15 @@ Preview dokument
 
             <div class=" card list-group-item">
                 <a href="{{route('reference.index')}}" class="btn btn-danger btn-xl">Kembali</a>
-                <div class="container" style="margin-bottom: 60px !important;">
-
-                    <div class="col-md-8 offset-md-1">
-                    </div>
-                </div>
-                <hr>
+              <hr>
                 <div class="row">
                     <div class="container" >
                         <div class="col-md-12">
                         {{-- @foreach ($reference as $item) --}}
                             <label for="file" class="col-sm-2 control-label"></label>
                             <div class="embed-responsive embed-responsive-4by3" >
-                                <iframe class="embed-responsive-item" src="{{ asset('uploads/'.$reference->file) }}">
+                                <iframe src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" 
+                                        frameborder="0" scrolling="auto" class="embed-responsive-item" >
                                 </iframe>
                             </div>
                         </div>

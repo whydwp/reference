@@ -20,7 +20,6 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-
             @if(Auth::user()->user_type_id == 1)
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -50,7 +49,6 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{{route('reference.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -106,7 +104,6 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{{route('reference.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -148,7 +145,6 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{{route('reference.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
