@@ -25,10 +25,10 @@ class DashboardController extends Controller
         return view('general2.dashboard', ['datas'=>$allcat]);
         // return view('general2.dashboard');
 
-        $dashboard = Document::paginate(3);
+        // $dashboard = Document::paginate(3);
       
         // $kategori = Kategori::all();
-        return view('general2.dashboard', compact('dashboard'));
+        // return view('general2.dashboard', compact('dashboard'));
 
     }
 

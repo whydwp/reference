@@ -26,7 +26,7 @@ class kategori extends Model
                         ->selectRaw('kategori.*, count(document.id) as count') 
                         ->groupBy('kategori.id_kategori')
                         ->get();
-                        dd($allcategory);
+                        // dd($allcategory);
 
         return $allcategory;
     }
