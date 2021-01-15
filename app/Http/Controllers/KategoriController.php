@@ -93,8 +93,6 @@ class KategoriController extends Controller
             // 'hem' => $doctochange->jumlah_dislike
         ];
 
-        // like or dislike
-        // if($type == "1"){
             $changecat = $likecat + 1 ;
 
             Document::where('id', $id)->update([
@@ -103,25 +101,13 @@ class KategoriController extends Controller
             Kategori::where('id_kategori', $idcat)->update([
                 'jumlah_like' => $changecat
             ]);
-            // if()
+           
             $newlikes = new Likesdocument();
             $newlikes->user_id = Auth::user()->id;
             $newlikes->document_id = $id;
             if($newlikes->save()){
                 return response()->json($values);
             }
-        // }
-        // else if($type == "0"){
-        //     $changecat = $dislikecat + 1;
-
-        //     Document::where('id', $id)->update([
-        //         'jumlah_dislike' => $changejumlah
-        //     ]);
-        //     Kategori::where('id_kategori', $idcat)->update([
-        //         'jumlah_dislike' => $changecat
-        //     ]);
-        //     return \response()->json($values);
-        // }
         
     }
 
