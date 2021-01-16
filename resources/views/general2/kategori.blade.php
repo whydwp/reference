@@ -72,7 +72,7 @@
                                             </a>
                                             <!-- <a href="" class="buttonlikedislike" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_like}}" data-type="1" onclick="tekan(id)"> -->
                                             <!-- data-token="{{ csrf_token() }}" -->
-                                            <button class="tekan btn-outline-info {{$doc->id}}" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_like}}" data-token="{{ csrf_token() }}" <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $doc->id]])->exists()) { ?> disabled <?php } ?> >
+                                            <button class="tekan btn-outline-info {{$doc->id}}" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_like}}" data-token="{{ csrf_token() }}" <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $doc->id]])->exists()) { ?> data-check="1" <?php } else { ?> data-check="0" <?php } ?> >
                                                 <i class="fas fa-thumbs-up likebut {{$doc->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $doc->id]])->exists() ? 'like-post' : '' }}">{{$doc->jumlah_like}}</i> 
                                             </button>
                                             <!-- <button class="tekan {{$doc->id}}" data-id="{{$doc->id}}" data-jumlah="{{$doc->jumlah_dislike}}" data-type="0" data-token="{{ csrf_token() }}"> 
@@ -148,8 +148,8 @@ $(document).on("click", ".tekan", function() {
         var id = $(this).data('id');
         var jumlah = $(this).data('jumlah');
         var meta = $('meta[name=csrf-token]').attr('content');
-        // console.log(meta);
-        $('.likebut.'+id).addClass("like-post");
+        var check = $(this).data('check');
+        // console.log(check);
         
         $.ajax({
             url: 'likedislike',
@@ -158,6 +158,7 @@ $(document).on("click", ".tekan", function() {
             data: {
                 id: id,
                 jumlah: jumlah,
+                check:check,
                 _token: '{{ csrf_token() }}'
                 // _token:$(this).data('token')
             },
@@ -167,11 +168,16 @@ $(document).on("click", ".tekan", function() {
             success: function(response){
                 if(response.message == 'success') {
                     // var jumlah = response.jumlah;
-                    // if(type == 1){
+                    if(check == 0){
+                        $('.likebut.'+id).addClass("like-post");
+                        $('.tekan.'+id).data('check', 1);
+                    }
+                    else if(check == 1){
+                        $('.likebut.'+id).removeClass("like-post");
+                        $('.tekan.'+id).data('check', 0);
+                    }
                         $('.likebut.'+id).text(" "+response.jumlah);
-                        $('.tekan.'+id).attr("disabled", true);
-                    // }
-                    // console.log(response.hem);
+                        $('.tekan.'+id).data('jumlah', response.jumlah);
                     // console.log(response);
                 }
                 else {
