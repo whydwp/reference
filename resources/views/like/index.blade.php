@@ -36,7 +36,7 @@ My Like
                             </p>
                             <h5  id="id_kategori" name="id_kategori">Kategori :  {{$id->namakategori}} </h5>
                             <br>
-                            <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}" data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"  <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?> disabled <?php } ?>>
+                            <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}" data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"  <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?> data-check="1" <?php } else { ?> data-check="0" <?php } ?> >
                                 <i class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}"> {{$id->jumlah_like}}</i> 
                             </button>
                             <a href="javascript:void(0)"> |
@@ -75,8 +75,8 @@ $(document).on("click", ".tekan", function() {
         var id = $(this).data('id');
         var jumlah = $(this).data('jumlah');
         var meta = $('meta[name=csrf-token]').attr('content');
+        var check = $(this).data('check');
         // console.log(meta);
-        $('.likebut.'+id).addClass("like-post");
         
         $.ajax({
             url: 'likedislike',
@@ -85,6 +85,7 @@ $(document).on("click", ".tekan", function() {
             data: {
                 id: id,
                 jumlah: jumlah,
+                check: check,
                 _token: '{{ csrf_token() }}'
                 // _token:$(this).data('token')
             },
@@ -94,15 +95,17 @@ $(document).on("click", ".tekan", function() {
             success: function(response){
                 if(response.message == 'success') {
                     // var jumlah = response.jumlah;
+                    if(check == 0){
+                        $('.likebut.'+id).addClass("like-post");
+                        $('.tekan.'+id).data('check', 1);
+                    }
+                    else if(check == 1){
+                        $('.likebut.'+id).removeClass("like-post");
+                        $('.tekan.'+id).data('check', 0);
+                    }
                     // if(type == 1){
                         $('.likebut.'+id).text(" "+response.jumlah);
-                        $('.tekan.'+id).attr("disabled", true);
-                    // }
-                    // else if(type == 0){
-                    //     $('.dislikebut.'+id).text(response.jumlah);
-                    // }
-                    // console.log(response.hem);
-                    // console.log(response);
+                        $('.tekan.'+id).data('jumlah', response.jumlah);
                 }
                 else {
                     alert("gagal!!");
