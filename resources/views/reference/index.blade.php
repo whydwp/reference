@@ -39,10 +39,10 @@ My Reference
                     <div class="col-md-6">
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
-                            <label for="keyword" class="col-sm-2 control-label">Tahun</label>
+                            <label for="keyword" class="col-sm-4 control-label">Tahun Publish</label>
                             <div class="input-group input-group-lg">
                                 <input type="search" class="form-control form-control-lg" name="keyword" value="{{Request::get('keyword')}}"
-                                    value="Lorem ipsum">
+                                    placeholder="Tahun Publish">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -123,9 +123,14 @@ My Reference
                             </p>
                             <h5  id="id_kategori" name="id_kategori">Kategori :  {{$id->kategori->kategori}} </h5>
                             <br>
-                            <button href="javascript:void(0)" class="btn btn-outline-info" >
-                                <i class="fas fa-thumbs-up tekan"></i> {{$id->jumlah_like}}
-                            </button>
+                          <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}"
+                            data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"
+                            <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?>
+                            data-check="1" <?php } else { ?> data-check="0" <?php } ?>>
+                            <i
+                                class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}">
+                                {{$id->jumlah_like}}</i>
+                        </button>
                             <a href="javascript:void(0)"> |
                                 <i class="far fa-eye"></i> {{$id->jumlah_view}}
                             </a>
@@ -153,6 +158,57 @@ My Reference
         </div>
     </div>
 </div>
-
-
+<script>
+    $(document).on("click", ".tekan", function() {
+    
+    // function tekan(id) {
+        var id = $(this).data('id');
+        var jumlah = $(this).data('jumlah');
+        var meta = $('meta[name=csrf-token]').attr('content');
+        var check = $(this).data('check');
+        // console.log(check);
+        
+        $.ajax({
+            url: 'likedislike',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                id: id,
+                jumlah: jumlah,
+                check: check,
+                _token: '{{ csrf_token() }}'
+                // _token:$(this).data('token')
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response){
+                if(response.message == 'success') {
+                    // var jumlah = response.jumlah;
+                    if(check == 0){
+                        $('.likebut.'+id).addClass("like-post");
+                        $('.tekan.'+id).data('check', 1);
+                    }
+                    else if(check == 1){
+                        $('.likebut.'+id).removeClass("like-post");
+                        $('.tekan.'+id).data('check', 0);
+                    }
+                    
+                        $('.likebut.'+id).text(" "+response.jumlah);
+                        $('.tekan.'+id).data('jumlah', response.jumlah);
+                    
+                    // console.log(response);
+                }
+                else {
+                    alert("gagal!!");
+                }
+            },
+            error: function(response){
+                var errors = response.responseJSON;
+                // $('#errorlog').text(errors);
+                console.log(errors);
+            }
+        })
+    })
+</script>
 @endsection

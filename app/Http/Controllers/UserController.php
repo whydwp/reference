@@ -57,7 +57,8 @@ class UserController extends Controller
             'full_name' => 'required|max:250',
             'username' => 'required|max:100|unique:users,username,' ,
             'email' => 'required|email|max:255|unique:users,email,',
-            'password' => 'sometimes|nullable|min:6',
+            //'password' => 'sometimes|nullable|min:6',
+            'password' => 'required|max:250',
             'user_type_id' => 'required|max:250',
 
         ]);

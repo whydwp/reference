@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Document;
+use App\Models\Likesdocument;
 use Illuminate\Http\Request;
 use DB;
 use View;
+use Auth;
+use Validator;
 
 class KategoriController extends Controller
 {
@@ -15,18 +18,25 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         // $defaultcategorypembangkit = 1;
-        $accesfunccat = new Kategori();
-        $whatcategory = $accesfunccat->getCategory($id);
-        $accesfuncdoc = new Document();
-        $getdocument = $accesfuncdoc->getperkategori($id);
+        // $accesfunccat = new Kategori();
+        // $whatcategory = $accesfunccat->getCategory($id);
+        // $accesfuncdoc = new Document();
+        // $getdocument = $accesfuncdoc->getperkategori($id);
 
-        //partition to per 3 category
+        // return view('general2.kategori',['datas'=>$getdocument, 'defaultkategori'=>$whatcategory]);
+      
+        // dd($input);
         
-        // dd($getdocument);
-        return view('general2.kategori',['datas'=>$getdocument, 'defaultkategori'=>$whatcategory]);
+        
+            $kategori = Kategori::paginate(10);
+      
+          
+            // $kategori = Kategori::all();
+            return view('kategori.index', ['kategori' => $kategori]);
+        
     }
 
     public function filter(Request $request) 
@@ -72,31 +82,30 @@ class KategoriController extends Controller
         // $datasdoc = new Document();
         // $docs = $datasdoc->byid($id);
 
-        $docs = Document::find((int)$id);
+        $docs = Document::find($id);
         // dd($docs);
-        (int)$idcat = $docs->id_kategori;
+        $idcat = $docs->id_kategori;
         
         // $datascat = new Kategori();
         // $cat = $datascat->getCategory($idcat);
         $cat = Kategori::find($idcat);
         $likecat = $cat->jumlah_like;
-        $dislikecat = $cat->jumlah_dislike;
+        // $dislikecat = $cat->jumlah_dislike;
 
         $jumlah = $request->jumlah;
-        $type = $request->type;
+        // $type = $request->type;
         
         $changejumlah = $jumlah + 1 ;
         
         $values = [
             'message' => 'success',
             'id' => (int)$id,
-            'jumlah' => $changejumlah,
-            'type' => $type
+            'jumlah' => $changejumlah
             // 'hem' => $doctochange->jumlah_dislike
         ];
 
         // like or dislike
-        if($type == "1"){
+        // if($type == "1"){
             $changecat = $likecat + 1 ;
 
             Document::where('id', $id)->update([
@@ -105,19 +114,25 @@ class KategoriController extends Controller
             Kategori::where('id_kategori', $idcat)->update([
                 'jumlah_like' => $changecat
             ]);
-            return response()->json($values);
-        }
-        else if($type == "0"){
-            $changecat = $dislikecat + 1;
+            // if()
+            $newlikes = new Likesdocument();
+            $newlikes->user_id = Auth::user()->id;
+            $newlikes->document_id = $id;
+            if($newlikes->save()){
+                return response()->json($values);
+            }
+        // }
+        // else if($type == "0"){
+        //     $changecat = $dislikecat + 1;
 
-            Document::where('id', $id)->update([
-                'jumlah_dislike' => $changejumlah
-            ]);
-            Kategori::where('id_kategori', $idcat)->update([
-                'jumlah_dislike' => $changecat
-            ]);
-            return \response()->json($values);
-        }
+        //     Document::where('id', $id)->update([
+        //         'jumlah_dislike' => $changejumlah
+        //     ]);
+        //     Kategori::where('id_kategori', $idcat)->update([
+        //         'jumlah_dislike' => $changecat
+        //     ]);
+        //     return \response()->json($values);
+        // }
         
     }
 
@@ -128,7 +143,8 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+        return view('kategori.index', compact('kategori'));
     }
 
     /**
@@ -139,7 +155,9 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategori = $request->all();
+        Kategori::create($kategori);
+        return redirect()->route('kategori.index')->with('status', 'Dokumen Berhasil Ditambahankan');
     }
 
     /**
@@ -159,9 +177,16 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kategori $kategori)
+    public function edit(Request $request, $id)
     {
-        //
+        if($request->isMethod('post')){
+            $item =$request->all();
+            // dd($item);
+            Kategori::where(['id_kategori'=>$id])->update(['kategori'=>$item['kategori'],]);
+            return redirect()->back()->with('status','kategori berhasil diupdate');
+        }
+        // $edit = Kategori::findOrFail($id);
+        // return view('kategori.index', compact('edit'));
     }
 
     /**
@@ -171,9 +196,8 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kategori $kategori)
-    {
-        //
+    public function update(Request $request, $id)
+    { 
     }
 
     /**
@@ -182,8 +206,10 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kategori $kategori)
+    public function destroy($id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();   
+        return redirect()->route('kategori.index')->with('status', 'Data Kategori Berhasil dihapus');
     }
 }

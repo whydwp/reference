@@ -18,17 +18,35 @@ class DashboardController extends Controller
     {
         // return view('general.dashboard2');
 
-        $accessfuncallcat = new Kategori();
-        $allcat = $accessfuncallcat->getallcategory();
-        // $chunktothree = $allcat->chunk(6);
-        // dd($chunktothree[0]);
-        return view('general2.dashboard', ['datas'=>$allcat]);
-        // return view('general2.dashboard');
-
-        $dashboard = Document::paginate(3);
+        // $accessfuncallcat = new Kategori();
+        // $allcat = $accessfuncallcat->getallcategory();
+        // // $chunktothree = $allcat->chunk(6);
+        // // dd($chunktothree[0]);
+        // return view('general2.dashboard', ['datas'=>$allcat]);
+        // // return view('general2.dashboard');
+        $jumlah_dokumen = Document::count();
+        $jumlah_kategori = Kategori::count();
+        $jumlah_likes = Document::sum('jumlah_like');
+        $jumlah_views = Document::sum('jumlah_view');
+        // $dashboard = Document::paginate(3);
+        $nama_dokumen = []; //memunculkan nama pada grafik
+        $jumlah_like = [];
+        $jumlah_view = []; //memunculkan jumlah pada grafik
+        $data_dokumen = Document::all(); //menyimpan data yang ada ditabel 
+        foreach ($data_dokumen as $row) {
+            //setiap kali petrulanagan akan menyimpan nama 
+            $nama_dokumen[] = $row->judul_dokumen;
+            //mencari ditabel like view 
+            $view = Document::where('id', $row->id)->sum('jumlah_view');
+            $like = Document::where('id', $row->id)->sum('jumlah_like');
+            $jumlah_like[] = $like;
+            $jumlah_view[] = $view;
+        }
+       
+        
       
         // $kategori = Kategori::all();
-        return view('general2.dashboard', compact('dashboard'));
+        return view('general2.dashboard', compact('jumlah_kategori','nama_dokumen', 'jumlah_like', 'jumlah_view','jumlah_dokumen','jumlah_likes','jumlah_views'));
 
     }
 

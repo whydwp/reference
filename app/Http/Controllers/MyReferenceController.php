@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Validator;
+use App\Models\Forum;
+use App\Models\User;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use DB;
+
 
 class MyReferenceController extends Controller
 {
@@ -15,15 +18,16 @@ class MyReferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+ 
     public function index(Request $request)
     {
         // $reference = Document::;
         // // $kategori = Kategori::all();
         // return view('reference.index', compact('reference'));
 
-        $reference = Document::paginate(10);
+        $reference = Document::orderBy('created_at', 'desc')->paginate(3);
         $filterKeyword = $request->get('keyword');
-        $kategori = Kategori::all();
+        $kategori = Kategori::orderBy('created_at', 'asc')->get();
          $nama_kategori = '';
         $reference2 = Document::orderBy('jumlah_like', 'DESC')->get();
         if ($filterKeyword) {
@@ -37,6 +41,7 @@ class MyReferenceController extends Controller
             $nama_kategori = $data_kategori->kategori;
         }
         // $kategori = Kategori::all();
+        
         return view('reference.index', compact('reference', 'kategori','nama_kategori','reference2'));     
     }
 
@@ -57,21 +62,30 @@ class MyReferenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Forum $forum)
     {
-        //
+        $komentar = [
+            'id' => $forum->id,
+            'created_at' => $forum->created_at,
+            'user_id' => auth()->id(),
+            'message' => $request->message,
+        ];
+        Forum::create($komentar);
+            return redirect()->back();
+            
     }
-
+  
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request ,$id)
     {
         $reference = Document::findOrFail($id);
-        return view('reference.show', compact('reference'));
+       $komentar = Forum::all();
+        return view('reference.show', compact('reference','komentar'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -104,6 +118,8 @@ class MyReferenceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $komentar = Forum::findOrFail($id);
+        $komentar->delete();
+        return redirect()->back();
     }
 }

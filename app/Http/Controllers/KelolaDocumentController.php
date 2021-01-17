@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Exports\ReportExport;
 use Excel;
 
+
 class KelolaDocumentController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class KelolaDocumentController extends Controller
      */
     public function index(Request $request)
     {
-        $data_dokument = Document::paginate(100);
+        $data_dokument = Document::orderBy('created_at', 'desc')->paginate(10);
         $filterKeyword = $request->get('keyword');
         $kategori = Kategori::all();
         $nama_kategori = '';
@@ -63,20 +64,36 @@ class KelolaDocumentController extends Controller
     public function store(Request $request)
     {
         $data_dokument = $request->all();
-        $validator = Validator::make($data_dokument, [
+        $rules = [
             'judul_dokumen' => 'required|max:250',
             'deskripsi_dokumen' => 'required|max:25000',
-            'tahun' => 'required|max:250',
+            'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
-            'jumlah_halaman' => 'required|max:250',
-            'file' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+            'jumlah_halaman' => 'required|numeric',
+            'file' => 'required|mimes:pdf,html|max:5048',
             'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
-        ]);
+        ];
+
+        $messages = [
+            'judul_dokumen.required'          => 'Nama wajib diisi.',
+            'deskripsi_dokumen.required'      => 'Deskripsi wajib diisi.',
+            'tahun.required'           => 'tahun wajib diisi.',
+            'publisher.required'         => 'publisher wajib diisi.',
+            'jumlah_halaman.required'         => 'jumlah halaman wajib diisi.',
+            'file.required'         => 'file wajib diisi.',
+            'cover.required'         => 'cover wajib diisi.',
+            'id_kategori.required'         => 'kategori wajib dipilih.',
+           
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
         if ($validator->fails()) {
-            return redirect()->route('document.create')->withErrors($validator)->withInput();
+            return redirect()->route('document.create')->withErrors($validator)->withInput($request->all());
         }
+      
         $file = $request->file('file');
         $extention = $file->getClientOriginalExtension();
         if ($request->file('file')->isValid()) {
@@ -131,24 +148,40 @@ class KelolaDocumentController extends Controller
     public function update(Request $request, $id)
     { 
         {
+            
             $document = Document::findOrFail($id);
 
             $input = $request->all();
 
-            $validator = Validator::make($input, [
+            $rules = [
                 'judul_dokumen' => 'required|max:250',
                 'deskripsi_dokumen' => 'required|max:25000',
-                'tahun' => 'required|max:250',
+                'tahun' => 'required|numeric',
                 'publisher' => 'required|max:250',
-                'jumlah_halaman' => 'required|max:250',
-                'file' => 'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
+                'jumlah_halaman' => 'required|numeric',
+                'file' =>  'sometimes|nullable|mimes:pdf,html|max:5048',
+                'cover' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
                 'id_kategori' => 'required|max:250',
-            ]);
+
+            ];
+
+            $messages = [
+                'judul_dokumen.required'          => 'Nama wajib diisi.',
+                'deskripsi_dokumen.required'      => 'Deskripsi wajib diisi.',
+                'tahun.required'           => 'tahun wajib diisi.',
+                'publisher.required'         => 'publisher wajib diisi.',
+                'jumlah_halaman.required'         => 'jumlah halaman wajib diisi.',
+                'file.required'         => 'ukuran file terlalu besar.',
+                'cover.required'         => 'ukuran cover terlalu besar.',
+                'id_kategori.required'         => 'kategori wajib dipilih.',
+
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
 
             if ($validator->fails()) {
-                return redirect()->route('document.edit', [$id])->withErrors($validator);
+                return redirect()->route('document.edit', [$id])->withErrors($validator)->withInput($request->all());
             }
-
             if ($request->hasFile('file')) {
                 if ($request->file('file')->isValid()) {
                     Storage::disk('upload')->delete($document->file);

@@ -16,7 +16,7 @@ class kategori extends Model
         'kategori',
         'jumlah_dokumen',
         'jumlah_like',
-        'jumlah_dislike'
+        'jumlah_view'
     ];
 
     public function getallcategoryandcount()

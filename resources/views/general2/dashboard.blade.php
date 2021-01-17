@@ -9,405 +9,142 @@ Dashboard
 
 
 <div class="content">
-    <div class="container">
+    <div class="container" >
         <div class="row">
-        <!-- <h6 class="media-heading">aaaa</h6> -->
-        @foreach($datas as $datas)
-            <div class="col-lg-4">
-                <div class="card">
-                    <a href="{{ route('kategori', ['id' => $datas->id_kategori]) }}">
-                        <div class="card-body">
-                            <img widht="200px" class="img-fluid"
-                                src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                            <h3>{{$datas->kategori}}</h3>
-
-                            <div class="panel-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Jumlah Dokumen : {{$datas->jumlah_dokumen}}</h6>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Likes : {{$datas->jumlah_like}}</h6>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Dislike : {{$datas->jumlah_dislike}}</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+            <div class="col-lg-3 col-12">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3>{{$jumlah_dokumen}}</h3>
+          
+                  <h5>Jumlah Dokumen</h5>
                 </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
             </div>
-        @endforeach
-        </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3>{{$jumlah_likes}}</h3>
+          
+                  <h5>Jumlah Like</h5>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-navy">
+                <div class="inner">
+                  <h3>{{$jumlah_views}}</h3>
+          
+                  <h5>Jumlah View</h5>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-orange">
+                <div class="inner">
+                  <h3>{{$jumlah_kategori}}</h3>
+          
+                  <h5>Jumlah Kategori</h5>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+           
+            <!-- ./col -->
+          </div>
     </div>
-=======
-
-<!-- Content Header (Page header) -->
-{{-- @foreach ($dashboard as $item) --}}
-
-<div class="content" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <hr>
-                       <a  tabindex="-1"
-                                    role="button" aria-disabled="true"class="btn btn-info ">Manajemen Project, Enjiniring dan Kontruksi</a>
-                      
-                            
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                      <hr>
-                        <span href="#" class="btn-info btn-lg disabled" style="color:#ffffff;" role="button" aria-disabled="true">Tranmisi</span>
-                        <hr>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <hr>
-                        <span href="#" class="btn-info btn-lg disabled" style="color:#ffffff;" role="button" aria-disabled="true">Niaga dan Manajemen Pelanggan</span>
-                        <hr>
-                         
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <hr>
-                        <span href="#" class="btn-info btn-lg disabled" style="color:#ffffff;" role="button" aria-disabled="true">Sertifikasi</span>
-                        <hr>
-                           
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <hr>
-                        <span href="#" class="btn-info btn-lg disabled" style="color:#ffffff;" role="button"
-                            aria-disabled="true">K2, K3, Keamanan dan lingkungan</span>
-                        <hr>
-                           
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                       <hr>
-                    <span href="#" class="btn-info btn-lg disabled" style="color:#ffffff;" role="button" aria-disabled="true">Pembangkit</span>
-                    <hr>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col-md-6 -->
-
-            <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
 </div>
-{{-- @endforeach --}}
-{{-- <div class="d-block col-2 mt-10">{{ $dashboard->links() }}</div> --}}
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex">
+      <p class="d-flex flex-column" >
+        <h3>Grafik Document</h3>
+      </p>
+     
+    </div>
+    <!-- /.d-flex -->
 
+    <div class="position-relative mb-4">
+      <canvas id="densityChart" height="200"></canvas>
+    </div>
 
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <h3>Penelitian dan Pengembangan</h3>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <h3>Pembelejaran</h3>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <h3>Peralatan Ketenagalistrikan</h3>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <h3>Supply Chain Management</h3>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                           <hr>
-                       <span href="#" class="btn-info btn-lg disabled" style="color:#ffffff;"  role="button"
-                            aria-disabled="true">Supply Chain Management</span>
-                          <hr>
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img widht="200px" class="img-fluid"
-                            src="https://www.visioner.id/wp-content/uploads/2016/07/Pembangkit-Listrik-K3.jpg" alt="">
-                        <h3>distribusi</h3>
-
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Jumlah Dokumen : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Likes : 12345</h6>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="media-heading">Dislike : 12345</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col-md-6 -->
-
-            <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
->>>>>>> 0efec93caf7411c630bdc58bdcb020d07d2d9526
+  </div>
 </div>
 
+<script>
+  $(function () {
+  var densityCanvas = document.getElementById("densityChart");
+  
+  Chart.defaults.global.defaultFontFamily = "Lato";
+  Chart.defaults.global.defaultFontSize = 20;
+  
+  var densityData = {
+  label: 'Jumlah Like',
+  data:@php echo json_encode($jumlah_like); @endphp,
+  backgroundColor: 'rgba(99, 255, 222, 0.3)',
+  borderColor: 'rgba(14,54,124)',
+  borderWidth: 1
+  };
+  var density = {
+  label: 'Jumlah View',
+  data: @php echo json_encode($jumlah_view); @endphp,
+  backgroundColor: 'rgba(14,54,124,0.3)',
+  borderColor: 'rgba(20,34,4)',
+  borderWidth: 1
+  };
+
+  var barChart = new Chart(densityCanvas, {
+  type: 'bar',
+  data: {
+  labels:@php echo json_encode($nama_dokumen); @endphp,
+  datasets: [densityData,density]
+  }
+  });})
+</script>
+{{-- <script>
+    var ctx = document.getElementById("myLike").getContext('2d');
+            var myLike = new Chart(ctx, {
+              type: 'bar',
+                data: {
+                  labels: @php echo json_encode($nama_dokumen); @endphp, //digunakan untuk bagian label
+                  datasets: [{
+                    label: 'Grafik Like Dokumen',
+                    data: @php echo json_encode($jumlah_like); @endphp,
+                    backgroundColor: 'rgba(99, 255, 222, 0.3)',
+                    borderColor: 'rgba(14,54,124)',
+                    borderWidth: 1
+                  }]
+                },
+                options: {
+                  scales: {
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero:true
+                      }
+                    }]
+                  }
+                }
+              });
+</script> --}}
 
 
 

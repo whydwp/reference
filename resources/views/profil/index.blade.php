@@ -35,13 +35,6 @@ Kelola Profil
     <div class="card">
         <div class="card-body">
 <div class="tab-pane" id="settings">
-    @if($errors->any())
-    <ul class="alert alert-danger">
-        @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-    @endif
     <form class="login100-form validate-form" data-target="user" method="post" action="{{ route('update.profil',['id'=>$input->id] )}}"
         enctype="multipart/form-data">   
     @csrf
@@ -49,32 +42,44 @@ Kelola Profil
         <div class="form-group row">
             <label for="full_name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-                <input type="text" id="full_name" name="full_name"class="form-control" value="{{$input->full_name}}" id="inputName" >
+                <input type="text" id="full_name" name="full_name" class="form-control @error('full_name') is-invalid @enderror" value="{{$input->full_name}}" id="inputName" >
+                @error('full_name')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" id="email" value="{{$input->email}}">
+                <input type="email" class="form-control @error('email') is-invalid @enderror"" name="email" id="email" value="{{$input->email}}">
+                @error('email')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-                <input type="username" name="username" id="username"class="form-control" value="{{$input->username}}" placeholder="username">
+                <input type="username" name="username" id="username"class="form-control @error('username') is-invalid @enderror" value="{{$input->username}}" placeholder="username">
+                @error('username')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
         </div>
         <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" name="password" id="password"class="form-control"  placeholder="Password" value="">
+                <input type="password" name="password" id="password"class="form-control "  placeholder="Password" value="">
             </div>
         </div>
       
         <div class="form-group row">
             <label for="avatar_file" class="col-sm-2 col-form-label">Gambar</label>
             <div class="col-sm-10">
-                <input type="file" name="avatar_file" class="form-control" id="preview_gambar">
+                <input type="file" name="avatar_file"class="form-control @error('avatar_file') is-invalid @enderror" id="preview_gambar">
+                @error('avatar_file')
+                <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
         </div>
       

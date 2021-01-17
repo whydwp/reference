@@ -42,7 +42,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('kategori', ['id' => '1']) }}" class="nav-link">
+                    {{-- <a href="{{ route('kategori', ['id' => '1']) }}" class="nav-link"> --}}
+                    <a href="{{ route('kategori.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-random"></i>
                         <p>
                             Kategori
@@ -86,7 +87,7 @@
                     <a href="{{ route('user.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
-                            kelola-Dokumen
+                            kelola-User
                         </p>
                     </a>
                 </li>

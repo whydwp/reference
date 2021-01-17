@@ -27,11 +27,13 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     //Route::get('/kelola-user', 'KelolaUserController@index')->name('kelola-user');
     Route::resource('/user', 'UserController');
-    Route::resource('/profil', 'ProfilController');
+    Route::get('/profil', 'ProfilController');
     Route::post('/update-profil/{id}', 'ProfilController@update')->name('update.profil');
+    Route::match(['get','post'],'/edit/{id}', 'KategoriController@edit');
     
     // Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
     Route::resource('/document', 'KelolaDocumentController');
+    Route::resource('/kategori', 'KategoriController');
     Route::resource('/like', 'MyLikeController');
     Route::resource('/reference', 'MyReferenceController');
     // Route::get('/reference/index/{slug}', 'MyReferenceController@index')
@@ -39,7 +41,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
 
     Route::get('report', 'KelolaDocumentController@report')->name('report');
 
-    Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
+    // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
 
     Route::post('/likedislike', 'KategoriController@likedislike')->name('likedislike');
 

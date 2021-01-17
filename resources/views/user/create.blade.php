@@ -10,29 +10,35 @@ Input User
     <!-- general form elements disabled -->
     <!-- /.card-header -->
     <div class="card-body">
-        @if($errors->any())
+        {{-- @if($errors->any())
         <ul class="alert alert-danger">
             @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
         </ul>
-        @endif
+        @endif --}}
         <form method="post" action="{{ route('user.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="full_name">Nama</label>
-                        <input name="full_name" id="full_name" class="form-control" placeholder="masukan nama"
+                        <input name="full_name" id="full_name" class="form-control @error('full_name') is-invalid @enderror" placeholder="masukan nama"
                             value="{{old('full_name')}}">
+                            @error('full_name')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <!-- text input -->
                     <div class="form-group ">
                         <label for="email">Email</label>
-                        <input name="email" id="email" class="form-control" placeholder="masukan email"
+                        <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="masukan email"
                             value="{{old('email')}}">
+                            @error('email')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                     </div>
                 </div>
             </div>
@@ -41,8 +47,11 @@ Input User
                     <!-- text input -->
                     <div class="form-group ">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-control"
+                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror"
                             placeholder="masukan Password" value="{{old('password')}}">
+                            @error('password')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                     </div>
 
                 </div>
@@ -50,20 +59,26 @@ Input User
                     <!-- text input -->
                     <div class="form-group ">
                         <label for="username">username</label>
-                        <input name="username" id="username" class="form-control" placeholder="masukan username"
+                        <input name="username" id="username" class="form-control @error('username') is-invalid @enderror" placeholder="masukan username"
                             value="{{old('username')}}">
+                            @error('username')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                     </div>
 
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="user_type_id">Level</label>
-                        <select id="user_type_id" name="user_type_id" class="form-control">
+                        <select id="user_type_id" name="user_type_id" class="form-control @error('user_type_id') is-invalid @enderror">
                             <option selected disabled>Level</option>
                             @foreach($data_user as $row )
                             <option value="{{ $row->user_type_id }}">{{ $row->type }}</option>
                             @endforeach
                         </select>
+                        @error('user_type_id')
+                        <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                     </div>
                     <!-- text input -->
                 </div>

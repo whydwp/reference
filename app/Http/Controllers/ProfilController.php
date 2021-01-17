@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Storage;
@@ -66,17 +67,42 @@ class ProfilController extends Controller
         $user = User::find($id);
 
         $input = $request->all();
-        // $this->validate($request, [
-        //     'full_name' => 'sometimes|max:250',
-        //     'username' => 'sometimes|max:100|unique:user_auth,username,',// . $id,
-        //     'email' => 'sometimes|email|max:255|unique:user_auth,email,',// . $id,
-        //     'password' => 'sometimes|min:6',
-        //     'avatar_file' => 'sometimes|image|mimes:jpeg,jpg,png|max:2048'
+
+        $rules = [
+            'full_name' => 'required|max:250',
+            'username' => 'required|max:100|unique:users,username,' . $id,
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'avatar_file' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
+
+
+
+            ];
+
+        $messages = [
+            'full_name.required'          => 'Nama wajib diisi.',
+            'username.required'      => 'username wajib diisi.',
+            'email.required'           => 'email wajib diisi.',
+            'avatar_file.required'         => 'fotomu wajib diisi.',
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->route('profil.index')->withErrors($validator)->withInput($request->all());
+        }
+        // $validasi = Validator::make($input, [
+        //     'full_name' => 'required|max:250',
+        //     'username' => 'required|max:100|unique:users,username,' . $id,
+        //     'email' => 'required|email|max:255|unique:users,email,' . $id,
+        //     'password' => 'sometimes|nullable|min:6',
+        //     'avatar_file' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
+
 
         // ]);
 
-        // if ($validator->fails()) {
-        //     return redirect()->route('dashboard')->withErrors($validator);
+        // if ($validasi->fails()) {
+        //     return redirect()->route('profil.index')->withErrors($validasi);
         // }
         // dd($user);
 
@@ -108,14 +134,10 @@ class ProfilController extends Controller
                 // dd($request->file('avatar_file')->move($upload_path, $namaFoto));
                 $request->file('avatar_file')->move($upload_path, $namaFoto);
                 $user->avatar_file = $namaFoto;
-                // dd($namaFoto);
-            }
+                //  dd($namaFoto);
+            } 
         }
-        // else {
-        //     dd("hehehehe");
-        //     // return redirect()->route('profil.index')->with('status', 'belum diupdate');
-        // }
-
+        
         $user->save();
         return redirect()->route('profil.index')->with('status', 'User Berhasil Diupdate');
 

@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Kategori;
+use DB;
+use Auth;
 
 class Likesdocument extends Model
 {
@@ -15,48 +18,51 @@ class Likesdocument extends Model
         'document_id'
     ];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    public function document()
+    public function Document()
     {
         return $this->belongsTo('App\Models\Document', 'document_id');
     }
 
-    public function getallcategoryandcount()
+    public function getuserlikesdocuments()
     {
-        $allcategory = DB::table('kategori')
-        ->fulljoin('document', 'document.id_kategori', '=', 'kategori.id_kategori')
-        ->selectRaw('kategori.*, count(document.id) as count')
-        ->groupBy('kategori.id_kategori')
-        ->get();
-        dd($allcategory);
+        $alllikesdoc = DB::table('document')
+            ->join('kategori', 'kategori.id_kategori', '=', 'document.id_kategori')
+            ->join('likesdocument', 'likesdocument.document_id', '=', 'document.id')
+            ->select('document.*', 'kategori.kategori as namakategori')
+            ->where('likesdocument.user_id', '=', Auth::user()->id);
+        // ->selectRaw('document.*', 'kategori.kategori as namakategori');
+        // ->groupBy('document.id')
+        // ->get();
 
-        return $allcategory;
+
+        // $alllikesdoc = DB::table('likesdocument')
+        // ->join('document', 'document.id', '=', 'likesdocument.document_id')
+        // ->where('likesdocument.user_id', '=', Auth::user()->id);
+        // ->get();
+
+        // ->fulljoin('kategori', 'kategori.id_kategori', '=', 'likesdocument.id_kategori')
+        // ->selectRaw('document.*, kategori.kategori as namakategori')
+        // ->groupBy('document.id')
+        // ->get();
+
+
+        // dd($alllikesdoc);
+
+        return $alllikesdoc;
     }
 
-    public function getallcategory()
-    {
-        $allcategory = Kategori::get();
-        // dd($allcategory);
+    // public function getlikescat()
+    // {
+    //     $getcat = DB::table('likesdocument')
+    //     ->join('kategori')
+    // }
 
-        return $allcategory;
-    }
 
-    public function countall()
-    {
-        $count = Kategori::get()->count();
 
-        // dd($count);
-        return $count;
-    }
 
-    public function getCategory($idcategory)
-    {
-        $namakategori = Kategori::find($idcategory);
-        // dd($namakategori);
-        return $namakategori;
-    }
 }

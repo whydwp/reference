@@ -101,7 +101,7 @@ Document
                     @endif
                     
                     @if(Request::get('id_kategori'))
-                    <div class="alert alert-success alert-block">
+                    <div class="alert alert-lightblue alert-block">
                         Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }}</b>
                     </div>
                     @endif

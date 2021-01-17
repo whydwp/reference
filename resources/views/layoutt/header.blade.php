@@ -1,8 +1,8 @@
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
         <a href="{{route('dashboard')}}" class="navbar-brand">
-            <img src="{{asset('image/Logo.jpg')}}" alt="logo pln"
-                class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="{{asset('image/Logo_PLN.png')}}" alt="logo pln"
+                class="brand-image elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">Reference Learning</span>
         </a>
 
@@ -92,11 +92,11 @@
 
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <div class="pull-left">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        <div class="float-left">
+                            <a href="#" class="btn btn-block btn-outline-secondary">Profile</a>
                         </div>
-                        <div class="pull-right">
-                            <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                        <div class="float-right">
+                            <a href="{{ route('logout') }}" class="btn btn-block btn-outline-secondary">Sign out</a>
                         </div>
                     </li>
                 </ul>

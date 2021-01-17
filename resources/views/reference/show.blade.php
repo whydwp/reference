@@ -22,10 +22,11 @@ Preview dokument
                         {{-- @foreach ($reference as $item) --}}
                             <label for="file" class="col-sm-2 control-label"></label>
                             <div class="embed-responsive embed-responsive-4by3" >
-                                <iframe src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" 
-                                        frameborder="0" scrolling="auto" class="embed-responsive-item" >
-                                </iframe>
+                                <iframe class="embed-responsive-item" type="application / html5" src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%"></iframe>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            
                         </div>
                     </div>
                     <div class="col px-4">
@@ -46,7 +47,63 @@ Preview dokument
                                     <h5 id="id_kategori" name="id_kategori">Kategori : {{$reference->kategori->kategori}} </h5>
                             </div>
                         </div>
-                    </div>
+                        <br>
+                        <hr>
+                      
+                  
+                        <div class="card direct-chat direct-chat-primary">
+                            <div class="card-header">
+                                <h2 class="card-title">Komentar</h2>
+                        
+                                <div class="card-tools">
+                                   
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <!-- Conversations are loaded here -->
+                               
+                                <div class="direct-chat-messages">
+                                    <!-- Message. Default to the left -->
+                                    @foreach ($komentar as $item)
+                                        <form method="post" action="{{ route('reference.destroy',[$item->id]) }}"
+                                            onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-infos clearfix">
+                                            <span class="direct-chat-name ">{{$item->user->full_name}}</span>
+                                            @if($item->user->full_name == Auth::user()->full_name)
+                                            <span class="direct-chat-name"><button type="submit" class="btn btn-tool" data-card-widget=""><i class="fas fa-times"></i>
+                                            </button></span>
+                                            @endif
+                                            <span class="direct-chat-timestamp float-right">{{$item->created_at}}</span>
+                                        </div>
+                                        <div class="direct-chat-text">
+                                            {{$item->message}}
+                                        </div>
+                                        <!-- /.direct-chat-text -->
+                                    </div>
+                                </form>
+                                   @endforeach
+                                </div>
+                         
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                              <form method="post" action="{{ route('reference.store')}}" class="form-horizontal">
+                               @csrf        
+                                        <textarea type="text" name="message" placeholder="Type Message ..." class="form-control" cols="10" rows="3"></textarea>
+                                        
+                                            <input style="margin-top: 5px"type="submit" class="btn btn-primary" value="Komentar">
+                              </form>
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>
+                      
                 </div>
 
             </div>

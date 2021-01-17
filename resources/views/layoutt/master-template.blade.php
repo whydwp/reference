@@ -18,45 +18,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 blue;
             }
         }
-        i.{
-            tahun:hover
-                #eee
+
+        i. {
+            tahun: hover #eee
+        }
+        }
+
+        .ini {
+            a:hover {
+                wihte;
             }
         }
-    .ini{
-        a:hover {
-        wihte;
+
+        .uppercase {
+            text-transform: uppercase;
         }
-    }
-    .uppercase{
-        text-transform: uppercase;
-    }
+
+        .like-post {
+            color: #e21309 !important;
+        }
+        
+        .back-to-top {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        display: none;
+        }
     </style>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
- <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-  
-    <!-- Jquery -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <!-- <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script> -->
+    <!-- Jquery -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script> -->
 
     <!-- Select2 -->
-<link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
-<link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
-   
+    <script src="{{asset('chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}">
     </script>
-
+<script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -66,15 +80,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 4 -->
     <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
-    
+
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/demo.js')}}"></script>
-    
    
+    {{-- <script>
+    $(document).bind("contextmenu",function(e) {
+    alert('@copyright Yourportfolio for your curiculum vitae , resume & your portfolio')//silahkan tulis pesan yang akan
+    ditampilkan
+    });
+    </script> --}}
+
 </head>
 
-<body class="hold-transition sidebar-collapse layout-top-nav">
+<body  class="hold-transition sidebar-collapse layout-top-nav">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -88,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="col-sm-12">
                     <!-- Content Wrapper. Contains page content -->
                     <div class="content-wrapper">
-                        <!-- Content Header (Page header) -->
+                      
                         <section class="content-header">
                             <div class="container">
                                 <div class="row mb-4">
@@ -97,7 +117,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             @yield('title')
                                         </h1>
                                         <ol class="breadcrumb">
-                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
+                                                    Home</a></li>
                                             <li class="active uppercase"> / @yield('title')</li>
                                         </ol>
                                     </div>
@@ -130,13 +151,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- /.control-sidebar -->
 
                     <!-- Main Footer -->
-                   <footer class="main-footer">
+                    <footer class="main-footer">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto ">
                                 <span>Copyright &copy; Reference 2020</span>
                             </div>
                         </div>
                     </footer>
+                    <a id="back-to-top" href="#" class="btn btn-info btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+                    <!-- Content Header (Page header) -->
                 </div>
                 <!-- ./wrapper -->
 
@@ -145,5 +168,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- jQuery -->
 
 </body>
-
+<script>
+    $(document).ready(function(){
+	$(window).scroll(function () {
+			if ($(this).scrollTop() > 70) {
+				$('#back-to-top').fadeIn();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 300);
+			return false;
+		});
+});
+</script>
 </html>
