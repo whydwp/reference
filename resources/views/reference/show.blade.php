@@ -21,8 +21,10 @@ Preview dokument
                         <div class="col-md-12">
                         {{-- @foreach ($reference as $item) --}}
                             <label for="file" class="col-sm-2 control-label"></label>
-                            <div class="embed-responsive embed-responsive-4by3" >
-                                <iframe class="embed-responsive-item" type="application / html5" src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%"></iframe>
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" type="application / html5"
+                                    src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" 
+                                    width="100%" height="1000"></iframe>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -50,7 +52,7 @@ Preview dokument
                         <br>
                         <hr>
                       
-                  
+                        {{-- @if($reference->id_forum == $komentar->id) --}}
                         <div class="card direct-chat direct-chat-primary">
                             <div class="card-header">
                                 <h2 class="card-title">Komentar</h2>
@@ -65,14 +67,14 @@ Preview dokument
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <!-- Conversations are loaded here -->
-                               
+                              
                                 <div class="direct-chat-messages">
                                     <!-- Message. Default to the left -->
                                     @foreach ($komentar as $item)
                                         <form method="post" action="{{ route('reference.destroy',[$item->id]) }}"
                                             onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                             @csrf
-                                            {{ method_field('DELETE') }}
+                                            {{ method_field('DELETE') }} 
                                     <div class="direct-chat-msg">
                                         <div class="direct-chat-infos clearfix">
                                             <span class="direct-chat-name ">{{$item->user->full_name}}</span>
@@ -103,7 +105,7 @@ Preview dokument
                             </div>
                             <!-- /.card-footer-->
                         </div>
-                      
+                        {{-- @endif --}}
                 </div>
 
             </div>

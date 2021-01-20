@@ -130,10 +130,7 @@ Kategori
                     </tbody>
                 </table>
                 
-                <tfoot>
-                     
-                   
-                 </tfoot>
+                </div>
                      
                 </div>
                 <!-- /.card-body -->

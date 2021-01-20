@@ -67,11 +67,14 @@ class MyReferenceController extends Controller
         $komentar = [
             'id' => $forum->id,
             'created_at' => $forum->created_at,
+            'dokumen_id' => $request->dokumen_id,
             'user_id' => auth()->id(),
-            'message' => $request->message,
+            'message' => $request->message,  
         ];
-        Forum::create($komentar);
-            return redirect()->back();
+       dd($komentar);
+        
+        // Forum::create($komentar);
+        //     return redirect()->back();
             
     }
   
@@ -84,7 +87,8 @@ class MyReferenceController extends Controller
     public function show(Request $request ,$id)
     {
         $reference = Document::findOrFail($id);
-       $komentar = Forum::all();
+        $komentar = Forum::all();
+        
         return view('reference.show', compact('reference','komentar'));
     }
     /**

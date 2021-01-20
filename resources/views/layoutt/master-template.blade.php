@@ -44,10 +44,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         right: 25px;
         display: none;
         }
+        .footer{
+            color: aliceblue;
+        }
+        .gradient2 {
+        background-image: linear-gradient(to right, #004d78, #7effe3);
+        }
+        /* html{
+           background-image: linear-gradient(to right, #004d78, #7effe3); 
+        } */
     </style>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -70,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{asset('chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}">
     </script>
-<script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -151,10 +160,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- /.control-sidebar -->
 
                     <!-- Main Footer -->
-                    <footer class="main-footer">
+                    <footer class="main-footer gradient2">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto ">
-                                <span>Copyright &copy; Reference 2020</span>
+                                <span class="footer">Copyright &copy; Reference 2020</span>
                             </div>
                         </div>
                     </footer>

@@ -19,7 +19,7 @@ My Reference
                 <a class="btn btn-danger" href="{{ route('reference.index') }}">Back</a>
                 @endif
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
                             <label>Kategori</label>
@@ -29,31 +29,34 @@ My Reference
                                 <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
                                 @endforeach
                             </select>
-                           <div class="left" style="margin-top: 10px !important;">
+                           <div class="left" style="margin-top: 5px !important;">
                                 <button type="submit" style="width: 100%;" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-search"></span>cari</button>
                             </div>
                         </div>
                         </form>
                     </div>
-                    <div class="col-md-6">
+                   
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
                         <form method="get" action="{{route('reference.index')}}">
-                        <div class="form-group">
-                            <label for="keyword" class="col-sm-4 control-label">Tahun Publish</label>
-                            <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" name="keyword" value="{{Request::get('keyword')}}"
-                                    placeholder="Tahun Publish">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                            <div class="form-group">
+                                <label for="keyword" class="col-sm-6 control-label">Tahun Publish</label>
+                                <div class="input-group input-group-lg">
+                                    <input type="search" class="form-control form-control-lg" name="keyword"
+                                        value="{{Request::get('keyword')}}" placeholder="Tahun Publish">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-lg btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>
-                <br>
                 <div class="row">
                     <div class="col-md-3" style="margin-right: -5px !important;">
                         <form method="get" action="{{route('reference.index')}}">
@@ -64,13 +67,13 @@ My Reference
                                     <option href="javascript:void(0)"> Like Terbanyak </option>
                                     <option href="javascript:void(0)" value="sortData"> Like sedikit </option>
                                     </select>
-                                    <button name="reference2"type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
+                                    <button name="reference2"type="submit" style="height: 38px !important;" class="btn btn-lg btn-default">
+                                        <i style="padding-buttom:1px" class="fa fa-search"></i>
                                     </button>
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-3" style="margin-right: -5px !important;">
+                    <div class="col-md-3" style="margin-right: -3px !important;">
                         <div class="form-gruop">
                                 <label for="">Viewer</label>
                                     <br>
@@ -138,6 +141,7 @@ My Reference
                             <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
                             <div class="float-right">
                                 <a href="{{route('reference.show',$id->id)}}">
+                                <!-- <a href="{{route('preview',$id->id)}}"> -->
                                <button type="button" class="btn btn-block bg-gradient-warning"data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
                             </a>
                             </div>

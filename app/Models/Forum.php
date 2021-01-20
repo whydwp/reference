@@ -13,6 +13,7 @@ class Forum extends Model
         'id',
         'message',
         'user_id',
+        'dokumen_id',
     ];
     public function user()
     {
