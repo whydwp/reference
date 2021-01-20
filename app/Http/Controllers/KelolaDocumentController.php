@@ -104,7 +104,7 @@ class KelolaDocumentController extends Controller
                 $zip = new ZipArchive();
                 $zip->open($file);
                 $nama = $zip->getNameIndex(0);
-                // dd($nama);
+                //  dd($nama);
                 $zip->extractTo($upload_path . $namaFile);
                 $zip->close();
                 $data_dokument['file'] = $namaFile . "/" . $nama;
@@ -196,16 +196,27 @@ class KelolaDocumentController extends Controller
             if ($validator->fails()) {
                 return redirect()->route('document.edit', [$id])->withErrors($validator)->withInput($request->all());
             }
-            if ($request->hasFile('file')) {
-                if ($request->file('file')->isValid()) {
-                    Storage::disk('upload')->delete($document->file);
-
-                    $file = $request->file('file');
-                    $extention = $file->getClientOriginalExtension();
-                    $namaFoto = "document/" . date('YmdHis') . "." . $extention;
+            $file = $request->file('file');
+            $extention = $file->getClientOriginalExtension();
+            // dd($file);
+            if ($request->file('file')->isValid()) {
+                if ($extention == "zip") {
+                    $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
+                    $upload_path = 'uploads/';
+                    $zip = new ZipArchive();
+                    $zip->open($file);
+                    $nama = $zip->getNameIndex(0);
+                    //  dd($nama);
+                    $zip->extractTo($upload_path . $namaFile);
+                    $zip->close();
+                    $input['file'] = $namaFile . "/" . $nama;
+                    // dd($namaFile. "/" .$nama);
+                } else {
+                    $namaFile = "document/" . date('YmdHis') . "." . $extention;
                     $upload_path = 'uploads/document';
-                    $request->file('file')->move($upload_path, $namaFoto);
-                    $input['file'] = $namaFoto;
+                    $request->file('file')->move($upload_path, $namaFile);
+                    $input['file'] = $namaFile;
+                     dd($extention);
                 }
             }
             if ($request->hasFile('cover')) {

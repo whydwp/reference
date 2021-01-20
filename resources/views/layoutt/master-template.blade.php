@@ -170,11 +170,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a id="back-to-top" href="#" class="btn btn-info btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
                     <!-- Content Header (Page header) -->
                 </div>
-                <!-- ./wrapper -->
-
-                <!-- REQUIRED SCRIPTS -->
-
-                <!-- jQuery -->
 
 </body>
 <script>

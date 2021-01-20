@@ -64,20 +64,34 @@ class MyReferenceController extends Controller
      */
     public function store(Request $request,Forum $forum)
     {
-        $komentar = [
+        $komentar = Forum::create([
             'id' => $forum->id,
             'created_at' => $forum->created_at,
-            'dokumen_id' => $request->dokumen_id,
+            'dokumen_id' => $forum->dokumen_id,
             'user_id' => auth()->id(),
             'message' => $request->message,  
-        ];
-       dd($komentar);
-        
-        // Forum::create($komentar);
-        //     return redirect()->back();
-            
+        ]);
+        return response()->json($komentar);        
     }
-  
+
+    public function addview(Request $request)
+    {
+        $id = $request->id;
+        $jumlahview = $request->jumlah;
+
+        $changejumlah = $jumlahview + 1;
+        Document::where('id', $id)->update([
+            'jumlah_view' => $changejumlah
+        ]);
+
+        $values = [
+            'message' => 'success',
+            'id' => $id,
+            'jumlah' => $changejumlah
+        ];
+
+        return response()->json($values);
+    }
     /**
      * Display the specified resource.
      *
