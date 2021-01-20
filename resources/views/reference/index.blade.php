@@ -138,6 +138,7 @@ My Reference
                             <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
                             <div class="float-right">
                                 <a href="{{route('reference.show',$id->id)}}">
+                                <!-- <a href="{{route('preview',$id->id)}}"> -->
                                <button type="button" class="btn btn-block bg-gradient-warning"data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
                             </a>
                             </div>

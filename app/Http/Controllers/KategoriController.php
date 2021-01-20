@@ -78,6 +78,7 @@ class KategoriController extends Controller
 
     public function likedislike(Request $request){
         (int)$id = $request->id;
+        $checkis = $request->check;
 
         // $datasdoc = new Document();
         // $docs = $datasdoc->byid($id);
@@ -94,8 +95,14 @@ class KategoriController extends Controller
 
         $jumlah = $request->jumlah;
         // $type = $request->type;
-        
-        $changejumlah = $jumlah + 1 ;
+        if ($checkis == 1){
+            $changejumlah = $jumlah - 1 ;
+            $changecat = $likecat - 1 ;
+        }
+        else if ($checkis == 0){
+            $changejumlah = $jumlah + 1 ;
+            $changecat = $likecat + 1 ;
+        }
         
         $values = [
             'message' => 'success',
@@ -104,35 +111,31 @@ class KategoriController extends Controller
             // 'hem' => $doctochange->jumlah_dislike
         ];
 
-        // like or dislike
-        // if($type == "1"){
-            $changecat = $likecat + 1 ;
-
             Document::where('id', $id)->update([
                 'jumlah_like' => $changejumlah
             ]);
             Kategori::where('id_kategori', $idcat)->update([
                 'jumlah_like' => $changecat
             ]);
-            // if()
-            $newlikes = new Likesdocument();
-            $newlikes->user_id = Auth::user()->id;
-            $newlikes->document_id = $id;
-            if($newlikes->save()){
+           
+            if($checkis == 0){
+                $newlikes = new Likesdocument();
+                $newlikes->user_id = Auth::user()->id;
+                $newlikes->document_id = $id;
+
+                if($newlikes->save()){
+                    return response()->json($values);
+                }
+            }
+            else if($checkis == 1){
+                $getlikesdoc = DB::table('likesdocument')
+                                 ->where('likesdocument.user_id', '=', Auth::user()->id)
+                                 ->where('likesdocument.document_id', '=', $id);
+                // dd($getlikesdoc,$changejumlah,$changecat);
+                $getlikesdoc->delete();
                 return response()->json($values);
             }
-        // }
-        // else if($type == "0"){
-        //     $changecat = $dislikecat + 1;
-
-        //     Document::where('id', $id)->update([
-        //         'jumlah_dislike' => $changejumlah
-        //     ]);
-        //     Kategori::where('id_kategori', $idcat)->update([
-        //         'jumlah_dislike' => $changecat
-        //     ]);
-        //     return \response()->json($values);
-        // }
+        
         
     }
 
