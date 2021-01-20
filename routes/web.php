@@ -21,13 +21,12 @@ Route::namespace('Auth')->group(function () {
     Route::post('login', 'LoginController@authenticate')->name('login');
     Route::get('logout', 'LoginController@logout')->name('logout');
 });
-// Route::put('/update/{id}', 'ProfilController@update');
 
 Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     //Route::get('/kelola-user', 'KelolaUserController@index')->name('kelola-user');
     Route::resource('/user', 'UserController');
-    Route::get('/profil', 'ProfilController');
+    Route::get('/profil', 'ProfilController@index')->name('profil.index');
     Route::post('/update-profil/{id}', 'ProfilController@update')->name('update.profil');
     Route::match(['get','post'],'/edit/{id}', 'KategoriController@edit');
     
