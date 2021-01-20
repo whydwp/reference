@@ -70,7 +70,7 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|numeric',
-            'file' => 'required|mimes:pdf,html|max:5048',
+            'file' => 'required|mimes:pdf,html,zip|max:5048',
             'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
@@ -96,11 +96,27 @@ class KelolaDocumentController extends Controller
       
         $file = $request->file('file');
         $extention = $file->getClientOriginalExtension();
+        // dd($file);
         if ($request->file('file')->isValid()) {
-            $namaFile = "document/" . date('YmdHis') . "." . $extention;
-            $upload_path = 'uploads/document';
-            $request->file('file')->move($upload_path, $namaFile);
-            $data_dokument['file'] = $namaFile;
+            if($extention == "zip"){
+                $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
+                $upload_path = 'uploads/';
+                $zip = new ZipArchive();
+                $zip->open($file);
+                $nama = $zip->getNameIndex(0);
+                // dd($nama);
+                $zip->extractTo($upload_path.$namaFile);
+                $zip->close();
+                $data_dokument['file'] = $namaFile. "/" .$nama;
+                // dd($namaFile. "/" .$nama);
+            }
+            else{
+                $namaFile = "document/" . date('YmdHis') . "." . $extention;
+                $upload_path = 'uploads/document';
+                $request->file('file')->move($upload_path, $namaFile);
+                $data_dokument['file'] = $namaFile;
+                // dd($extention);
+            }
         }
         $cover = $request->file('cover');
         $extention = $cover->getClientOriginalExtension();

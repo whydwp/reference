@@ -22,7 +22,7 @@ Preview dokument
                         {{-- @foreach ($reference as $item) --}}
                             <label for="file" class="col-sm-2 control-label"></label>
                             <div class="embed-responsive embed-responsive-4by3" >
-                                <iframe class="embed-responsive-item" type="application / html5" src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%"></iframe>
+                                <iframe class="embed-responsive-item" type="application / html5" src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="1000"></iframe>
                             </div>
                         </div>
                         <div class="col-md-4">

@@ -25,7 +25,8 @@ class PreviewController extends Controller
         // if(file_exists($file)){
             $storage = Storage::url($docpdf);
             // echo asset($storage);
-            return view('preview.index',['path'=>$storage, 'kategori'=>$cat, 'namafile'=>$juduldoc]);
+            // dd($storage);
+            return view('preview.index',['path'=>$docpdf, 'kategori'=>$cat, 'namafile'=>$juduldoc]);
         // }
     }
 
