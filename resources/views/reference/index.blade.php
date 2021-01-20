@@ -140,9 +140,9 @@ My Reference
                            
                             <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
                             <div class="float-right">
-                                <a href="{{route('reference.show',$id->id)}}">
-                                <!-- <a href="{{route('preview',$id->id)}}"> -->
-                               <button type="button" class="btn btn-block bg-gradient-warning"data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
+                                <!-- <a href="{{route('reference.show',$id->id)}}"> -->
+                                <a href="{{route('preview',$id->id)}}">
+                               <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}" data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }} data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
                             </a>
                             </div>
                         </div>
@@ -213,6 +213,40 @@ My Reference
                 console.log(errors);
             }
         })
+    })
+
+    $(document).on("click", ".previewdoc", function() {
+        var id = $(this).data('id');
+        var jmlhview = $(this).data('jmlhview');
+
+        $.ajax({
+            url: 'viewadd',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                id: id,
+                jumlah: jmlhview,
+                _token: '{{ csrf_token() }}'
+                // _token:$(this).data('token')
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response){
+                if(response.message == 'success') {
+                    
+                    console.log(response);
+                }
+                else {
+                    alert("gagal!!");
+                }
+            },
+            error: function(response){
+                var errors = response.responseJSON;
+                console.log(errors);
+            }
+        })
+
     })
 </script>
 @endsection

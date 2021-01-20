@@ -43,6 +43,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
 
     Route::post('/likedislike', 'KategoriController@likedislike')->name('likedislike');
+    Route::post('/viewadd', 'MyReferenceController@addview')->name('viewadd');
 
     Route::post('/filter', 'KategoriController@filter')->name('filter');
 
