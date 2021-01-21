@@ -139,12 +139,14 @@ My Reference
                             </a>
                            
                             <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
-                            <div class="float-right">
-                                <!-- <a href="{{route('reference.show',$id->id)}}"> -->
-                                <a href="{{route('preview',$id->id)}}">
-                               <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}" data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }} data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
+                         <div class="float-right">
+                            <a href="{{route('reference.show',$id->id)}}">
+                            {{-- <a href="{{route('preview',$id->id)}}"> --}}
+                                <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
+                                    data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
+                                    data-target="#modal-xl"><i class="far fa-eye"></i> Preview</button>
                             </a>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -163,7 +165,7 @@ My Reference
     </div>
 </div>
 <script>
-    $(document).on("click", ".tekan", function() {
+  $(document).on("click", ".tekan", function() {
     
     // function tekan(id) {
         var id = $(this).data('id');
@@ -218,6 +220,8 @@ My Reference
     $(document).on("click", ".previewdoc", function() {
         var id = $(this).data('id');
         var jmlhview = $(this).data('jmlhview');
+        console.log(id); 
+        console.log(jmlhview);
 
         $.ajax({
             url: 'viewadd',
@@ -235,7 +239,7 @@ My Reference
             success: function(response){
                 if(response.message == 'success') {
                     
-                    console.log(response);
+                    // console.log(response);
                 }
                 else {
                     alert("gagal!!");

@@ -135,6 +135,6 @@ Preview dokument
     });
     console.log("It failed"); 
 });
-$('#comment_'+id);
+// $('#comment_'+id);
 </script>
 @endsection

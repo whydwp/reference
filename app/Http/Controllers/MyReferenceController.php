@@ -71,7 +71,8 @@ class MyReferenceController extends Controller
             'user_id' => auth()->id(),
             'message' => $request->message,  
         ]);
-        return response()->json($komentar);        
+        // return response()->json($komentar);   
+        return redirect()->back();     
     }
 
     public function addview(Request $request)
@@ -126,25 +127,6 @@ class MyReferenceController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-
-    public function addview(Request $request)
-    {
-        $id = $request->id;
-        $jumlahview = $request->jumlah;
-
-        $changejumlah = $jumlahview + 1;
-        Document::where('id', $id)->update([
-            'jumlah_view' => $changejumlah
-        ]);
-
-        $values = [
-            'message' => 'success',
-            'id' => $id,
-            'jumlah' => $changejumlah
-        ];
-
-        return response()->json($values);
     }
 
     /**
