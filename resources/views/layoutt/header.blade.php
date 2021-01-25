@@ -81,7 +81,11 @@
             <!-- Messages Dropdown Menu -->
             <li class="nav-item dropdown user user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                @if(Auth::user()->avatar_file != NULL)
                     <img src="{{ URL::to('/') }}/uploads/document/{{Auth :: user()->avatar_file}}" class="user-image img-circle elevation-2 alt=" User Image">
+                @elseif(Auth::user()->avatar_file == NULL)
+                    <img src="{{ asset('assets/img/avatar.png') }}" class="user-image img-circle elevation-2 alt=" User Image">
+                @endif
                     <i class="hidden-xs"></i>
                     @if(Auth::check())
                     <span class="bold">{{Auth :: user()->full_name}}</span>
@@ -90,7 +94,11 @@
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <img src="{{ URL::to('/') }}/uploads/document/{{Auth :: user()->avatar_file}}" class="img-circle elevation-2" alt="User Image">
+                    @if(Auth::user()->avatar_file != NULL)
+                        <img src="{{ URL::to('/') }}/uploads/document/{{Auth :: user()->avatar_file}}" class="user-image img-circle elevation-2 alt=" User Image">
+                    @elseif(Auth::user()->avatar_file == NULL)
+                        <img src="{{ asset('assets/img/avatar.png') }}" class="user-image img-circle elevation-2 alt=" User Image">
+                    @endif
 
                         <p>
                            <p>
@@ -104,7 +112,7 @@
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="float-left">
-                            <a href="#" class="btn btn-block btn-outline-secondary">Profile</a>
+                            <a href="{{ route('profil.index') }}" class="btn btn-block btn-outline-secondary">Profile</a>
                         </div>
                         <div class="float-right">
                             <a href="{{ route('logout') }}" class="btn btn-block btn-outline-secondary">Sign out</a>
