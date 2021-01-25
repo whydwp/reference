@@ -40,6 +40,28 @@ class MyReferenceController extends Controller
             $data_kategori = Kategori::find($filter_by_kategori);
             $nama_kategori = $data_kategori->kategori;
         }
+        $filterbylike = $request->get('sortlike');
+        if($filterbylike){
+            // dd($filterbylike);
+            if($filterbylike == "mostlike"){
+                $reference = Document::orderBy('jumlah_like', 'desc')->paginate(5);
+            }
+            else{
+                $reference = Document::orderBy('jumlah_like', 'asc')->paginate(5);
+
+            }
+        }
+        $filterbyview = $request->get('sortview');
+        if($filterbyview){
+            // dd($filterbyview);
+            if($filterbyview == "mostview"){
+                $reference = Document::orderBy('jumlah_view', 'desc')->paginate(5);
+            }
+            else{
+                $reference = Document::orderBy('jumlah_view', 'asc')->paginate(5);
+
+            }
+        }
         // $kategori = Kategori::all();
         
         return view('reference.index', compact('reference', 'kategori','nama_kategori','reference2'));     
@@ -128,7 +150,47 @@ class MyReferenceController extends Controller
     {
         //
     }
+  
+    public function addview(Request $request)
+    {
+        $id = $request->id;
+        $jumlahview = $request->jumlah;
 
+        $changejumlah = $jumlahview + 1;
+        Document::where('id', $id)->update([
+            'jumlah_view' => $changejumlah
+        ]);
+
+        $values = [
+            'message' => 'success',
+            'id' => $id,
+            'jumlah' => $changejumlah
+        ];
+
+        return response()->json($values);
+    }
+
+    public function sort(Request $request)
+    {
+        // if type == 1; sort base on like
+        // if type == 0; sort base on view
+        // if key == 1; sort base on the most one
+        // if key == 0; sort base on the fewer one
+        $type = $request->type;
+        $key = $request->key;
+
+        $reference = Document::orderBy('jumlah_like', 'desc')->paginate(10);
+
+        $values = [
+            'message' => 'success',
+            'type' => $type,
+            'key' => $key,
+            'reference' => $reference
+        ];
+        return response()->json($values);
+        // return response()->json(['view' => view('reference.index', compact('reference'))->render()]);
+    }
+  
     /**
      * Remove the specified resource from storage.
      *
