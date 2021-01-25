@@ -150,25 +150,6 @@ class MyReferenceController extends Controller
     {
         //
     }
-  
-    public function addview(Request $request)
-    {
-        $id = $request->id;
-        $jumlahview = $request->jumlah;
-
-        $changejumlah = $jumlahview + 1;
-        Document::where('id', $id)->update([
-            'jumlah_view' => $changejumlah
-        ]);
-
-        $values = [
-            'message' => 'success',
-            'id' => $id,
-            'jumlah' => $changejumlah
-        ];
-
-        return response()->json($values);
-    }
 
     public function sort(Request $request)
     {
