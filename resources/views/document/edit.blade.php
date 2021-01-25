@@ -103,7 +103,7 @@ Edit
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="file" class="col-sm-2 control-label">File document</label>
+                        <label for="file" class="col-sm-4 control-label">File document</label>
                         <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" id="file">
                         @error('file')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -114,15 +114,15 @@ Edit
             </div>
                 <label for="cover" class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                    <iframe src="{{ asset('uploads/'.$document->cover) }}" width="500" height="250">{{ asset('uploads/'.$document->cover) }}</iframe>
+                   <img class="img-thumbnail" src="{{ asset('uploads/'.$document->cover) }}" width="450" height="250">
                    
                 </div>
             
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="cover" class="col-sm-2 control-label">cover document</label>
-                        <input type="file" name="cover" class="form-control @error('cover') is-invalid @enderror" id="cover">
+                        <label for="cover" class="col-sm-4 control-label">cover document</label>
+                        <input type="file" id="cover"name="cover" class="form-control @error('cover') is-invalid @enderror" id="cover">
                         @error('cover')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror

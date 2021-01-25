@@ -20,11 +20,16 @@ class Document extends Model
         'jumlah_halaman',
         'jumlah_like',
         'jumlah_view',
-        'id_kategori'
+        'id_kategori',
+        'id_forum'
     ];
     public function kategori()
     {
         return $this->belongsTo('App\Models\Kategori', 'id_kategori');
+    }
+    public function forum()
+    {
+        return $this->belongsTo('App\Models\Forum', 'id');
     }
 
     public function getperkategori($hasid) {

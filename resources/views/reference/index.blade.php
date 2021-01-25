@@ -19,7 +19,7 @@ My Reference
                 <a class="btn btn-danger" href="{{ route('reference.index') }}">Back</a>
                 @endif
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
                             <label>Kategori</label>
@@ -29,31 +29,34 @@ My Reference
                                 <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
                                 @endforeach
                             </select>
-                           <div class="left" style="margin-top: 10px !important;">
+                           <div class="left" style="margin-top: 5px !important;">
                                 <button type="submit" style="width: 100%;" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-search"></span>cari</button>
                             </div>
                         </div>
                         </form>
                     </div>
-                    <div class="col-md-6">
+                   
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
                         <form method="get" action="{{route('reference.index')}}">
-                        <div class="form-group">
-                            <label for="keyword" class="col-sm-4 control-label">Tahun Publish</label>
-                            <div class="input-group input-group-lg">
-                                <input type="search" class="form-control form-control-lg" name="keyword" value="{{Request::get('keyword')}}"
-                                    placeholder="Tahun Publish">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                            <div class="form-group">
+                                <label for="keyword" class="col-sm-6 control-label">Tahun Publish</label>
+                                <div class="input-group input-group-lg">
+                                    <input type="search" class="form-control form-control-lg" name="keyword"
+                                        value="{{Request::get('keyword')}}" placeholder="Tahun Publish">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-lg btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </form>
                     </div>
                 </div>
-                <br>
                 <div class="row">
                     <div class="col-md-3" style="margin-right: -5px !important;">
                         <form method="get" action="{{route('reference.index')}}">
@@ -64,12 +67,13 @@ My Reference
                                     <option href="javascript:void(0)" value="mostlike" data-type="1" data-key="1"> Like Terbanyak </option>
                                     <option href="javascript:void(0)" value="lesslike" data-type="1" data-key="0"> Like sedikit </option>
                                     </select>
-                                    <button name="reference2"type="submit" class="btn btn-lg btn-default">
-                                        <i class="fa fa-search"></i>
+                                    <button name="reference2"type="submit" style="height: 38px !important;" class="btn btn-lg btn-default">
+                                        <i style="padding-buttom:1px" class="fa fa-search"></i>
                                     </button>
                             </div>
                         </form>
                     </div>
+
                     <div class="col-md-3" style="margin-right: -5px !important;">
                         <form method="get" action="{{route('reference.index')}}">
                             <div class="form-gruop">
@@ -84,7 +88,6 @@ My Reference
                                         </button>
                             </div>
                         </form>
-                    </div>
                 </div>
                
                 {{-- <select class="custom-select" style="width: auto;" data-sortOrder>
@@ -141,12 +144,16 @@ My Reference
                             </a>
                            
                             <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
-                            <div class="float-right">
-                                <a href="{{route('reference.show',$id->id)}}">
-                                <!-- <a href="{{route('preview',$id->id)}}"> -->
-                               <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}" data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }} data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
+
+                         <div class="float-right">
+                            <a href="{{route('reference.show',$id->id)}}">
+                            {{-- <a href="{{route('preview',$id->id)}}"> --}}
+                                <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
+                                    data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
+                                    data-target="#modal-xl"><i class="far fa-eye"></i> Preview</button>
+
                             </a>
-                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -165,7 +172,7 @@ My Reference
     </div>
 </div>
 <script>
-    $(document).on("click", ".tekan", function() {
+  $(document).on("click", ".tekan", function() {
     
     // function tekan(id) {
         var id = $(this).data('id');
@@ -220,7 +227,10 @@ My Reference
     $(document).on("click", ".previewdoc", function() {
         var id = $(this).data('id');
         var jmlhview = $(this).data('jmlhview');
-        console.log(id, jmlhview);
+
+        //console.log(id); 
+       // console.log(jmlhview);
+
 
         $.ajax({
             url: 'viewadd',
@@ -238,7 +248,7 @@ My Reference
             success: function(response){
                 if(response.message == 'success') {
                     
-                    console.log(response);
+                    // console.log(response);
                 }
                 else {
                     alert("gagal!!");

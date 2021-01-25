@@ -21,8 +21,10 @@ Preview dokument
                         <div class="col-md-12">
                         {{-- @foreach ($reference as $item) --}}
                             <label for="file" class="col-sm-2 control-label"></label>
-                            <div class="embed-responsive embed-responsive-4by3" >
-                                <iframe class="embed-responsive-item" type="application / html5" src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="1000"></iframe>
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" type="application / html5"
+                                    src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" 
+                                    width="100%" height="1000"></iframe>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -50,7 +52,7 @@ Preview dokument
                         <br>
                         <hr>
                       
-                  
+                        {{-- @if($reference->id_forum == $komentar->id) --}}
                         <div class="card direct-chat direct-chat-primary">
                             <div class="card-header">
                                 <h2 class="card-title">Komentar</h2>
@@ -65,16 +67,16 @@ Preview dokument
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <!-- Conversations are loaded here -->
-                               
+                              
                                 <div class="direct-chat-messages">
                                     <!-- Message. Default to the left -->
                                     @foreach ($komentar as $item)
                                         <form method="post" action="{{ route('reference.destroy',[$item->id]) }}"
                                             onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                             @csrf
-                                            {{ method_field('DELETE') }}
+                                            {{ method_field('DELETE') }} 
                                     <div class="direct-chat-msg">
-                                        <div class="direct-chat-infos clearfix">
+                                        <div class="direct-chat-infos clearfix" id="comment_{{ $item->id }}">
                                             <span class="direct-chat-name ">{{$item->user->full_name}}</span>
                                             @if($item->user->full_name == Auth::user()->full_name)
                                             <span class="direct-chat-name"><button type="submit" class="btn btn-tool" data-card-widget=""><i class="fas fa-times"></i>
@@ -94,16 +96,15 @@ Preview dokument
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                              <form method="post" action="{{ route('reference.store')}}" class="form-horizontal">
+                              <form method="post" action="{{ route('reference.store')}}"id="comment_{{ $item->id }} class="form-horizontal">
                                @csrf        
                                         <textarea type="text" name="message" placeholder="Type Message ..." class="form-control" cols="10" rows="3"></textarea>
-                                        
-                                            <input style="margin-top: 5px"type="submit" class="btn btn-primary" value="Komentar">
+                                            <input data-id="{{ $item->id }}" data-token="{{ csrf_token() }}" style="margin-top: 5px"type="submit" class="btn btn-primary" value="Komentar">
                               </form>
                             </div>
                             <!-- /.card-footer-->
                         </div>
-                      
+                        {{-- @endif --}}
                 </div>
 
             </div>
@@ -111,5 +112,29 @@ Preview dokument
     </div>
 </div>
 
+<script>
+    $(".commentButton").click(function(){
+    var id = $(this).data("id");
+    var comment = $("input[name=comment]").val();
+    var token = $(this).data("token");
 
+    $.ajax({
+       url: "/comments/"+id,
+       type: 'POST',
+       dataType: 'JSON',
+       data: {
+           "id": id,
+           "message": message,
+           "_method": 'POST',
+           "_token": token,
+       },
+       success: function(){
+           console.log('it works!');
+            $(".direct-chat-messages").html(data.komentar);
+       } 
+    });
+    console.log("It failed"); 
+});
+// $('#comment_'+id);
+</script>
 @endsection

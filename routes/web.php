@@ -49,4 +49,6 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
 
     Route::get('/preview-{id}', 'PreviewController@index')->name('preview');
 
+    Route::post('/viewadd', 'MyReferenceController@addview')->name('viewadd');
+
 });

@@ -86,17 +86,35 @@ class MyReferenceController extends Controller
      */
     public function store(Request $request,Forum $forum)
     {
-        $komentar = [
+        $komentar = Forum::create([
             'id' => $forum->id,
             'created_at' => $forum->created_at,
+            'dokumen_id' => $forum->dokumen_id,
             'user_id' => auth()->id(),
-            'message' => $request->message,
-        ];
-        Forum::create($komentar);
-            return redirect()->back();
-            
+            'message' => $request->message,  
+        ]);
+        // return response()->json($komentar);   
+        return redirect()->back();     
     }
-  
+
+    public function addview(Request $request)
+    {
+        $id = $request->id;
+        $jumlahview = $request->jumlah;
+
+        $changejumlah = $jumlahview + 1;
+        Document::where('id', $id)->update([
+            'jumlah_view' => $changejumlah
+        ]);
+
+        $values = [
+            'message' => 'success',
+            'id' => $id,
+            'jumlah' => $changejumlah
+        ];
+
+        return response()->json($values);
+    }
     /**
      * Display the specified resource.
      *
@@ -106,7 +124,8 @@ class MyReferenceController extends Controller
     public function show(Request $request ,$id)
     {
         $reference = Document::findOrFail($id);
-       $komentar = Forum::all();
+        $komentar = Forum::all();
+        
         return view('reference.show', compact('reference','komentar'));
     }
     /**
@@ -131,7 +150,7 @@ class MyReferenceController extends Controller
     {
         //
     }
-
+  
     public function addview(Request $request)
     {
         $id = $request->id;
@@ -171,7 +190,7 @@ class MyReferenceController extends Controller
         return response()->json($values);
         // return response()->json(['view' => view('reference.index', compact('reference'))->render()]);
     }
-
+  
     /**
      * Remove the specified resource from storage.
      *

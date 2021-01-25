@@ -11,7 +11,6 @@ use App\Exports\ReportExport;
 use Excel;
 use ZipArchive;
 
-
 class KelolaDocumentController extends Controller
 {
     /**
@@ -86,7 +85,7 @@ class KelolaDocumentController extends Controller
             'file.required'         => 'file wajib diisi.',
             'cover.required'         => 'cover wajib diisi.',
             'id_kategori.required'         => 'kategori wajib dipilih.',
-           
+
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -94,7 +93,7 @@ class KelolaDocumentController extends Controller
         if ($validator->fails()) {
             return redirect()->route('document.create')->withErrors($validator)->withInput($request->all());
         }
-      
+
         $file = $request->file('file');
         $extention = $file->getClientOriginalExtension();
         // dd($file);
@@ -169,9 +168,8 @@ class KelolaDocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
-        {
-            
+    { {
+
             $document = Document::findOrFail($id);
 
             $input = $request->all();
@@ -182,7 +180,7 @@ class KelolaDocumentController extends Controller
                 'tahun' => 'required|numeric',
                 'publisher' => 'required|max:250',
                 'jumlah_halaman' => 'required|numeric',
-                'file' =>  'sometimes|nullable|mimes:pdf,html|max:5048',
+                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:5048',
                 'cover' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
                 'id_kategori' => 'required|max:250',
 
@@ -205,16 +203,27 @@ class KelolaDocumentController extends Controller
             if ($validator->fails()) {
                 return redirect()->route('document.edit', [$id])->withErrors($validator)->withInput($request->all());
             }
-            if ($request->hasFile('file')) {
-                if ($request->file('file')->isValid()) {
-                    Storage::disk('upload')->delete($document->file);
-
-                    $file = $request->file('file');
-                    $extention = $file->getClientOriginalExtension();
-                    $namaFoto = "document/" . date('YmdHis') . "." . $extention;
+            $file = $request->file('file');
+            $extention = $file->getClientOriginalExtension();
+            // dd($file);
+            if ($request->file('file')->isValid()) {
+                if ($extention == "zip") {
+                    $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
+                    $upload_path = 'uploads/';
+                    $zip = new ZipArchive();
+                    $zip->open($file);
+                    $nama = $zip->getNameIndex(0);
+                    //  dd($nama);
+                    $zip->extractTo($upload_path . $namaFile);
+                    $zip->close();
+                    $input['file'] = $namaFile . "/" . $nama;
+                    // dd($namaFile. "/" .$nama);
+                } else {
+                    $namaFile = "document/" . date('YmdHis') . "." . $extention;
                     $upload_path = 'uploads/document';
-                    $request->file('file')->move($upload_path, $namaFoto);
-                    $input['file'] = $namaFoto;
+                    $request->file('file')->move($upload_path, $namaFile);
+                    $input['file'] = $namaFile;
+                     dd($extention);
                 }
             }
             if ($request->hasFile('cover')) {
