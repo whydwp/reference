@@ -7,6 +7,14 @@ My Reference
 @section('content')
 
 
+@if ($reference->count() == 0) 
+<script>
+    $(function() {
+      $('.modalpopup').modal('show');
+    });
+</script>
+    <!-- <script type="text/javascript">alert("Referensi yang anda cari belum tersedia")</script> -->
+@endif
 <div class="row mt-2">
     <div class="col-md-12">
         
@@ -172,6 +180,30 @@ My Reference
         </div>
     </div>
 </div>
+
+<div class="modal modalpopup fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content bg-defdault">
+            <div class="modal-header">
+              <h4 class="modal-title">Data Not Found</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Mohon maaf, referensi yang anda cari belum tersedia</p>
+            </div>
+            <div class="modal-footer justify-content-right">
+              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
 <script>
   $(document).on("click", ".tekan", function() {
     
