@@ -23,7 +23,7 @@ My Reference
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
                             <label>Kategori</label>
-                            <select id="id_kategori" name="id_kategori"class="custom-select select2bs4" style="width: 100%;" >
+                            <select id="id_kategori" name="id_kategori"class="custom-select select2bs4" style="width: 100%; overflow-y:auto;">
                                 <option selected disabled>Kategori</option>
                                 @foreach($kategori as $row)
                                 <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
@@ -60,9 +60,9 @@ My Reference
                             <div class="form-gruop">
                                 <label for="">Like</label>
                                 <br>
-                                    <select   name="reference2" id="reference2" class="custom-select" style="width: auto;" data-sortOrder>
-                                    <option href="javascript:void(0)"> Like Terbanyak </option>
-                                    <option href="javascript:void(0)" value="sortData"> Like sedikit </option>
+                                    <select   name="sortlike" id="sortlike" class="custom-select sortbaselike" style="width: auto;" data-sortOrder>
+                                    <option href="javascript:void(0)" value="mostlike" data-type="1" data-key="1"> Like Terbanyak </option>
+                                    <option href="javascript:void(0)" value="lesslike" data-type="1" data-key="0"> Like sedikit </option>
                                     </select>
                                     <button name="reference2"type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -71,14 +71,19 @@ My Reference
                         </form>
                     </div>
                     <div class="col-md-3" style="margin-right: -5px !important;">
-                        <div class="form-gruop">
-                                <label for="">Viewer</label>
-                                    <br>
-                                    <select class="custom-select" style="width: auto;" data-sortOrder>
-                                    <option href="javascript:void(0)" value="index"> View Terbanyak </option>
-                                    <option href="javascript:void(0)" value="sortData"> View Sedikit </option>
-                                    </select>
-                        </div>
+                        <form method="get" action="{{route('reference.index')}}">
+                            <div class="form-gruop">
+                                    <label for="">Viewer</label>
+                                        <br>
+                                        <select name="sortview" id="sortview" class="custom-select" style="width: auto;" data-sortOrder>
+                                        <option href="javascript:void(0)" value="mostview"> View Terbanyak </option>
+                                        <option href="javascript:void(0)" value="lessview"> View Sedikit </option>
+                                        </select>
+                                        <button name="reference2"type="submit" class="btn btn-lg btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                
@@ -99,9 +104,9 @@ My Reference
                 </div>
                 @endif
             
-                @foreach ($reference as $id)
                 <hr>
-                <div class="row">
+                @foreach ($reference as $id)
+                <div class="row startdoc">
                     <div class="col-auto">
                         <a >
                             <img src="{{ asset('uploads/'.$id->cover) }}"
@@ -137,8 +142,8 @@ My Reference
                            
                             <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
                             <div class="float-right">
-                                <!-- <a href="{{route('reference.show',$id->id)}}"> -->
-                                <a href="{{route('preview',$id->id)}}">
+                                <a href="{{route('reference.show',$id->id)}}">
+                                <!-- <a href="{{route('preview',$id->id)}}"> -->
                                <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}" data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }} data-toggle="modal" data-target="#modal-xl"><i class="far fa-eye"></i>  Preview</button>
                             </a>
                             </div>
@@ -215,6 +220,7 @@ My Reference
     $(document).on("click", ".previewdoc", function() {
         var id = $(this).data('id');
         var jmlhview = $(this).data('jmlhview');
+        console.log(id, jmlhview);
 
         $.ajax({
             url: 'viewadd',
@@ -245,5 +251,46 @@ My Reference
         })
 
     })
+
+
+    // $('.sortbaselike').on('change', function(e){
+
+    //     var type = $(this).find(":selected").data('type');
+    //     var key = $(this).find(":selected").data('key');
+    //     console.log(type, key);
+
+    //     $.ajax({
+    //         url: 'sort',
+    //         method: 'post',
+    //         dataType: 'json',
+    //         data: {
+    //             type: type,
+    //             key: key,
+    //             _token: '{{ csrf_token() }}'
+    //             // _token:$(this).data('token')
+    //         },
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         success: function(response){
+    //             if(response.message == 'success') {
+                    
+    //                 console.log(response.reference.data);
+                    
+    //                 // $('.startdoc').html(data.view);
+    //                 $('.startdoc').html(response.reference.data);
+    //             }
+    //             else {
+    //                 alert("gagal!!");
+    //                 var errors = response.responseJSON;
+    //                 console.log(errors);
+    //             }
+    //         },
+    //         error: function(response){
+    //             var errors = response.responseJSON;
+    //             console.log(errors);
+    //         }
+    //     })
+    // })
 </script>
 @endsection
