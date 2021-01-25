@@ -89,6 +89,7 @@ My Reference
                             </div>
                         </form>
                 </div>
+                </div>
                
                 {{-- <select class="custom-select" style="width: auto;" data-sortOrder>
                     <option value="index"> Sort by Position </option>
