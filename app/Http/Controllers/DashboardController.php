@@ -32,18 +32,16 @@ class DashboardController extends Controller
         $nama_dokumen = []; //memunculkan nama pada grafik
         $jumlah_like = [];
         $jumlah_view = []; //memunculkan jumlah pada grafik
-        $data_dokumen = Document::all(); //menyimpan data yang ada ditabel 
+        $data_dokumen = Kategori::all(); //menyimpan data yang ada ditabel 
         foreach ($data_dokumen as $row) {
             //setiap kali petrulanagan akan menyimpan nama 
-            $nama_dokumen[] = $row->judul_dokumen;
+            $nama_dokumen[] = $row->kategori;
             //mencari ditabel like view 
-            $view = Document::where('id', $row->id)->sum('jumlah_view');
-            $like = Document::where('id', $row->id)->sum('jumlah_like');
+            $view = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_view');
+            $like = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_like');
             $jumlah_like[] = $like;
             $jumlah_view[] = $view;
         }
-       
-        
       
         // $kategori = Kategori::all();
         return view('general2.dashboard', compact('jumlah_kategori','nama_dokumen', 'jumlah_like', 'jumlah_view','jumlah_dokumen','jumlah_likes','jumlah_views'));
