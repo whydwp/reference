@@ -39,6 +39,8 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     // ->name('index');
 
     Route::get('report', 'KelolaDocumentController@report')->name('report');
+    
+    Route::post('/gettahun','MyReferenceController@gettahun');
 
     // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
 

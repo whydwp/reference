@@ -67,6 +67,22 @@ class MyReferenceController extends Controller
         return view('reference.index', compact('reference', 'kategori','nama_kategori','reference2'));     
     }
 
+    public function gettahun(Request $request){
+
+        $search = $request->search;
+        // echo $search;
+        if($search != ''){
+           $gettahun = Document::select('tahun')->where('tahun', 'like', '%' .$search . '%')->distinct()->get();
+        }
+  
+        $response = array();
+        foreach($gettahun as $tahun){
+           $response[] = array("value"=>$tahun->tahun,"label"=>$tahun->tahun);
+        }
+  
+        return response()->json($response);
+     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -125,6 +141,7 @@ class MyReferenceController extends Controller
     {
         $reference = Document::findOrFail($id);
         $komentar = Forum::all();
+        // dd($reference);
         
         return view('reference.show', compact('reference','komentar'));
     }
