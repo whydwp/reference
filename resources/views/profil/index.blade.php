@@ -10,7 +10,12 @@ Kelola Profil
     <div class="card">
 <div class="card-body box-profile">
     <div class="text-center">
+    @if($input->avatar_file != NULL)
         <img class="profile-user-img img-fluid img-circle" id="gambar_load" src="{{ URL::to('/') }}/uploads/document/{{$input->avatar_file}}">
+    
+    @elseif($input->avatar_file == NULL)
+        <img class="profile-user-img img-fluid img-circle" id="gambar_load" src="{{ asset('assets/img/avatar.png') }}">
+    @endif
     </div>
 
 

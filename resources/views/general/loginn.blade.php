@@ -62,7 +62,12 @@
                             </button>
                         </div>
                     </form>
+<<<<<<< HEAD
                     <div class="login100-more" style="background-image: url('now-ui-kit/assets/img/bg-pln.png');">
+=======
+                    <!-- <div class="login100-more" style="background-image: url('now-ui-kit/assets/img/bg11.jpg');"> -->
+                    <div class="login100-more" style="background-image: url({{ asset('assets/login/photo6084836170501565404.jpg') }});">
+>>>>>>> e20a3ad84652184a10ad1efa10b7d9be9981fb6d
                     </div>
                 </div>
             </div>

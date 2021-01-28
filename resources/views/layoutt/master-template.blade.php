@@ -18,22 +18,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 blue;
             }
         }
-
         i. {
             tahun: hover #eee
         }
         }
-
         .ini {
             a:hover {
                 wihte;
             }
         }
-
         .uppercase {
             text-transform: uppercase;
         }
-
         .like-post {
             color: #4400ff !important;
         }
@@ -53,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         /* html{
            background-image: linear-gradient(to right, #004d78, #7effe3); 
         } */
-    </style>
+    </style> 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet">
@@ -63,8 +59,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
-
+    
     <!-- Jquery -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 
@@ -78,6 +75,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <script src="{{asset('chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}">
+=======
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('jqueryui/jquery-ui.min.css')}}">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+        <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        
+        <!-- Google Font: Source Sans Pro -->
+        <script src="{{asset('chartjs/Chart.min.js')}}"></script>
+        // <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
+>>>>>>> e20a3ad84652184a10ad1efa10b7d9be9981fb6d
     </script>
     <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
@@ -89,13 +103,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 4 -->
     <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
-
+    
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/demo.js')}}"></script>
-   
+    
     {{-- <script>
-    $(document).bind("contextmenu",function(e) {
+        $(document).bind("contextmenu",function(e) {
     alert('@copyright Yourportfolio for your curiculum vitae , resume & your portfolio')//silahkan tulis pesan yang akan
     ditampilkan
     });

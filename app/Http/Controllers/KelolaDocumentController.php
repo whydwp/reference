@@ -71,8 +71,13 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|numeric',
+<<<<<<< HEAD
             'file' => 'required|mimes:pdf,html,zip|max:50048',
             // 'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+=======
+            'file' => 'required|mimes:pdf,html,zip',
+            'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+>>>>>>> e20a3ad84652184a10ad1efa10b7d9be9981fb6d
             'id_kategori' => 'required|max:250',
 
         ];
@@ -99,18 +104,25 @@ class KelolaDocumentController extends Controller
         $extention = $file->getClientOriginalExtension();
         // dd($file);
         if ($request->file('file')->isValid()) {
-            if ($extention == "zip") {
-                $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
+            if($extention == "zip"){
+                $namaFile = "document/" . $request->judul_dokumen; //. "." . $extention;
                 $upload_path = 'uploads/';
                 $zip = new ZipArchive();
                 $zip->open($file);
-                $nama = $zip->getNameIndex(0);
-                //  dd($nama);
-                $zip->extractTo($upload_path . $namaFile);
+                // $nama = $zip->getNameIndex(0);
+                // dd($zip);
+                for ($i = 0; $i < $zip->numFiles; $i++) {
+                    $filename = $zip->getNameIndex($i);
+                        if($filename == "index.html"){
+                            break;
+                        }
+                }
+                $zip->extractTo($upload_path.$namaFile);
                 $zip->close();
-                $data_dokument['file'] = $namaFile . "/" . $nama;
-                // dd($namaFile. "/" .$nama);
-            } else {
+                $data_dokument['file'] = $namaFile. "/" .$filename;
+                // dd($data_dokument['file']);
+            }
+            else{
                 $namaFile = "document/" . date('YmdHis') . "." . $extention;
                 $upload_path = 'uploads/document';
                 $request->file('file')->move($upload_path, $namaFile);
