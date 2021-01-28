@@ -104,7 +104,7 @@
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="float-left">
-                            <a href="#" class="btn btn-block btn-outline-secondary">Profile</a>
+                            <a href="{{route('profil.index') }}" class="btn btn-block btn-outline-secondary">Profile</a>
                         </div>
                         <div class="float-right">
                             <a href="{{ route('logout') }}" class="btn btn-block btn-outline-secondary">Sign out</a>

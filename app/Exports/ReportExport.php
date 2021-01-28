@@ -17,5 +17,6 @@ class ReportExport implements FromView,ShouldAutoSize
         return view('report', [
             'data_dokument' => Document::orderBy('created_at','ASC')->get() //get unutk mendapatkan datanya
         ]);
+       
     }
 }

@@ -51,21 +51,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('reference.index')}}" class="nav-link">
+                    <a href="{{route('forum.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>
-                            Reference
+                            Kelola Comentar
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('like.index')}}" class="nav-link">
                         <i class="nav-icon fab fa-gratipay"></i>
                         <p>
                             Like
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="{{route('document.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-file-alt"></i>

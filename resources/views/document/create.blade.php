@@ -86,8 +86,9 @@ masukan dokument
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group @error('file') is-invalid @enderror">
-                        <label for="file" class="col-sm-4 control-label">File document</label>
-                        <input type="file" name="file" class="form-control @error('file') is-invalid @enderror"" id="file">
+                        <label for="file" class="col-sm-4 control-label">File document </label>
+                        <p style="margin-top: -10px; margin-left:10px !important;">file zip max 50Mb</p>
+                        <input value="{{old('file')}}" type="file" name="file" class="form-control @error('file') is-invalid @enderror">
                         @error('file')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
@@ -96,7 +97,8 @@ masukan dokument
                 <div class="col-sm-6">
                     <div class="form-group ">
                         <label for="cover" class="col-sm-4 control-label">Upload Gambar</label>
-                        <input type="file" name="cover" class="form-control @error('cover') is-invalid @enderror" id="cover">
+                        <p style="margin-top: -10px; margin-left:10px !important;">file png,jpg,jpeg max 5 Mb</p>
+                        <input value="{{old('cover')}}" type="file" name="cover" class="form-control @error('cover') is-invalid @enderror" >
                         @error('cover')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
@@ -106,7 +108,7 @@ masukan dokument
             </div>
 
             <div class="form-group">
-                <a href="{{route('document.index')}}" class="btn btn-danger btn-xl"><span class="fas fa-backward"></span> Kembali</a>
+                <a href="{{route('document.index')}}" class="btn btn-warning btn-xl"><span class="fas fa-backward"></span> Kembali</a>
                 <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
 
             </div>
@@ -116,8 +118,8 @@ masukan dokument
 
 </div>
 @include('layoutt.more')
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $('.dateAnimate').bootstrapMaterialDatePicker({ weekStart : 0, time: false,animation:true});
-</script>
+</script> --}}
 
 @endsection

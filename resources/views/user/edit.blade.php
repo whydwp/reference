@@ -73,7 +73,7 @@ masukan dokument
 
 
             <div class="form-group">
-                <a href="{{route('user.index')}}" class="btn btn-danger btn-xl">Kembali</a>
+                <a href="{{route('user.index')}}" class="btn btn-warming btn-xl">Kembali</a>
                 <button type="submit" class="btn btn-success btn-xl">Simpan</button>
 
             </div>

@@ -13,10 +13,10 @@ My Reference
         <div class="list-group">
             <div class=" card list-group-item">
                 @if(Request::get('keyword'))
-                <a class="btn btn-danger" href="{{ route('reference.index') }}">Back</a>
+                <a class="btn btn-info" href="{{ route('reference.index') }}">Back</a>
                 @endif
                 @if(Request::get('id_kategori'))
-                <a class="btn btn-danger" href="{{ route('reference.index') }}">Back</a>
+                <a class="btn btn-info" href="{{ route('reference.index') }}">Back</a>
                 @endif
                 <div class="row">
                     <div class="col-md-4">
@@ -107,8 +107,12 @@ My Reference
                 <div class="row">
                     <div class="col-auto">
                         <a >
+                            @if($id->cover) 
                             <img src="{{ asset('uploads/'.$id->cover) }}"
                                 class="img-thumbnail"width="200px">
+                                @else
+                                <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                @endif
                         </a>
                     </div>
                     <div class="col px-4 float-right">

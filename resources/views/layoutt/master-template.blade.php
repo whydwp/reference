@@ -35,7 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
 
         .like-post {
-            color: #e21309 !important;
+            color: #4400ff !important;
         }
         
         .back-to-top {
@@ -68,8 +68,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
     <!-- <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script> -->
 
     <!-- Select2 -->
@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </section>
                         <!-- /.content-header -->
 
-
+                        @include('sweetalert::alert')
                         <!-- Main content -->
 
                         <!-- /.content -->
@@ -160,16 +160,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- /.control-sidebar -->
 
                     <!-- Main Footer -->
-                    <footer class="main-footer gradient2">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto ">
-                                <span class="footer">Copyright &copy; Reference 2020</span>
-                            </div>
-                        </div>
-                    </footer>
+                   
                     <a id="back-to-top" href="#" class="btn btn-info btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
                     <!-- Content Header (Page header) -->
                 </div>
+            </div>
+        </div>
+        <footer class="main-footer gradient2">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto ">
+                    <span class="footer">Copyright &copy; Reference 2020</span>
+                </div>
+            </div>
+        </footer>
+    </div>
 
 </body>
 <script>

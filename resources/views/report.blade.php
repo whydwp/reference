@@ -9,6 +9,7 @@
             <th style="font-weight: bold;">Publisher</th>
             <th style="font-weight: bold;">deskripsi</th>
             <th style="font-weight: bold;">Kategori</th>
+            <th style="font-weight: bold;">File</th>
 
         </tr>
     </thead>
@@ -23,6 +24,7 @@
             <td>{{ $row->publisher }}</td>
             <td>{{strtolower($row->deskripsi_dokumen)}}</td>
             <td>{{ $row->kategori->kategori}}</td>
+            <td>{{ $row->file}}</td>
         </tr>
         @endforeach
     </tbody>

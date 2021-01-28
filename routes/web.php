@@ -35,10 +35,18 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::resource('/kategori', 'KategoriController');
     Route::resource('/like', 'MyLikeController');
     Route::resource('/reference', 'MyReferenceController');
+    Route::resource('/forum', 'ForumController');
     // Route::get('/reference/index/{slug}', 'MyReferenceController@index')
     // ->name('index');
 
+   
     Route::get('report', 'KelolaDocumentController@report')->name('report');
+    Route::get('export', 'UserController@export')->name('export');
+    Route::get('kategoriexport', 'KategoriController@reportkategori')->name('kategoriexport');
+    Route::post('import', 'UserController@importexel')->name('import');
+    Route::post('importdokumen', 'UserController@importexel')->name('importdokumen');
+    Route::post('importkategori', 'KategoriController@import')->name('importkategori');
+  
 
     // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
 
@@ -49,6 +57,6 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
 
     Route::get('/preview-{id}', 'PreviewController@index')->name('preview');
 
-    Route::post('/viewadd', 'MyReferenceController@addview')->name('viewadd');
+   
 
 });

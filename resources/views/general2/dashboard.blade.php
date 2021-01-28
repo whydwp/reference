@@ -20,7 +20,7 @@ Dashboard
                   <h5>Jumlah Dokumen</h5>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-file-alt"></i>
                 </div>
                 <a href="{{route('document.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -35,35 +35,35 @@ Dashboard
                   <h5>Jumlah Like</h5>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fas fa-thumbs-up"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-navy">
+              <div class="small-box bg-secondary">
                 <div class="inner">
                   <h3>{{$jumlah_views}}</h3>
           
                   <h5>Jumlah View</h5>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fas fa-eye"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-orange">
+              <div class="small-box bg-warning">
                 <div class="inner">
                   <h3>{{$jumlah_kategori}}</h3>
           
                   <h5>Jumlah Kategori</h5>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fas fa-bolt"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>

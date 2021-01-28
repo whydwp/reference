@@ -13,14 +13,53 @@ Document
                 <div class="card">
 
                     <div class="card-header">
-                        <h3 class="card-title">Kelola Document</h3>
+                        <h3 class="card-title">Kelola User</h3>
                     </div>
                     <br />
                     <div class="col-md-10 offset-md-1 ">
                        <a href="{{ route('user.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
                             Create</a>
+                            <br>
+                            <br>
+                            <a href="{{ route('export') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                               Export exel</a>
+                                <button data-target="#modal-default" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
+                                        class="fas fa-plus-square"></span>
+                                    Import Data</button>
                     </div>
+                   
                     <br />
+                    {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                        exel</a> --}}
+                        <div class="modal fade" id="modal-default">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Import</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" action="{{route('import')}}" enctype="multipart/form-data">
+                                        @csrf
+                                        
+                                        <div class="form-group">
+                                            <div class="modal-body">
+                                                <label>Masukan Data</label>
+                                                <input type="file" name="file" class="form-control" placeholder=" yuk masukan data"
+                                                    required>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                    
     <div class="row">
         <div class="col-md-10 offset-md-1">
@@ -56,7 +95,7 @@ Document
                         Hasil Pencarian User dengan Kategori : <b>{{ $nama_type }}</b>
                     </div>
                     @endif
-                    @include('alert.success')
+                   @include('alert.success')
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -65,7 +104,7 @@ Document
                                 <th>Email</th>
                                 <th>Username</th>
                                 <th>Level</th>
-                                <th>action</th>
+                                <th style="text-align:center">action</th>
                 
                             </tr>
                         </thead>
@@ -77,15 +116,15 @@ Document
                                 <td>{{ $row->email }}</td>
                                 <td>{{ $row->username }}</td>
                                 <td>{{ $row->kelolaUser->type}}</td>
-                                <td>
+                                <td style="text-align:center">
                                     <form method="post" action="{{ route('user.destroy',[$row->id]) }}"
                                         onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                         @csrf
                                         {{ method_field('DELETE') }}
                 
-                                        <a class="btn btn-round btn-warning btn-md far fa-edit"
+                                        <a class="btn btn-round btn-success btn-md far fa-edit"
                                             href="{{ route('user.edit',[$row->id]) }}"></a>
-                                        <button type="submit" class="btn btn-round btn-danger fas fa-trash-alt"></i></button>
+                                        <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
                                         {{-- <form method="post" action="">
                                                                             @csrf
                                                                             {{method_field('DELETE')}}
@@ -98,13 +137,7 @@ Document
                         </tbody>
                 
                     </table>
-                    {{-- <tfoot>
-                                        <tr>
-                                            <td>
-                                                {{ $data_dokument->appends(Request::all())->links() }}
-                    </td>
-                    </tr>
-                    </tfoot> --}}
+                  
                 </div>
                     <!-- /.card-body -->
                 </div>

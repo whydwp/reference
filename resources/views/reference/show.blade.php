@@ -14,7 +14,7 @@ Preview dokument
         <div class="list-group">
 
             <div class=" card list-group-item">
-                <a href="{{route('reference.index')}}" class="btn btn-danger btn-xl">Kembali</a>
+                <a href="{{route('reference.index')}}" class="btn btn-info btn-xl">Kembali</a>
               <hr>
                 <div class="row">
                     <div class="container" >

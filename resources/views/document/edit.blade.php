@@ -17,8 +17,8 @@ Edit
             @endforeach
         </ul>
         @endif --}}
-        <form class="form-horizontal" method="post" action="{{ route('document.update',[$document->id]) }}"
-            enctype="multipart/form-data">
+        
+        <form class="form-horizontal" method="post" action="{{ route('document.update',[$document->id]) }}" enctype="multipart/form-data">
             @csrf
             {{ method_field('PUT') }}
             <div class="form-group">
@@ -114,7 +114,12 @@ Edit
             </div>
                 <label for="cover" class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                   <img class="img-thumbnail" src="{{ asset('uploads/'.$document->cover) }}" width="450" height="250">
+
+                    @if($document->cover)
+                    <img src="{{ asset('uploads/'.$document->cover) }}" class="img-thumbnail" width="200px"width="450" height="250">
+                    @else
+                    <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                    @endif
                    
                 </div>
             
@@ -132,7 +137,7 @@ Edit
             </div>
 
             <div class="form-group">
-                <a href="{{route('document.index')}}" class="btn btn-danger btn-xl">Kembali</a>
+                <a href="{{route('document.index')}}" class="btn btn-warning btn-xl">Kembali</a>
                 <button type="submit" name="tombol" class="btn btn-info pull-right">Update</button>
             </div>
         </form>

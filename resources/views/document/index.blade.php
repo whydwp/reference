@@ -17,38 +17,51 @@ Document
                 </div>
                 <br/>
        <div class="col-md-10 offset-md-1 ">
-            <button data-target="#modal-default" data-toggle="modal" type="button"
-                class="btn btn-raised btn-default"><span class="fas fa-plus-square"></span>
-                kapasitas Documents</button>
                 <a href="{{ route('document.create') }}" class="btn btn-primary"><span class=" fas fa-plus-square"></span>
                     Create</a>
+                </div>
+                <br>
+       <div class="col-md-10 offset-md-1 ">
+                <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
+                        class="fas fa-plus-square"></span>
+                    Import Data</button>
+                    <a href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                        Export exel</a>
+                </div>
                 
-        </div>
-        <br/>
-                <div class="modal fade" id="modal-default">
+                <br />
+                {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                exel</a> --}}
+                <div class="modal fade" id="modal-default1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Kapasitas</h4>
+                                <h4 class="modal-title">Import</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <form method="post" action="{{route('importdokumen')}}" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
-                                    <label>Masukan Kapasitas</label>
-                                    <input type="text" name="kapasitas" class="form-control" placeholder=" yuk masukan kapasitas" required>
+                                    <div class="modal-body">
+                                        <label>Masukan Data</label>
+                                        <input type="file" name="data_dokument" class="form-control" placeholder=" yuk masukan data" required>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
+                            </form>
                         </div>
                         <!-- /.modal-content -->
                     </div>
                     <!-- /.modal-dialog -->
                 </div>
+      
+        <br/>
+              
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <div class="row">
@@ -85,8 +98,7 @@ Document
                             </div>
                         </div>
                     </form>
-                        <a href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
-                    exel</a>
+                       
                     </div>
                 </div>
 
@@ -115,7 +127,7 @@ Document
                             <th>jumlah halaman</th>
                             <th>Publisher</th>
                             <th>Kategori</th>
-                            <th>action</th>
+                            <th>Action</th>
                 
                         </tr>
                     </thead>
@@ -135,8 +147,9 @@ Document
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     
-                                    <a class="btn btn-round btn-warning btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a>
-                                    <button type="submit" class="btn btn-round btn-danger fas fa-trash-alt"></i></button>
+                                    <a class="btn btn-round btn-info btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a>
+                                    <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                    <a href="{{route('preview',[$row->id])}}" class="btn bg-gradient-success far fa-eye"></a>
                                     {{-- <form method="post" action="">
                                                             @csrf
                                                             {{method_field('DELETE')}}

@@ -62,7 +62,7 @@
                             </button>
                         </div>
                     </form>
-                    <div class="login100-more" style="background-image: url('now-ui-kit/assets/img/bg11.jpg');">
+                    <div class="login100-more" style="background-image: url('now-ui-kit/assets/img/bg-pln.png');">
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Exports\ReportExport;
 use Excel;
+use App\Imports\DocumentImport;
 use ZipArchive;
 
 class KelolaDocumentController extends Controller
@@ -20,7 +21,7 @@ class KelolaDocumentController extends Controller
      */
     public function index(Request $request)
     {
-        $data_dokument = Document::orderBy('created_at', 'desc')->paginate(10);
+        $data_dokument = Document::orderBy('created_at', 'desc')->paginate(100000);
         $filterKeyword = $request->get('keyword');
         $kategori = Kategori::all();
         $nama_kategori = '';
@@ -70,8 +71,8 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|numeric',
-            'file' => 'required|mimes:pdf,html,zip|max:5048',
-            'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+            'file' => 'required|mimes:pdf,html,zip|max:50048',
+            // 'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
         ];
@@ -83,7 +84,7 @@ class KelolaDocumentController extends Controller
             'publisher.required'         => 'publisher wajib diisi.',
             'jumlah_halaman.required'         => 'jumlah halaman wajib diisi.',
             'file.required'         => 'file wajib diisi.',
-            'cover.required'         => 'cover wajib diisi.',
+            // 'cover.required'         => 'cover wajib diisi.',
             'id_kategori.required'         => 'kategori wajib dipilih.',
 
         ];
@@ -118,15 +119,20 @@ class KelolaDocumentController extends Controller
             }
         }
         $cover = $request->file('cover');
-        $extention = $cover->getClientOriginalExtension();
-        if ($request->file('cover')->isValid()) {
-            $namaCover = "document/" . date('YmdHis') . "." . $extention;
-            $upload_path = 'uploads/document';
-            $request->file('cover')->move($upload_path, $namaCover);
-            $data_dokument['cover'] = $namaCover;
+       if($cover){
+            if ($request->file('cover')->isValid()) {
+                $extention = $cover->getClientOriginalExtension();
+                $namaCover = "document/" . date('YmdHis') . "." . $extention;
+                $upload_path = 'uploads/document';
+                $request->file('cover')->move($upload_path, $namaCover);
+                $data_dokument['cover'] = $namaCover;
+            } else {
+                $cover =  'image/1.png';
+            }
         }
+        
         Document::create($data_dokument);
-        return redirect()->route('document.index')->with('status', 'Dokumen Berhasil Ditambahankan');
+        return redirect()->route('document.index')->with('success', 'Dokumen Berhasil Ditambahankan');
     }
 
     /**
@@ -135,9 +141,36 @@ class KelolaDocumentController extends Controller
      * @param  \App\Models\KelolaUser  $kelolaUser
      * @return \Illuminate\Http\Response
      */
-    public function show(KelolaUser $kelolaUser)
+    public function show($id)
     {
-        //
+        $data_dokument = Document::findOrFail($id);
+    
+        return view('dokument.show', compact('data_dokument'));
+    }
+    public function importexel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $data_dokument = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file =  $data_dokument->getClientOriginalName();
+
+        // upload ke folder di dalam folder public
+        $data_dokument->move('uploads/document', $nama_file);
+
+        // import data
+        Excel::import(new DocumentImport, public_path('/uploads/document/' . $nama_file));
+
+        // notifikasi dengan session
+        // Session::flash('sukses', 'Data Siswa Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return redirect()->back();
     }
 
     /**
@@ -173,7 +206,7 @@ class KelolaDocumentController extends Controller
                 'tahun' => 'required|numeric',
                 'publisher' => 'required|max:250',
                 'jumlah_halaman' => 'required|numeric',
-                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:5048',
+                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:500048',
                 'cover' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
                 'id_kategori' => 'required|max:250',
 
@@ -197,9 +230,12 @@ class KelolaDocumentController extends Controller
                 return redirect()->route('document.edit', [$id])->withErrors($validator)->withInput($request->all());
             }
             $file = $request->file('file');
-            $extention = $file->getClientOriginalExtension();
-            // dd($file);
+            //  dd($file);
+            if($file){
             if ($request->file('file')->isValid()) {
+
+                $extention = $file->getClientOriginalExtension();
+                
                 if ($extention == "zip") {
                     $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
                     $upload_path = 'uploads/';
@@ -218,6 +254,7 @@ class KelolaDocumentController extends Controller
                     $input['file'] = $namaFile;
                      dd($extention);
                 }
+            }
             }
             if ($request->hasFile('cover')) {
                 if ($request->file('cover')->isValid()) {
@@ -248,6 +285,6 @@ class KelolaDocumentController extends Controller
         $data_dokument = Document::findOrFail($id);
         $data_dokument->delete();
         Storage::disk('upload')->delete($data_dokument->file);
-        return redirect()->route('document.index')->with('status', 'Data Document Berhasil dihapus');
+        return redirect()->route('document.index')->with('toast_success', 'Data Document Berhasil dihapus');
     }
 }

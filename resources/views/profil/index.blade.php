@@ -60,10 +60,7 @@ Kelola Profil
         <div class="form-group row">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-                <input type="username" name="username" id="username"class="form-control @error('username') is-invalid @enderror" value="{{$input->username}}" placeholder="username">
-                @error('username')
-                <div class="invalid-feedback">{{$message}}</div>
-                @enderror
+                <input type="username" name="username" id="username"class="form-control @error('username') is-invalid @enderror" value="{{$input->username}}" placeholder="username" disabled>
             </div>
         </div>
         <div class="form-group row">
@@ -85,7 +82,7 @@ Kelola Profil
       
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-                <button type="submit" class="btn btn-danger">Update</button>
+                <button type="submit" class="btn btn-info">Update</button>
             </div>
         </div>
     </form>

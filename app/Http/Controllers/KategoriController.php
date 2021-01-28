@@ -10,6 +10,9 @@ use DB;
 use View;
 use Auth;
 use Validator;
+use App\Exports\KategoriExport;
+use Excel;
+use App\Imports\KategoriImport;
 
 class KategoriController extends Controller
 {
@@ -31,8 +34,18 @@ class KategoriController extends Controller
         // dd($input);
         
         
-            $kategori = Kategori::paginate(10);
-      
+            $kategori = Kategori::paginate(100000);
+            //  $jumlah_like = Document::sum('id_kategori');
+            //  $data = \DB::table('Dokumen')
+            //  ->select([
+            //      \DB::raw('count(*) as id'),
+              
+                 
+            //  ])
+            //  ->get()
+            //  ->toArray()
+            //  ;
+            //     dd($data);     
           
             // $kategori = Kategori::all();
             return view('kategori.index', ['kategori' => $kategori]);
@@ -144,6 +157,39 @@ class KategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function reportkategori()
+    {
+        $kategori = now();
+        return Excel::download(new KategoriExport, 'kategori' . $kategori . '.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder di dalam folder public
+        $file->move('uploads', $nama_file);
+
+        // import data
+        Excel::import(new KategoriImport, public_path('/uploads/' . $nama_file));
+
+        // notifikasi dengan session
+        // Session::flash('sukses', 'Data Siswa Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return redirect()->back();
+    }
+
     public function create()
     {
         $kategori = Kategori::all();

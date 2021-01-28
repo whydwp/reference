@@ -7,6 +7,10 @@ use App\Models\User;
 use App\Models\KelolaUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use App\Exports\UserExport;
+use App\Imports\UserImport;
+use App\Jobs\ImportJob;
+use Excel;
 
 class UserController extends Controller
 {
@@ -17,7 +21,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data_user = User::paginate(10);
+        
+        $data_user = User::orderBy('created_at', 'desc')->paginate(10000000);
         $kelola = KelolaUser::all();
         $filterKeyword = $request->get('keyword');
         $nama_type = '';
@@ -68,9 +73,56 @@ class UserController extends Controller
         }
         $Kelola['password'] = bcrypt($Kelola['password']);
         User::create($Kelola);
-        return redirect()->route('user.index')->with('status', 'User Berhasil Ditambahankan');
+        return redirect()->route('user.create')->with('status', 'User Berhasil Ditambahankan');
     }
 
+    public function export()
+    {
+        $full_name = now();
+        // dd($full_name);
+         return Excel::download(new UserExport, 'user' . $full_name . '.xlsx');
+    }
+    public function importexel(Request $request){
+        // validasi
+        // $this->validate($request, [
+            
+        //     'file' => 'required|mimes:csv,xls,xlsx|max:50048'
+        // ]);
+        // // $Kelola = $request->all();
+        // // menangkap file excel
+        // if($file = $request->file('file')){
+        //     $nama_file = $file->getClientOriginalName();
+
+        //     // upload ke folder di dalam folder public
+        //     $file->move('uploads', $nama_file);
+
+        //     // import data
+        //     Excel::import(new UserImport, public_path('/uploads/' . $nama_file));
+        //     return redirect()->back()->with(['success' => 'Upload success']);
+        // };
+        // //$Kelola['password'] = bcrypt($Kelola['password']);
+        // // membuat nama file unik
+        // return redirect()->back()->with(['error' => 'Please choose file before']);
+        $this->validate($request, [
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        if ($request->hasFile('file')) {
+            //UPLOAD FILE
+            $file = $request->file('file');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs(
+                'public',
+                $filename
+            );
+
+            //MEMBUAT JOBS DENGAN MENGIRIMKAN PARAMETER FILENAME
+            ImportJob::dispatch($filename);
+            return redirect()->back()->with(['success' => 'Upload success']);
+        }
+        return redirect()->back()->with(['error' => 'Please choose file before']);
+        
+    }
     /**
      * Display the specified resource.
      *
