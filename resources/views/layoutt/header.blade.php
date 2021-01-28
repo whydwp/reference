@@ -112,11 +112,7 @@
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="float-left">
-<<<<<<< HEAD
                             <a href="{{route('profil.index') }}" class="btn btn-block btn-outline-secondary">Profile</a>
-=======
-                            <a href="{{ route('profil.index') }}" class="btn btn-block btn-outline-secondary">Profile</a>
->>>>>>> e20a3ad84652184a10ad1efa10b7d9be9981fb6d
                         </div>
                         <div class="float-right">
                             <a href="{{ route('logout') }}" class="btn btn-block btn-outline-secondary">Sign out</a>

@@ -50,11 +50,7 @@ My Reference
                         </div>
                         </form>
                     </div>
-                   
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-4">
+                   <div class="col-md-4">
                         <form method="get" action="{{route('reference.index')}}">
                             <div class="form-group">
                                 <label for="keyword" class="col-sm-6 control-label">Tahun Publish</label>

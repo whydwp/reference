@@ -70,7 +70,7 @@ class ProfilController extends Controller
 
         $rules = [
             'full_name' => 'required|max:250',
-            'username' => 'required|max:100|unique:users,username,' . $id,
+            // 'username' => 'required|max:100|unique:users,username,' . $id,
             'email' => 'required|email|max:255|unique:users,email,' . $id,
             'avatar_file' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
 
@@ -80,7 +80,7 @@ class ProfilController extends Controller
 
         $messages = [
             'full_name.required'          => 'Nama wajib diisi.',
-            'username.required'      => 'username wajib diisi.',
+            // 'username.required'      => 'username wajib diisi.',
             'email.required'           => 'email wajib diisi.',
             'avatar_file.required'         => 'fotomu wajib diisi.',
 
@@ -115,7 +115,7 @@ class ProfilController extends Controller
            
         // ]);
             $user->full_name = $request->full_name;
-            $user->username = $request->username;
+            // $user->username = $request->username;
             $user->email = $request->email;
             if($request->password != NULL) {
                 $user->password = Hash::make($request->password);

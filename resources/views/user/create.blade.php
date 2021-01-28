@@ -87,7 +87,7 @@ Input User
 
 
             <div class="form-group">
-                <a href="{{route('user.index')}}" class="btn btn-warming btn-xl "><span class="fas fa-backward"></span>  Kembali</a>
+                <a href="{{route('user.index')}}" class="btn btn-warning btn-xl "><span class="fas fa-backward"></span>  Kembali</a>
                 <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
 
             </div>

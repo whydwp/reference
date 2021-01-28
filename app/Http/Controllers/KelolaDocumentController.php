@@ -71,13 +71,8 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|numeric',
-<<<<<<< HEAD
             'file' => 'required|mimes:pdf,html,zip|max:50048',
             // 'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
-=======
-            'file' => 'required|mimes:pdf,html,zip',
-            'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
->>>>>>> e20a3ad84652184a10ad1efa10b7d9be9981fb6d
             'id_kategori' => 'required|max:250',
 
         ];

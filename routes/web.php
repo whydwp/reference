@@ -41,17 +41,12 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
 
    
     Route::get('report', 'KelolaDocumentController@report')->name('report');
-<<<<<<< HEAD
     Route::get('export', 'UserController@export')->name('export');
     Route::get('kategoriexport', 'KategoriController@reportkategori')->name('kategoriexport');
     Route::post('import', 'UserController@importexel')->name('import');
     Route::post('importdokumen', 'UserController@importexel')->name('importdokumen');
     Route::post('importkategori', 'KategoriController@import')->name('importkategori');
   
-=======
-    
-    Route::post('/gettahun','MyReferenceController@gettahun');
->>>>>>> e20a3ad84652184a10ad1efa10b7d9be9981fb6d
 
     // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
 
@@ -62,6 +57,6 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
 
     Route::get('/preview-{id}', 'PreviewController@index')->name('preview');
 
-   
+    Route::post('/gettahun', 'MyReferenceController@gettahun');
 
 });
