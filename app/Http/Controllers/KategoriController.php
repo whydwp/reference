@@ -210,7 +210,7 @@ class KategoriController extends Controller
     {
         $kategori = $request->all();
         Kategori::create($kategori);
-        return redirect()->route('kategori.index')->with('status', 'Dokumen Berhasil Ditambahankan');
+        return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Ditambahankan');
     }
 
     /**

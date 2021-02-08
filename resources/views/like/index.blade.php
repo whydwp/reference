@@ -5,6 +5,7 @@ My Like
 @endsection
 
 @section('content')
+
 <div class="row mt-2">
     <div class="col-md-12">
 
@@ -74,7 +75,7 @@ My Like
 
         </div>
     </div>
-</div>
+</div> -->
 
 <script>
     $(document).on("click", ".tekan", function() {

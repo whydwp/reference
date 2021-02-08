@@ -11,10 +11,10 @@ use DB;
 
 class MyLikeController extends Controller
 {
-   public function __construct()
+    public function __construct()
     {
         $this->middleware('siswa'); //membatasi level
-    } 
+    }
 
     /**
      * Display a listing of the resource.
