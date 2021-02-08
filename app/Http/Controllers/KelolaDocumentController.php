@@ -19,6 +19,8 @@ class KelolaDocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+   
+ 
     public function index(Request $request)
     {
         $data_dokument = Document::orderBy('created_at', 'desc')->paginate(100000);
@@ -71,7 +73,7 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|numeric',
-            'file' => 'required|mimes:pdf,html,zip|max:50048',
+            'file' => 'required|mimes:pdf,html,zip|max:102400',
             // 'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
@@ -213,8 +215,8 @@ class KelolaDocumentController extends Controller
                 'tahun' => 'required|numeric',
                 'publisher' => 'required|max:250',
                 'jumlah_halaman' => 'required|numeric',
-                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:500048',
-                'cover' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
+                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:102400',
+                // 'cover' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
                 'id_kategori' => 'required|max:250',
 
             ];
@@ -226,7 +228,7 @@ class KelolaDocumentController extends Controller
                 'publisher.required'         => 'publisher wajib diisi.',
                 'jumlah_halaman.required'         => 'jumlah halaman wajib diisi.',
                 'file.required'         => 'ukuran file terlalu besar.',
-                'cover.required'         => 'ukuran cover terlalu besar.',
+                // 'cover.required'         => 'ukuran cover terlalu besar.',
                 'id_kategori.required'         => 'kategori wajib dipilih.',
 
             ];
@@ -259,7 +261,7 @@ class KelolaDocumentController extends Controller
                     $upload_path = 'uploads/document';
                     $request->file('file')->move($upload_path, $namaFile);
                     $input['file'] = $namaFile;
-                     dd($extention);
+                    //  dd($extention);
                 }
             }
             }

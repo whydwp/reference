@@ -14,6 +14,10 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function index()
     {
         // return view('general.dashboard2');
@@ -31,6 +35,7 @@ class DashboardController extends Controller
         // $dashboard = Document::paginate(3);
         $nama_dokumen = []; //memunculkan nama pada grafik
         $jumlah_like = [];
+        $jumlah_doc = [];
         $jumlah_view = []; //memunculkan jumlah pada grafik
         $data_dokumen = Kategori::all(); //menyimpan data yang ada ditabel 
         foreach ($data_dokumen as $row) {
@@ -39,12 +44,14 @@ class DashboardController extends Controller
             //mencari ditabel like view 
             $view = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_view');
             $like = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_like');
+            $doc = Document::where('id_kategori', $row->id_kategori)->count('id');
             $jumlah_like[] = $like;
+            $jumlah_doc[] = $doc;
             $jumlah_view[] = $view;
         }
       
         // $kategori = Kategori::all();
-        return view('general2.dashboard', compact('jumlah_kategori','nama_dokumen', 'jumlah_like', 'jumlah_view','jumlah_dokumen','jumlah_likes','jumlah_views'));
+        return view('general2.dashboard', compact('jumlah_kategori', 'jumlah_doc','nama_dokumen', 'jumlah_like', 'jumlah_view','jumlah_dokumen','jumlah_likes','jumlah_views'));
 
     }
 

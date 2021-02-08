@@ -18,10 +18,12 @@ Kategori
                 <br/>
        <div class="col-md-10 offset-md-1 ">
             <button data-target="#modal-default" data-toggle="modal" type="button"
-                class="btn btn-raised btn-info"><span class="fas fa-plus-square"></span>
+                class="btn btn-raised btn-primary"><span class="fas fa-plus-square"></span>
                 Create Kategori</button>
-              <a href="{{route('kategoriexport')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
-                exel</a>
+                <br>
+                <br>
+              <a href="{{route('kategoriexport')}}" class="btn btn-info"><i class="far fa-file-excel"></i>
+                Export exel</a>
               <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
                     class="fas fa-plus-square"></span>
                 Import Data</button>

@@ -96,9 +96,6 @@ Input User
     </div>
 
 </div>
-@include('layoutt.more')
-<script type="text/javascript">
-    $('.dateAnimate').bootstrapMaterialDatePicker({ weekStart : 0, time: false,animation:true});
-</script>
+
 
 @endsection

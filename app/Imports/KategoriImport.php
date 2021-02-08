@@ -4,8 +4,10 @@ namespace App\Imports;
 
 use App\Models\Kategori;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class KategoriImport implements ToModel
+class KategoriImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,7 +16,7 @@ class KategoriImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Kategori(['kategori' => $row[1],
+        return new Kategori(['kategori' => $row['kategori'],
         ]);
     }
 }

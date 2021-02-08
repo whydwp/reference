@@ -16,7 +16,12 @@ My Like
                 <div class="row">
                     <div class="col-auto">
                         <a>
-                            <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
+                           @if($id->cover) 
+                            <img src="{{ asset('uploads/'.$id->cover) }}"
+                                class="img-thumbnail"width="200px">
+                                @else
+                                <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                @endif
                         </a>
                     </div>
                     <div class="col px-4 float-right">

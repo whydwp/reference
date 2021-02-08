@@ -3,7 +3,7 @@
     <a href="{{asset('admin/index3.html')}}" class="brand-link">
         <img src="{{asset('image/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light"></span>
     </a>
 
     <!-- Sidebar -->
@@ -17,7 +17,7 @@
                 <a href="#" class="d-block">{{Auth::user()->full_name}}</a>
             </div> --}}
         </div>
-
+        <hr>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             @if(Auth::user()->user_type_id == 1)

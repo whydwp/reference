@@ -73,7 +73,7 @@ masukan dokument
 
 
             <div class="form-group">
-                <a href="{{route('user.index')}}" class="btn btn-warming btn-xl">Kembali</a>
+                <a href="{{route('document.index')}}" class="btn btn-warning btn-xl"><span class="fas fa-backward"></span> Kembali</a>
                 <button type="submit" class="btn btn-success btn-xl">Simpan</button>
 
             </div>
@@ -82,9 +82,6 @@ masukan dokument
     </div>
 
 </div>
-@include('layoutt.more')
-<script type="text/javascript">
-    $('.dateAnimate').bootstrapMaterialDatePicker({ weekStart : 0, time: false,animation:true});
-</script>
+
 
 @endsection

@@ -111,12 +111,19 @@ Dashboard
   borderColor: 'rgba(20,34,4)',
   borderWidth: 1
   };
+  var densityi = {
+  label: 'Jumlah document',
+  data: @php echo json_encode($jumlah_doc); @endphp,
+  backgroundColor: 'rgba(255, 110, 71,0.6)',
+  borderColor: 'rgba(20,34,9)',
+  borderWidth: 1
+  };
 
   var barChart = new Chart(densityCanvas, {
   type: 'bar',
   data: {
   labels:@php echo json_encode($nama_dokumen); @endphp,
-  datasets: [densityData,density]
+  datasets: [densityData,density,densityi]
   }
   });})
 </script>

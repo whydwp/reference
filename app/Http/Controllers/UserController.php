@@ -19,6 +19,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('admin'); //membatasi level
+    }
     public function index(Request $request)
     {
         

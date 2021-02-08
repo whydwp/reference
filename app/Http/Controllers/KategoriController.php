@@ -7,20 +7,28 @@ use App\Models\Document;
 use App\Models\Likesdocument;
 use Illuminate\Http\Request;
 use DB;
+use App\Jobs\Import1Job;
 use View;
 use Auth;
 use Validator;
 use App\Exports\KategoriExport;
 use Excel;
+use Session;
 use App\Imports\KategoriImport;
 
 class KategoriController extends Controller
 {
+
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('admin')->only('index', 'edit','store', 'reportkategori','import','destroy');
+    }
     public function index()
     {
         // $defaultcategorypembangkit = 1;
@@ -166,28 +174,24 @@ class KategoriController extends Controller
 
     public function import(Request $request)
     {
-        // validasi
         $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
+            'file' => 'required|mimes:xls,xlsx'
         ]);
 
-        // menangkap file excel
-        $file = $request->file('file');
+        if ($request->hasFile('file')) {
+            //UPLOAD FILE
+            $file = $request->file('file');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs(
+                'public',
+                $filename
+            );
 
-        // membuat nama file unik
-        $nama_file = rand() . $file->getClientOriginalName();
-
-        // upload ke folder di dalam folder public
-        $file->move('uploads', $nama_file);
-
-        // import data
-        Excel::import(new KategoriImport, public_path('/uploads/' . $nama_file));
-
-        // notifikasi dengan session
-        // Session::flash('sukses', 'Data Siswa Berhasil Diimport!');
-
-        // alihkan halaman kembali
-        return redirect()->back();
+            //MEMBUAT JOBS DENGAN MENGIRIMKAN PARAMETER FILENAME
+            Import1Job::dispatch($filename);
+            return redirect()->back()->with(['success' => 'Upload success']);
+        }
+        return redirect()->back()->with(['error' => 'Please choose file before']);
     }
 
     public function create()

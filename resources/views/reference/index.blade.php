@@ -77,8 +77,8 @@ My Reference
                                     <option href="javascript:void(0)" value="mostlike" data-type="1" data-key="1"> Like Terbanyak </option>
                                     <option href="javascript:void(0)" value="lesslike" data-type="1" data-key="0"> Like sedikit </option>
                                     </select>
-                                    <button name="reference2"type="submit" style="height: 38px !important;" class="btn btn-lg btn-default">
-                                        <i style="padding-buttom:1px" class="fa fa-search"></i>
+                                    <button name="reference2"type="submit" style="height: 40px !important;" class="btn btn-lg btn-default">
+                                        <i style="margin-top:-100px !important;" class="fa fa-search"></i>
                                     </button>
                             </div>
                         </form>
@@ -93,7 +93,7 @@ My Reference
                                         <option href="javascript:void(0)" value="mostview"> View Terbanyak </option>
                                         <option href="javascript:void(0)" value="lessview"> View Sedikit </option>
                                         </select>
-                                        <button name="reference2"type="submit" class="btn btn-lg btn-default">
+                                        <button name="reference2"type="submit" style="height: 40px !important;" class="btn btn-lg btn-default">
                                             <i class="fa fa-search"></i>
                                         </button>
                             </div>
@@ -117,7 +117,7 @@ My Reference
                     Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }}</b>
                 </div>
                 @endif
-            
+
                 <hr>
                 @foreach ($reference as $id)
                 <div class="row startdoc">
@@ -131,6 +131,7 @@ My Reference
                                 @endif
                         </a>
                     </div>
+                    
                     <div class="col px-4 float-right">
                         <div>
                             <h3 class="media-heading">{{ strtolower($id->judul_dokumen)  }}</h3>
@@ -172,8 +173,9 @@ My Reference
                         </div>
                     </div>
                 </div>
+                <hr>
                 @endforeach
-                <hr />
+               
                 <tfoot>
                     <tr>
                         <td colspan="10">

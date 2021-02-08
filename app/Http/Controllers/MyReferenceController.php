@@ -13,12 +13,25 @@ use DB;
 
 class MyReferenceController extends Controller
 {
+
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
- 
+    // function __construct()
+    // {
+    //     $this->middleware('siswa');
+    //     $this->middleware('pusdiklat');
+
+    // }
+    // function __construct1()
+    // {
+    //     $this->middleware('pusdiklat');
+    //     //$this->middleware('pusdiklat');
+
+    // }
     public function index(Request $request)
     {
         // $reference = Document::;

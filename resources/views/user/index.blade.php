@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Document
+Kelola User
 @endsection
 
 @section('content')
@@ -48,6 +48,18 @@ Document
                                                 <label>Masukan Data</label>
                                                 <input type="file" name="file" class="form-control" placeholder=" yuk masukan data"
                                                     required>
+                                                    <span> NB :
+                                                        <br> 
+                                                        hindari penulisan header
+                                                        <br>
+                                                        jika level gunakan angka
+                                                        <br>
+                                                        1 untuk updl
+                                                        <br>
+                                                        2 untuk pusdiklat
+                                                        <br>
+                                                        3 untuk siswa
+                                                    </span>
                                             </div>
                                             <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -96,7 +108,7 @@ Document
                     </div>
                     @endif
                    @include('alert.success')
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example1" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -154,7 +166,7 @@ Document
 
 <script>
     $(function () {
-    $('#example2').DataTable({
+    $('#example1').DataTable({
     "paging": true,
     "lengthChange": true,
     "searching": true,

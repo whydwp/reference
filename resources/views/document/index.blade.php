@@ -22,9 +22,9 @@ Document
                 </div>
                 <br>
        <div class="col-md-10 offset-md-1 ">
-                <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
+                {{-- <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
                         class="fas fa-plus-square"></span>
-                    Import Data</button>
+                    Import Data</button> --}}
                     <a href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
                         Export exel</a>
                 </div>

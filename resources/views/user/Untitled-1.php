@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,8 @@ Route::namespace('Auth')->group(function () {
     Route::post('login', 'LoginController@authenticate')->name('login');
     Route::get('logout', 'LoginController@logout')->name('logout');
 });
-
-Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
+// Auth::routes();
+Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     //Route::get('/kelola-user', 'KelolaUserController@index')->name('kelola-user');
     Route::resource('/user', 'UserController');
@@ -33,8 +34,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     // Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
     Route::resource('/document', 'KelolaDocumentController');
     Route::resource('/kategori', 'KategoriController');
-    Route::resource('/like', 'MyLikeController');
-    Route::resource('/reference', 'MyReferenceController');
+   
     Route::resource('/forum', 'ForumController');
     // Route::get('/reference/index/{slug}', 'MyReferenceController@index')
     // ->name('index');
@@ -60,4 +60,50 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::post('/gettahun', 'MyReferenceController@gettahun');
 
 });
+Route::group(['middleware' => 'siswa'], function () {
+  
+    Route::get('/profil', 'ProfilController@index')->name('profil.index');
+    Route::post('/update-profil/{id}', 'ProfilController@update')->name('update.profil');
+    Route::resource('/like', 'MyLikeController');
+    Route::resource('/reference', 'MyReferenceController');
+  
+    // Route::get('/reference/index/{slug}', 'MyReferenceController@index')
+    // ->name('index');
 
+    // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
+
+    Route::post('/likedislike', 'KategoriController@likedislike')->name('likedislike');
+    Route::post('/viewadd', 'MyReferenceController@addview')->name('viewadd');
+
+    Route::post('/filter', 'KategoriController@filter')->name('filter');
+
+    Route::post('/gettahun', 'MyReferenceController@gettahun');
+
+});
+Route::group(['middleware' => 'pusdiklat'], function () {
+   
+    Route::get('/profil', 'ProfilController@index')->name('profil.index');
+    Route::post('/update-profil/{id}', 'ProfilController@update')->name('update.profil');
+ 
+    // Route::get('/kelola_document', 'KelolaDocumentController@index')->name('kelola_document');
+   // Route::resource('/document', 'KelolaDocumentController');
+  
+    Route::resource('/like', 'MyLikeController');
+    Route::resource('/reference', 'MyReferenceController');
+   
+    // Route::get('/reference/index/{slug}', 'MyReferenceController@index')
+    // ->name('index');
+  
+
+    // Route::get('/kategori-{id}', 'KategoriController@index')->name('kategori');
+
+    Route::post('/likedislike', 'KategoriController@likedislike')->name('likedislike');
+    Route::post('/viewadd', 'MyReferenceController@addview')->name('viewadd');
+
+    Route::post('/filter', 'KategoriController@filter')->name('filter');
+
+    //Route::get('/preview-{id}', 'PreviewController@index')->name('preview');
+
+    Route::post('/gettahun', 'MyReferenceController@gettahun');
+
+});
