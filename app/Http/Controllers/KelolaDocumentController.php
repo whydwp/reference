@@ -19,11 +19,14 @@ class KelolaDocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
  
     public function index(Request $request)
     {
-        $data_dokument = Document::orderBy('created_at', 'desc')->paginate(100000);
+        $data_dokument = Document::orderBy('created_at', 'desc')->paginate(5);
         $filterKeyword = $request->get('keyword');
         $kategori = Kategori::all();
         $nama_kategori = '';
@@ -73,7 +76,7 @@ class KelolaDocumentController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'jumlah_halaman' => 'required|numeric',
-            'file' => 'required|mimes:pdf,html,zip|max:102400',
+            'file' => 'required|mimes:pdf,html,zip|max:1048576',
             // 'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
@@ -215,7 +218,7 @@ class KelolaDocumentController extends Controller
                 'tahun' => 'required|numeric',
                 'publisher' => 'required|max:250',
                 'jumlah_halaman' => 'required|numeric',
-                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:102400',
+                'file' =>  'sometimes|nullable|mimes:pdf,html,zip|max:1048576',
                 // 'cover' =>  'sometimes|nullable|mimes:jpeg,jpg,png,pdf|max:5048',
                 'id_kategori' => 'required|max:250',
 

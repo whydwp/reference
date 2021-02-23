@@ -14,11 +14,11 @@ class PreviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('admin');
+    public function __construct()
+    {
+        $this->middleware('admin');
        
-    // }
+    }
     // public function __construct3()
     // {
     //     $this->middleware('pusdiklat');

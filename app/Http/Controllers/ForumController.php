@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use App\Models\User;
+use App\Models\Document;
 use Illuminate\Http\Request;
+use App\Exports\reportcomen;
+use Excel;
 
 class ForumController extends Controller
 {
@@ -19,11 +22,17 @@ class ForumController extends Controller
     }
     public function index()
     {
-        $forum = Forum::paginate(100000);
+        $forum = Forum::paginate(10);
         $user = User::all();
-        return view('forum.index', ['forum' => $forum],['user'=>$user]);
+        $documen = Document::all();
+       //dd($documen);
+        return view('forum.index', compact('forum', 'user', 'documen'));
     }
-
+    public function reportc()
+    {
+        $forum = now();
+        return Excel::download(new reportcomen, 'Forum' . $forum . '.xlsx');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -53,7 +62,12 @@ class ForumController extends Controller
      */
     public function show($id)
     {
-        //
+        $forum = Forum::paginate(100000);
+        $user = User::all();
+        $doc = Document::findOrFail($id);
+        $docid = $doc->id;
+        $juduldoc = $doc->judul_dokumen;
+        return view('forum.index', ['forum' => $forum], ['user' => $user], ['doc' => $doc], ['docid' => $docid], ['juduldoc' => $juduldoc]);
     }
 
     /**

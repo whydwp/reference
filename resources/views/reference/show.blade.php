@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Preview dokument
+Baca dokument
 @endsection
 
 @section('content')
@@ -70,8 +70,9 @@ Preview dokument
                        <div class="direct-chat-messages">
                                     <!-- Message. Default to the left -->
                             @foreach ($komentar as $item)
+                            {{-- @if($item->documen_id == $i) --}}
                                 <form method="post" action="{{ route('reference.destroy',[$item->id]) }}"
-                                            onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
+                                            onsubmit="return confirm('Apakah anda yakin akan menghapus komentar ini ?')">
                                             @csrf
                                             {{ method_field('DELETE') }} 
                                     <div class="direct-chat-msg">
@@ -89,6 +90,7 @@ Preview dokument
                                             <!-- /.direct-chat-text -->
                                     </div>
                                 </form>
+                                {{-- @endif --}}
                             @endforeach
                         </div>
               </div>
@@ -99,7 +101,7 @@ Preview dokument
                   <div class="input-group">
                    <textarea type="text" name="message" placeholder="Type Message ..." class="form-control" cols="10" rows="3"></textarea>
                   </div>
-                      <input data-id="{{ $item->id }}" data-token="{{ csrf_token() }}" style="margin-top: 5px"type="submit" class="btn btn-primary" value="Komentar">
+                      <button data-id="{{ $item->id }}" data-token="{{ csrf_token() }}" style="margin-top: 5px"type="submit" class="btn btn-primary " value="Komentar">Komentar <i class="fas fa-paper-plane"></i> </button>
                               </form>
               </div>
               <!-- /.card-footer-->

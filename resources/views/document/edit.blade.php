@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Edit
+Edit Documen
 @endsection
 
 @section('content')

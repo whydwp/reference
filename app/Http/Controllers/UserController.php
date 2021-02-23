@@ -26,7 +26,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        $data_user = User::orderBy('created_at', 'desc')->paginate(10000000);
+        $data_user = User::orderBy('created_at', 'desc')->paginate(10);
         $kelola = KelolaUser::all();
         $filterKeyword = $request->get('keyword');
         $nama_type = '';
@@ -77,7 +77,7 @@ class UserController extends Controller
         }
         $Kelola['password'] = bcrypt($Kelola['password']);
         User::create($Kelola);
-        return redirect()->route('user.create')->with('status', 'User Berhasil Ditambahankan');
+        return redirect()->route('user.index')->with('status', 'User Berhasil Ditambahankan');
     }
 
     public function export()

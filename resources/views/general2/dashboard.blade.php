@@ -11,7 +11,7 @@ Dashboard
 <div class="content">
     <div class="container" >
         <div class="row">
-            <div class="col-lg-3 col-12">
+            <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
@@ -22,7 +22,7 @@ Dashboard
                 <div class="icon">
                   <i class="fas fa-file-alt"></i>
                 </div>
-                <a href="{{route('document.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+               
               </div>
             </div>
             <!-- ./col -->
@@ -32,12 +32,12 @@ Dashboard
                 <div class="inner">
                   <h3>{{$jumlah_likes}}</h3>
           
-                  <h5>Jumlah Like</h5>
+                  <h5>Jumlah Suka</h5>
                 </div>
                 <div class="icon">
                   <i class="fas fa-thumbs-up"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+               
               </div>
             </div>
             <div class="col-lg-3 col-6">
@@ -46,12 +46,12 @@ Dashboard
                 <div class="inner">
                   <h3>{{$jumlah_views}}</h3>
           
-                  <h5>Jumlah View</h5>
+                  <h5>Jumlah Pembaca</h5>
                 </div>
                 <div class="icon">
                   <i class="fas fa-eye"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                
               </div>
             </div>
             <div class="col-lg-3 col-6">
@@ -65,7 +65,7 @@ Dashboard
                 <div class="icon">
                   <i class="fas fa-bolt"></i>
                 </div>
-                <a href="{{route('kategori.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+               
               </div>
             </div>
            
@@ -77,13 +77,13 @@ Dashboard
   <div class="card-body">
     <div class="d-flex">
       <p class="d-flex flex-column" >
-        <h3>Grafik Document</h3>
+        <h3>Grafik Documen</h3>
       </p>
      
     </div>
     <!-- /.d-flex -->
 
-    <div class="position-relative mb-4">
+    <div class="position-relative mb-4 chart-container " >
       <canvas id="densityChart" height="200"></canvas>
     </div>
 
@@ -93,38 +93,55 @@ Dashboard
 <script>
   $(function () {
   var densityCanvas = document.getElementById("densityChart");
-  
+  // chart.canvas.parentNode.style.height = '128px';
+  // chart.canvas.parentNode.style.width = '128px';
   Chart.defaults.global.defaultFontFamily = "Lato";
   Chart.defaults.global.defaultFontSize = 20;
   
   var densityData = {
-  label: 'Jumlah Like',
+  label: 'Jumlah Suka',
   data:@php echo json_encode($jumlah_like); @endphp,
   backgroundColor: 'rgba(99, 255, 222, 0.3)',
   borderColor: 'rgba(14,54,124)',
   borderWidth: 1
   };
   var density = {
-  label: 'Jumlah View',
+  label: 'Jumlah Pembaca',
   data: @php echo json_encode($jumlah_view); @endphp,
   backgroundColor: 'rgba(14,54,124,0.3)',
   borderColor: 'rgba(20,34,4)',
   borderWidth: 1
   };
   var densityi = {
-  label: 'Jumlah document',
+  label: 'Jumlah documen',
   data: @php echo json_encode($jumlah_doc); @endphp,
   backgroundColor: 'rgba(255, 110, 71,0.6)',
   borderColor: 'rgba(20,34,9)',
   borderWidth: 1
   };
 
+
   var barChart = new Chart(densityCanvas, {
   type: 'bar',
   data: {
   labels:@php echo json_encode($nama_dokumen); @endphp,
   datasets: [densityData,density,densityi]
-  }
+  },
+  options: {
+        scales: {
+            xAxes: [{
+                ticks: {
+                    display: false
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    display: true
+                }
+            }]
+        },
+      
+    },
   });})
 </script>
 {{-- <script>

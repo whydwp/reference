@@ -24,7 +24,7 @@ class LoginController extends Controller
                 return redirect()->intended('dashboard');
             }
             else {
-                return redirect()->intended('reference');
+                return redirect()->intended('dashboardUser');
             }
 
         }

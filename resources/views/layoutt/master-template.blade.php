@@ -13,6 +13,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <title>Reference Learning</title>
     <style>
+        body{
+           
+            overflow-x: hidden;
+        }
         i .tekan {
             i:hover {
                 blue;
@@ -46,26 +50,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .gradient2 {
         background-image: linear-gradient(to right, #004d78, #7effe3);
         }
+        .morecontent span {
+        display: none;
+        }
+        .morelink {
+        display: block;
+        }
+       /* #more {
+           display: none;} */
         /* html{
            background-image: linear-gradient(to right, #004d78, #7effe3); 
         } */
     </style> 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
-    <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet">
-    <!-- Theme style -->
+    {{-- <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet">
+    <!-- Theme style --> --}}
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
-    
+    <link rel="shortcut icon" href="{{asset('now-ui-kit/assets/img/logo.svg')}}">
     <!-- Jquery -->
     
     
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" type="text/css" href="{{asset('jqueryui/jquery-ui.min.css')}}">
+        {{-- <link rel="stylesheet" type="text/css" href="{{asset('jqueryui/jquery-ui.min.css')}}"> --}}
         <!-- Select2 -->
         <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
         <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
@@ -129,15 +141,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                          @if(Auth::user()->user_type_id == 1)
                                             <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
                                                     Home</a></li>
-                                            <li class="active uppercase"> / @yield('title')</li>
+                                            <li class="active"> / @yield('title')</li>
                                             @elseif(Auth::user()->user_type_id == 2 )
-                                             <li><a href="{{route('reference.index')}}"><i class="fa fa-dashboard"></i>
+                                             <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
                                                     Home</a></li>
-                                            <li class="active uppercase"> / @yield('title')</li>
+                                            <li class="active "> / @yield('title')</li>
                                             @elseif(Auth::user()->user_type_id == 3 )
-                                             <li><a href="{{route('reference.index')}}"><i class="fa fa-dashboard"></i>
+                                             <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
                                                     Home</a></li>
-                                            <li class="active uppercase"> / @yield('title')</li>
+                                            <li class="active"> / @yield('title')</li>
                                             @endif
                                         </ol>
                                     </div>

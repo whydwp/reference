@@ -46,28 +46,6 @@ Kategori {{$defaultkategori->kategori}}
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<div class="row mt-2">
-    <div class="col-md-12">
-        <div class="list-group datasresponse">
-            @foreach($datas as $doc)
-
-            <div class=" card list-group-item">
-                <div class="row">
-                    <div class="col-auto">
-                        <a href="{{ route('preview',['id'=>$doc->id] )}}">
-                            <img src="https://imgv2-2-f.scribdassets.com/img/document/351426960/298x396/24b3c2198e/1590584889?v=1"
-                                class="img-fluid" width="200px" height="100px">
-                        </a>
-                    </div>
-                    <div class="col px-4">
-                        <!-- @csrf -->
-                        <div>
-                            <div class="float-right">
-                                <span href="#" class="btn btn-primary btn-lg disabled uppercase" style="color:#d43636;"
-                                    tabindex="-1" role="button"
-                                    aria-disabled="true">{{$defaultkategori->kategori}}</span>
-=======
           <div class="row mt-2">
             <div class="col-md-12">
                 <div class="list-group datasresponse">
@@ -111,7 +89,6 @@ Kategori {{$defaultkategori->kategori}}
                                         </div>
                                     </div>
                                 </div>
->>>>>>> 4f099536e096106edc0e02b06237ec4d001d104c
                             </div>
                             <a href="{{ route('preview',['id'=>$doc->id] )}}">
                                 <h4 class="media-heading">{{$doc->judul_dokumen}}</h4>
@@ -146,11 +123,8 @@ Kategori {{$defaultkategori->kategori}}
             <!-- <h2 class="errorlog">aaaa</h2> -->
 
         </div>
-<<<<<<< HEAD
     </div>
 </div>
-=======
->>>>>>> 4f099536e096106edc0e02b06237ec4d001d104c
 <!-- <script>
     $(function () {axSetup({
         headers: {
@@ -198,13 +172,8 @@ $(document).on("click", ".tekan", function() {
         var id = $(this).data('id');
         var jumlah = $(this).data('jumlah');
         var meta = $('meta[name=csrf-token]').attr('content');
-<<<<<<< HEAD
-        // console.log(meta);
-        $('.likebut.'+id).addClass("like-post");
-=======
         var check = $(this).data('check');
         // console.log(check);
->>>>>>> 4f099536e096106edc0e02b06237ec4d001d104c
         
         $.ajax({
             url: 'likedislike',
@@ -213,10 +182,7 @@ $(document).on("click", ".tekan", function() {
             data: {
                 id: id,
                 jumlah: jumlah,
-<<<<<<< HEAD
-=======
                 check:check,
->>>>>>> 4f099536e096106edc0e02b06237ec4d001d104c
                 _token: '{{ csrf_token() }}'
                 // _token:$(this).data('token')
             },
@@ -226,24 +192,11 @@ $(document).on("click", ".tekan", function() {
             success: function(response){
                 if(response.message == 'success') {
                     // var jumlah = response.jumlah;
-<<<<<<< HEAD
                     // if(type == 1){
                         $('.likebut.'+id).text(" "+response.jumlah);
                         $('.tekan.'+id).attr("disabled", true);
                     // }
                     // console.log(response.hem);
-=======
-                    if(check == 0){
-                        $('.likebut.'+id).addClass("like-post");
-                        $('.tekan.'+id).data('check', 1);
-                    }
-                    else if(check == 1){
-                        $('.likebut.'+id).removeClass("like-post");
-                        $('.tekan.'+id).data('check', 0);
-                    }
-                        $('.likebut.'+id).text(" "+response.jumlah);
-                        $('.tekan.'+id).data('jumlah', response.jumlah);
->>>>>>> 4f099536e096106edc0e02b06237ec4d001d104c
                     // console.log(response);
                 }
                 else {

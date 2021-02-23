@@ -18,7 +18,7 @@ Kelola User
                     <br />
                     <div class="col-md-10 offset-md-1 ">
                        <a href="{{ route('user.create') }}" class="btn btn-success"><span class=" fas fa-plus-square"></span>
-                            Create</a>
+                            Tambah User</a>
                             <br>
                             <br>
                             <a href="{{ route('export') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
@@ -149,7 +149,13 @@ Kelola User
                         </tbody>
                 
                     </table>
-                  
+                  <tfoot>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                {{ $data_user->appends(Request::all())->links() }}
+                            </ul>
+                        </nav>
+                    </tfoot>
                 </div>
                     <!-- /.card-body -->
                 </div>
@@ -167,7 +173,7 @@ Kelola User
 <script>
     $(function () {
     $('#example1').DataTable({
-    "paging": true,
+    "paging": false,
     "lengthChange": true,
     "searching": true,
     "ordering": true,

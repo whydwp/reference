@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-My Reference
+Reference
 @endsection
 
 @section('content')
@@ -33,14 +33,16 @@ My Reference
                 <a class="btn btn-info" href="{{ route('reference.index') }}">Back</a>
                 @endif
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
                             <label>Kategori</label>
                             <select id="id_kategori" name="id_kategori"class="custom-select select2bs4" style="width: 100%; overflow-y:auto;">
-                                <option selected disabled>Kategori</option>
+                                <option selected disabled>Kategori</option>    
                                 @foreach($kategori as $row)
+                                @if($row->kategori_type_id == 1)
                                 <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
+                                @endif
                                 @endforeach
                             </select>
                            <div class="left" style="margin-top: 5px !important;">
@@ -50,13 +52,33 @@ My Reference
                         </div>
                         </form>
                     </div>
-                   <div class="col-md-4">
+                    <div class="col-md-3">
+                        <form method="get" action="{{route('reference.index')}}">
+                        <div class="form-group">
+                            <label>Kategori</label>
+                            <select id="id_kategori" name="id_kategori"class="custom-select select2bs4" style="width: 100%; overflow-y:auto;">
+                                <option selected disabled>Kategori</option>
+                               
+                                    @foreach($kategori as $row)
+                                    @if($row->kategori_type_id == 2)
+                                    <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
+                                    @endif
+                                    @endforeach
+                            </select>
+                           <div class="left" style="margin-top: 5px !important;">
+                                <button type="submit" style="width: 100%;" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-search"></span>cari</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                   <div class="col-md-6">
                         <form method="get" action="{{route('reference.index')}}">
                             <div class="form-group">
-                                <label for="keyword" class="col-sm-6 control-label">Tahun Publish</label>
+                                <label for="keyword" class="col-sm-6 control-label">Judul Dokumen</label>
                                 <div class="input-group input-group-lg">
                                     <input type="search" id="tahunsearch" class="form-control form-control-lg" name="keyword"
-                                        value="{{Request::get('keyword')}}" placeholder="Tahun Publish">
+                                        value="{{Request::get('keyword')}}" placeholder="Judul Dokumen">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-lg btn-default">
                                             <i class="fa fa-search"></i>
@@ -114,12 +136,20 @@ My Reference
                 @endif
                 @if(Request::get('id_kategori'))
                 <div class="alert alert-success alert-block">
-                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }}</b>
+                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }} </b> <b>Terdapat {{$reference->count('id')}} Dokumen </b>
                 </div>
+                
                 @endif
-
+                {{-- <p>Terdapat {{$reference->count('id')}} Dokumen</p> --}}
+               
                 <hr>
                 @foreach ($reference as $id)
+                <div class="row">
+                    <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
+                        <h5  style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
+                            {{ ucwords($id->judul_dokumen)  }}</h5>
+                    </div>
+                </div>
                 <div class="row startdoc">
                     <div class="col-auto">
                         <a >
@@ -133,20 +163,21 @@ My Reference
                     </div>
                     
                     <div class="col px-4 float-right">
-                        <div>
-                            <h3 class="media-heading">{{ strtolower($id->judul_dokumen)  }}</h3>
-                            <br>
-                            <p align="justify">
-                                @if($id->deskripsi_dokumen)
-                                {{  strtolower($id->deskripsi_dokumen) }}
-                                @elseif($id->deskripsi_dokumen)
-                                {{ str_limit($id->deskripsi_dokumen , 200, ' Baca selengkapnya...')}} 
-                                @else
-                                data tidak ada
-                                @endif
+                       
+                            <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
+                                {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
+                                @if (strlen($id->deskripsi_dokumen) > 200) --}}
+                                <span data-target="#modal-{{$id->id}}" data-toggle="modal" class="more">{{$id->deskripsi_dokumen}}</span>
+                                {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
+                                <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca Selengkapnya</a>
+                                @endif --}}
                             </p>
-                            <h5  id="id_kategori" name="id_kategori">Kategori :  {{$id->kategori->kategori}} </h5>
-                            <br>
+                               {{-- {{  substr(strip_tags($id->deskripsi_dokumen,'<pre>,<code>'),0,200) }}{{ strlen(strip_tags($id->deskripsi_dokumen))>200?"...":"" }}
+                                <a href="javascript:void(0)" id="btn-more">Read More</a>
+                            <h6 style="margin-bottom: 15px; margin-top: 15px !important;" id="id_kategori" name="id_kategori">Kategori :  {{$id->kategori->kategori}} </h6>
+                            --}}
+                          <h5 style=" margin-bottom: 15px !important" id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}  </h5>
+                            <h6 style=" margin-bottom: 10px !important">Publisher : {{$id->publisher}}</h6>
                           <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}"
                             data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"
                             <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?>
@@ -163,25 +194,24 @@ My Reference
 
                          <div class="float-right">
                             <a href="{{route('reference.show',$id->id)}}">
-                            <!-- <a href="{{route('preview',$id->id)}}">  -->
+                           
                                 <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
                                     data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
-                                    data-target="#modal-xl"><i class="far fa-eye"></i> Preview</button>
+                                    data-target="#modal-xl"><i class="far fa-eye"></i> Baca</button>
 
                             </a>
-                        </div>
                         </div>
                     </div>
                 </div>
                 <hr>
                 @endforeach
                
-                <tfoot>
-                    <tr>
-                        <td colspan="10">
-                            {{ $reference->links('pagination::bootstrap-4') }}
-                        </td>
-                    </tr>
+               <tfoot>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            {{ $reference->appends(Request::all())->links() }}
+                        </ul>
+                    </nav>
                 </tfoot>
             </div>
            
@@ -210,9 +240,120 @@ My Reference
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+      @foreach ($reference as $id)
+      <div class="modal fade" id="modal-{{$id->id}}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       <div class="col px-8">
+                            <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
+                                {{ ucwords($id->judul_dokumen)  }}</h5>
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                        <div class="form-group">
+                            <div class="modal-body">
+                                
+                             
+                                <p align="justify">{{$id->deskripsi_dokumen}}</p>
+                                <hr>
+                                  <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}
+                                </h5> 
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <div></div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                                {{-- <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button> --}}
+                            </div>
+                        </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        @endforeach
+<script >
+// function myFunction() {
+//     var dots = document.getElementById("dots");
+//     var moreText = document.getElementById("more");
+//     var btnText = document.getElementById("myBtn");
 
+//     if (dots.style.display === "none") {
+//         dots.style.display = "inline";
+//         btnText.innerHTML = "Baca Selengkapnya";
+//         moreText.style.display = "none";
+//     } else {
+//         dots.style.display = "none";
+//         btnText.innerHTML = "Ringkas";
+//         moreText.style.display = "inline";
+//     }
+// }
+$(document).ready(function() {
+  
+    var showChar = 400;  
+    var ellipsestext = " .....";
+    var moretext = " Baca Selengkapnya";
+    // var lesstext = " Ringkas ";
+    
+
+    $('.more').each(function() {
+        var content = $(this).html();
+        // pop =$('.modalpopup').modal('show');
+        if(content.length > showChar) {
+ 
+            var c = content.substr(400, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+            // var pop = $('.modalpop').modal('show');
+            var html = c + '<span class="moreellipses">' + ellipsestext + '</span><span class="morecontent"><span>' + h + '</span><a data-target="#modal" data-toggle="modal" href="" >' + moretext + '</a></span><b>';
+ 
+            $(this).html(html);
+        }
+ 
+    });
+ 
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+});
+</script>
 
 <script>
+    $(document).ready(function(){
+   $(document).on('click','#btn-more',function(){
+       var id = $(this).data('id');
+       $("#btn-more").html("Loading....");
+       $.ajax({
+           url: 'reference',
+           method : "POST",
+           data : {id:id, _token:"{{csrf_token()}}"},
+           dataType : "text",
+           success : function (data)
+           {
+              if(data != '') 
+              {
+                  $('#remove-row').remove();
+                  $('#load-data').append(data);
+              }
+              else
+              {
+                  $('#btn-more').html("No Data");
+              }
+           }
+       });
+   });  
+}); 
+   
   $(document).on("click", ".tekan", function() {
     
     // function tekan(id) {
@@ -304,45 +445,6 @@ My Reference
     })
 
 
-    // $('.sortbaselike').on('change', function(e){
-
-    //     var type = $(this).find(":selected").data('type');
-    //     var key = $(this).find(":selected").data('key');
-    //     console.log(type, key);
-
-    //     $.ajax({
-    //         url: 'sort',
-    //         method: 'post',
-    //         dataType: 'json',
-    //         data: {
-    //             type: type,
-    //             key: key,
-    //             _token: '{{ csrf_token() }}'
-    //             // _token:$(this).data('token')
-    //         },
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         success: function(response){
-    //             if(response.message == 'success') {
-                    
-    //                 console.log(response.reference.data);
-                    
-    //                 // $('.startdoc').html(data.view);
-    //                 $('.startdoc').html(response.reference.data);
-    //             }
-    //             else {
-    //                 alert("gagal!!");
-    //                 var errors = response.responseJSON;
-    //                 console.log(errors);
-    //             }
-    //         },
-    //         error: function(response){
-    //             var errors = response.responseJSON;
-    //             console.log(errors);
-    //         }
-    //     })
-    // })
 </script>
 
 <!-- Script -->
@@ -356,7 +458,7 @@ $(document).ready(function(){
     source: function( request, response ) {
       // Fetch data
       $.ajax({
-        url:"/gettahun",
+        url:"/getjudul",
         type: 'post',
         dataType: "json",
         data: {

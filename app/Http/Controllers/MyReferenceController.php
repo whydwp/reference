@@ -20,12 +20,10 @@ class MyReferenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // function __construct()
-    // {
-    //     $this->middleware('siswa');
-    //     $this->middleware('pusdiklat');
-
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     // function __construct1()
     // {
     //     $this->middleware('pusdiklat');
@@ -38,9 +36,17 @@ class MyReferenceController extends Controller
         // // $kategori = Kategori::all();
         // return view('reference.index', compact('reference'));
 
-        $reference = Document::orderBy('created_at', 'desc')->paginate(3);
+       
+        $reference = Document::orderBy('created_at', 'desc')->paginate(3);  
         $filterKeyword = $request->get('keyword');
         $kategori = Kategori::orderBy('created_at', 'asc')->get();
+        $data_dokumen = Kategori::all(); 
+        foreach($data_dokumen as $row){
+            $doc = Document::where('id_kategori',
+                $row->id_kategori
+            )->count('id');
+        }
+      
          $nama_kategori = '';
         $reference2 = Document::orderBy('jumlah_like', 'DESC')->get();
         if ($filterKeyword) {
@@ -48,8 +54,8 @@ class MyReferenceController extends Controller
             $reference = Document::where('tahun', 'LIKE', "%$filterKeyword%")->paginate(10);
         }
         $filter_by_kategori = $request->get('id_kategori');
-        if ($filter_by_kategori) {
-            $reference = Document::where('id_kategori', $filter_by_kategori)->paginate(5);
+        if ($filter_by_kategori ) {
+            $reference = Document::where('id_kategori', $filter_by_kategori)->paginate(100000);
             $data_kategori = Kategori::find($filter_by_kategori);
             $nama_kategori = $data_kategori->kategori;
         }
@@ -77,20 +83,20 @@ class MyReferenceController extends Controller
         }
         // $kategori = Kategori::all();
         
-        return view('reference.index', compact('reference', 'kategori','nama_kategori','reference2'));     
+        return view('reference.index', compact('reference', 'kategori','nama_kategori', 'reference2','doc'));     
     }
 
-    public function gettahun(Request $request){
+    public function getjudul(Request $request){
 
         $search = $request->search;
         // echo $search;
         if($search != ''){
-           $gettahun = Document::select('tahun')->where('tahun', 'like', '%' .$search . '%')->distinct()->get();
+            $getjudul = Document::select('judul_dokumen')->where('judul_dokumen', 'like', '%' .$search . '%')->distinct()->get();
         }
   
         $response = array();
-        foreach($gettahun as $tahun){
-           $response[] = array("value"=>$tahun->tahun,"label"=>$tahun->tahun);
+        foreach($getjudul as $judul_dokumen){
+           $response[] = array("value"=> $judul_dokumen->judul_dokumen,"label"=> $judul_dokumen->judul_dokumen);
         }
   
         return response()->json($response);
@@ -107,6 +113,7 @@ class MyReferenceController extends Controller
         // return view('reference.create', compact('reference'));
     }
 
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -122,8 +129,21 @@ class MyReferenceController extends Controller
             'user_id' => auth()->id(),
             'message' => $request->message,  
         ]);
+        //dd($komentar);
         // return response()->json($komentar);   
         return redirect()->back();     
+    }
+    public function komentar(Request $request, Forum $forum,$id)
+    {
+       $doc = Document::find($id);
+        $komentar = Forum::create([
+            'id' => $forum->id,
+            'created_at' => $forum->created_at,
+            'dokumen_id' => $id->dokumen_id,
+            'user_id' => auth()->id(),
+            'message' => $request->message,
+        ]);
+        return redirect()->back();
     }
 
     public function addview(Request $request)

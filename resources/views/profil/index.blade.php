@@ -45,7 +45,7 @@ Kelola Profil
     @csrf
     
         <div class="form-group row">
-            <label for="full_name" class="col-sm-2 col-form-label">Name</label>
+            <label for="full_name" class="col-sm-2 col-form-label">Nama</label>
             <div class="col-sm-10">
                 <input type="text" id="full_name" name="full_name" class="form-control @error('full_name') is-invalid @enderror" value="{{$input->full_name}}" id="inputName" >
                 @error('full_name')

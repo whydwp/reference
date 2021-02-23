@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Document;
+use App\Model\KategoriType;
 use DB;
 
 class kategori extends Model
@@ -14,10 +15,20 @@ class kategori extends Model
     protected $fillable = [
         'id_kategori',
         'kategori',
+        'kategori_type_id',
         'jumlah_dokumen',
         'jumlah_like',
         'jumlah_view'
     ];
+
+    public function KategoriType()
+    {
+        return $this->belongsTo('App\Models\KategoriType', 'kategori_type_id');
+    }
+    public function KelolaUser()
+    {
+        return $this->belongsTo('App\Models\KelolaUser', 'user_type_id');
+    }
 
     public function getallcategoryandcount()
     {

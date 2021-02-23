@@ -19,10 +19,14 @@ class Forum extends Model
     {
         return $this->belongsTo(User::class);
     }
-  
-    public $timestamps = false;
-    public function dokumen()
+    public function document()
     {
-        return $this->belongsTo('App\Models\Document', 'id');
+        return $this->belongsTo('App\Models\Document', 'dokumen_id');
+    }
+    public $timestamps = false;
+   
+    public function kategori()
+    {
+        return $this->belongsTo(kategori::class);
     }
 }

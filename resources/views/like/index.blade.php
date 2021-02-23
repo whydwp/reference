@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-My Like
+Like 
 @endsection
 
 @section('content')

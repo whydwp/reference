@@ -19,7 +19,7 @@ Kategori
        <div class="col-md-10 offset-md-1 ">
             <button data-target="#modal-default" data-toggle="modal" type="button"
                 class="btn btn-raised btn-primary"><span class="fas fa-plus-square"></span>
-                Create Kategori</button>
+                Tambah Kategori</button>
                 <br>
                 <br>
               <a href="{{route('kategoriexport')}}" class="btn btn-info"><i class="far fa-file-excel"></i>
@@ -76,6 +76,18 @@ Kategori
                                     <label>Masukan Kategori</label>
                                     <input type="text" name="kategori" class="form-control" placeholder=" yuk masukan kategori" required>
                                 </div>
+                                <div class="modal-body">
+                                <label for="kategori_type_id">Level</label>
+                                <select id="user_type_id" name="kategori_type_id" class="form-control @error('user_type_id') is-invalid @enderror">
+                                    <option selected disabled>Level</option>
+                                    @foreach($KategoriType as $row )
+                                    <option value="{{ $row->kategori_type_id }}">{{ $row->type }}</option>
+                                    @endforeach
+                                </select>
+                                @error('kategori_type_id')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
+                                </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                    <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
@@ -105,6 +117,21 @@ Kategori
                                     <label>Edit Kategori</label>
                                     <input type="text" name="kategori" class="form-control" placeholder=" yuk masukan kategori" required value="{{$item->kategori}}">{{old($item->kategori)}}
                                 </div>
+                                <div class="modal-body">
+                                   <label for="kategori_type_id">Level</label>
+                                    <select id="kategori_type_id" name="kategori_type_id" class="form-control @error('kategori_type_id') is-invalid @enderror">
+                                        <option selected disabled>Level</option>
+                                      @foreach($KategoriType as $row )
+                                    <option value="{{ $row->kategori_type_id }}" 
+                                       @if( $row->kategori_type_id) Selected
+                                        @endif>{{ $row->type }}
+                                    </option>
+                                    @endforeach
+                                    </select>
+                                    @error('kategori_type_id')
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror
+                                </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                    <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
@@ -129,6 +156,7 @@ Kategori
                         <tr>
                             <th>No</th>
                             <th>Kategori</th>
+                            <th>Golongan</th>
                             <th style="text-align:center">Action</th>
                         </tr>
                     </thead>
@@ -138,6 +166,7 @@ Kategori
                             <td>{{ $loop->iteration + ($kategori->perPage() * ($kategori->currentPage() - 1)) }}
                             </td>
                             <td>{{ $row->kategori }}</td>
+                            <td>{{ $row->KategoriType->type}}</td>
                             <td style="text-align:center">
                                <form method="post" action="{{ route('kategori.destroy',[$row->id_kategori]) }}"
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
@@ -157,7 +186,13 @@ Kategori
                         @endforeach
                     </tbody>
                 </table>
-                
+                <tfoot>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            {{ $kategori->appends(Request::all())->links() }}
+                        </ul>
+                    </nav>
+                </tfoot>
                 </div>
                      
                 </div>
@@ -177,7 +212,7 @@ Kategori
 <script>
     $(function () {
     $('#example2').DataTable({
-    "paging": true,
+    "paging": false,
     "lengthChange": true,
     "searching": true,
     "ordering": true,

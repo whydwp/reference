@@ -18,7 +18,7 @@ Document
                 <br/>
        <div class="col-md-10 offset-md-1 ">
                 <a href="{{ route('document.create') }}" class="btn btn-primary"><span class=" fas fa-plus-square"></span>
-                    Create</a>
+                    Tambah Dokumen</a>
                 </div>
                 <br>
        <div class="col-md-10 offset-md-1 ">
@@ -162,10 +162,13 @@ Document
                     </tbody>
                 </table>
                 
-                <tfoot>
-                     
-                   
-                 </tfoot>
+               <tfoot>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            {{ $data_dokument->appends(Request::all())->links() }}
+                        </ul>
+                    </nav>
+                </tfoot>
                      
                 </div>
                 <!-- /.card-body -->
@@ -185,7 +188,7 @@ Document
 <script>
     $(function () {
     $('#example2').DataTable({
-    "paging": true,
+    "paging": false,
     "lengthChange": true,
     "searching": false,
     "ordering": true,

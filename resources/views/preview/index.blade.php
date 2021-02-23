@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-<a href="{{ url()->previous() }}">KATEGORI {{$kategori}}</a> / {{$namafile}}
+<a href="{{ url()->previous() }}">Kategori {{$kategori}}</a> / {{$namafile}}
 @endsection
 
 @section('content')

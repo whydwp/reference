@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Document;
+use App\Models\KategoriType;
 use App\Models\Likesdocument;
 use Illuminate\Http\Request;
 use DB;
@@ -42,7 +43,9 @@ class KategoriController extends Controller
         // dd($input);
         
         
-            $kategori = Kategori::paginate(100000);
+            $kategori = Kategori::paginate(10);
+            $KategoriType = KategoriType::all();
+            
             //  $jumlah_like = Document::sum('id_kategori');
             //  $data = \DB::table('Dokumen')
             //  ->select([
@@ -56,7 +59,7 @@ class KategoriController extends Controller
             //     dd($data);     
           
             // $kategori = Kategori::all();
-            return view('kategori.index', ['kategori' => $kategori]);
+            return view('kategori.index', ['kategori' => $kategori],['KategoriType'=> $KategoriType]);
         
     }
 
@@ -197,6 +200,7 @@ class KategoriController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
+        
         return view('kategori.index', compact('kategori'));
     }
 
@@ -235,11 +239,16 @@ class KategoriController extends Controller
         if($request->isMethod('post')){
             $item =$request->all();
             // dd($item);
-            Kategori::where(['id_kategori'=>$id])->update(['kategori'=>$item['kategori'],]);
+            Kategori::where(['id_kategori'=>$id])->update([
+                'kategori'=>$item['kategori'],
+                'kategori_type_id' => $item['kategori_type_id'],
+                ]);
+            // $kategoriType = $request->all();
+            // KategoriType::where(['kategori_type_id' => $id])->update(['kategoriType' => $kategoriType['kategoriType'],]);
+            // dd('$kategoriType');
+            //return view('kategori.index', compact('kategoriType', 'item'));
             return redirect()->back()->with('status','kategori berhasil diupdate');
         }
-        // $edit = Kategori::findOrFail($id);
-        // return view('kategori.index', compact('edit'));
     }
 
     /**

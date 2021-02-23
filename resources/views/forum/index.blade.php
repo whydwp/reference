@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Kategori
+Komentar
 @endsection
 
 @section('content')
@@ -16,7 +16,11 @@ Kategori
                         <h3 class="card-title">Kelola Forum</h3>
                     </div>
                     <br />
-    
+                <div class="col-md-10 offset-md-1 ">
+           
+                    <a href="{{route('reportcomen')}}" class="btn btn-info"><i class="far fa-file-excel"></i>
+                Export exel</a>
+                </div>
                     {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
                     exel</a> --}}
                     <!-- /.card-header -->
@@ -28,7 +32,8 @@ Kategori
                                 <tr>
                                     <th>No</th>
                                     <th>User</th>
-                                    <th>Forum</th>
+                                    <th>Komentar</th>
+                                    <th>Dokumen</th>
                                     <th style="text-align:center">Action</th>
                                 </tr>
                             </thead>
@@ -39,6 +44,7 @@ Kategori
                                     </td>
                                     <td>{{$row->user->full_name}}</td>
                                     <td>{{ $row->message }}</td>
+                                    <td>{{ $row->dokument}}</td>
                                     <td style="text-align:center">
                                         <form method="post" action="{{ route('forum.destroy',[$row->id]) }}"
                                             onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
@@ -59,7 +65,13 @@ Kategori
                                 @endforeach
                             </tbody>
                         </table>
-
+                    <tfoot >
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                           {{ $forum->appends(Request::all())->links() }}
+                        </ul>
+                    </nav>
+                 </tfoot>
                     </div>
 
                 </div>
@@ -79,7 +91,7 @@ Kategori
 <script>
     $(function () {
     $('#example2').DataTable({
-    "paging": true,
+    "paging": false,
     "lengthChange": true,
     "searching": true,
     "ordering": true,

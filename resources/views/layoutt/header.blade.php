@@ -8,8 +8,13 @@
     .bold{
         font-weight: bold;
     }
+    /* .sticky-header{
+       width:100%;
+        position: fixed;
+        z-index:1000;
+    } */
 </style>
-<nav class="gradient3 main-header navbar navbar-expand-md navbar-light navbar-white">
+<nav class="gradient3 main-header navbar navbar-expand-md navbar-light navbar-white sticky-header">
     {{-- <div class="container"> --}}
         <a style="margin-left: 25px !important;"href="{{route('dashboard')}}" class="navbar-brand">
             <img src="{{asset('image/Logo_PLN.png')}}" alt="logo pln"
