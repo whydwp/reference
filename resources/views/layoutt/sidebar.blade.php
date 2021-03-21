@@ -1,4 +1,12 @@
-<aside class=" main-sidebar control-sidebar sidebar-light-primary elevation-4" style="overflow-x :hidden;">
+<style>
+
+    .sticky-sidebar{
+    position: fixed;
+    
+    }
+</style>
+
+<aside class="main-sidebar control-sidebar sidebar-light-primary elevation-4" style="overflow-x :hidden;">
     <!-- Brand Logo -->
     <a href="{{asset('admin/index3.html')}}" class="brand-link">
         <img src="{{asset('image/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
@@ -7,7 +15,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar ">
+    <div class="sidebar sticky-sidebar ">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             {{-- <div class="image">
@@ -91,6 +99,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('ebook.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                           Ebooks
+                        </p>
+                    </a>
+                </li>
+                
 
             </ul>
             @elseif(Auth::user()->user_type_id == 2)
@@ -127,6 +144,14 @@
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
                             Kelola Dokumen
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('adminEbook.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            Ebooks
                         </p>
                     </a>
                 </li>
@@ -177,7 +202,14 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{ route('kumpulanEbook.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users-cog"></i>
+                        <p>
+                            Kumpulan Ebook
+                        </p>
+                    </a>
+                </li>
 
             </ul>
             @endif

@@ -16,7 +16,17 @@ class KategoriImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new Kategori(['kategori' => $row['kategori'],
+        //dd($row);
+       
+        return new Kategori([
+            'kategori' => $row['kategori'],
+            'kategori_type_id' => $row['type']
+           
         ]);
+       
+    }
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }

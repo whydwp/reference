@@ -181,6 +181,7 @@ class KategoriController extends Controller
             'file' => 'required|mimes:xls,xlsx'
         ]);
 
+        
         if ($request->hasFile('file')) {
             //UPLOAD FILE
             $file = $request->file('file');
@@ -194,6 +195,8 @@ class KategoriController extends Controller
             Import1Job::dispatch($filename);
             return redirect()->back()->with(['success' => 'Upload success']);
         }
+
+
         return redirect()->back()->with(['error' => 'Please choose file before']);
     }
 

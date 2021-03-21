@@ -44,7 +44,11 @@ Komentar
                                     </td>
                                     <td>{{$row->user->full_name}}</td>
                                     <td>{{ $row->message }}</td>
-                                    <td>{{ $row->dokument}}</td>
+                                    @if($row->documen)
+                                    <td>{{ $row->documen->judul_dokumen}}</td>
+                                    @else
+                                    <td>Upss belum diisi</td>
+                                    @endif
                                     <td style="text-align:center">
                                         <form method="post" action="{{ route('forum.destroy',[$row->id]) }}"
                                             onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">

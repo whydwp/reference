@@ -38,11 +38,17 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \RealRashid\SweetAlert\ToSweetAlert::class,
+            \App\Http\Middleware\Localization::class,
         ],
 
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+        'example-saml' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
         ],
     ];
 
@@ -66,6 +72,8 @@ class Kernel extends HttpKernel
         'admin'=> \App\Http\Middleware\Admin::class,
         'siswa'=> \App\Http\Middleware\Siswa::class,
         'pusdiklat'=> \App\Http\Middleware\Pusdiklat::class,
+        'Auth' => \App\Http\Middleware\CheckSAMLSession::class,
+        'example-saml-auth' => \App\Http\Middleware\CheckSAMLSession::class,
 
     ];
 }

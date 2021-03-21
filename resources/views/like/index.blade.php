@@ -29,14 +29,8 @@ Like
                         <div>
                             <h3 class="media-heading">{{ strtolower($id->judul_dokumen)  }}</h3>
                             <br>
-                            <p align="justify">
-                                @if($id->deskripsi_dokumen)
-                                {{  strtolower($id->deskripsi_dokumen) }}
-                                @elseif($id->deskripsi_dokumen)
-                                {{ str_limit($id->deskripsi_dokumen , 200, ' Baca selengkapnya...')}}
-                                @else
-                                data tidak ada
-                                @endif
+                            <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
+                                <span data-target="#modal-{{$id->id}}" data-toggle="modal" class="more">{{$id->deskripsi_dokumen}}</span>
                             </p>
                             <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->namakategori}} </h5>
                             <br>
@@ -75,7 +69,79 @@ Like
 
         </div>
     </div>
-</div> -->
+</div> 
+
+@foreach ($getuserlikes as $id)
+<div class="modal fade" id="modal-{{$id->id}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col px-8">
+                    <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;"
+                        class="media-heading">
+                        {{ ucwords($id->judul_dokumen)  }}</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <div class="modal-body">
+                    <p align="justify">{{$id->deskripsi_dokumen}}</p>
+                    <hr>
+                    <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->namakategori}} </h5>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <div></div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Keluar</button>
+                    {{-- <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button> --}}
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@endforeach
+
+<script >
+    $(document).ready(function() {
+  
+    var showChar = 400;  
+    var ellipsestext = " .....";
+    var moretext = " Baca Selengkapnya";
+    // var lesstext = " Ringkas ";
+    
+
+    $('.more').each(function() {
+        var content = $(this).html();
+        // pop =$('.modalpopup').modal('show');
+        if(content.length > showChar) {
+ 
+            var c = content.substr(400, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+            // var pop = $('.modalpop').modal('show');
+            var html = c + '<span class="moreellipses">' + ellipsestext + '</span><span class="morecontent"><span>' + h + '</span><a data-target="#modal" data-toggle="modal" href="" >' + moretext + '</a></span><b>';
+ 
+            $(this).html(html);
+        }
+ 
+    });
+ 
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+});
+</script>
 
 <script>
     $(document).on("click", ".tekan", function() {

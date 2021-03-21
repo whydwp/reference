@@ -10,7 +10,7 @@ Dashboard
   <div class="card-body">
     <div class="d-flex">
       <p class="d-flex flex-column" >
-        <h3>Grafik Documen</h3>
+        <h3>Grafik Dokumen</h3>
       </p>
      
     </div>
@@ -33,22 +33,22 @@ Dashboard
   var densityData = {
   label: 'Jumlah Suka',
   data:@php echo json_encode($jumlah_like); @endphp,
-  backgroundColor: 'rgba(99, 255, 222, 0.3)',
-  borderColor: 'rgba(14,54,124)',
+ backgroundColor: 'rgba(74, 105, 189,0.5)',
+  borderColor: '#4b4b4b',
   borderWidth: 1
   };
   var density = {
   label: 'Jumlah Pembaca',
   data: @php echo json_encode($jumlah_view); @endphp,
-  backgroundColor: 'rgba(14,54,124,0.3)',
-  borderColor: 'rgba(20,34,4)',
+ backgroundColor: 'rgba(7, 153, 146,0.5)',
+  borderColor: '#4b4b4b',
   borderWidth: 1
   };
   var densityi = {
-  label: 'Jumlah documen',
+  label: 'Jumlah dokumen',
   data: @php echo json_encode($jumlah_doc); @endphp,
-  backgroundColor: 'rgba(255, 110, 71,0.6)',
-  borderColor: 'rgba(20,34,9)',
+  backgroundColor: 'rgba(246, 185, 59,0.5)',
+  borderColor: '#4b4b4b',
   borderWidth: 1
   };
 
@@ -68,7 +68,7 @@ Dashboard
             }],
             yAxes: [{
                 ticks: {
-                    display: false
+                    display: true
                 }
             }]
         },

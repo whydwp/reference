@@ -47,4 +47,18 @@ class Document extends Model
 // dd($docs);
         return $docs;
     }
+
+    public function jumlah(){
+        $jumlah_doc = [];
+        $data_dokumen = Kategori::all();
+        foreach ($data_dokumen as $row) {
+            $doc = Document::where(
+                'id_kategori',
+                $row->id_kategori
+            )->count('id');
+            $jumlah_doc[] = $doc;
+        }
+        dd($jumlah_doc);
+        //return $jumlah_doc;
+    }
 }

@@ -26,7 +26,7 @@ class MyLikeController extends Controller
         // $reference = Likesdocument::where([['user_id', '=', Auth::user()->id]])->paginate(10);
         // $reference = Document::paginate(10);
         $newlikesdocumet = new Likesdocument();
-        $getuserlikes = $newlikesdocumet->getuserlikesdocuments()->paginate();
+        $getuserlikes = $newlikesdocumet->getuserlikesdocuments()->paginate(3);
         $doccat = array();
         foreach ($getuserlikes as $doc) {
             $funccat = new Kategori();

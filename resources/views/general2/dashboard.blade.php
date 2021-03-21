@@ -13,7 +13,7 @@ Dashboard
         <div class="row">
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-info">
+              <div class="small-box" style="background-color: #32ff7e;">
                 <div class="inner">
                   <h3>{{$jumlah_dokumen}}</h3>
           
@@ -28,11 +28,11 @@ Dashboard
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-success">
+              <div class="small-box" style="background-color:#67e6dc;">
                 <div class="inner">
                   <h3>{{$jumlah_likes}}</h3>
           
-                  <h5>Jumlah Suka</h5>
+                  <h5>Jumlah Penyuka</h5>
                 </div>
                 <div class="icon">
                   <i class="fas fa-thumbs-up"></i>
@@ -42,21 +42,22 @@ Dashboard
             </div>
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-secondary">
+            
+              <div class="small-box" style="background-color: #17c0eb;">
                 <div class="inner">
                   <h3>{{$jumlah_views}}</h3>
           
                   <h5>Jumlah Pembaca</h5>
                 </div>
                 <div class="icon">
-                  <i class="fas fa-eye"></i>
+                  <i class="fas fa-book-reader"></i>
                 </div>
                 
               </div>
             </div>
             <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-warning">
+              <div class="small-box " style="background-color: #fff200;">
                 <div class="inner">
                   <h3>{{$jumlah_kategori}}</h3>
           
@@ -77,7 +78,7 @@ Dashboard
   <div class="card-body">
     <div class="d-flex">
       <p class="d-flex flex-column" >
-        <h3>Grafik Documen</h3>
+        <h3>Grafik Dokumen</h3>
       </p>
      
     </div>
@@ -101,24 +102,31 @@ Dashboard
   var densityData = {
   label: 'Jumlah Suka',
   data:@php echo json_encode($jumlah_like); @endphp,
-  backgroundColor: 'rgba(99, 255, 222, 0.3)',
-  borderColor: 'rgba(14,54,124)',
+  backgroundColor: 'rgba(74, 105, 189,0.5)',
+  borderColor: 'rgba(12, 36, 97,0.8)',
   borderWidth: 1
   };
   var density = {
   label: 'Jumlah Pembaca',
   data: @php echo json_encode($jumlah_view); @endphp,
-  backgroundColor: 'rgba(14,54,124,0.3)',
-  borderColor: 'rgba(20,34,4)',
+  backgroundColor: 'rgba(246, 185, 59,0.5)',
+  borderColor: 'rgba(229, 142, 38,0.8)',
   borderWidth: 1
   };
   var densityi = {
-  label: 'Jumlah documen',
+  label: 'Jumlah dokumen',
   data: @php echo json_encode($jumlah_doc); @endphp,
-  backgroundColor: 'rgba(255, 110, 71,0.6)',
-  borderColor: 'rgba(20,34,9)',
+  backgroundColor: 'rgba(7, 153, 146,0.5)',
+  borderColor: 'rgba(120, 224, 143,0.8)',
   borderWidth: 1
   };
+  // var densityi2 = {
+  // label: 'Type Kategori',
+  // data: @php echo json_encode($type); @endphp,
+  // backgroundColor: 'rgba(2, 110, 71,0.6)',
+  // borderColor: 'rgba(10,34,9)',
+  // borderWidth: 1
+  // };
 
 
   var barChart = new Chart(densityCanvas, {

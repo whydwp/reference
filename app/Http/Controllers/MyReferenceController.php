@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use DB;
+use Alert;
 
 
 class MyReferenceController extends Controller
@@ -37,27 +38,38 @@ class MyReferenceController extends Controller
         // return view('reference.index', compact('reference'));
 
        
-        $reference = Document::orderBy('created_at', 'desc')->paginate(3);  
+        $reference = Document::orderBy('created_at', 'desc')->paginate(5);  
+        $reference1 = Document::all();
+        // dd($reference1) ; 
+        //$reference2 = Document::all();  
         $filterKeyword = $request->get('keyword');
+        $filter = $request->get('publisher');
         $kategori = Kategori::orderBy('created_at', 'asc')->get();
+        $jumlah_doc = [];
         $data_dokumen = Kategori::all(); 
         foreach($data_dokumen as $row){
             $doc = Document::where('id_kategori',
                 $row->id_kategori
             )->count('id');
+            $jumlah_doc[] = $doc;
+
         }
       
          $nama_kategori = '';
         $reference2 = Document::orderBy('jumlah_like', 'DESC')->get();
         if ($filterKeyword) {
             //dijalankan jika ada pencarian
-            $reference = Document::where('tahun', 'LIKE', "%$filterKeyword%")->paginate(10);
+            $reference = Document::where('judul_dokumen', 'LIKE', "%$filterKeyword%")->paginate(10);
         }
         $filter_by_kategori = $request->get('id_kategori');
         if ($filter_by_kategori ) {
             $reference = Document::where('id_kategori', $filter_by_kategori)->paginate(100000);
             $data_kategori = Kategori::find($filter_by_kategori);
             $nama_kategori = $data_kategori->kategori;
+        }
+        if ($filter) {
+            //dijalankan jika ada pencarian
+            $reference = Document::where('publisher', 'LIKE', "%$filter%")->paginate(10);
         }
         $filterbylike = $request->get('sortlike');
         if($filterbylike){
@@ -83,7 +95,7 @@ class MyReferenceController extends Controller
         }
         // $kategori = Kategori::all();
         
-        return view('reference.index', compact('reference', 'kategori','nama_kategori', 'reference2','doc'));     
+        return view('reference.index', compact('jumlah_doc','reference','reference1', 'kategori','nama_kategori', 'reference2','doc'));     
     }
 
     public function getjudul(Request $request){
@@ -122,28 +134,41 @@ class MyReferenceController extends Controller
      */
     public function store(Request $request,Forum $forum)
     {
-        $komentar = Forum::create([
-            'id' => $forum->id,
-            'created_at' => $forum->created_at,
-            'dokumen_id' => $forum->dokumen_id,
+        $documen = Document::all();
+        //dd($doc);
+        // $forum = Forum::all();
+
+        // $komentar = Forum::create([
+        //     'id' => $forum->id,
+        //     'created_at' => $forum->created_at,
+        //     'dokumen_id' => $request->dokumen_id,
+        //     'user_id' => auth()->id(),
+        //     'message' => $request->message,  
+        // ]);
+        $komentar = new Forum([
+            // 'id' => $forum->id,
             'user_id' => auth()->id(),
-            'message' => $request->message,  
+            'created_at' => $forum['created_at'],
+            'dokumen_id' => $request['id'],
+            'message' => $request['message']
         ]);
-        //dd($komentar);
+        $komentar->save();
+        //alert()->success('You have been logged out.', 'Good bye!');
         // return response()->json($komentar);   
-        return redirect()->back();     
+        return redirect()->back()->with('error', 'Profile updated!');     
     }
     public function komentar(Request $request, Forum $forum,$id)
     {
        $doc = Document::find($id);
-        $komentar = Forum::create([
-            'id' => $forum->id,
-            'created_at' => $forum->created_at,
-            'dokumen_id' => $id->dokumen_id,
-            'user_id' => auth()->id(),
-            'message' => $request->message,
-        ]);
-        return redirect()->back();
+       dd($doc);
+    //     $komentar = Forum::create([
+    //         'id' => $forum->id,
+    //         'created_at' => $forum->created_at,
+    //         'dokumen_id' => $id->dokumen_id,
+    //         'user_id' => auth()->id(),
+    //         'message' => $request->message,
+    //     ]);
+    //     return redirect()->back();
     }
 
     public function addview(Request $request)

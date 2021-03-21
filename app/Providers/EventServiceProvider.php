@@ -27,6 +27,28 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        parent::boot();
+
+        Event::listen(Saml2LoginEvent::class, function (Saml2LoginEvent $event) {
+            dd($event);
+
+            $messageId = $event->getSaml2Auth()->getLastMessageId();
+            // Add your own code preventing reuse of a $messageId to stop replay attacks
+
+            $user = $event->getSaml2User();
+
+            $appUser = User::where('user_ref_id', $user->getUserId())->first();
+
+            if (is_null($appUser)) {
+                return 'user not found';
+            }
+
+            Auth::login($appUser);
+        });
+
+        Event::listen(Saml2LogoutEvent::class, function ($event) {
+            Auth::logout();
+            Session::save();
+        });
     }
 }

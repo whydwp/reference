@@ -17,7 +17,7 @@ Kelola Profil
         <img class="profile-user-img img-fluid img-circle" id="gambar_load" src="{{ asset('image/avatar.png') }}">
     @endif
     </div>
-
+    <br>
 
     <ul class="list-group list-group-unbordered mb-3">
         <li class="list-group-item">
@@ -87,7 +87,7 @@ Kelola Profil
       
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-                <button type="submit" class="btn btn-info">Update</button>
+                <button type="submit" class="btn" style="background-color: #17c0eb; color:white; border-radius:8px;">Update</button>
             </div>
         </div>
     </form>

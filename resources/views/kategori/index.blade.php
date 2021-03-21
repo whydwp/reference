@@ -27,6 +27,7 @@ Kategori
               <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
                     class="fas fa-plus-square"></span>
                 Import Data</button>
+                <p></p>
             </div>
             
             <br />
@@ -47,6 +48,14 @@ Kategori
                                 <div class="modal-body">
                                     <label>Masukan Data</label>
                                     <input type="file" name="file" class="form-control" placeholder=" yuk masukan data" required>
+                                    <span> NB :
+                                        <br>
+                                        Gunakan penamaan Header sebagai berikut : 
+                                        <br>
+                                        jika baris kategori maka header kategori
+                                        <br>
+                                        jika baris Golongan maka header type
+                                    </span>
                                 </div>
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

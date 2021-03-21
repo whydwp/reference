@@ -8,11 +8,11 @@
     .bold{
         font-weight: bold;
     }
-    /* .sticky-header{
+    .sticky-header{
        width:100%;
         position: fixed;
-        z-index:1000;
-    } */
+      
+    }
 </style>
 <nav class="gradient3 main-header navbar navbar-expand-md navbar-light navbar-white sticky-header">
     {{-- <div class="container"> --}}
@@ -64,7 +64,7 @@
                             <a href="{{route('profil.index') }}" class="btn btn-block btn-outline-secondary">Profile</a>
                         </div>
                         <div class="float-right">
-                            <a href="{{ route('logout') }}" class="btn btn-block btn-outline-secondary">Sign out</a>
+                            <a href="{{ route('logout') }}" class="btn btn-block btn-outline-secondary">@lang('Sign out')</a>
                         </div>
                     </li>
                 </ul>
@@ -72,6 +72,20 @@
 
        
         </ul>
-        
+        {{-- <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Dropdown
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                @if(app()->getLocale()=='en')
+                <a href="{{url('locale/id')}}" class="dropdown-item">@lang('indonesian')</a>
+                @endif
+               @if(app()->getLocale()=='id')
+               <a href="{{url('locale/en')}}" class="dropdown-item">@lang('english')</a>
+               @endif
+              
+            </div>
+        </div> --}}
 
 </nav>

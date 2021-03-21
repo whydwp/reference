@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/referenceLearning'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class, //untuk exel
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Aacotroneo\Saml2\Saml2ServiceProvider::class,
 
     ],
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Kategori;
 
 use App\Models\Document;
+use App\Models\KategoriType;
 
 class DashboardController extends Controller
 {
@@ -36,22 +37,30 @@ class DashboardController extends Controller
         $nama_dokumen = []; //memunculkan nama pada grafik
         $jumlah_like = [];
         $jumlah_doc = [];
+        $type = [];
+        $type_kategori = KategoriType::all();
         $jumlah_view = []; //memunculkan jumlah pada grafik
         $data_dokumen = Kategori::all(); //menyimpan data yang ada ditabel 
+        // foreach ($type_kategori as $key) {
+        //     $type[] = $key->type;
+        // }
+        
         foreach ($data_dokumen as $row) {
             //setiap kali petrulanagan akan menyimpan nama 
             $nama_dokumen[] = $row->kategori;
+            
             //mencari ditabel like view 
             $view = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_view');
             $like = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_like');
             $doc = Document::where('id_kategori', $row->id_kategori)->count('id');
+            
             $jumlah_like[] = $like;
             $jumlah_doc[] = $doc;
             $jumlah_view[] = $view;
         }
       
         // $kategori = Kategori::all();
-        return view('general2.dashboard', compact('jumlah_kategori', 'jumlah_doc','nama_dokumen', 'jumlah_like', 'jumlah_view','jumlah_dokumen','jumlah_likes','jumlah_views'));
+        return view('general2.dashboard', compact('type','jumlah_kategori', 'jumlah_doc','nama_dokumen', 'jumlah_like', 'jumlah_view','jumlah_dokumen','jumlah_likes','jumlah_views'));
 
     }
 

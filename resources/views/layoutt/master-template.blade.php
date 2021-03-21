@@ -47,6 +47,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .footer{
             color: aliceblue;
         }
+        .jarak{
+            margin-left: 20px !important;
+        }
         .gradient2 {
         background-image: linear-gradient(to right, #004d78, #7effe3);
         }
@@ -56,6 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .morelink {
         display: block;
         }
+        
        /* #more {
            display: none;} */
         /* html{
@@ -133,22 +137,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <section class="content-header">
                             <div class="container">
                                 <div class="row mb-4">
-                                    <div class="col-sm-12">
-                                        <h1 class="uppercase">
+                                    <div class="col-sm-12" style="margin-top: 50px !important;;">
+                                        <h3 class="">
                                             @yield('title')
-                                        </h1>
+                                        </h3>
                                         <ol class="breadcrumb">
                                          @if(Auth::user()->user_type_id == 1)
                                             <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
-                                                    Home</a></li>
-                                            <li class="active"> / @yield('title')</li>
+                                                    @lang('Home') </a></li>
+                                            <li class="active">  / @yield('title')</li>
+                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
+                                                   </a> </li>
+                                            <li class="active">   @yield('titlel') </li>
                                             @elseif(Auth::user()->user_type_id == 2 )
                                              <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
-                                                    Home</a></li>
+                                                    {{__('Halaman depan')}}</a></li>
                                             <li class="active "> / @yield('title')</li>
                                             @elseif(Auth::user()->user_type_id == 3 )
                                              <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
-                                                    Home</a></li>
+                                                    {{__('Halaman depan')}}</a></li>
+                                            <li class="active"> / @yield('title')</li>
+                                            @elseif(Auth::user()->user_type_id == 3 )
+                                             <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
+                                                    {{__('Halaman depan')}}</a></li>
                                             <li class="active"> / @yield('title')</li>
                                             @endif
                                         </ol>

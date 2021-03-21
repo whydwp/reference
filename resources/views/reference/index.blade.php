@@ -21,6 +21,7 @@ Reference
 </script>
     <!-- <script type="text/javascript">alert("Referensi yang anda cari belum tersedia")</script> -->
 @endif
+
 <div class="row mt-2">
     <div class="col-md-12">
         
@@ -29,14 +30,37 @@ Reference
                 @if(Request::get('keyword'))
                 <a class="btn btn-info" href="{{ route('reference.index') }}">Back</a>
                 @endif
-                @if(Request::get('id_kategori'))
+                @if(Request::get('publisher'))
                 <a class="btn btn-info" href="{{ route('reference.index') }}">Back</a>
                 @endif
+                @if(Request::get('id_kategori'))
+                <a class="btn btn-info" href="{{ route('reference.index') }}">Back</a>
+                @elseif($reference->count() == 0)
+                <script>
+                    $(function() {
+                    $('.modalpopup').modal('show');
+                    });
+                </script>
+                @endif
+               
+                <div id="accordion">
+                    <br>
+                    <div class="card" >
+                        <div class="card-header"style="background-color : #00cec9;">
+                            <h4 class="card-title w-100">
+                                <a style="color:white; font-size:25px; font-wight:'bold';"class="d-block w-100" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
+                                  Pencarian
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion" style="">
+                            <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
-                            <label>Kategori</label>
+                            <label>Kategori Teknis</label>
+                            <div class="input-group input-group-lg">
                             <select id="id_kategori" name="id_kategori"class="custom-select select2bs4" style="width: 100%; overflow-y:auto;">
                                 <option selected disabled>Kategori</option>    
                                 @foreach($kategori as $row)
@@ -45,8 +69,8 @@ Reference
                                 @endif
                                 @endforeach
                             </select>
-                           <div class="left" style="margin-top: 5px !important;">
-                                <button type="submit" style="width: 100%;" class="btn btn-primary"><span
+            
+                               <button type="submit" style="width: 100% ; margin-top: 5px !important;" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-search"></span>cari</button>
                             </div>
                         </div>
@@ -55,30 +79,50 @@ Reference
                     <div class="col-md-3">
                         <form method="get" action="{{route('reference.index')}}">
                         <div class="form-group">
-                            <label>Kategori</label>
+                            <label>Kategori Non teknis</label>
+                            <div class="input-group input-group-lg">
                             <select id="id_kategori" name="id_kategori"class="custom-select select2bs4" style="width: 100%; overflow-y:auto;">
                                 <option selected disabled>Kategori</option>
-                               
                                     @foreach($kategori as $row)
                                     @if($row->kategori_type_id == 2)
                                     <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
                                     @endif
                                     @endforeach
                             </select>
-                           <div class="left" style="margin-top: 5px !important;">
-                                <button type="submit" style="width: 100%;" class="btn btn-primary"><span
+                            <br>
+                           {{-- <div  style="margin-top: 5px !important;"> --}}
+
+                                <button type="submit" style="width: 100% ; margin-top: 5px !important;" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-search"></span>cari</button>
+                            {{-- </div> --}}
                             </div>
                         </div>
                         </form>
                     </div>
-                   <div class="col-md-6">
+                   <div class="col-md-3">
                         <form method="get" action="{{route('reference.index')}}">
                             <div class="form-group">
-                                <label for="keyword" class="col-sm-6 control-label">Judul Dokumen</label>
+                                <label for="keyword" class="col-sm-12 control-label">Judul Dokumen</label>
                                 <div class="input-group input-group-lg">
-                                    <input type="search" id="tahunsearch" class="form-control form-control-lg" name="keyword"
+                                    <input style="hight: 90px;" type="search" id="tahunsearch" class="form-control form-control-lg" name="keyword"
                                         value="{{Request::get('keyword')}}" placeholder="Judul Dokumen">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-lg btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                   <div class="col-md-3">
+                        <form method="get" action="{{route('reference.index')}}">
+                            <div class="form-group">
+                                
+                                <label for="publisher" class="col-sm-12 control-label">Publisher</label>
+                                <div class="input-group input-group-lg">
+                                    <input type="search" class="form-control mr-sm-2" name="publisher"
+                                        value="{{Request::get('publisher')}}" placeholder="publisher">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-lg btn-default">
                                             <i class="fa fa-search"></i>
@@ -95,13 +139,15 @@ Reference
                             <div class="form-gruop">
                                 <label for="">Like</label>
                                 <br>
-                                    <select   name="sortlike" id="sortlike" class="custom-select sortbaselike" style="width: auto;" data-sortOrder>
+                                <div class="input-group input-group-lg">
+                                    <select  name="sortlike" id="sortlike" class="custom-select sortbaselike" style="width: auto;" data-sortOrder>
                                     <option href="javascript:void(0)" value="mostlike" data-type="1" data-key="1"> Like Terbanyak </option>
                                     <option href="javascript:void(0)" value="lesslike" data-type="1" data-key="0"> Like sedikit </option>
                                     </select>
-                                    <button name="reference2"type="submit" style="height: 40px !important;" class="btn btn-lg btn-default">
+                                    <button name="reference2"type="submit"  class="btn btn-lg btn-default">
                                         <i style="margin-top:-100px !important;" class="fa fa-search"></i>
                                     </button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -111,17 +157,24 @@ Reference
                             <div class="form-gruop">
                                     <label for="">Viewer</label>
                                         <br>
+                                        <div class="input-group input-group-lg">
                                         <select name="sortview" id="sortview" class="custom-select" style="width: auto;" data-sortOrder>
                                         <option href="javascript:void(0)" value="mostview"> View Terbanyak </option>
                                         <option href="javascript:void(0)" value="lessview"> View Sedikit </option>
                                         </select>
-                                        <button name="reference2"type="submit" style="height: 40px !important;" class="btn btn-lg btn-default">
+                                        <button name="reference2"type="submit"  class="btn btn-lg btn-default">
                                             <i class="fa fa-search"></i>
                                         </button>
+                                        </div>
                             </div>
                         </form>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                
+            </div>
                
                 {{-- <select class="custom-select" style="width: auto;" data-sortOrder>
                     <option value="index"> Sort by Position </option>
@@ -131,39 +184,134 @@ Reference
             
                 @if(Request::get('keyword'))
                 <div class="alert alert-success alert-block">
-                    Hasil Pencarian Dokumen dengan Keyword : <b>{{ Request::get('keyword') }}</b>
+                    Hasil Pencarian Dokumen dengan Keyword : <b>{{ Request::get('keyword') }}</b><b>Terdapat {{$reference->count('id')}} Dokumen </b>
+                </div>
+                @endif
+                @if(Request::get('publisher'))
+                <div class="alert alert-success alert-block">
+                    Hasil Pencarian Dokumen dengan Keyword : <b>{{ Request::get('publisher') }}</b><b>Terdapat {{$reference->count('id')}} Dokumen </b>
                 </div>
                 @endif
                 @if(Request::get('id_kategori'))
-                <div class="alert alert-success alert-block">
-                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }} </b> <b>Terdapat {{$reference->count('id')}} Dokumen </b>
-                </div>
+                        @if ($reference->count() == 0)
+                        <div class="alert alert-secondary alert-block">
+                      Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }} </b><b> tidak ada Dokumen</b>
+                        </div>
+                        @elseif($reference->count() >= 0)
+                        <div class="alert alert-success alert-block">
+                            Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }} Terdapat {{$reference->count('id')}} Dokumen</b>
+                        </div>
+                       
+                        @endif
                 
                 @endif
-                {{-- <p>Terdapat {{$reference->count('id')}} Dokumen</p> --}}
                
+                {{-- <p>Terdapat {{$reference->count('id')}} Dokumen</p> --}}
+
+              <ul class=" rounded-pill nav nav-pills ml-auto p-2 " style="justify-content: center;" >
+                <li class="nav-item " ><a class="nav-link active info" style="border-radius: 10px;" href="#tab_1" data-toggle="tab">Semua</a></li>
+                <li class="nav-item"><a class="nav-link" style="border-radius: 10px;" href="#tab_2" data-toggle="tab">Kategori Teknis</a></li>
+                <li class="nav-item"><a class="nav-link" style="border-radius: 10px;" href="#tab_3" data-toggle="tab">Kategori Non Teknis</a></li>
+              </ul>
                 <hr>
-                @foreach ($reference as $id)
-                <div class="row">
-                    <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
-                        <h5  style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
-                            {{ ucwords($id->judul_dokumen)  }}</h5>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                       @foreach ($reference as $id)
+                     
+                        <div class="row tab-pane active" id="tab_1">
+                            <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
+                                <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
+                                    {{ ucwords($id->judul_dokumen)  }}</h5>
+                            </div>
+                        </div>
+                        <div class="row startdoc">
+                            <div class="col-auto">
+                                <a>
+                                    @if($id->cover)
+                                    <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
+                                    @else
+                                    <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                    @endif
+                                </a>
+                            </div>
+                        
+                            <div class="col px-4 float-right">
+                        
+                                <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
+                                    {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
+                                    @if (strlen($id->deskripsi_dokumen) > 200) --}}
+                                    <span data-target="#modal-{{$id->id}}" data-toggle="modal" class="more">{{$id->deskripsi_dokumen}}</span>
+                                    {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
+                                    <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca Selengkapnya</a>
+                                    @endif --}}
+                                </p>
+                                {{-- {{  substr(strip_tags($id->deskripsi_dokumen,'<pre>,<code>'),0,200) }}{{ strlen(strip_tags($id->deskripsi_dokumen))>200?"...":"" }}
+                                <a href="javascript:void(0)" id="btn-more">Read More</a>
+                                <h6 style="margin-bottom: 15px; margin-top: 15px !important;" id="id_kategori" name="id_kategori">Kategori :
+                                    {{$id->kategori->kategori}} </h6>
+                                --}}
+                                <h5 style=" margin-bottom: 15px !important" id="id_kategori" name="id_kategori">Kategori :
+                                    {{$id->kategori->kategori}} </h5>
+                                <h6 style=" margin-bottom: 10px !important">Publisher : {{$id->publisher}}</h6>
+                                <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}"
+                                    data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"
+                                    <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?>
+                                    data-check="1" <?php } else { ?> data-check="0" <?php } ?>>
+                                    <i
+                                        class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}">
+                                        {{$id->jumlah_like}}</i>
+                                </button>
+                                <a href="javascript:void(0)"> |
+                                    <i class="far fa-eye"></i> {{$id->jumlah_view}}
+                                </a>
+                        
+                                <a class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</a>
+                        
+                                <div class="float-right">
+                                    <a href="{{route('reference.show',$id->id)}}">
+                        
+                                        <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
+                                            data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
+                                            data-target="#modal-xl"><i class="fas fa-book-open"></i> Baca</button>
+                        
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        @endforeach
+                        <tfoot>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    {{$reference->links('pagination::bootstrap-4')}}
+                                    {{-- {{ $reference->appends(Request::all())->links() }} --}}
+                                </ul>
+                            </nav>
+                        </tfoot>
                     </div>
-                </div>
-                <div class="row startdoc">
-                    <div class="col-auto">
-                        <a >
-                            @if($id->cover) 
-                            <img src="{{ asset('uploads/'.$id->cover) }}"
-                                class="img-thumbnail"width="200px">
+                    <div class="tab-pane" id="tab_2">
+                        
+                    @foreach ($reference as $id)
+                    @if($id->kategori->kategori_type_id == 1)
+                    <div class="row tab-pane active" id="tab_1">
+                        <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
+                            <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
+                                {{ ucwords($id->judul_dokumen)  }}</h5>
+                        </div>
+                    </div>
+                    <div class="row startdoc">
+                        <div class="col-auto">
+                            <a>
+                                @if($id->cover)
+                                <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
                                 @else
                                 <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
                                 @endif
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                     
-                    <div class="col px-4 float-right">
-                       
+                        <div class="col px-4 float-right">
+                    
                             <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
                                 {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
                                 @if (strlen($id->deskripsi_dokumen) > 200) --}}
@@ -172,47 +320,135 @@ Reference
                                 <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca Selengkapnya</a>
                                 @endif --}}
                             </p>
-                               {{-- {{  substr(strip_tags($id->deskripsi_dokumen,'<pre>,<code>'),0,200) }}{{ strlen(strip_tags($id->deskripsi_dokumen))>200?"...":"" }}
-                                <a href="javascript:void(0)" id="btn-more">Read More</a>
-                            <h6 style="margin-bottom: 15px; margin-top: 15px !important;" id="id_kategori" name="id_kategori">Kategori :  {{$id->kategori->kategori}} </h6>
+                            {{-- {{  substr(strip_tags($id->deskripsi_dokumen,'<pre>,<code>'),0,200) }}{{ strlen(strip_tags($id->deskripsi_dokumen))>200?"...":"" }}
+                            <a href="javascript:void(0)" id="btn-more">Read More</a>
+                            <h6 style="margin-bottom: 15px; margin-top: 15px !important;" id="id_kategori" name="id_kategori">Kategori :
+                                {{$id->kategori->kategori}} </h6>
                             --}}
-                          <h5 style=" margin-bottom: 15px !important" id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}  </h5>
+                            <h5 style=" margin-bottom: 15px !important" id="id_kategori" name="id_kategori">Kategori :
+                                {{$id->kategori->kategori}} </h5>
                             <h6 style=" margin-bottom: 10px !important">Publisher : {{$id->publisher}}</h6>
-                          <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}"
-                            data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"
-                            <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?>
-                            data-check="1" <?php } else { ?> data-check="0" <?php } ?>>
-                            <i
-                                class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}">
-                                {{$id->jumlah_like}}</i>
-                        </button>
+                            <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}"
+                                data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"
+                                <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?>
+                                data-check="1" <?php } else { ?> data-check="0" <?php } ?>>
+                                <i
+                                    class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}">
+                                    {{$id->jumlah_like}}</i>
+                            </button>
                             <a href="javascript:void(0)"> |
                                 <i class="far fa-eye"></i> {{$id->jumlah_view}}
                             </a>
-                           
-                            <a class="tahun" style="color : #aaa !important;" href="" > |  Create : {{$id->tahun}}</a>
-
-                         <div class="float-right">
-                            <a href="{{route('reference.show',$id->id)}}">
-                           
-                                <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
-                                    data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
-                                    data-target="#modal-xl"><i class="far fa-eye"></i> Baca</button>
-
-                            </a>
+                    
+                            <a class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</a>
+                    
+                            <div class="float-right">
+                                <a href="{{route('reference.show',$id->id)}}">
+                    
+                                    <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
+                                        data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
+                                        data-target="#modal-xl"><i class="fas fa-book-open"></i> Baca</button>
+                    
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                @endforeach
-               
-               <tfoot>
+                    <hr>
+                    @endif
+                    @endforeach
+                   <tfoot>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            {{ $reference->appends(Request::all())->links() }}
+                            {{$reference->links('pagination::bootstrap-4')}}
+                            {{-- {{ $reference->appends(Request::all())->links() }} --}}
                         </ul>
                     </nav>
                 </tfoot>
+                    </div>
+                    <div class="tab-pane" id="tab_3">
+                        {{-- <b> Terdapat {{$kategori->count('id')}} Dokumen</b> --}}
+                    @foreach ($reference as $id)
+                    {{-- <b> Terdapat {{$id->kategori_type_id->count('id')}} Dokumen</b> --}}
+                    
+                    @if($id->kategori->kategori_type_id == 2)
+                     
+
+                    <div class="row tab-pane" id="tab_1">
+                        <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
+                            <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
+                                {{ ucwords($id->judul_dokumen)  }}</h5>
+                        </div>
+                    </div>
+                    <div class="row startdoc">
+                        <div class="col-auto">
+                            <a>
+                                @if($id->cover)
+                                <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
+                                @else
+                                <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                @endif
+                            </a>
+                        </div>
+                    
+                        <div class="col px-4 float-right">
+                    
+                            <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
+                                {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
+                                @if (strlen($id->deskripsi_dokumen) > 200) --}}
+                                <span data-target="#modal-{{$id->id}}" data-toggle="modal" class="more">{{$id->deskripsi_dokumen}}</span>
+                                {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
+                                <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca Selengkapnya</a>
+                                @endif --}}
+                            </p>
+                            {{-- {{  substr(strip_tags($id->deskripsi_dokumen,'<pre>,<code>'),0,200) }}{{ strlen(strip_tags($id->deskripsi_dokumen))>200?"...":"" }}
+                            <a href="javascript:void(0)" id="btn-more">Read More</a>
+                            <h6 style="margin-bottom: 15px; margin-top: 15px !important;" id="id_kategori" name="id_kategori">Kategori :
+                                {{$id->kategori->kategori}} </h6>
+                            --}}
+                            <h5 style=" margin-bottom: 15px !important" id="id_kategori" name="id_kategori">Kategori :
+                                {{$id->kategori->kategori}} </h5>
+                            <h6 style=" margin-bottom: 10px !important">Publisher : {{$id->publisher}}</h6>
+                            <button href="javascript:void(0)" class="btn btn-outline-info tekan {{$id->id}}" data-id="{{$id->id}}"
+                                data-jumlah="{{$id->jumlah_like}}" data-token="{{ csrf_token() }}"
+                                <?php if(\App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists()) { ?>
+                                data-check="1" <?php } else { ?> data-check="0" <?php } ?>>
+                                <i
+                                    class="fas fa-thumbs-up likebut {{$id->id}} {{ \App\Models\Likesdocument::where([['user_id', '=', Auth::user()->id], ['document_id', '=', $id->id]])->exists() ? 'like-post' : '' }}">
+                                    {{$id->jumlah_like}}</i>
+                            </button>
+                            <a href="javascript:void(0)"> |
+                                <i class="far fa-eye"></i> {{$id->jumlah_view}}
+                            </a>
+                    
+                            <a class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</a>
+                    
+                            <div class="float-right">
+                                <a href="{{route('reference.show',$id->id)}}">
+                    
+                                    <button type="button" class="btn btn-block bg-gradient-warning previewdoc" data-id="{{$id->id}}"
+                                        data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal"
+                                        data-target="#modal-xl"><i class="fas fa-book-open"></i> Baca</button>
+                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    @endif
+                    @endforeach
+                   <tfoot>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            {{$reference->links('pagination::bootstrap-4')}}
+                            {{-- {{ $reference->appends(Request::all())->links() }} --}}
+                        </ul>
+                    </nav>
+                </tfoot>
+                    </div>
+                </div>
+              
+               
+              
             </div>
            
         </div>
@@ -241,7 +477,7 @@ Reference
       </div>
       <!-- /.modal -->
       @foreach ($reference as $id)
-      <div class="modal fade" id="modal-{{$id->id}}">
+        <div class="modal fade" id="modal-{{$id->id}}">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -255,8 +491,6 @@ Reference
                     </div>
                         <div class="form-group">
                             <div class="modal-body">
-                                
-                             
                                 <p align="justify">{{$id->deskripsi_dokumen}}</p>
                                 <hr>
                                   <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}

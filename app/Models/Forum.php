@@ -19,7 +19,7 @@ class Forum extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function document()
+    public function documen()
     {
         return $this->belongsTo('App\Models\Document', 'dokumen_id');
     }
