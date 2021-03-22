@@ -11,7 +11,7 @@ class Ebook extends Model
     protected $primaryKey = 'id_ebook';
     protected $fillable = [
         'id_ebook',
-        'id_user',
+        'user_id',
         'judul_ebook',
         'deskripsi_ebook',
         'tahun',
