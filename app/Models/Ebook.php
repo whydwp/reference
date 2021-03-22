@@ -22,6 +22,10 @@ class Ebook extends Model
         'id_kategori',
         'id_status'
     ];
+
+    CONST DEFAULT_MAX_REQUEST_CREATE = 5;
+    CONST ERROR_MESSAGE_LIMIT_MAX_REQUEST = "Limit created";
+
     public function kategori()
     {
         return $this->belongsTo('App\Models\Kategori', 'id_kategori');
