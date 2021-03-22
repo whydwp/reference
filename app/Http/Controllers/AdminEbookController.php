@@ -8,6 +8,7 @@ use App\Models\Status;
 use App\Models\User;
 use Validator;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Auth;
 use Storage;
 
 
@@ -20,7 +21,7 @@ class AdminEbookController extends Controller
      */
     public function index()
     {
-        $ebook = Ebook::OrderBy('created_at','desc')->paginate(5);
+        $ebook = Ebook::OrderBy('created_at','desc')->where("user_id", Auth::user()->id)->paginate(5);
         $kategori = Kategori::all();
         $status = Status::all();
         $user = User::all();
@@ -49,6 +50,7 @@ class AdminEbookController extends Controller
     public function store(Request $request)
     {
         $ebook = $request->all();
+        $ebook["user_id"] = Auth::user()->id;
         $rules = [
             'judul_ebook' => 'required|max:250',
             'deskripsi_ebook' => 'required',
@@ -94,9 +96,8 @@ class AdminEbookController extends Controller
             $request->file('cover')->move($upload_path, $namaFile);
             $ebook['cover'] = $namaFile;
         }
-        //$ebook = \Auth::user()->id;
+
         Ebook::create($ebook);
-        //dd($request);
         return redirect()->route('adminEbook.index')->with('success', 'Dokumen Berhasil Ditambahankan');
     }
 
@@ -188,7 +189,7 @@ class AdminEbookController extends Controller
         $ebook->update($input);
         return redirect()->route('adminEbook.index')->with('status', 'Document Berhasil diupdate');
     }
-   
+
     /**
      * Remove the specified resource from storage.
      *
