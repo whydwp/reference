@@ -57,10 +57,9 @@ Reference
                 </div>
                 @endif
                 @endif
-              
+
                 <hr>
                 @foreach ($kumpulan as $id)
-                @if($id->id_status == 1)
                 <div class="row tab-pane active" id="tab_1">
                     <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
                         <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
@@ -77,9 +76,9 @@ Reference
                         @endif
                         </a>
                     </div>
-                
+
                     <div class="col px-4 float-right">
-                
+
                         <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
                             {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
                             @if (strlen($id->deskripsi_dokumen) > 200) --}}
@@ -106,12 +105,11 @@ Reference
                     </div>
                 </div>
                 <hr>
-                @endif
                 @endforeach
                 <tfoot>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            
+
                             {{ $kumpulan->appends(Request::get('id_status',''))->links() }}
                         </ul>
                     </nav>
@@ -195,28 +193,28 @@ Reference
 //     }
 // }
 $(document).ready(function() {
-  
-    var showChar = 400;  
+
+    var showChar = 400;
     var ellipsestext = " .....";
     var moretext = " Baca Selengkapnya";
     // var lesstext = " Ringkas ";
-    
+
 
     $('.more').each(function() {
         var content = $(this).html();
         // pop =$('.modalpopup').modal('show');
         if(content.length > showChar) {
- 
+
             var c = content.substr(400, showChar);
             var h = content.substr(showChar, content.length - showChar);
             // var pop = $('.modalpop').modal('show');
             var html = c + '<span class="moreellipses">' + ellipsestext + '</span><span class="morecontent"><span>' + h + '</span><a data-target="#modal" data-toggle="modal" href="" >' + moretext + '</a></span><b>';
- 
+
             $(this).html(html);
         }
- 
+
     });
- 
+
     $(".morelink").click(function(){
         if($(this).hasClass("less")) {
             $(this).removeClass("less");
@@ -244,7 +242,7 @@ $(document).ready(function() {
            dataType : "text",
            success : function (data)
            {
-              if(data != '') 
+              if(data != '')
               {
                   $('#remove-row').remove();
                   $('#load-data').append(data);
@@ -255,18 +253,18 @@ $(document).ready(function() {
               }
            }
        });
-   });  
-}); 
-   
+   });
+});
+
   $(document).on("click", ".tekan", function() {
-    
+
     // function tekan(id) {
         var id = $(this).data('id');
         var jumlah = $(this).data('jumlah');
         var meta = $('meta[name=csrf-token]').attr('content');
         var check = $(this).data('check');
         // console.log(check);
-        
+
         $.ajax({
             url: 'likedislike',
             method: 'POST',
@@ -292,10 +290,10 @@ $(document).ready(function() {
                         $('.likebut.'+id).removeClass("like-post");
                         $('.tekan.'+id).data('check', 0);
                     }
-                    
+
                         $('.likebut.'+id).text(" "+response.jumlah);
                         $('.tekan.'+id).data('jumlah', response.jumlah);
-                    
+
                     // console.log(response);
                 }
                 else {
@@ -314,7 +312,7 @@ $(document).ready(function() {
         var id = $(this).data('id');
         var jmlhview = $(this).data('jmlhview');
 
-        //console.log(id); 
+        //console.log(id);
        // console.log(jmlhview);
 
 
@@ -333,7 +331,7 @@ $(document).ready(function() {
             },
             success: function(response){
                 if(response.message == 'success') {
-                    
+
                     // console.log(response);
                 }
                 else {
@@ -377,7 +375,7 @@ $(document).ready(function(){
       });
     },
     select: function (event, ui) {
-       $('#tahunsearch').val(ui.item.label); 
+       $('#tahunsearch').val(ui.item.label);
        return false;
     }
   });

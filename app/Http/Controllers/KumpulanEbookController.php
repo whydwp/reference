@@ -17,22 +17,22 @@ class KumpulanEbookController extends Controller
      */
     public function index(Request $request)
     {
-        $status = Status::find([1]);
-        //dd($doc);
+        $status = Status::accepted()->first();
         $nama_status = '';
-        $kumpulan = Ebook::orderBy('id_status', 'asc')->paginate(3);
+        $kumpulan = Ebook::orderBy('id_status', 'asc')->where('id_status', $status)->paginate(3);
         // if ($status) {
         //     $kumpulan = Ebook::where('id_status', $status)->paginate(5);
         //     $data_status = Status::find($status);
         //     $nama_status = $data_status;
         //     // dd($nama_status);
         // }
-      
+
         return view('kumpulanEbook.index',compact('kumpulan', 'nama_status'));
     }
+
     public function download($file)
     {
-      
+
         return response()->download('/storage/'.$file); //Download file yang dicari berdasarkan nama file
     }
 
