@@ -15,7 +15,7 @@ use Alert;
 class MyReferenceController extends Controller
 {
 
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -37,16 +37,16 @@ class MyReferenceController extends Controller
         // // $kategori = Kategori::all();
         // return view('reference.index', compact('reference'));
 
-       
-        $reference = Document::orderBy('created_at', 'desc')->paginate(5);  
+
+        $reference = Document::orderBy('created_at', 'desc')->paginate(5);
         $reference1 = Document::all();
-        // dd($reference1) ; 
-        //$reference2 = Document::all();  
+        // dd($reference1) ;
+        //$reference2 = Document::all();
         $filterKeyword = $request->get('keyword');
         $filter = $request->get('publisher');
         $kategori = Kategori::orderBy('created_at', 'asc')->get();
         $jumlah_doc = [];
-        $data_dokumen = Kategori::all(); 
+        $data_dokumen = Kategori::all();
         foreach($data_dokumen as $row){
             $doc = Document::where('id_kategori',
                 $row->id_kategori
@@ -54,7 +54,7 @@ class MyReferenceController extends Controller
             $jumlah_doc[] = $doc;
 
         }
-      
+
          $nama_kategori = '';
         $reference2 = Document::orderBy('jumlah_like', 'DESC')->get();
         if ($filterKeyword) {
@@ -94,8 +94,8 @@ class MyReferenceController extends Controller
             }
         }
         // $kategori = Kategori::all();
-        
-        return view('reference.index', compact('jumlah_doc','reference','reference1', 'kategori','nama_kategori', 'reference2','doc'));     
+
+        return view('reference.index', compact('jumlah_doc','reference','reference1', 'kategori','nama_kategori', 'reference2','doc'));
     }
 
     public function getjudul(Request $request){
@@ -105,12 +105,12 @@ class MyReferenceController extends Controller
         if($search != ''){
             $getjudul = Document::select('judul_dokumen')->where('judul_dokumen', 'like', '%' .$search . '%')->distinct()->get();
         }
-  
+
         $response = array();
         foreach($getjudul as $judul_dokumen){
            $response[] = array("value"=> $judul_dokumen->judul_dokumen,"label"=> $judul_dokumen->judul_dokumen);
         }
-  
+
         return response()->json($response);
      }
 
@@ -125,7 +125,7 @@ class MyReferenceController extends Controller
         // return view('reference.create', compact('reference'));
     }
 
-  
+
     /**
      * Store a newly created resource in storage.
      *
@@ -143,7 +143,7 @@ class MyReferenceController extends Controller
         //     'created_at' => $forum->created_at,
         //     'dokumen_id' => $request->dokumen_id,
         //     'user_id' => auth()->id(),
-        //     'message' => $request->message,  
+        //     'message' => $request->message,
         // ]);
         $komentar = new Forum([
             // 'id' => $forum->id,
@@ -154,8 +154,8 @@ class MyReferenceController extends Controller
         ]);
         $komentar->save();
         //alert()->success('You have been logged out.', 'Good bye!');
-        // return response()->json($komentar);   
-        return redirect()->back()->with('error', 'Profile updated!');     
+        // return response()->json($komentar);
+        return redirect()->back()->with('error', 'Profile updated!');
     }
     public function komentar(Request $request, Forum $forum,$id)
     {
@@ -197,11 +197,8 @@ class MyReferenceController extends Controller
      */
     public function show(Request $request ,$id)
     {
-        $reference = Document::findOrFail($id);
-        $komentar = Forum::all();
-        // dd($reference);
-        
-        return view('reference.show', compact('reference','komentar'));
+        $reference = Document::with('relation_forum')->findOrFail($id);
+        return view('reference.show', compact('reference'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -246,7 +243,7 @@ class MyReferenceController extends Controller
         return response()->json($values);
         // return response()->json(['view' => view('reference.index', compact('reference'))->render()]);
     }
-  
+
     /**
      * Remove the specified resource from storage.
      *

@@ -23,12 +23,12 @@
                             <label for="file" class="col-sm-2 control-label"></label>
                             <div class="embed-responsive embed-responsive-4by3">
                                 <iframe class="embed-responsive-item" type="application / html5"
-                                    src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0" 
+                                    src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0"
                                     width="100%" height="1000"></iframe>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            
+
                         </div>
                     </div>
                     <div class="col px-4">
@@ -51,7 +51,7 @@
                         </div>
                         <br>
                         <hr>
-                      
+
                         {{-- @if($reference->id_forum == $komentar->id) --}}
             <div class="card direct-chat direct-chat-primary">
               <div class="card-header ui-sortable-handle" style="cursor: move;">
@@ -61,7 +61,7 @@
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
-                
+
                 </div>
               </div>
               <!-- /.card-header -->
@@ -69,12 +69,12 @@
                 <!-- Conversations are loaded here -->
                        <div class="direct-chat-messages">
                                     <!-- Message. Default to the left -->
-                            @foreach ($komentar as $item)
+                            @foreach ($reference->relation_forum as $item)
                             {{-- @if($item->documen_id == $komentar) --}}
                                 <form method="post" action="{{ route('reference.destroy',[$item->id]) }}"
                                             onsubmit="return confirm('Apakah anda yakin akan menghapus komentar ini ?')">
                                             @csrf
-                                            {{ method_field('DELETE') }} 
+                                            {{ method_field('DELETE') }}
                                     <div class="direct-chat-msg">
                                         <div class="direct-chat-infos clearfix" id="comment_{{ $item->id }}">
                                                 <span class="direct-chat-name float-left">{{$item->user->full_name}}</span>
@@ -96,13 +96,13 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <form method="post" action="{{route('reference.store')}}"id="comment_{{ $item->id }} class="form-horizontal">
-                               @csrf  
+                <form method="post" action="{{route('reference.store')}}"id="comment_ class="form-horizontal">
+                               @csrf
                                <input  type="hidden" name="_name" value="<?php echo csrf_token()?>">
                   <div class="input-group">
                    <textarea type="text" name="message" placeholder="Type Message ..." class="form-control" cols="10" rows="3" required></textarea>
                   </div>
-                      <button data-id="{{ $item->id }}" data-token="{{ csrf_token() }}" style="margin-top: 5px"type="submit" class="btn btn-primary " value="Komentar">Komentar <i class="fas fa-paper-plane"></i> </button>
+                      <button data-id="" data-token="{{ csrf_token() }}" style="margin-top: 5px"type="submit" class="btn btn-primary " value="Komentar">Komentar <i class="fas fa-paper-plane"></i> </button>
                               </form>
               </div>
               <!-- /.card-footer-->
@@ -134,9 +134,9 @@
        success: function(){
            console.log('it works!');
             $(".direct-chat-messages").html(data.komentar);
-       } 
+       }
     });
-    console.log("It failed"); 
+    console.log("It failed");
 });
 // $('#comment_'+id);
 </script>
