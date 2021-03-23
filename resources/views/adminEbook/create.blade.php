@@ -10,9 +10,12 @@ Input Dokumen
     <!-- general form elements disabled -->
     <!-- /.card-header -->
     <div class="card-body">
-      
+
         <form method="post" action="{{ route('adminEbook.store')}}" enctype="multipart/form-data">
             @csrf
+            @if(session('error_message'))
+                {{ session('error_message') }}
+            @endif
             <div class="form-group">
                 <label for="judul_ebook">judul</label>
                 <input name="judul_ebook" id="judul_ebook" class="form-control @error('judul_ebook') is-invalid @enderror" placeholder="apa judulnya"
@@ -71,7 +74,7 @@ Input Dokumen
                     </div>
 
                 </div>
-               
+
             </div>
             <div class="form-group">
                 <label for="deskripsi_ebook">Deskripsi</label>
