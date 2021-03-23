@@ -134,27 +134,14 @@ class MyReferenceController extends Controller
      */
     public function store(Request $request,Forum $forum)
     {
-        $documen = Document::all();
-        //dd($doc);
-        // $forum = Forum::all();
-
-        // $komentar = Forum::create([
-        //     'id' => $forum->id,
-        //     'created_at' => $forum->created_at,
-        //     'dokumen_id' => $request->dokumen_id,
-        //     'user_id' => auth()->id(),
-        //     'message' => $request->message,
-        // ]);
         $komentar = new Forum([
-            // 'id' => $forum->id,
-            'user_id' => auth()->id(),
+            'user_id'    => auth()->id(),
             'created_at' => $forum['created_at'],
-            'dokumen_id' => $request['id'],
-            'message' => $request['message']
+            'dokumen_id' => $request['forum'],
+            'message'    => $request['message']
         ]);
         $komentar->save();
-        //alert()->success('You have been logged out.', 'Good bye!');
-        // return response()->json($komentar);
+
         return redirect()->back()->with('error', 'Profile updated!');
     }
     public function komentar(Request $request, Forum $forum,$id)
