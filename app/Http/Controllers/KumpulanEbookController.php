@@ -19,7 +19,7 @@ class KumpulanEbookController extends Controller
     {
         $status = Status::accepted()->first();
         $nama_status = '';
-        $kumpulan = Ebook::orderBy('id_status', 'asc')->where('id_status', $status)->paginate(3);
+        $kumpulan = Ebook::orderBy('id_status', 'asc')->where('id_status', $status->id)->paginate(3);
         // if ($status) {
         //     $kumpulan = Ebook::where('id_status', $status)->paginate(5);
         //     $data_status = Status::find($status);
