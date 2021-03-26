@@ -15,7 +15,7 @@ use Alert;
 class MyReferenceController extends Controller
 {
 
-   
+
     /**
      * Display a listing of the resource.
      *
@@ -37,32 +37,32 @@ class MyReferenceController extends Controller
         // // $kategori = Kategori::all();
         // return view('reference.index', compact('reference'));
 
-       
-        $reference = Document::orderBy('created_at', 'desc')->paginate(5);  
+
+        $reference = Document::orderBy('created_at', 'desc')->paginate(5);
         $reference1 = Document::all();
-        // dd($reference1) ; 
-        //$reference2 = Document::all();  
+        // dd($reference1) ;
+        //$reference2 = Document::all();
         $filterKeyword = $request->get('keyword');
         $filter = $request->get('publisher');
         $kategori = Kategori::orderBy('created_at', 'asc')->get();
         $jumlah_doc = [];
-        $data_dokumen = Kategori::all(); 
-        foreach($data_dokumen as $row){
-            $doc = Document::where('id_kategori',
+        $data_dokumen = Kategori::all();
+        foreach ($data_dokumen as $row) {
+            $doc = Document::where(
+                'id_kategori',
                 $row->id_kategori
             )->count('id');
             $jumlah_doc[] = $doc;
-
         }
-      
-         $nama_kategori = '';
+
+        $nama_kategori = '';
         $reference2 = Document::orderBy('jumlah_like', 'DESC')->get();
         if ($filterKeyword) {
             //dijalankan jika ada pencarian
             $reference = Document::where('judul_dokumen', 'LIKE', "%$filterKeyword%")->paginate(10);
         }
         $filter_by_kategori = $request->get('id_kategori');
-        if ($filter_by_kategori ) {
+        if ($filter_by_kategori) {
             $reference = Document::where('id_kategori', $filter_by_kategori)->paginate(100000);
             $data_kategori = Kategori::find($filter_by_kategori);
             $nama_kategori = $data_kategori->kategori;
@@ -72,47 +72,44 @@ class MyReferenceController extends Controller
             $reference = Document::where('publisher', 'LIKE', "%$filter%")->paginate(10);
         }
         $filterbylike = $request->get('sortlike');
-        if($filterbylike){
+        if ($filterbylike) {
             // dd($filterbylike);
-            if($filterbylike == "mostlike"){
+            if ($filterbylike == "mostlike") {
                 $reference = Document::orderBy('jumlah_like', 'desc')->paginate(5);
-            }
-            else{
+            } else {
                 $reference = Document::orderBy('jumlah_like', 'asc')->paginate(5);
-
             }
         }
         $filterbyview = $request->get('sortview');
-        if($filterbyview){
+        if ($filterbyview) {
             // dd($filterbyview);
-            if($filterbyview == "mostview"){
+            if ($filterbyview == "mostview") {
                 $reference = Document::orderBy('jumlah_view', 'desc')->paginate(5);
-            }
-            else{
+            } else {
                 $reference = Document::orderBy('jumlah_view', 'asc')->paginate(5);
-
             }
         }
         // $kategori = Kategori::all();
-        
-        return view('reference.index', compact('jumlah_doc','reference','reference1', 'kategori','nama_kategori', 'reference2','doc'));     
+
+        return view('reference.index', compact('jumlah_doc', 'reference', 'reference1', 'kategori', 'nama_kategori', 'reference2', 'doc'));
     }
 
-    public function getjudul(Request $request){
+    public function getjudul(Request $request)
+    {
 
         $search = $request->search;
         // echo $search;
-        if($search != ''){
-            $getjudul = Document::select('judul_dokumen')->where('judul_dokumen', 'like', '%' .$search . '%')->distinct()->get();
+        if ($search != '') {
+            $getjudul = Document::select('judul_dokumen')->where('judul_dokumen', 'like', '%' . $search . '%')->distinct()->get();
         }
-  
+
         $response = array();
-        foreach($getjudul as $judul_dokumen){
-           $response[] = array("value"=> $judul_dokumen->judul_dokumen,"label"=> $judul_dokumen->judul_dokumen);
+        foreach ($getjudul as $judul_dokumen) {
+            $response[] = array("value" => $judul_dokumen->judul_dokumen, "label" => $judul_dokumen->judul_dokumen);
         }
-  
+
         return response()->json($response);
-     }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -125,14 +122,14 @@ class MyReferenceController extends Controller
         // return view('reference.create', compact('reference'));
     }
 
-  
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Forum $forum)
+    public function store(Request $request, Forum $forum)
     {
         $documen = Document::all();
         //dd($doc);
@@ -143,32 +140,33 @@ class MyReferenceController extends Controller
         //     'created_at' => $forum->created_at,
         //     'dokumen_id' => $request->dokumen_id,
         //     'user_id' => auth()->id(),
-        //     'message' => $request->message,  
+        //     'message' => $request->message,
         // ]);
         $komentar = new Forum([
             // 'id' => $forum->id,
             'user_id' => auth()->id(),
             'created_at' => $forum['created_at'],
-            'dokumen_id' => $request['id'],
+            'dokumen_id' => $request['forum'],
             'message' => $request['message']
-        ]);
+            ]);
+   
         $komentar->save();
         //alert()->success('You have been logged out.', 'Good bye!');
-        // return response()->json($komentar);   
-        return redirect()->back()->with('error', 'Profile updated!');     
+        // return response()->json($komentar);
+        return redirect()->back()->with('error', 'Profile updated!');
     }
-    public function komentar(Request $request, Forum $forum,$id)
+    public function komentar(Request $request, Forum $forum, $id)
     {
-       $doc = Document::find($id);
-       dd($doc);
-    //     $komentar = Forum::create([
-    //         'id' => $forum->id,
-    //         'created_at' => $forum->created_at,
-    //         'dokumen_id' => $id->dokumen_id,
-    //         'user_id' => auth()->id(),
-    //         'message' => $request->message,
-    //     ]);
-    //     return redirect()->back();
+        $doc = Document::find($id);
+        dd($doc);
+        //     $komentar = Forum::create([
+        //         'id' => $forum->id,
+        //         'created_at' => $forum->created_at,
+        //         'dokumen_id' => $id->dokumen_id,
+        //         'user_id' => auth()->id(),
+        //         'message' => $request->message,
+        //     ]);
+        //     return redirect()->back();
     }
 
     public function addview(Request $request)
@@ -195,13 +193,10 @@ class MyReferenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request ,$id)
+    public function show(Request $request, $id)
     {
-        $reference = Document::findOrFail($id);
-        $komentar = Forum::all();
-        // dd($reference);
-        
-        return view('reference.show', compact('reference','komentar'));
+        $reference = Document::with('relation_forum')->findOrFail($id);
+        return view('reference.show', compact('reference'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -246,7 +241,7 @@ class MyReferenceController extends Controller
         return response()->json($values);
         // return response()->json(['view' => view('reference.index', compact('reference'))->render()]);
     }
-  
+
     /**
      * Remove the specified resource from storage.
      *

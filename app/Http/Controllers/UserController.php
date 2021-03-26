@@ -30,7 +30,10 @@ class UserController extends Controller
         $kelola = KelolaUser::all();
         $filterKeyword = $request->get('keyword');
         $nama_type = '';
-
+        if ($filterKeyword) {
+            //dijalankan jika ada pencarian
+            $data_user = User::where('full_name', 'LIKE', "%$filterKeyword%")->paginate(10);
+        }
         $filter_by_kategori = $request->get('user_type_id');
         if ($filter_by_kategori) {
             $data_user = User::where('user_type_id', $filter_by_kategori)->paginate(5);

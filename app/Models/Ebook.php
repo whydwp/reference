@@ -11,7 +11,7 @@ class Ebook extends Model
     protected $primaryKey = 'id_ebook';
     protected $fillable = [
         'id_ebook',
-        'id_user',
+        'user_id',
         'judul_ebook',
         'deskripsi_ebook',
         'tahun',
@@ -22,6 +22,10 @@ class Ebook extends Model
         'id_kategori',
         'id_status'
     ];
+
+    const DEFAULT_MAX_REQUEST_CREATE = 5;
+    const ERROR_MESSAGE_LIMIT_MAX_REQUEST = "Bata Upload Anda Sudah Melebihi 5x";
+
     public function kategori()
     {
         return $this->belongsTo('App\Models\Kategori', 'id_kategori');
@@ -34,7 +38,8 @@ class Ebook extends Model
     {
         return $this->belongsTo('App\Models\KategoriType', 'kategori_type_id');
     }
-    public function status(){
+    public function status()
+    {
         return $this->belongsTo('App\Models\status', 'id_status');
     }
     // public function getebook()

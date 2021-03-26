@@ -39,7 +39,7 @@
         <div class="limiter" >
             <div class="container-login100" >
                 <div class="wrap-login100" >
-                    <form class="login100-form validate-form" method="POST" action="/login" style="width: 300px !important;">
+                    <form class="login100-form validate-form" method="POST" action="/login" >
                         <img  src="now-ui-kit/assets/img/logo.svg" class="logocenter" alt="">
                         <!-- @csrf -->
                         {{ csrf_field() }}
@@ -62,7 +62,7 @@
                             </button>
                         </div>
                     </form>
-                    <div class="login100-more" style="background-image: url('now-ui-kit/assets/img/bg-pln.png'); width:1066px !important; ">
+                    <div class="login100-more" style="background-image: url('now-ui-kit/assets/img/bg-pln.png'); ">
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@
 <nav class="gradient3 main-header navbar navbar-expand-md navbar-light navbar-white sticky-header">
     {{-- <div class="container"> --}}
         <a style="margin-left: 25px !important;"href="{{route('dashboard')}}" class="navbar-brand">
-            <img src="{{asset('image/Logo_PLN.png')}}" alt="logo pln"
+            <img src="{{asset('image/logo.jpeg')}}" alt="logo pln"
                 class="brand-image elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light tulisan">Reference Learning</span>
         </a>

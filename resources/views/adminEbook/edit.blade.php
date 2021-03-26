@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Edit Documen
+Edit Buku
 @endsection
 
 @section('content')
@@ -82,7 +82,7 @@ Edit Documen
             
             <label for="file" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <iframe src="{{ asset('uploads/'.$ebook->file) }}" width="500"
+                <iframe src="{{ asset('uploads/'.$ebook->file) }}" type="application / pptx" width="500"
                     height="250">{{ asset('uploads/'.$ebook->file) }}</iframe>
             
             </div>

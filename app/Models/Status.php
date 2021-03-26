@@ -8,13 +8,20 @@ use DB;
 
 class status extends Model
 {
-     protected $table = 'status';
-    //  protected $table = 'category';
+    protected $table = 'status';
     protected $primaryKey = 'id_status';
-    protected $fillable = [
-        'id_status',
-        'status',
-    ];
+    protected $fillable = ['id_status', 'status'];
 
+    const STATUS_ACCEPTED = "Di Terima";
+    const STATUS_REJECTED = "Di Tolak";
 
+    public function scopeAccepted($query)
+    {
+        return $query->where('status', '=', status::STATUS_ACCEPTED);
+    }
+
+    public function scopeRejected($query)
+    {
+        return $query->where('status', '=', status::STATUS_ACCEPTED);
+    }
 }

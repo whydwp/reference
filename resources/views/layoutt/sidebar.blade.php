@@ -101,9 +101,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('ebook.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
-                           Ebooks
+                           Kelola Buku
                         </p>
                     </a>
                 </li>
@@ -149,22 +149,12 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('adminEbook.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
-                            Ebooks
+                            Kelola Buku
                         </p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                                <a href="{{ route('document.index') }}" class="nav-link">
-                <i class="fas fa-file-alt"></i>
-                <p>
-                    kelola-document
-                </p>
-                </a>
-                </li> --}}
-
-
             </ul>
             @elseif(Auth::user()->user_type_id == 3)
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -206,7 +196,7 @@
                     <a href="{{ route('kumpulanEbook.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users-cog"></i>
                         <p>
-                            Kumpulan Ebook
+                            Kumpulan Buku
                         </p>
                     </a>
                 </li>

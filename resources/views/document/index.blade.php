@@ -60,7 +60,7 @@ Document
                     <!-- /.modal-dialog -->
                 </div>
       
-        <br/>
+                <br/>
               
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -79,10 +79,8 @@ Document
                                     <i class="fa fa-search"></i>
                                 </button>
                                 </div>
-                                
                                 </form>
-                            </div>
-                           
+                            </div>  
                         </div>
                         <form method="get" action="{{route('document.index')}}">
                         <div class="form-group">

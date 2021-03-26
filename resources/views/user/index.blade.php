@@ -73,35 +73,54 @@ Kelola User
                             <!-- /.modal-dialog -->
                         </div>
                    
-    <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="row">
-                <div class="col-md-6">
-                    <form method="get" action="">
-                        <div class="form-group">
-                            <label>Level</label>
-                        <select id="user_type_id" name="user_type_id" class="custom-select select2bs4" style="width: 50%;">
-                            <option selected disabled>Level</option>
-                            @foreach($kelola as $row)
-                            <option value="{{ $row->user_type_id }}">{{ $row->type }}</option>
-                            @endforeach
-                            </select>
-                            <button type="submit" class="btn btn-lg btn-default">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form method="get" action="">
+                                            <div class="form-group">
+                                                <label>Level</label>
+                                            <select id="user_type_id" name="user_type_id" class="custom-select select2bs4" style="width: 50%;">
+                                                <option selected disabled>Level</option>
+                                                @foreach($kelola as $row)
+                                                <option value="{{ $row->user_type_id }}">{{ $row->type }}</option>
+                                                @endforeach
+                                                </select>
+                                                <button type="submit" class="btn btn-lg btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
 
-                    </form>
-                </div>
-
-            </div>
-    </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <form method="get" action="{{route('user.index')}}">
+                                            <div class="form-group">
+                                                <label for="keyword">Search</label>
+                                                <div class="input-group input-group-lg">
+                                                    <input type="search" class="form-control form-control-lg" name="keyword" value="{{Request::get('keyword')}}"
+                                                        value="keyword" placeholder="Nama User">
+                                                    <div class="input-group-append">
+                                                        <button type="submit" class="btn btn-lg btn-default">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
   
 
                     <!-- /.card-header -->
 
                    <div class="card-body">
-                
+                    @if(Request::get('keyword'))
+                    <div class="alert alert-success alert-block">
+                        Hasil Pencarian Dokumen dengan Keyword : <b>{{ Request::get('keyword') }}</b>
+                    </div>
+                    @endif
                     @if(Request::get('user_type_id'))
                     <div class="alert alert-success alert-block">
                         Hasil Pencarian User dengan Kategori : <b>{{ $nama_type }}</b>

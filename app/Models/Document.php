@@ -27,6 +27,10 @@ class Document extends Model
     {
         return $this->belongsTo('App\Models\Kategori', 'id_kategori');
     }
+    public function relation_forum()
+    {
+        return $this->hasMany('App\Models\Forum', 'dokumen_id', 'id');
+    }
 
     public function KategoriType()
     {

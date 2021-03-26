@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Edit Documen
+Edit Buku
 @endsection
 
 @section('content')
@@ -21,8 +21,8 @@ Edit Documen
         <form class="form-horizontal" method="post" action="{{ route('ebook.update',[$ebook->id_ebook]) }}" enctype="multipart/form-data">
             @csrf
             {{ method_field('PUT') }}
-            <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
-                            <h3 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;" class="media-heading">
+            <div class="col px-8" style="margin-left: 15px !important; margin-right:20px; font-family:'Roboto'!important;">
+                            <h3 style=" line-height: 30px; font-family: 'Roboto' !important; margin-bottom: 13px !important;" class="media-heading">
                                 {{ ucwords($ebook->judul_ebook)  }}</h3>
                         </div>
             <label for="file" class="col-sm-2 control-label"></label>
@@ -54,17 +54,9 @@ Edit Documen
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="id_kategori">Kategori</label>
-                        <select id="id_kategori" name="id_kategori" class="form-control @error('id_kategori') is-invalid @enderror">
-                            @foreach($kategori as $row )
-                            <option  value="" @if($ebook->id_kategori == $row->id_kategori) Selected 
-                                @endif disabled>{{ $row->kategori }}
-                            </option>
-                            @endforeach
-                        </select>
-                        @error('id_kategori')
-                        <div class="invalid-feedback">{{$message}}</div>
-                        @enderror
+                       <label for="publisher">Penulis</label>
+                    <input name="publisher" value="{{$ebook->kategori->kategori}}" id="publisher"
+                        class="form-control @error('publisher') is-invalid @enderror" placeholder="siapa penulisanya" value="" disabled>
                     </div>
                     <!-- text input -->
                 </div>

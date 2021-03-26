@@ -8,6 +8,7 @@ use App\Models\Status;
 use App\Models\User;
 use Validator;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\Auth;
 use Storage;
 
 
@@ -18,12 +19,17 @@ class AdminEbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('pusdiklat');
+    }
     public function index()
     {
-        $ebook = Ebook::OrderBy('created_at','desc')->paginate(5);
+        $ebook = Ebook::OrderBy('id_status','desc')->paginate(1000000);
         $kategori = Kategori::all();
         $status = Status::all();
         $user = User::all();
+        
         //dd($status);
         return view('adminEbook.index',compact('ebook','kategori','status','user'));
     }
@@ -48,14 +54,19 @@ class AdminEbookController extends Controller
      */
     public function store(Request $request)
     {
+        $requestCreate = Ebook::where('user_id', Auth::user()->id)->count();
+        if ($requestCreate >= Ebook::DEFAULT_MAX_REQUEST_CREATE) {
+            return redirect()->route('adminEbook.create')->with('warning', Ebook::ERROR_MESSAGE_LIMIT_MAX_REQUEST);;
+        }
         $ebook = $request->all();
+        $ebook["user_id"] = Auth::user()->id;
         $rules = [
             'judul_ebook' => 'required|max:250',
             'deskripsi_ebook' => 'required',
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
-            'file' => 'required|mimes:pdf,docx,pptx|max:1048576',
-             'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+            'file' => 'required|max:1048576',
+            //  'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
         ];
@@ -66,7 +77,7 @@ class AdminEbookController extends Controller
             'tahun.required'           => 'tahun wajib diisi.',
             'publisher.required'         => 'publisher wajib diisi.',
             'file.required'         => 'file wajib diisi.',
-             'cover.required'         => 'cover wajib diisi.',
+            //  'cover.required'         => 'cover wajib diisi.',
             'id_kategori.required'         => 'kategori wajib dipilih.',
 
         ];
@@ -79,22 +90,30 @@ class AdminEbookController extends Controller
 
 
         if ($request->file('file')->isValid()) {
+            // $resorce       = $request->file('file');
+            // $name   = $resorce->getClientOriginalName();
+            // $resorce->move(\base_path() . "/public/ebook", $name);
+            // $save = DB::Ebook('ebook')->insert(['file' => $name]);
+            
             $file = $request->file('file');
-            $extention = $file->getClientOriginalExtension();
-            $namaFile = "ebook/" . date('YmdHis') . "." . $extention;
+            $extention = $file->getClientOriginalName();
+            $namaFile = "ebook/"  . $extention;
             $upload_path = 'uploads/ebook';
             $request->file('file')->move($upload_path, $namaFile);
             $ebook['file'] = $namaFile;
         }
         if ($request->file('cover')->isValid()) {
             $file = $request->file('cover');
-            $extention = $file->getClientOriginalExtension();
-            $namaFile = "ebook/" . $file . "." . $extention;
+            $extention = $file->getClientOriginalName();
+            $namaCover = "ebook/"  . $extention;
             $upload_path = 'uploads/ebook';
-            $request->file('cover')->move($upload_path, $namaFile);
-            $ebook['cover'] = $namaFile;
+            $request->file('cover')->move($upload_path, $namaCover);
+            $ebook['cover'] = $namaCover;
         }
-        //$ebook = \Auth::user()->id;
+        //$ebook->id_status = $request->id_status;
+        // if ($request->id_status == 2) {
+        //     $ebook->id_status = $request->id_status;
+        // }
         Ebook::create($ebook);
         //dd($request);
         return redirect()->route('adminEbook.index')->with('success', 'Dokumen Berhasil Ditambahankan');
@@ -162,14 +181,14 @@ class AdminEbookController extends Controller
         }
         if ($request->hasFile('file')) {
             if ($request->file('file')->isValid()) {
-                Storage::disk('upload')->delete($ebook->cover);
+                Storage::disk('upload')->delete($ebook->file);
 
                 $file = $request->file('file');
-                $extention = $file->getClientOriginalExtension();
-                $namaCover = "ebook/" . date('YmdHis') . "." . $extention;
+                $extention = $file->getClientOriginalName();
+                $namaFile = "ebook/"  . $extention;
                 $upload_path = 'uploads/ebook';
-                $request->file('cover')->move($upload_path, $namaCover);
-                $input['file'] = $namaCover;
+                $request->file('file')->move($upload_path, $namaFile);
+                $input['file'] = $namaFile;
             }
         }
         if ($request->hasFile('cover')) {
@@ -177,11 +196,13 @@ class AdminEbookController extends Controller
                 Storage::disk('upload')->delete($ebook->cover);
 
                 $file = $request->file('cover');
-                $extention = $file->getClientOriginalExtension();
-                $namaCover = "ebook/" . date('YmdHis') . "." . $extention;
+                $extention = $file->getClientOriginalName();
+                $namaCover = "ebook/"  . $extention;
                 $upload_path = 'uploads/ebook';
                 $request->file('cover')->move($upload_path, $namaCover);
                 $input['cover'] = $namaCover;
+            } else {
+                $cover =  'image/1.png';
             }
         }
 

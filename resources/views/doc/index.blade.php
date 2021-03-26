@@ -18,18 +18,10 @@ Document
                 <br/>
        <div class="col-md-10 offset-md-1 ">
                 <a href="{{ route('doc.create') }}" class="btn btn-primary"><span class=" fas fa-plus-square"></span>
-                    Create</a>
-                </div>
-                <br>
-       <div class="col-md-10 offset-md-1 ">
-                {{-- <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
-                        class="fas fa-plus-square"></span>
-                    Import Data</button> --}}
-                    <a href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                    Tambahkan Dokumen</a>
+                <a style="margin-left: 10px;"href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
                         Export exel</a>
-                </div>
-                
-                <br />
+                </div> 
                 {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
                 exel</a> --}}
                 <div class="modal fade" id="modal-default1">
