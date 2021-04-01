@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
 
         /*
          * Package Service Providers...
@@ -178,7 +178,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class, //untuk exel
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Aacotroneo\Saml2\Saml2ServiceProvider::class,
-
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
