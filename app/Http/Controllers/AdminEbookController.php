@@ -25,7 +25,7 @@ class AdminEbookController extends Controller
     }
     public function index()
     {
-        $ebook = Ebook::OrderBy('id_status','desc')->paginate(1000000);
+        $ebook = Ebook::OrderBy('created_at','desc')->where("user_id", Auth::user()->id)->paginate(5);
         $kategori = Kategori::all();
         $status = Status::all();
         $user = User::all();
@@ -55,9 +55,10 @@ class AdminEbookController extends Controller
     public function store(Request $request)
     {
         $requestCreate = Ebook::where('user_id', Auth::user()->id)->count();
-        if ($requestCreate >= Ebook::DEFAULT_MAX_REQUEST_CREATE) {
-            return redirect()->route('adminEbook.create')->with('warning', Ebook::ERROR_MESSAGE_LIMIT_MAX_REQUEST);;
+        if ($requestCreate >= Ebook::DEFAULT_MAX_REQUEST_CREATE){
+            return redirect()->route('adminEbook.create')->with('error_message', Ebook::ERROR_MESSAGE_LIMIT_MAX_REQUEST);;
         }
+
         $ebook = $request->all();
         $ebook["user_id"] = Auth::user()->id;
         $rules = [
@@ -110,12 +111,15 @@ class AdminEbookController extends Controller
             $request->file('cover')->move($upload_path, $namaCover);
             $ebook['cover'] = $namaCover;
         }
+<<<<<<< HEAD
         //$ebook->id_status = $request->id_status;
         // if ($request->id_status == 2) {
         //     $ebook->id_status = $request->id_status;
         // }
+=======
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
         Ebook::create($ebook);
-        //dd($request);
         return redirect()->route('adminEbook.index')->with('success', 'Dokumen Berhasil Ditambahankan');
     }
 
@@ -209,7 +213,7 @@ class AdminEbookController extends Controller
         $ebook->update($input);
         return redirect()->route('adminEbook.index')->with('status', 'Document Berhasil diupdate');
     }
-   
+
     /**
      * Remove the specified resource from storage.
      *

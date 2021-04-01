@@ -23,8 +23,13 @@ class Ebook extends Model
         'id_status'
     ];
 
+<<<<<<< HEAD
     const DEFAULT_MAX_REQUEST_CREATE = 5;
     const ERROR_MESSAGE_LIMIT_MAX_REQUEST = "Bata Upload Anda Sudah Melebihi 5x";
+=======
+    CONST DEFAULT_MAX_REQUEST_CREATE = 5;
+    CONST ERROR_MESSAGE_LIMIT_MAX_REQUEST = "Limit created";
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
 
     public function kategori()
     {

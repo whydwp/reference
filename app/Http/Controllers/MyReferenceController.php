@@ -47,15 +47,24 @@ class MyReferenceController extends Controller
         $kategori = Kategori::orderBy('created_at', 'asc')->get();
         $jumlah_doc = [];
         $data_dokumen = Kategori::all();
+<<<<<<< HEAD
         foreach ($data_dokumen as $row) {
             $doc = Document::where(
                 'id_kategori',
+=======
+        foreach($data_dokumen as $row){
+            $doc = Document::where('id_kategori',
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
                 $row->id_kategori
             )->count('id');
             $jumlah_doc[] = $doc;
         }
 
+<<<<<<< HEAD
         $nama_kategori = '';
+=======
+         $nama_kategori = '';
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
         $reference2 = Document::orderBy('jumlah_like', 'DESC')->get();
         if ($filterKeyword) {
             //dijalankan jika ada pencarian
@@ -91,7 +100,11 @@ class MyReferenceController extends Controller
         }
         // $kategori = Kategori::all();
 
+<<<<<<< HEAD
         return view('reference.index', compact('jumlah_doc', 'reference', 'reference1', 'kategori', 'nama_kategori', 'reference2', 'doc'));
+=======
+        return view('reference.index', compact('jumlah_doc','reference','reference1', 'kategori','nama_kategori', 'reference2','doc'));
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
     }
 
     public function getjudul(Request $request)
@@ -131,6 +144,7 @@ class MyReferenceController extends Controller
      */
     public function store(Request $request, Forum $forum)
     {
+<<<<<<< HEAD
         $documen = Document::all();
         //dd($doc);
         // $forum = Forum::all();
@@ -142,17 +156,25 @@ class MyReferenceController extends Controller
         //     'user_id' => auth()->id(),
         //     'message' => $request->message,
         // ]);
+=======
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
         $komentar = new Forum([
-            // 'id' => $forum->id,
-            'user_id' => auth()->id(),
+            'user_id'    => auth()->id(),
             'created_at' => $forum['created_at'],
             'dokumen_id' => $request['forum'],
+<<<<<<< HEAD
             'message' => $request['message']
             ]);
    
         $komentar->save();
         //alert()->success('You have been logged out.', 'Good bye!');
         // return response()->json($komentar);
+=======
+            'message'    => $request['message']
+        ]);
+        $komentar->save();
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
         return redirect()->back()->with('error', 'Profile updated!');
     }
     public function komentar(Request $request, Forum $forum, $id)

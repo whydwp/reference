@@ -130,6 +130,10 @@ Kumpulan Buku
                 <tfoot>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
                             {{ $kumpulan->appends(Request::get('id_status',''))->links() }}
                         </ul>
                     </nav>
@@ -221,14 +225,24 @@ Kumpulan Buku
 //     }
 // }
 $(document).ready(function() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
     var showChar = 400;
     var ellipsestext = " .....";
     var moretext = "";
     // var lesstext = " Ringkas ";
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
     $('.more').each(function() {
         var content = $(this).html();
         // pop =$('.modalpopup').modal('show');
         if(content.length > showChar) {
+<<<<<<< HEAD
             var c = content.substr(300, showChar);
             var h = content.substr(showChar, content.length - showChar);
             // var pop = $('.modalpop').modal('show');
@@ -236,6 +250,19 @@ $(document).ready(function() {
             $(this).html(html);
         }
     });
+=======
+
+            var c = content.substr(400, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+            // var pop = $('.modalpop').modal('show');
+            var html = c + '<span class="moreellipses">' + ellipsestext + '</span><span class="morecontent"><span>' + h + '</span><a data-target="#modal" data-toggle="modal" href="" >' + moretext + '</a></span><b>';
+
+            $(this).html(html);
+        }
+
+    });
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
     $(".morelink").click(function(){
         if($(this).hasClass("less")) {
             $(this).removeClass("less");
@@ -276,13 +303,23 @@ $(document).ready(function() {
        });
    });
 });
+<<<<<<< HEAD
   $(document).on("click", ".tekan", function() {
+=======
+
+  $(document).on("click", ".tekan", function() {
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
     // function tekan(id) {
         var id = $(this).data('id');
         var jumlah = $(this).data('jumlah');
         var meta = $('meta[name=csrf-token]').attr('content');
         var check = $(this).data('check');
         // console.log(check);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
         $.ajax({
             url: 'likedislike',
             method: 'POST',
@@ -308,8 +345,15 @@ $(document).ready(function() {
                         $('.likebut.'+id).removeClass("like-post");
                         $('.tekan.'+id).data('check', 0);
                     }
+<<<<<<< HEAD
                         $('.likebut.'+id).text(" "+response.jumlah);
                         $('.tekan.'+id).data('jumlah', response.jumlah);
+=======
+
+                        $('.likebut.'+id).text(" "+response.jumlah);
+                        $('.tekan.'+id).data('jumlah', response.jumlah);
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
                     // console.log(response);
                 }
                 else {
@@ -326,6 +370,10 @@ $(document).ready(function() {
     $(document).on("click", ".previewdoc", function() {
         var id = $(this).data('id');
         var jmlhview = $(this).data('jmlhview');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
         //console.log(id);
        // console.log(jmlhview);
         $.ajax({
@@ -343,6 +391,10 @@ $(document).ready(function() {
             },
             success: function(response){
                 if(response.message == 'success') {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 419211b8161b5410f561258bd46bca22337ee957
                     // console.log(response);
                 }
                 else {

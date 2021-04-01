@@ -75,5 +75,8 @@ class Kernel extends HttpKernel
         'Auth' => \App\Http\Middleware\CheckSAMLSession::class,
         'example-saml-auth' => \App\Http\Middleware\CheckSAMLSession::class,
 
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
 }
