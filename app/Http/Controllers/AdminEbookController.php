@@ -19,6 +19,10 @@ class AdminEbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('pusdiklat');
+    }
     public function index()
     {
         $ebook = Ebook::OrderBy('created_at', 'desc')->where("user_id", Auth::user()->id)->paginate(5);
