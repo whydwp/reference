@@ -11,7 +11,7 @@
     .sticky-header{
        width:100%;
         position: fixed;
-      
+
     }
 </style>
 <nav class="gradient3 main-header navbar navbar-expand-md navbar-light navbar-white sticky-header">
@@ -51,8 +51,8 @@
 
                         <p>
                            <p>
-                                {{Auth :: user()->full_name}}
-                                <small value="{{Auth :: user()->user_type_id}}">{{Auth :: user()->type}}</small>
+                                {{Auth::user()->full_name}}
+                                <small value="{{Auth::user()->roles->pluck("id")}}">{{Auth::user()->roles->pluck("name")->implode(", ")}}</small>
                             </p>
                         </p>
                     </li>
@@ -70,7 +70,7 @@
                 </ul>
             </li>
 
-       
+
         </ul>
         {{-- <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
@@ -84,7 +84,7 @@
                @if(app()->getLocale()=='id')
                <a href="{{url('locale/en')}}" class="dropdown-item">@lang('english')</a>
                @endif
-              
+
             </div>
         </div> --}}
 
