@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategoryType extends Migration
+class CreateKategoriType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateKategoryType extends Migration
      */
     public function up()
     {
-        Schema::create('kategory_type', function (Blueprint $table) {
-            $table->id("kategory_type_id");
+        Schema::create('kategori_type', function (Blueprint $table) {
+            $table->id("kategori_type_id");
             $table->string("type");
             $table->timestamps();
         });
