@@ -29,8 +29,6 @@ Kategori
                 Import Data</button>
                 <p></p>
             </div>
-            
-            <br />
             {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
             exel</a> --}}
             <div class="modal fade" id="modal-default1">

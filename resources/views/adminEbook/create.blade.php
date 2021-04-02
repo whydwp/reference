@@ -73,10 +73,6 @@ Input Buku
                             @enderror
                     </div>
                 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 419211b8161b5410f561258bd46bca22337ee957
             </div>
             <div class="form-group">
                 <label for="deskripsi_ebook">Deskripsi</label>

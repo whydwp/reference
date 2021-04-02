@@ -34,11 +34,23 @@ Edit Buku
                     <div class="form-group">
                         <label for="id_kategori">Kategori</label>
                         <select id="id_kategori" name="id_kategori" class="form-control @error('id_kategori') is-invalid @enderror">
+                            <option selected disabled style="font-weight: bold;">Teknis : </option>
                             @foreach($kategori as $row )
+                            @if($row->kategori_type_id == 1)
                             <option value="{{ $row->id_kategori }}" @if($ebook->id_kategori == $row->id_kategori) Selected
                                 @endif>{{ $row->kategori }}
                             </option>
+                            @endif
                             @endforeach
+                            <option selected disabled style="font-weight: bold;">Non Teknis : </option>
+                            @foreach($kategori as $row )
+                            @if($row->kategori_type_id == 2)
+                            <option value="{{ $row->id_kategori }}" @if($ebook->id_kategori == $row->id_kategori) Selected
+                                @endif>{{ $row->kategori }}
+                            </option>
+                            @endif
+                            @endforeach
+                           
                         </select>
                         @error('id_kategori')
                         <div class="invalid-feedback">{{$message}}</div>

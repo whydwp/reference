@@ -53,6 +53,7 @@ Route::middleware('example-saml-auth')->group(function () {
         Route::resource('/adminEbook', 'AdminEbookController');
         Route::resource('/kumpulanEbook', 'kumpulanEbookController');
         Route::post('/documen/{id}', 'MyReferenceController@komentar');
+        Route::get('reportAdmin', 'DocumentController@report')->name('reportAdmin');
         Route::get('report', 'KelolaDocumentController@report')->name('report');
         Route::get('reportcomen', 'ForumController@reportc')->name('reportcomen');
         Route::get('export', 'UserController@export')->name('export');

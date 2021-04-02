@@ -19,7 +19,7 @@ Document
        <div class="col-md-10 offset-md-1 ">
                 <a href="{{ route('doc.create') }}" class="btn btn-primary"><span class=" fas fa-plus-square"></span>
                     Tambahkan Dokumen</a>
-                <a style="margin-left: 10px;"href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                <a style="margin-left: 10px;"href="{{ route('reportAdmin') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
                         Export exel</a>
                 </div> 
                 {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
