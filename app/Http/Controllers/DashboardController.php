@@ -17,8 +17,9 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
-    }
+        $this->middleware('role:superadmin', ['only' => ['index']]);
+     }
+
     public function index()
     {
         // return view('general.dashboard2');

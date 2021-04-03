@@ -28,7 +28,8 @@ class KategoriController extends Controller
      */
      public function __construct()
     {
-        $this->middleware('admin')->only('index', 'edit','store', 'reportkategori','import','destroy');
+        $this->middleware('role:superadmin', ['only' => ['index', 'create', 'edit', 'store', 'reportkategori', 'import', 'destroy']]);
+
     }
     public function index()
     {

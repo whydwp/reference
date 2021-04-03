@@ -24,6 +24,8 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('role:superadmin', ['only' => ['index','show', 'create', 'store', 'export', 'importexel', 'update', 'destroy']]);
+
+        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
 
     public function index(Request $request)
@@ -142,7 +144,7 @@ class UserController extends Controller
         //
     }
 
-    /**
+    /**e
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\KelolaUser  $kelolaUser
@@ -156,7 +158,7 @@ class UserController extends Controller
         $userRole = $user->roles->pluck("name")->toArray();
         $userPermission = $user->permissions->pluck("name")->toArray();
 
-        dd($userPermission, $user->getAllPermissions()->pluck("name")->toArray());
+        //dd($userPermission, $user->getAllPermissions()->pluck("name")->toArray());
         return view('user.edit', compact('user', 'roles', 'permission', 'userRole', 'userPermission'));
     }
 

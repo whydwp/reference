@@ -13,7 +13,7 @@ class MyLikeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('siswa'); //membatasi level
+        $this->middleware('role:pusdiklat', ['only' => ['index']]);
     }
 
     /**

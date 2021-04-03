@@ -137,5 +137,21 @@ class UserSeeder extends Seeder
         $user->syncPermissions($permission);
         $this->command->info("user created!");
 
+
+        $user = User::where("full_name", "wahyu")->first();
+        $role = Role::where("name", 'admin')->first();
+        $permission = Permission::whereIn("name", [
+            'profile',
+            'dokumen-list',
+            'dokumen-create',
+            'dokumen-edit',
+            'dokumen-delete',
+            'reference',
+            'like'])->pluck("id", "id")->all();
+
+        $user->assignRole($role->id);
+        $user->syncPermissions($permission);
+        $this->command->info("admin created!");
+
     }
 }

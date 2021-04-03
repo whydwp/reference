@@ -18,10 +18,12 @@ class ProfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('admin'); //membatasi level
-    // }
+    public function __construct()
+    {
+        $this->middleware('role:superadmin', ['only' => ['index','update']]);
+        $this->middleware('role:admin', ['only' => ['index','update']]);
+        $this->middleware('role:pusdiklat', ['only' => ['index','update']]);
+    }
     public function index()
     {
         // $input = User::all();

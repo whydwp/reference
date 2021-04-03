@@ -17,10 +17,13 @@ class EbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
+    public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('role:superadmin', ['only' => ['index','edit','update', 'destroy']]);
+
+        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
+
     public function index(Request $request)
     {
      

@@ -15,10 +15,12 @@ class KumpulanEbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
-        $this->middleware('siswa');
+        $this->middleware('role:pusdiklat', ['only' => ['index']]);
     }
+
     public function index(Request $request)
     {
         

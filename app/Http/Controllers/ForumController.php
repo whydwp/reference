@@ -18,8 +18,11 @@ class ForumController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('role:superadmin', ['only' => ['index', 'create', 'store', 'reportc','destroy']]);
+
+        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
+
     public function index()
     {
         $forum = Forum::paginate(10);

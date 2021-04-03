@@ -21,8 +21,11 @@ class DocumentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('pusdiklat');
+        $this->middleware('role:admin', ['only' => ['index', 'show', 'create', 'store', 'report', 'update', 'destroy','edit']]);
+
+        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
+
 
     public function index(Request $request)
     {

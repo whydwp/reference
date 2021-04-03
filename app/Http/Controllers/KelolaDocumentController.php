@@ -21,7 +21,7 @@ class KelolaDocumentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('role:superadmin', ['only' => ['index', 'create', 'edit','update', 'store', 'report', 'importexel', 'destroy']]);
     }
  
     public function index(Request $request)

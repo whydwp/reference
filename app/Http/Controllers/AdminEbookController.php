@@ -19,10 +19,13 @@ class AdminEbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
+     public function __construct()
     {
-        $this->middleware('pusdiklat');
+        $this->middleware('role:admin', ['only' => ['index','show', 'create', 'store', 'edit', 'update', 'destroy']]);
+
+        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
+
     public function index()
     {
         $ebook = Ebook::OrderBy('created_at', 'desc')->where("user_id", Auth::user()->id)->paginate(5);

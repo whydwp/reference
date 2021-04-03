@@ -18,6 +18,16 @@ class DashboardUserController extends Controller
     // {
     //     $this->middleware('pusdiklat');
     // }
+
+    public function __construct()
+    {
+        $this->middleware('role:admin', ['only' => ['index']]);
+        $this->middleware('role:pusdiklat', ['only' => ['index']]);
+
+        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
+    }
+
+
     public function index()
     {
         // return view('general.dashboard2');
