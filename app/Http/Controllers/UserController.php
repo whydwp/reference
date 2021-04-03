@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use Validator;
 use App\Models\User;
+use App\Jobs\ImportJob;
 use App\Models\KelolaUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Exports\UserExport;
 use App\Imports\UserImport;
-use App\Jobs\ImportJob;
-use Excel;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -35,7 +36,6 @@ class UserController extends Controller
         }
 
         $data_user = $query->paginate(10);
-        // dd($query->toSql(), $request->has("role"), $request->all(), $data_user);
         return view('user.index', compact('data_user', "roles"));
     }
 
@@ -144,9 +144,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $kelola = KelolaUser::all();
+        $roles = Role::get();;
         $user =  User::findOrFail($id);
-        return view('user.edit', compact('user', 'kelola'));
+        $permission = Permission::get();
+        $userRole = $user->roles->pluck("name")->toArray();
+        $userPermission = $user->permissions->pluck("name")->toArray();
+
+        return view('user.edit', compact('user', 'roles', 'permission', 'userRole', 'userPermission'));
     }
 
     /**
@@ -163,26 +167,29 @@ class UserController extends Controller
 
         $validasi = Validator::make($data, [
             'full_name' => 'required|max:250',
-            'username' => 'required|max:100|unique:users,username,' . $id,
-            'email' => 'required|email|max:255|unique:users,email,' . $id,
-            'password' => 'sometimes|nullable|min:6',
-            'user_type_id' => 'required|max:250',
-
-
+            'username'  => 'required|max:100|unique:user_auth,username,' . $id,
+            'email'     => 'required|email|max:255|unique:user_auth,email,' . $id,
+            'password'  => 'sometimes|nullable|min:6',
         ]);
 
         if ($validasi->fails()) {
             return redirect()->route('user.edit', [$id])->withErrors($validasi);
         }
-        if ($request->input('password')) {
 
+        if ($request->input('password')) {
             //jika pasword diisi
             $data['password'] = bcrypt($data['password']);
         } else {
             //juka passowrd tydak diisi
             $data = Arr::except($data, ['password']);
         }
+
         $user->update($data);
+
+        $user->removeRole($request->role_id);
+        $user->assignRole($request->role_id);
+        $user->syncPermissions($request->permission);
+
         return redirect()->route('user.index')->with('status', 'User Berhasil Diupdate');
     }
 
