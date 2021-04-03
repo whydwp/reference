@@ -14,7 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Reference Learning</title>
     <style>
         body{
-           
+
             overflow-x: hidden;
         }
         i .tekan {
@@ -37,7 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .like-post {
             color: #4400ff !important;
         }
-        
+
         .back-to-top {
         position: fixed;
         bottom: 25px;
@@ -59,13 +59,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .morelink {
         display: block;
         }
-        
+
        /* #more {
            display: none;} */
         /* html{
-           background-image: linear-gradient(to right, #004d78, #7effe3); 
+           background-image: linear-gradient(to right, #004d78, #7effe3);
         } */
-    </style> 
+    </style>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     {{-- <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet">
@@ -77,24 +77,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
     <link rel="shortcut icon" href="{{asset('now-ui-kit/assets/img/logo.svg')}}">
     <!-- Jquery -->
-    
-    
-        {{-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"> --}}
-        {{-- <link rel="stylesheet" type="text/css" href="{{asset('jqueryui/jquery-ui.min.css')}}"> --}}
-        <!-- Select2 -->
-        <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
-        <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-        
-        {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-        <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
-        {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
-        
-     
-        <script src="{{asset('chartjs/Chart.min.js')}}"></script>
-        <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
-    </script>
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+
+
+    {{-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"> --}}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{{asset('chartjs/Chart.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -105,11 +101,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 4 -->
     <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
-    
+
     <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/demo.js')}}"></script>
-    
+
     {{-- <script>
         $(document).bind("contextmenu",function(e) {
     alert('@copyright Yourportfolio for your curiculum vitae , resume & your portfolio')//silahkan tulis pesan yang akan
@@ -133,7 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="col-sm-12">
                     <!-- Content Wrapper. Contains page content -->
                     <div class="content-wrapper">
-                      
+
                         <section class="content-header">
                             <div class="container">
                                 <div class="row mb-4">
@@ -142,26 +138,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             @yield('title')
                                         </h3>
                                         <ol class="breadcrumb">
-                                         @if(Auth::user()->user_type_id == 1)
-                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
-                                                    @lang('Home') </a></li>
+                                        @role("superadmin")
+                                            <li>
+                                                <a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
+                                                    @lang('Home')
+                                                </a>
+                                            </li>
                                             <li class="active">  / @yield('title')</li>
-                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
-                                                   </a> </li>
-                                            <li class="active">   @yield('titlel') </li>
-                                            @elseif(Auth::user()->user_type_id == 2 )
-                                             <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
-                                                    {{__('Halaman depan')}}</a></li>
-                                            <li class="active "> / @yield('title')</li>
-                                            @elseif(Auth::user()->user_type_id == 3 )
-                                             <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
-                                                    {{__('Halaman depan')}}</a></li>
-                                            <li class="active"> / @yield('title')</li>
-                                            @elseif(Auth::user()->user_type_id == 3 )
-                                             <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
-                                                    {{__('Halaman depan')}}</a></li>
-                                            <li class="active"> / @yield('title')</li>
-                                            @endif
+                                            <li>
+                                                <a href="{{route('dashboard')}}">
+                                                    <i class="fa fa-dashboard"></i>
+                                                </a>
+                                            </li>
+                                            <li class="active"> @yield('titlel') </li>
+                                        @endrole
+                                        @hasanyrole("admin|plnpusdiklat")
+                                            <li>
+                                                <a href="{{route('dashboardUser')}}">
+                                                    <i class="fa fa-dashboard"></i>
+                                                    {{__('Halaman depan')}}
+                                                </a>
+                                            </li>
+                                            <li class="active ">
+                                                / @yield('title')
+                                            </li>
+                                        @endhasanyrole
                                         </ol>
                                     </div>
                                 </div>
@@ -193,7 +194,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- /.control-sidebar -->
 
                     <!-- Main Footer -->
-                   
+
                     <a id="back-to-top" href="#" class="btn btn-info btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
                     <!-- Content Header (Page header) -->
                 </div>

@@ -36,25 +36,6 @@ class UserSeeder extends Seeder
             ],
         ];
 
-        $users = [
-            [
-                "username"     => "201710370311320",
-                "full_name"    => "wahyu",
-                "email"        => "administrator@mail.com",
-                "password"     => Hash::make("admin"),
-                "user_type_id" => 1,
-                "created_at"   => now(),
-            ],
-            [
-                "username"     => "srob",
-                "full_name"    => "srob",
-                "email"        => "srob@mail.com",
-                "password"     => Hash::make("srob"),
-                "user_type_id" => 1,
-                "created_at"   => now(),
-            ],
-        ];
-
         $permissions = [
             'user-list',
             'user-create',
@@ -87,25 +68,65 @@ class UserSeeder extends Seeder
             'like'
          ];
 
+
         $roles = [
             "superadmin",
             "admin",
             "pnlpusdiklat"
         ];
 
+        $users = [
+            [
+                "username"  => "superadmin",
+                "full_name" => "superadmin",
+                "email"     => "superadmin@plnpusdiklat.com",
+                "user_type_id" => 1,
+                "password"  => Hash::make("superadmin"),
+            ],
+            [
+                "username"  => "201710370311320",
+                "full_name" => "wahyu",
+                "email"     => "administrator@plnpusdiklat.com",
+                "user_type_id" => 1,
+                "password"  => Hash::make("admin"),
+            ],
+            [
+                "username"  => "srob",
+                "full_name" => "srob",
+                "email"     => "srob@plnpusdiklat.com",
+                "user_type_id" => 1,
+                "password"  => Hash::make("srob"),
+            ],
+        ];
+
 
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
+        $this->command->info("permission success created");
 
         foreach ($roles as $role) {
             Role::create(['name' => $role]);
         }
+        $this->command->info("roles success created");
 
-        UserType::insert($userTypes);
+        foreach ($users as $user){
+            User::create($user);
+        }
+        $this->command->info("users success created");
+
+        UserType::insert($userTypes); //enable for-old-data
         $this->command->info("user type success created");
 
-        User::insert($users);
-        $this->command->info("user success cfreated");
+
+        //assign-role-and-permission
+        $superAdmin = User::where("full_name", "superadmin")->first();
+        $roleAdmin = Role::where("name", 'superadmin')->first();
+        $permissionAdmin = Permission::pluck("id", "id")->all();
+
+        $roleAdmin->syncPermissions($permissionAdmin);
+        $superAdmin->assignRole($roleAdmin->id);
+        $this->command->info("superadmin created!");
+
     }
 }

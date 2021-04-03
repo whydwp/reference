@@ -2,7 +2,7 @@
 
     .sticky-sidebar{
     position: fixed;
-    
+
     }
 </style>
 
@@ -28,181 +28,189 @@
         <hr>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            @if(Auth::user()->user_type_id == 1)
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{route('dashboard')}}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('profil.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <p>
-                            Kelola profil
-                        </p>
-                    </a>
-                </li>
+            @role("superadmin")
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="{{route('dashboard')}}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('profil.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-address-card"></i>
+                            <p>
+                                Kelola profil
+                            </p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    {{-- <a href="{{ route('kategori', ['id' => '1']) }}" class="nav-link"> --}}
-                    <a href="{{ route('kategori.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-random"></i>
-                        <p>
-                            Kategori
-                        </p>
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('kategori', ['id' => '1']) }}" class="nav-link"> --}}
+                        <a href="{{ route('kategori.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-random"></i>
+                            <p>
+                                Kategori
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('forum.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                Kelola Komentar
+                            </p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{route('like.index')}}" class="nav-link">
+                            <i class="nav-icon fab fa-gratipay"></i>
+                            <p>
+                                Like
+                            </p>
+                        </a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a href="{{route('document.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Kelola Dokumen
+                            </p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{ route('document.index') }}" class="nav-link">
+                    <i class="fas fa-file-alt"></i>
+                    <p>
+                        kelola-document
+                    </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('forum.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>
-                            Kelola Komentar
-                        </p>
-                    </a>
-                </li>
-                {{-- <li class="nav-item">
-                    <a href="{{route('like.index')}}" class="nav-link">
-                        <i class="nav-icon fab fa-gratipay"></i>
-                        <p>
-                            Like
-                        </p>
-                    </a>
-                </li> --}}
-                <li class="nav-item">
-                    <a href="{{route('document.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Kelola Dokumen
-                        </p>
-                    </a>
-                </li>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Kelola User
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('ebook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                            Ebooks
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            @endrole
+            @role("admin")
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                            with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="{{route('dashboardUser')}}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('profil.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-address-card"></i>
+                            <p>
+                                Kelola profil
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('reference.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                Reference
+                            </p>
+                        </a>
+                    </li>
 
-                {{-- <li class="nav-item">
-                    <a href="{{ route('document.index') }}" class="nav-link">
-                <i class="fas fa-file-alt"></i>
-                <p>
-                    kelola-document
-                </p>
-                </a>
-                </li> --}}
-                <li class="nav-item">
-                    <a href="{{ route('user.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
-                        <p>
-                            Kelola User
-                        </p>
+                    <li class="nav-item">
+                        <a href="{{route('doc.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Kelola Dokumen
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('adminEbook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Ebooks
+                            </p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                                    <a href="{{ route('document.index') }}" class="nav-link">
+                    <i class="fas fa-file-alt"></i>
+                    <p>
+                        kelola-document
+                    </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('ebook.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                           Kelola Buku
-                        </p>
-                    </a>
-                </li>
-                
+                    </li> --}}
 
-            </ul>
-            @elseif(Auth::user()->user_type_id == 2)
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                           with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{route('dashboardUser')}}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('profil.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <p>
-                            Kelola profil
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('reference.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>
-                            Reference
-                        </p>
-                    </a>
-                </li>
+                </ul>
+            @endrole
+            @role("plnpusdiklat")
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                            with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="{{route('dashboardUser')}}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('profil.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-address-card"></i>
+                            <p>
+                                Kelola profil
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('reference.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                Reference
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('like.index')}}" class="nav-link">
+                            <i class="nav-icon fab fa-gratipay"></i>
+                            <p>
+                                Like
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('kumpulanEbook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Kumpulan Buku
+                            </p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="{{route('doc.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
-                        <p>
-                            Kelola Dokumen
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('adminEbook.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>
-                            Kelola Buku
-                        </p>
-                    </a>
-                </li>
-            </ul>
-            @elseif(Auth::user()->user_type_id == 3)
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                           with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{route('dashboardUser')}}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('profil.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <p>
-                            Kelola profil
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('reference.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                        <p>
-                            Reference
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('like.index')}}" class="nav-link">
-                        <i class="nav-icon fab fa-gratipay"></i>
-                        <p>
-                            Like
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('kumpulanEbook.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
-                        <p>
-                            Kumpulan Buku
-                        </p>
-                    </a>
-                </li>
-
-            </ul>
-            @endif
+                </ul>
+            @endrole
         </nav>
         <!-- /.sidebar-menu -->
     </div>

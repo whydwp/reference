@@ -11,6 +11,7 @@ use App\Exports\UserExport;
 use App\Imports\UserImport;
 use App\Jobs\ImportJob;
 use Excel;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -25,23 +26,17 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {
-        
-        $data_user = User::orderBy('created_at', 'desc')->paginate(10);
-        $kelola = KelolaUser::all();
-        $filterKeyword = $request->get('keyword');
-        $nama_type = '';
-        if ($filterKeyword) {
-            //dijalankan jika ada pencarian
-            $data_user = User::where('full_name', 'LIKE', "%$filterKeyword%")->paginate(10);
+        $roles = Role::get();
+        $query = User::orderBy('created_at', 'desc');
+        if($request->has("role")){
+            $query->whereHas("roles", function($q) use ($request){
+                $q->where("name", $request->role);
+            });
         }
-        $filter_by_kategori = $request->get('user_type_id');
-        if ($filter_by_kategori) {
-            $data_user = User::where('user_type_id', $filter_by_kategori)->paginate(5);
-            $data_kelola = KelolaUser::find($filter_by_kategori);
-            $nama_type = $data_kelola->type;
-        }
-        // $kategori = Kategori::all();
-        return view('user.index', compact('data_user', 'nama_type', 'kelola'));
+
+        $data_user = $query->paginate(10);
+        // dd($query->toSql(), $request->has("role"), $request->all(), $data_user);
+        return view('user.index', compact('data_user', "roles"));
     }
 
     /**
@@ -92,7 +87,7 @@ class UserController extends Controller
     public function importexel(Request $request){
         // validasi
         // $this->validate($request, [
-            
+
         //     'file' => 'required|mimes:csv,xls,xlsx|max:50048'
         // ]);
         // // $Kelola = $request->all();
@@ -128,7 +123,7 @@ class UserController extends Controller
             return redirect()->back()->with(['success' => 'Upload success']);
         }
         return redirect()->back()->with(['error' => 'Please choose file before']);
-        
+
     }
     /**
      * Display the specified resource.

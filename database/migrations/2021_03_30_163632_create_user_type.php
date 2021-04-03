@@ -14,7 +14,7 @@ class CreateUserType extends Migration
     public function up()
     {
         Schema::create('user_type', function (Blueprint $table) {
-            $table->bigIncrements("id");
+            $table->bigIncrements("user_type_id");
             $table->string("type");
             $table->bigInteger("created_by")->nullable();
             $table->bigInteger("updated_by")->nullable();
