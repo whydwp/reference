@@ -13,7 +13,7 @@ Edit User
         @if($errors->any())
         <ul class="alert alert-danger">
             @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
+                <li>{{ $error }}</li>
             @endforeach
         </ul>
         @endif
@@ -59,11 +59,13 @@ Edit User
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label for="user_type_id">Level</label>
+                        <label for="role_id">Level</label>
                         <div class="input-group">
-                        <select id="user_type_id" name="user_type_id" class="form-control">
-                            @foreach($kelola as $row )
-                            <option value="{{ $row->user_type_id }}" @if($user->user_type_id == $row->user_type_id) Selected @endif>{{ $row->type }}</option>
+                        <select id="role_id" name="role_id" class="form-control">
+                            @foreach($roles as $row )
+                                <option value="{{ $row->name }}" {{ in_array($row->name, $userRole ) ? "selected" : '' }}>
+                                    {{ $row->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -76,90 +78,16 @@ Edit User
                     <h3 class="card-title">Setting Hak Akses</h3>
                 </div>
                 <div class="card-body">
-                    <div class="row jarak">
-                       <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                   Kelola Dokumen
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Kelola User
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Kelola Ebook
-                                </label>
-                            </div>
-                        </div>
+                    @foreach($permission as $value)
                         <div class="col-sm-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Kelola Kategori
+                                <input class="form-check-input" type="checkbox" value="{{ $value->id }}" id="{{ $loop->iteration }}" name="permission[]" {{ in_array($value->name, $userPermission) ? "checked" : ''  }}>
+                                <label class="form-check-label" for="{{ $loop->iteration }}">
+                                    {{ $value->name }}
                                 </label>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Kelola Komentar
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row jarak">
-                      <div class="col-sm-2 bawah">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Reference
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Like
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Kumpulan Ebook
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Dashboard Super Admin
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Dashboard User
-                            </label>
-                        </div>
-                    </div>
-                    </div>
+                    @endforeach
                 </div>
                 <!-- /.card-body -->
             </div>
