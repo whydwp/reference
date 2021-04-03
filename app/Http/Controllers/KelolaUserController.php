@@ -13,6 +13,8 @@ class KelolaUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     
     public function index()
     {
         $data_user = User::paginate(10);

@@ -16,8 +16,7 @@ class PreviewdocController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('pusdiklat');
-       
+        $this->middleware('role:admin', ['only' => ['index']]);
     }
     // public function __construct3()
     // {
