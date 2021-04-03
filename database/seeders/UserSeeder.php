@@ -65,7 +65,10 @@ class UserSeeder extends Seeder
             'dashboard-admin',
             'profile',
             'reference',
-            'like'
+            'like',
+            'dashboard-user',
+            'kumpulan-buku',
+            
          ];
 
 
@@ -95,7 +98,7 @@ class UserSeeder extends Seeder
                 "full_name" => "srob",
                 "email"     => "srob@plnpusdiklat.com",
                 "password"  => Hash::make("srob"),
-                "user_type_id" => 1,
+                "user_type_id" => 2,
             ],
         ];
 
@@ -131,7 +134,7 @@ class UserSeeder extends Seeder
 
         $user = User::where("full_name", "srob")->first();
         $role = Role::where("name", 'pusdiklat')->first();
-        $permission = Permission::whereIn("name", ['profile', 'reference','like'])->pluck("id", "id")->all();
+        $permission = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
         $user->syncPermissions($permission);
@@ -142,12 +145,18 @@ class UserSeeder extends Seeder
         $role = Role::where("name", 'admin')->first();
         $permission = Permission::whereIn("name", [
             'profile',
+            'ebook-list',
+            'ebook-create',
+            'ebook-edit',
+            'ebook-delete',
             'dokumen-list',
             'dokumen-create',
             'dokumen-edit',
             'dokumen-delete',
             'reference',
-            'like'])->pluck("id", "id")->all();
+            'dashboard-user',
+            'like'
+            ])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
         $user->syncPermissions($permission);
