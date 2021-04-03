@@ -27,16 +27,20 @@ class Document extends Model
     {
         return $this->belongsTo('App\Models\Kategori', 'id_kategori');
     }
+    public function relation_forum()
+    {
+        return $this->hasMany('App\Models\Forum', 'dokumen_id', 'id');
+    }
 
     public function KategoriType()
     {
         return $this->belongsTo('App\Models\KategoriType', 'kategori_type_id');
     }
 
-    public function relation_forum()
-    {
-        return $this->hasMany('App\Models\Forum', 'dokumen_id', 'id');
-    }
+    // public function relation_forum()
+    // {
+    //     return $this->hasMany('App\Models\Forum', 'dokumen_id', 'id');
+    // }
 
     public function getperkategori($hasid) {
         $docinthiscat = Document::select('*')

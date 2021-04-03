@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Ebook
+Buku
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@ Ebook
                <div class="card">
 
                 <div class="card-header">
-                    <h3 class="card-title">Kelola Document</h3>
+                    <h3 class="card-title">Kelola Buku</h3>
                 </div>
 
        {{-- <div class="col-md-10 offset-md-1 ">
@@ -24,39 +24,36 @@ Ebook
                 {{-- <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
                         class="fas fa-plus-square"></span>
                     Import Data</button> --}}
-                </div>
-                
-                <br />
-                {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
-                exel</a> --}}
-        <br/>
-              
-                <div class="row">
+                </div>            
+                {{-- <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="get" action="{{route('document.index')}}">
-                                <div class="form-group">
-                                    <label>Cari Kategori</label>
-                                    <select id="id_kategori" name="id_kategori" class="custom-select select2bs4" style="width: 50%;">
-                                        <option selected disabled>Kategori</option>
-                                        @foreach($kategori as $row)
-                                        <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
-                                        @endforeach
-                                    </select>
-                                  <button type="submit" class="btn btn-lg btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                                </div>    
+                                <form method="get" action="">
+                                    <div class="form-group">
+                                        <label>Level</label>
+                                        <select id="user_type_id" name="id_status" class="custom-select select2bs4"
+                                            style="width: 50%;">
+                                            <option selected disabled>Level</option>
+                                            @foreach($status as $row)
+                                            <option value="{{ $row->id_status }}">{{ $row->status }}</option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit" class="btn btn-lg btn-default">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                
                                 </form>
                             </div>
-                        </div>                       
-                    </div>
-                </div>
+                
+                        </div>
+                    </div> --}}
                 <div class="card-body">    
-                    @if(Request::get('id_kategori'))
+                    @if(Request::get('id_status'))
                     <div class="alert" style="background-image: linear-gradient(to right, #a2c2d4, #7effe3);">
-                        Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_kategori }}</b>
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        Hasil Pencarian Dokumen dengan Kategori : <b>{{ $nama_status }}</b>
                     </div>
                     @endif
                     @include('alert.success')
@@ -79,10 +76,14 @@ Ebook
                             <td>{{ $loop->iteration + ($ebook->perPage() * ($ebook->currentPage() - 1)) }}
                             </td>
                             <td>{{ str_limit($row->judul_ebook , 30, ' ...') }}</td>
-                           @if($row->status)
-                            <td>{{ $row->status->status}}</td>
+                           @if($row->id_status == 1)
+                            <td><span class="small-box "
+                                    style="background-color: #65ff57; text-align: center; font-weight:500;">{{ $row->status->status}}</span></td>
+                            @elseif($row->id_status == 2)
+                            <td><span class="small-box "
+                                    style="background-color: #fff200; text-align: center; font-weight:500;">{{ $row->status->status}}</span></td>
                             @else
-                            <td>PENDING</td>
+                            <td><span class="small-box " style="background-color: #00ccff; text-align: center; font-weight:500;">Pending</span></td>
                             @endif
                             <td>{{ $row->publisher }}</td>
                             <td>{{ $row->kategori->kategori}}</td>
@@ -108,13 +109,13 @@ Ebook
                     </tbody>
                 </table>
                 
-               <tfoot>
+               {{-- <tfoot>
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
+                        <ul class="pagination justify-content-center" >
                             {{ $ebook->appends(Request::all())->links() }}
                         </ul>
                     </nav>
-                </tfoot>
+                </tfoot> --}}
                      
                 </div>
                 <!-- /.card-body -->
@@ -134,9 +135,9 @@ Ebook
 <script>
     $(function () {
     $('#example2').DataTable({
-    "paging": false,
+    "paging": true,
     "lengthChange": true,
-    "searching": false,
+    "searching": true,
     "ordering": true,
     "info": true,
     "autoWidth": false,

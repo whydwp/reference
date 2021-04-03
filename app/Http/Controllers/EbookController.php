@@ -17,23 +17,26 @@ class EbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function index(Request $request)
     {
      
         // $kategori = Kategori::all();
-        $ebook = Ebook::OrderBy('created_at','desc')->paginate(5);
-        $kategori = Kategori::all();
+        $ebook = Ebook::OrderBy('id_status','desc')->paginate(1000000000);
         $status = Status::all();
-        //dd($status);
-        $nama_kategori = '';
+        $filterKeyword = $request->get('keyword');
+        $nama_status = '';
 
-        $filter_by_kategori = $request->get('id_kategori');
+        $filter_by_kategori = $request->get('id_status');
         if ($filter_by_kategori) {
-            $ebook = Ebook::where('id_kategori', $filter_by_kategori)->paginate(5);
-            $data_kategori = Kategori::find($filter_by_kategori);
-            $nama_kategori = $data_kategori->kategori;
+            $ebook = Ebook::where('id_status', $filter_by_kategori)->paginate(5);
+            $data_status = Status::find($filter_by_kategori);
+            $nama_status = $data_status->status;
         }
-        return view('ebook.index',compact('ebook','kategori','status','nama_kategori'));
+        return view('ebook.index',compact('ebook','status', 'nama_status'));
     }
 
     /**

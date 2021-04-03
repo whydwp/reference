@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Edit Documen
+Edit Buku
 @endsection
 
 @section('content')
@@ -34,11 +34,23 @@ Edit Documen
                     <div class="form-group">
                         <label for="id_kategori">Kategori</label>
                         <select id="id_kategori" name="id_kategori" class="form-control @error('id_kategori') is-invalid @enderror">
+                            <option selected disabled style="font-weight: bold;">Teknis : </option>
                             @foreach($kategori as $row )
+                            @if($row->kategori_type_id == 1)
                             <option value="{{ $row->id_kategori }}" @if($ebook->id_kategori == $row->id_kategori) Selected
                                 @endif>{{ $row->kategori }}
                             </option>
+                            @endif
                             @endforeach
+                            <option selected disabled style="font-weight: bold;">Non Teknis : </option>
+                            @foreach($kategori as $row )
+                            @if($row->kategori_type_id == 2)
+                            <option value="{{ $row->id_kategori }}" @if($ebook->id_kategori == $row->id_kategori) Selected
+                                @endif>{{ $row->kategori }}
+                            </option>
+                            @endif
+                            @endforeach
+                           
                         </select>
                         @error('id_kategori')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -82,7 +94,7 @@ Edit Documen
             
             <label for="file" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <iframe src="{{ asset('uploads/'.$ebook->file) }}" width="500"
+                <iframe src="{{ asset('uploads/'.$ebook->file) }}" type="application / pptx" width="500"
                     height="250">{{ asset('uploads/'.$ebook->file) }}</iframe>
             
             </div>

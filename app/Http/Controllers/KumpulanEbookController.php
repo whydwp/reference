@@ -15,25 +15,29 @@ class KumpulanEbookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('siswa');
+    }
     public function index(Request $request)
     {
-        $status = Status::accepted()->first();
-        $nama_status = '';
-        $kumpulan = Ebook::orderBy('id_status', 'asc')->where('id_status', $status->id)->paginate(3);
-        // if ($status) {
-        //     $kumpulan = Ebook::where('id_status', $status)->paginate(5);
-        //     $data_status = Status::find($status);
-        //     $nama_status = $data_status;
-        //     // dd($nama_status);
-        // }
-
-        return view('kumpulanEbook.index',compact('kumpulan', 'nama_status'));
+        
+        $status = Status::rejected()->first();
+        // dd($status);
+        // $nama_status = '';
+        $filterKeyword = $request->get('keyword');
+        $kumpulan = Ebook::orderBy('id_status', 'asc')->where('id_status', $status->id_status)->paginate(3);
+        if ($filterKeyword) {
+            //dijalankan jika ada pencarian
+            $kumpulan = Ebook::where('judul_ebook', 'LIKE', "%$filterKeyword%")->paginate(10);
+        }
+        return view('kumpulanEbook.index', compact('kumpulan'));
     }
 
     public function download($file)
     {
 
-        return response()->download('/storage/'.$file); //Download file yang dicari berdasarkan nama file
+        return response()->download('/storage/' . $file); //Download file yang dicari berdasarkan nama file
     }
 
     /**

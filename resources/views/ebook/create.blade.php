@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Input Dokumen
+Input Buku
 @endsection
 
 @section('content')

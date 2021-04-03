@@ -9,7 +9,9 @@ Kelola User
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+
                 <div class="card">
+
                     <div class="card-header">
                         <h3 class="card-title">Kelola User</h3>
                     </div>
@@ -81,7 +83,7 @@ Kelola User
                                     <form method="get" action="">
                                         <div class="form-group">
                                             <label>Level</label>
-                                            <select id="role" name="role"
+                                            <select id="user_type_id" name="user_type_id"
                                                 class="custom-select select2bs4" style="width: 50%;">
                                                 <option selected disabled>Level</option>
                                                 @foreach($roles as $row)
@@ -96,7 +98,23 @@ Kelola User
 
                                     </form>
                                 </div>
-
+                                <div class="col-md-12">
+                                    <form method="get" action="{{route('user.index')}}">
+                                        <div class="form-group">
+                                            <label for="keyword">Search</label>
+                                            <div class="input-group input-group-lg">
+                                                <input type="search" class="form-control form-control-lg" name="keyword"
+                                                    value="{{Request::get('keyword')}}" value="keyword"
+                                                    placeholder="Nama User">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-lg btn-default">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
@@ -104,7 +122,11 @@ Kelola User
                         <!-- /.card-header -->
 
                         <div class="card-body">
-
+                            @if(Request::get('keyword'))
+                            <div class="alert alert-success alert-block">
+                                Hasil Pencarian Dokumen dengan Keyword : <b>{{ Request::get('keyword') }}</b>
+                            </div>
+                            @endif
                             @if(Request::get('role'))
                             <div class="alert alert-success alert-block">
                                 Hasil Pencarian User dengan Kategori : <b>{{ Request::get('role') }}</b>
@@ -131,13 +153,7 @@ Kelola User
                                         <td>{{ $row->full_name }}</td>
                                         <td>{{ $row->email }}</td>
                                         <td>{{ $row->username }}</td>
-                                        <td>
-                                           @forelse ($row->getRoleNames() as $role)
-                                               {{$role}}
-                                           @empty
-                                               -
-                                           @endforelse
-                                        </td>
+                                        <td>{{ $row->kelolaUser->type}}</td>
                                         <td style="text-align:center">
                                             <form method="post" action="{{ route('user.destroy',[$row->id]) }}"
                                                 onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
@@ -148,6 +164,12 @@ Kelola User
                                                     href="{{ route('user.edit',[$row->id]) }}"></a>
                                                 <button type="submit"
                                                     class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                                {{-- <form method="post" action="">
+                                                                            @csrf
+                                                                            {{method_field('DELETE')}}
+                                                <a href="" class="btn btn-round btn-warning btn-md"><i
+                                                        class="fa fa-edit" data-toggle="modal"
+                                                        data-target="#edit"></i></a> --}}
                                             </form>
                                         </td>
                                     </tr>
@@ -189,13 +211,20 @@ Kelola User
 
         });
     });
-
 </script>
 <script>
     $(function () {
         $('.select2').select2()
     });
-
 </script>
+
+
+<!-- custom -->
+{{-- <script type="text/javascript">
+    $(document).ready(function(){
+    $('#datatables-example').DataTable();
+  });
+</script> --}}
+<!-- end: Javascript -->
 
 @endsection

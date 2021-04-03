@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Input Dokumen
+Input Buku
 @endsection
 
 @section('content')
@@ -72,9 +72,7 @@ Input Dokumen
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
                     </div>
-
                 </div>
-
             </div>
             <div class="form-group">
                 <label for="deskripsi_ebook">Deskripsi</label>

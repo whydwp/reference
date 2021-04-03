@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Ebook
+Buku
 @endsection
 
 @section('content')
@@ -13,12 +13,12 @@ Ebook
                <div class="card">
 
                 <div class="card-header">
-                    <h3 class="card-title">Kelola Document</h3>
+                    <h3 class="card-title">Kelola Buku</h3>
                 </div>
                 <br/>
        <div class="col-md-10 offset-md-1 ">
                 <a href="{{ route('adminEbook.create') }}" class="btn btn-primary"><span class=" fas fa-plus-square"></span>
-                    Tambah Dokumen</a>
+                    Tambah Buku</a>
                 </div>
                 <br>
        <div class="col-md-10 offset-md-1 ">
@@ -26,12 +26,8 @@ Ebook
                         class="fas fa-plus-square"></span>
                     Import Data</button> --}}
                 </div>
-                
-                <br />
                 {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
-                exel</a> --}}
-        <br/>
-              
+                exel</a> --}}              
                 {{-- <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <div class="row">
@@ -97,7 +93,6 @@ Ebook
                             <th>Status</th>
                             <th>Keterangan</th>
                             <th>Action</th>
-                
                         </tr>
                     </thead>
                     <tbody>
@@ -107,10 +102,12 @@ Ebook
                             </td>
                             <td>{{ str_limit($row->judul_ebook , 30, ' ...') }}</td>
                             <td>{{ $row->kategori->kategori}}</td>
-                            @if($row->status)
-                             <td>{{ $row->status->status}}</td>
-                             @else
-                             <td>PENDING</td>
+                            @if($row->id_status == 1)
+                             <td><span class="small-box " style="background-color: #65ff57; text-align: center; font-weight:500;">{{ $row->status->status}}</span></td>
+                             @elseif($row->id_status == 2)
+                             <td><span class="small-box "style="background-color: #fff200; text-align: center; font-weight:500;">{{ $row->status->status}}</span></td>
+                            @else
+                             <td><span class="small-box " style="background-color: #00ccff; text-align: center; font-weight:500;">Pending</span></td>
                              @endif
                             @if($row->keterangan)
                             <td>{{ $row->keterangan}}</td>
@@ -122,9 +119,9 @@ Ebook
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
-                                    {{-- @if($row->user->full_name == Auth::user()) --}}
+                                    @if($row->user->full_name == Auth::user()->full_name)
                                     <a class="btn btn-round btn-info btn-md far fa-edit" href="{{ route('adminEbook.edit',[$row->id_ebook]) }}"></a>
-                                    {{-- @endif                                    --}}
+                                    @endif                                   
                                 </form>
                             </td>
                         </tr>
@@ -132,13 +129,13 @@ Ebook
                     </tbody>
                 </table>
                 
-               <tfoot>
+               {{-- <tfoot>
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
+                        <ul class="pagination justify-content-center" >
                             {{ $ebook->appends(Request::all())->links() }}
                         </ul>
                     </nav>
-                </tfoot>
+                </tfoot> --}}
                      
                 </div>
                 <!-- /.card-body -->
@@ -158,9 +155,9 @@ Ebook
 <script>
     $(function () {
     $('#example2').DataTable({
-    "paging": false,
+    "paging": true,
     "lengthChange": true,
-    "searching": false,
+    "searching": true,
     "ordering": true,
     "info": true,
     "autoWidth": false,

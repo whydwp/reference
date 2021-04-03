@@ -10,10 +10,10 @@ class status extends Model
 {
     protected $table = 'status';
     protected $primaryKey = 'id_status';
-    protected $fillable = [ 'id_status', 'status'];
+    protected $fillable = ['id_status', 'status'];
 
-    CONST STATUS_ACCEPTED = "Di Terima";
-    CONST STATUS_REJECTED = "Di Tolak";
+    const STATUS_ACCEPTED = "Di Terima";
+    const STATUS_REJECTED = "Di Tolak";
 
     public function scopeAccepted($query)
     {
@@ -22,7 +22,6 @@ class status extends Model
 
     public function scopeRejected($query)
     {
-        return $query->where('status', '=', status::STATUS_REJECTED);
+        return $query->where('status', '=', status::STATUS_ACCEPTED);
     }
-
 }

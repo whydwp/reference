@@ -23,7 +23,7 @@ class DocumentController extends Controller
     {
         $this->middleware('pusdiklat');
     }
- 
+
     public function index(Request $request)
     {
         $data_dokument = Document::orderBy('created_at', 'desc')->paginate(5);
@@ -104,7 +104,7 @@ class DocumentController extends Controller
         $extention = $file->getClientOriginalExtension();
         // dd($file);
         if ($request->file('file')->isValid()) {
-            if($extention == "zip"){
+            if ($extention == "zip") {
                 $namaFile = "document/" . $request->judul_dokumen; //. "." . $extention;
                 $upload_path = 'uploads/';
                 $zip = new ZipArchive();
@@ -113,16 +113,15 @@ class DocumentController extends Controller
                 // dd($zip);
                 for ($i = 0; $i < $zip->numFiles; $i++) {
                     $filename = $zip->getNameIndex($i);
-                        if($filename == "index.html"){
-                            break;
-                        }
+                    if ($filename == "index.html") {
+                        break;
+                    }
                 }
-                $zip->extractTo($upload_path.$namaFile);
+                $zip->extractTo($upload_path . $namaFile);
                 $zip->close();
-                $data_dokument['file'] = $namaFile. "/" .$filename;
+                $data_dokument['file'] = $namaFile . "/" . $filename;
                 // dd($data_dokument['file']);
-            }
-            else{
+            } else {
                 $namaFile = "document/" . date('YmdHis') . "." . $extention;
                 $upload_path = 'uploads/document';
                 $request->file('file')->move($upload_path, $namaFile);
@@ -131,7 +130,7 @@ class DocumentController extends Controller
             }
         }
         $cover = $request->file('cover');
-       if($cover){
+        if ($cover) {
             if ($request->file('cover')->isValid()) {
                 $extention = $cover->getClientOriginalExtension();
                 $namaCover = "document/" . date('YmdHis') . "." . $extention;
@@ -142,7 +141,7 @@ class DocumentController extends Controller
                 $cover =  'image/1.png';
             }
         }
-        
+
         Document::create($data_dokument);
         return redirect()->route('doc.index')->with('success', 'Dokumen Berhasil Ditambahankan');
     }
@@ -156,7 +155,7 @@ class DocumentController extends Controller
     public function show($id)
     {
         $data_dokument = Document::findOrFail($id);
-    
+
         return view('doc.show', compact('data_dokument'));
     }
     public function importexel(Request $request)
@@ -243,30 +242,30 @@ class DocumentController extends Controller
             }
             $file = $request->file('file');
             //  dd($file);
-            if($file){
-            if ($request->file('file')->isValid()) {
+            if ($file) {
+                if ($request->file('file')->isValid()) {
 
-                $extention = $file->getClientOriginalExtension();
-                
-                if ($extention == "zip") {
-                    $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
-                    $upload_path = 'uploads/';
-                    $zip = new ZipArchive();
-                    $zip->open($file);
-                    $nama = $zip->getNameIndex(0);
-                    //  dd($nama);
-                    $zip->extractTo($upload_path . $namaFile);
-                    $zip->close();
-                    $input['file'] = $namaFile . "/" . $nama;
-                    // dd($namaFile. "/" .$nama);
-                } else {
-                    $namaFile = "document/" . date('YmdHis') . "." . $extention;
-                    $upload_path = 'uploads/document';
-                    $request->file('file')->move($upload_path, $namaFile);
-                    $input['file'] = $namaFile;
-                    //  dd($extention);
+                    $extention = $file->getClientOriginalExtension();
+
+                    if ($extention == "zip") {
+                        $namaFile = "document/" . date('YmdHis'); //. "." . $extention;
+                        $upload_path = 'uploads/';
+                        $zip = new ZipArchive();
+                        $zip->open($file);
+                        $nama = $zip->getNameIndex(0);
+                        //  dd($nama);
+                        $zip->extractTo($upload_path . $namaFile);
+                        $zip->close();
+                        $input['file'] = $namaFile . "/" . $nama;
+                        // dd($namaFile. "/" .$nama);
+                    } else {
+                        $namaFile = "document/" . date('YmdHis') . "." . $extention;
+                        $upload_path = 'uploads/document';
+                        $request->file('file')->move($upload_path, $namaFile);
+                        $input['file'] = $namaFile;
+                        //  dd($extention);
+                    }
                 }
-            }
             }
             if ($request->hasFile('cover')) {
                 if ($request->file('cover')->isValid()) {

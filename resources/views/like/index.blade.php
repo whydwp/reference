@@ -61,7 +61,11 @@ Like
                 <tfoot>
                     <tr>
                         <td colspan="10">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
                             {{ $getuserlikes->links('pagination::bootstrap-4') }}
+                                </ul>
+                            </nav>
                         </td>
                     </tr>
                 </tfoot>

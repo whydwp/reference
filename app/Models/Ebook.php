@@ -23,8 +23,8 @@ class Ebook extends Model
         'id_status'
     ];
 
-    CONST DEFAULT_MAX_REQUEST_CREATE = 5;
-    CONST ERROR_MESSAGE_LIMIT_MAX_REQUEST = "Limit created";
+    const DEFAULT_MAX_REQUEST_CREATE = 5;
+    const ERROR_MESSAGE_LIMIT_MAX_REQUEST = "Bata Upload Anda Sudah Melebihi 5x";
 
     public function kategori()
     {
@@ -38,7 +38,8 @@ class Ebook extends Model
     {
         return $this->belongsTo('App\Models\KategoriType', 'kategori_type_id');
     }
-    public function status(){
+    public function status()
+    {
         return $this->belongsTo('App\Models\status', 'id_status');
     }
     // public function getebook()

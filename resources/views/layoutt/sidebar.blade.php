@@ -82,7 +82,6 @@
                             </p>
                         </a>
                     </li>
-
                     {{-- <li class="nav-item">
                         <a href="{{ route('document.index') }}" class="nav-link">
                     <i class="fas fa-file-alt"></i>
@@ -107,8 +106,6 @@
                             </p>
                         </a>
                     </li>
-
-
                 </ul>
             @endrole
             @role("admin")
@@ -165,7 +162,6 @@
                     </a>
                     </li> --}}
 
-
                 </ul>
             @endrole
             @role("plnpusdiklat")
@@ -208,7 +204,7 @@
                         <a href="{{ route('kumpulanEbook.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
-                                Kumpulan Ebook
+                                Kumpulan Buku
                             </p>
                         </a>
                     </li>
