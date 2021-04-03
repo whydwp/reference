@@ -155,13 +155,15 @@ Kelola User
                                         <td>{{ $row->username }}</td>
                                         <td>{{ $row->kelolaUser->type}}</td>
                                         <td style="text-align:center">
+                                            {{-- @can("user-edit") --}}
+                                            <a class="btn btn-round btn-success btn-md far fa-edit"
+                                                 href="{{ route('user.edit',[$row->id]) }}"></a>
+                                            {{-- @endcan --}}
                                             <form method="post" action="{{ route('user.destroy',[$row->id]) }}"
                                                 onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
 
-                                                <a class="btn btn-round btn-success btn-md far fa-edit"
-                                                    href="{{ route('user.edit',[$row->id]) }}"></a>
                                                 <button type="submit"
                                                     class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
                                                 {{-- <form method="post" action="">

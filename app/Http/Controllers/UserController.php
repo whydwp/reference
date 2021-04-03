@@ -23,12 +23,18 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin'); //membatasi level
+        $this->middleware('role:superadmin', ['only' => ['index','show', 'create', 'store', 'export', 'importexel', 'update', 'destroy']]);
     }
+
     public function index(Request $request)
     {
         $roles = Role::get();
         $query = User::orderBy('created_at', 'desc');
+
+        if($request->has("keyword")){
+            $query->where("full_name", "like", "%$request->keyword%");
+        }
+
         if($request->has("role")){
             $query->whereHas("roles", function($q) use ($request){
                 $q->where("name", $request->role);
@@ -150,6 +156,7 @@ class UserController extends Controller
         $userRole = $user->roles->pluck("name")->toArray();
         $userPermission = $user->permissions->pluck("name")->toArray();
 
+        dd($userPermission, $user->getAllPermissions()->pluck("name")->toArray());
         return view('user.edit', compact('user', 'roles', 'permission', 'userRole', 'userPermission'));
     }
 
