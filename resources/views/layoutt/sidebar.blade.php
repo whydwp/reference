@@ -100,9 +100,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('ebook.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-users-cog"></i>
+                            <i class="nav-icon fas fa-book"></i>
                             <p>
-                            Ebooks
+                            Kelola Buku
                             </p>
                         </a>
                     </li>
@@ -147,9 +147,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('adminEbook.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-users-cog"></i>
+                            <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Ebooks
+                                Kelola Buku
                             </p>
                         </a>
                     </li>
