@@ -72,30 +72,30 @@ class UserSeeder extends Seeder
         $roles = [
             "superadmin",
             "admin",
-            "pnlpusdiklat"
+            "pusdiklat"
         ];
 
         $users = [
             [
-                "username"  => "superadmin",
-                "full_name" => "superadmin",
-                "email"     => "superadmin@plnpusdiklat.com",
+                "username"     => "superadmin",
+                "full_name"    => "superadmin",
+                "email"        => "superadmin@plnpusdiklat.com",
+                "password"     => Hash::make("superadmin"),
                 "user_type_id" => 1,
-                "password"  => Hash::make("superadmin"),
             ],
             [
                 "username"  => "201710370311320",
                 "full_name" => "wahyu",
                 "email"     => "administrator@plnpusdiklat.com",
-                "user_type_id" => 1,
                 "password"  => Hash::make("admin"),
+                "user_type_id" => 1,
             ],
             [
                 "username"  => "srob",
                 "full_name" => "srob",
                 "email"     => "srob@plnpusdiklat.com",
-                "user_type_id" => 1,
                 "password"  => Hash::make("srob"),
+                "user_type_id" => 1,
             ],
         ];
 
@@ -120,13 +120,22 @@ class UserSeeder extends Seeder
 
 
         //assign-role-and-permission
-        $superAdmin = User::where("full_name", "superadmin")->first();
-        $roleAdmin = Role::where("name", 'superadmin')->first();
-        $permissionAdmin = Permission::pluck("id", "id")->all();
+        $user = User::where("full_name", "superadmin")->first();
+        $role = Role::where("name", 'superadmin')->first();
+        $permission = Permission::pluck("id", "id")->all();
 
-        $roleAdmin->syncPermissions($permissionAdmin);
-        $superAdmin->assignRole($roleAdmin->id);
+        $user->assignRole($role->id);
+        $user->syncPermissions($permission);
         $this->command->info("superadmin created!");
+
+
+        $user = User::where("full_name", "srob")->first();
+        $role = Role::where("name", 'pusdiklat')->first();
+        $permission = Permission::whereIn("name", ['profile', 'reference','like'])->pluck("id", "id")->all();
+
+        $user->assignRole($role->id);
+        $user->syncPermissions($permission);
+        $this->command->info("user created!");
 
     }
 }
