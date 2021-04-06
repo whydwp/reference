@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('example-saml-auth')->group(function () {
     Route::name('logout')->post('logout', '\Aacotroneo\Saml2\Http\Controllers\Saml2Controller@logout');
-   
-});
 
+
+    
+});
 
 Route::get('/', function () {
     return view('general.loginn');
