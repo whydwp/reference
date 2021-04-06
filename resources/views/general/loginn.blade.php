@@ -40,18 +40,18 @@
             <div class="container-login100" >
                 <div class="wrap-login100" >
                     <form class="login100-form validate-form" method="POST" action="/login" >
-                        <img  src="now-ui-kit/assets/img/logo.svg" class="logocenter" alt="">
+                        <img style="margin-top: -56px !important;" src="image/logo.png" class="logocenter" alt="">
                         <!-- @csrf -->
                         {{ csrf_field() }}
-                        <span class="login100-form-title p-b-43">
+                        <span style="margin-top: -13px !important; font-family:'Inter'; font-size:40px;" class="login100-form-title p-b-43">
                             <b> Login </b>
                         </span>
-                        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+                        <div style="margin-top: -42px !important;"class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
                             <input class="input100" type="text" name="username" placeholder="NIP">
                             <span class="focus-input100 label-input100">NIP</span>
                             
                         </div>
-                        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Password is required">
+                        <div style="margin-top: -8px !important;"class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Password is required">
                             <input class="input100" type="password" name="password" placeholder="Password">
                             <span class="focus-input100 label-input100">Password</span>
                         </div>

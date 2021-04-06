@@ -13,57 +13,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <title>Reference Learning</title>
     <style>
-        body{
-
+        body {
+            /* font-family: 'Inter'!important;
+             font-weight: normal !important;  */
             overflow-x: hidden;
         }
+
         i .tekan {
             i:hover {
                 blue;
             }
         }
+
         i. {
             tahun: hover #eee
         }
         }
+
         .ini {
             a:hover {
                 wihte;
             }
         }
+
         .uppercase {
             text-transform: uppercase;
         }
+
         .like-post {
             color: #4400ff !important;
         }
 
         .back-to-top {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        display: none;
-        }
-        .footer{
-            color: aliceblue;
-        }
-        .jarak{
-            margin-left: 20px !important;
-        }
-        .gradient2 {
-        background-image: linear-gradient(to right, #004d78, #7effe3);
-        }
-        .morecontent span {
-        display: none;
-        }
-        .morelink {
-        display: block;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: none;
         }
 
-       /* #more {
+        .footer {
+            color: aliceblue;
+        }
+
+        .jarak {
+            margin-left: 20px !important;
+        }
+
+        .gradient2 {
+            background-image: linear-gradient(to right, #004d78, #7effe3);
+        }
+
+        .morecontent span {
+            display: none;
+        }
+
+        .morelink {
+            display: block;
+        }
+
+        /* #more {
            display: none;} */
         /* html{
-           background-image: linear-gradient(to right, #004d78, #7effe3);
+           background-image: linear-gradient(to right, #004d78, #7effe3); 
         } */
     </style>
     <!-- Font Awesome Icons -->
@@ -78,19 +89,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="shortcut icon" href="{{asset('now-ui-kit/assets/img/logo.svg')}}">
     <!-- Jquery -->
 
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
-
 
     {{-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"> --}}
+        <link rel="Stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"> --}}
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('jqueryui/jquery-ui.min.css')}}"> --}}
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
+
+
     <script src="{{asset('chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
+    </script>
     <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -115,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 
-<body  class="hold-transition sidebar-collapse layout-top-nav">
+<body class="hold-transition sidebar-collapse layout-top-nav">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -138,31 +153,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             @yield('title')
                                         </h3>
                                         <ol class="breadcrumb">
-                                        @role("superadmin")
-                                            <li>
-                                                <a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
-                                                    @lang('Home')
-                                                </a>
-                                            </li>
-                                            <li class="active">  / @yield('title')</li>
-                                            <li>
-                                                <a href="{{route('dashboard')}}">
-                                                    <i class="fa fa-dashboard"></i>
-                                                </a>
-                                            </li>
+                                            @if(Auth::user()->user_type_id == 1)
+                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
+                                                    @lang('Home') </a></li>
+                                            <li class="active"> / @yield('title')</li>
+                                            <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>
+                                                </a> </li>
                                             <li class="active"> @yield('titlel') </li>
-                                        @endrole
-                                        @hasanyrole("admin|plnpusdiklat")
-                                            <li>
-                                                <a href="{{route('dashboardUser')}}">
-                                                    <i class="fa fa-dashboard"></i>
-                                                    {{__('Halaman depan')}}
-                                                </a>
-                                            </li>
-                                            <li class="active ">
-                                                / @yield('title')
-                                            </li>
-                                        @endhasanyrole
+                                            @elseif(Auth::user()->user_type_id == 2 )
+                                            <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
+                                                    {{__('Halaman depan')}}</a></li>
+                                            <li class="active "> / @yield('title')</li>
+                                            @elseif(Auth::user()->user_type_id == 3 )
+                                            <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
+                                                    {{__('Halaman depan')}}</a></li>
+                                            <li class="active"> / @yield('title')</li>
+                                            @elseif(Auth::user()->user_type_id == 3 )
+                                            <li><a href="{{route('dashboardUser')}}"><i class="fa fa-dashboard"></i>
+                                                    {{__('Halaman depan')}}</a></li>
+                                            <li class="active"> / @yield('title')</li>
+                                            @endif
                                         </ol>
                                     </div>
                                 </div>
@@ -195,7 +205,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- Main Footer -->
 
-                    <a id="back-to-top" href="#" class="btn btn-info btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+                    <a id="back-to-top" href="#" class="btn btn-info btn-lg back-to-top" role="button"><i
+                            class="fas fa-chevron-up"></i></a>
                     <!-- Content Header (Page header) -->
                 </div>
             </div>
@@ -210,6 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
 
 </body>
+
 <script>
     $(document).ready(function(){
 	$(window).scroll(function () {
@@ -228,4 +240,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		});
 });
 </script>
+
 </html>

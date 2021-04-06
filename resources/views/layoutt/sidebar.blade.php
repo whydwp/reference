@@ -2,7 +2,10 @@
 
     .sticky-sidebar{
     position: fixed;
-
+        
+    }
+    p{
+        font-weight: 500; font-family:'Montserrat'; font-size:17px;
     }
 </style>
 
