@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('example-saml-auth')->group(function () {
     Route::name('logout')->post('logout', '\Aacotroneo\Saml2\Http\Controllers\Saml2Controller@logout');
+   
 });
+
 
 Route::get('/', function () {
     return view('general.loginn');
@@ -15,7 +17,6 @@ Route::namespace('Auth')->group(function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
     // Route::name('logout')->post('logout', '\Aacotroneo\Saml2\Http\Controllers\Saml2Controller@logout');
 });
-
 
 Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
