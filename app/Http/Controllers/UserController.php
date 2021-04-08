@@ -24,8 +24,6 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('role:superadmin', ['only' => ['index','show', 'create', 'store', 'export', 'importexel', 'update', 'destroy']]);
-
-        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
 
     public function index(Request $request)
@@ -54,9 +52,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data_user = KelolaUser::paginate(10);
-        // $kategori = Kategori::all();
-        return view('user.create', compact('data_user'));
+        $roles = Role::get();;
+        $permission = Permission::get();
+
+        return view('user.create', compact('roles','permission'));
     }
 
 
@@ -67,22 +66,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $Kelola = $request->all();
-        $validator = Validator::make($Kelola, [
-            'full_name' => 'required|max:250',
-            'username' => 'required|max:100|unique:users,username,' ,
-            'email' => 'required|email|max:255|unique:users,email,',
-            //'password' => 'sometimes|nullable|min:6',
-            'password' => 'required|max:250',
-            'user_type_id' => 'required|max:250',
-
+        $request->validate([
+            'full_name'    => 'required|max:250',
+            'username'     => 'required|max:100|unique:user_auth',
+            'email'        => 'required|email|max:255|unique:user_auth',
+            'password'     => 'required|max:250',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->route('user.create')->withErrors($validator)->withInput();
-        }
-        $Kelola['password'] = bcrypt($Kelola['password']);
-        User::create($Kelola);
+        $request->merge([ 'password' => bcrypt($request['password']) ]);
+        $user = User::create($request->except('_token', '_method', 'role_id', 'permission'));
+
+        $user->removeRole($request->role_id);
+        $user->assignRole($request->role_id);
+        $user->syncPermissions($request->permission);
+
         return redirect()->route('user.index')->with('status', 'User Berhasil Ditambahankan');
     }
 

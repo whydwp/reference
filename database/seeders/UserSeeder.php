@@ -18,23 +18,23 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $userTypes = [
-            [
-                "type"        => "superadmin",
-                "created_at"  => now(),
-                "modified_at" => now(),
-            ],
-            [
-                "type"        => "admin",
-                "created_at"  => now(),
-                "modified_at" => now(),
-            ],
-            [
-                "type"        => "pusdiklat",
-                "created_at"  => now(),
-                "modified_at" => now(),
-            ],
-        ];
+        // $userTypes = [
+        //     [
+        //         "type"        => "superadmin",
+        //         "created_at"  => now(),
+        //         "modified_at" => now(),
+        //     ],
+        //     [
+        //         "type"        => "admin",
+        //         "created_at"  => now(),
+        //         "modified_at" => now(),
+        //     ],
+        //     [
+        //         "type"        => "pusdiklat",
+        //         "created_at"  => now(),
+        //         "modified_at" => now(),
+        //     ],
+        // ];
 
         $permissions = [
             'user-list',
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             'like',
             'dashboard-user',
             'kumpulan-buku',
-            
+
          ];
 
 
@@ -118,8 +118,8 @@ class UserSeeder extends Seeder
         }
         $this->command->info("users success created");
 
-        UserType::insert($userTypes); //enable for-old-data
-        $this->command->info("user type success created");
+        // UserType::insert($userTypes); //enable for-old-data
+        // $this->command->info("user type success created");
 
 
         //assign-role-and-permission
