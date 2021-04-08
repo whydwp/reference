@@ -20,9 +20,7 @@ class ProfilController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:superadmin', ['only' => ['index','update']]);
-        $this->middleware('role:admin', ['only' => ['index','update']]);
-        $this->middleware('role:pusdiklat', ['only' => ['index','update']]);
+        $this->middleware('role:superadmin|pusdiklat|admin', ['only' => ['index','update']]);
     }
     public function index()
     {
@@ -30,7 +28,7 @@ class ProfilController extends Controller
         $userid = Auth::user()->id;
         $input = User::find($userid);
         // dd($input);
-        return view('profil.index',['input'=>$input]); 
+        return view('profil.index',['input'=>$input]);
         // return view('profil.index');
     }
 
@@ -55,19 +53,19 @@ class ProfilController extends Controller
         //
     }
 
-    
+
     public function show()
     {
         //
     }
 
- 
+
     public function edit()
     {
         // return view('profil.edit');
     }
 
-    
+
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -118,7 +116,7 @@ class ProfilController extends Controller
         //     'email' => $request->email,
         //     'password' => Hash::make($request->password),
         //     'avatar_file' => $request->avatar_file
-           
+
         // ]);
             $user->full_name = $request->full_name;
             // $user->username = $request->username;
@@ -126,7 +124,7 @@ class ProfilController extends Controller
             if($request->password != NULL) {
                 $user->password = Hash::make($request->password);
             }
-        
+
         if ($request->hasFile('avatar_file')) {
             if ($request->file('avatar_file')->isValid()) {
                 Storage::disk('upload')->delete($user->avatar_file);
@@ -135,21 +133,21 @@ class ProfilController extends Controller
                 $extention = $avatar_file->getClientOriginalExtension();
                 // $namaFoto = "document/" . date('YmdHis') . "." . $extention;
                 $namaFoto = date('YmdHis') . "." . $extention;
-                
+
                 $upload_path = 'uploads/document/';
                 // dd($request->file('avatar_file')->move($upload_path, $namaFoto));
                 $request->file('avatar_file')->move($upload_path, $namaFoto);
                 $user->avatar_file = $namaFoto;
                 //  dd($namaFoto);
-            } 
+            }
         }
-        
+
         $user->save();
         return redirect()->route('profil.index')->with('status', 'User Berhasil Diupdate');
 
     }
 
-   
+
     public function destroy()
     {
         //

@@ -21,10 +21,7 @@ class DashboardUserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:admin', ['only' => ['index']]);
-        $this->middleware('role:pusdiklat', ['only' => ['index']]);
-
-        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
+        $this->middleware('role:admin|pusdiklat', ['only' => ['index']]);
     }
 
 
@@ -38,16 +35,16 @@ class DashboardUserController extends Controller
         // // dd($chunktothree[0]);
         // return view('general2.dashboard', ['datas'=>$allcat]);
         // // return view('general2.dashboard');
-       
+
         $nama_dokumen = []; //memunculkan nama pada grafik
         $jumlah_like = [];
         $jumlah_doc = [];
         $jumlah_view = []; //memunculkan jumlah pada grafik
-        $data_dokumen = Kategori::all(); //menyimpan data yang ada ditabel 
+        $data_dokumen = Kategori::all(); //menyimpan data yang ada ditabel
         foreach ($data_dokumen as $row) {
-            //setiap kali petrulanagan akan menyimpan nama 
+            //setiap kali petrulanagan akan menyimpan nama
             $nama_dokumen[] = $row->kategori;
-            //mencari ditabel like view 
+            //mencari ditabel like view
             $view = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_view');
             $like = Document::where('id_kategori', $row->id_kategori)->sum('jumlah_like');
             $doc = Document::where('id_kategori', $row->id_kategori)->count('id');
@@ -55,7 +52,7 @@ class DashboardUserController extends Controller
             $jumlah_doc[] = $doc;
             $jumlah_view[] = $view;
         }
-      
+
         // $kategori = Kategori::all();
         return view('dashboardUser', compact( 'jumlah_doc','nama_dokumen', 'jumlah_like', 'jumlah_view'));
 
@@ -100,7 +97,7 @@ class DashboardUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Show the form for editing the specified resource.

@@ -23,15 +23,9 @@ class MyReferenceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:pusdiklat', ['only' => ['index', 'getjudul', 'edit', 'update', 'store', 'report', 'addview', 'destroy','sort','show']]);
-        $this->middleware('role:admin', ['only' => ['index', 'getjudul', 'edit', 'update', 'store', 'report', 'addview', 'destroy','sort','show']]);
+        $this->middleware('role:admin|pusdiklat', ['only' => ['index', 'getjudul', 'edit', 'update', 'store', 'report', 'addview', 'destroy','sort','show']]);
     }
-    // function __construct1()
-    // {
-    //     $this->middleware('pusdiklat');
-    //     //$this->middleware('pusdiklat');
 
-    // }
     public function index(Request $request)
     {
         // $reference = Document::;
@@ -92,7 +86,7 @@ class MyReferenceController extends Controller
         }
         // $kategori = Kategori::all();
 
-        return view('reference.index', compact('jumlah_doc', 'reference', 'reference1', 'kategori', 'nama_kategori', 'reference2', 'doc'));
+        return view('reference.index', compact('jumlah_doc', 'reference', 'reference1', 'kategori', 'nama_kategori', 'reference2'));
     }
 
     public function getjudul(Request $request)
@@ -149,7 +143,7 @@ class MyReferenceController extends Controller
             'dokumen_id' => $request['forum'],
             'message' => $request['message']
             ]);
-   
+
         $komentar->save();
         //alert()->success('You have been logged out.', 'Good bye!');
         // return response()->json($komentar);

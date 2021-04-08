@@ -2,7 +2,7 @@
 
     .sticky-sidebar{
     position: fixed;
-        
+
     }
     p{
         font-weight: 500; font-family:'Montserrat'; font-size:17px;
@@ -167,7 +167,7 @@
 
                 </ul>
             @endrole
-            @role("plnpusdiklat")
+            @role("pusdiklat")
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->

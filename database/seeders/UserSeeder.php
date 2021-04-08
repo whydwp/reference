@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\status;
 use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Database\Seeder;
@@ -18,23 +19,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // $userTypes = [
-        //     [
-        //         "type"        => "superadmin",
-        //         "created_at"  => now(),
-        //         "modified_at" => now(),
-        //     ],
-        //     [
-        //         "type"        => "admin",
-        //         "created_at"  => now(),
-        //         "modified_at" => now(),
-        //     ],
-        //     [
-        //         "type"        => "pusdiklat",
-        //         "created_at"  => now(),
-        //         "modified_at" => now(),
-        //     ],
-        // ];
+        $status = [
+            [
+                "id_status"  => 1,
+                "status"     => "Di Terima",
+                "created_at" => now(),
+            ],
+            [
+                "id_status"  => 2,
+                "status"     => "Di Tolak",
+                "created_at" => now(),
+            ],
+        ];
 
         $permissions = [
             'user-list',
@@ -84,21 +80,18 @@ class UserSeeder extends Seeder
                 "full_name"    => "superadmin",
                 "email"        => "superadmin@plnpusdiklat.com",
                 "password"     => Hash::make("superadmin"),
-                "user_type_id" => 1,
             ],
             [
-                "username"  => "201710370311320",
+                "username"  => "wahyu",
                 "full_name" => "wahyu",
                 "email"     => "administrator@plnpusdiklat.com",
                 "password"  => Hash::make("admin"),
-                "user_type_id" => 1,
             ],
             [
                 "username"  => "srob",
                 "full_name" => "srob",
                 "email"     => "srob@plnpusdiklat.com",
                 "password"  => Hash::make("srob"),
-                "user_type_id" => 2,
             ],
         ];
 
@@ -118,8 +111,7 @@ class UserSeeder extends Seeder
         }
         $this->command->info("users success created");
 
-        // UserType::insert($userTypes); //enable for-old-data
-        // $this->command->info("user type success created");
+        status::insert($status);
 
 
         //assign-role-and-permission

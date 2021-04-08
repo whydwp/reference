@@ -23,7 +23,7 @@ class KumpulanEbookController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $status = Status::rejected()->first();
         // dd($status);
         // $nama_status = '';
@@ -38,7 +38,6 @@ class KumpulanEbookController extends Controller
 
     public function download($file)
     {
-
         return response()->download('/storage/' . $file); //Download file yang dicari berdasarkan nama file
     }
 
