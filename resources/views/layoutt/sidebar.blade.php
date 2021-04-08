@@ -131,6 +131,18 @@
                             </p>
                         </a>
                     </li>
+
+                    @can("user-list")
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    Kelola User
+                                </p>
+                            </a>
+                        </li>
+                    @endcan
+
                     <li class="nav-item">
                         <a href="{{route('reference.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>

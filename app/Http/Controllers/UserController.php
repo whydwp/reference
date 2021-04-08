@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use App\Exports\UserExport;
 use App\Imports\UserImport;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
@@ -23,7 +24,11 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:superadmin', ['only' => ['index','show', 'create', 'store', 'export', 'importexel', 'update', 'destroy']]);
+        $this->middleware('permission:user-list', ['only' => ['index','show']]);
+        $this->middleware('permission:user-edit', ['only' => ['index','update']]);
+        $this->middleware('permission:user-create', ['only' => ['create','store']]);
+        $this->middleware('permission:user-delete', ['only' => ['delete']]);
+        $this->middleware('permission:user-import-export', ['only' => ['export', 'importexel']]);
     }
 
     public function index(Request $request)
@@ -40,6 +45,13 @@ class UserController extends Controller
                 $q->where("name", $request->role);
             });
         }
+
+        if(!Auth::user()->hasRole("superadmin")){
+            $query->whereHas("roles", function($q) use ($request){
+                $q->where("name", '!=', "superadmin");
+            });
+        }
+
 
         $data_user = $query->paginate(10);
         return view('user.index', compact('data_user', "roles"));

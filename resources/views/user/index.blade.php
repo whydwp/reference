@@ -17,16 +17,22 @@ Kelola User
                     </div>
                     <br />
                     <div class="col-md-10 offset-md-1 ">
-                        <a href="{{ route('user.create') }}" class="btn btn-success"><span
-                                class=" fas fa-plus-square"></span>
-                            Tambah User</a>
-                        <br>
-                        <br>
-                        <a href="{{ route('export') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
-                            Export exel</a>
-                        <button data-target="#modal-default" data-toggle="modal" type="button"
-                            class="btn btn-raised btn-info"><span class="fas fa-plus-square"></span>
-                            Import Data</button>
+                        @can("user-create")
+
+                            <a href="{{ route('user.create') }}" class="btn btn-success"><span
+                                    class=" fas fa-plus-square"></span>
+                                Tambah User</a>
+                            <br>
+                            <br>
+                        @endcan
+
+                        @can("user-import-export")
+                            <a href="{{ route('export') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
+                                Export exel</a>
+                            <button data-target="#modal-default" data-toggle="modal" type="button"
+                                class="btn btn-raised btn-info"><span class="fas fa-plus-square"></span>
+                                Import Data</button>
+                        @endcan
                     </div>
 
                     <br />
@@ -155,24 +161,21 @@ Kelola User
                                         <td>{{ $row->username }}</td>
                                         <td>{{ $row->roles->pluck("name")->implode(", ")}}</td>
                                         <td style="text-align:center">
-                                            {{-- @can("user-edit") --}}
-                                            <a class="btn btn-round btn-success btn-md far fa-edit"
+                                            @can("user-edit")
+                                                <a class="btn btn-round btn-success btn-md far fa-edit"
                                                  href="{{ route('user.edit',[$row->id]) }}"></a>
-                                            {{-- @endcan --}}
-                                            <form method="post" action="{{ route('user.destroy',[$row->id]) }}"
-                                                onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
+                                            @endcan
+                                            @can("user-delete")
+                                                <form method="post" action="{{ route('user.destroy',[$row->id]) }}"
+                                                    onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
 
-                                                <button type="submit"
-                                                    class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
-                                                {{-- <form method="post" action="">
-                                                                            @csrf
-                                                                            {{method_field('DELETE')}}
-                                                <a href="" class="btn btn-round btn-warning btn-md"><i
-                                                        class="fa fa-edit" data-toggle="modal"
-                                                        data-target="#edit"></i></a> --}}
-                                            </form>
+                                                    <button type="submit"
+                                                        class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                                </form>
+                                            @endcan
+
                                         </td>
                                     </tr>
                                     @endforeach

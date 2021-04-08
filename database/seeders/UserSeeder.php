@@ -37,6 +37,7 @@ class UserSeeder extends Seeder
             'user-create',
             'user-edit',
             'user-delete',
+            'user-import-export',
 
             'kategori-list',
             'kategori-create',
@@ -88,6 +89,12 @@ class UserSeeder extends Seeder
                 "password"  => Hash::make("admin"),
             ],
             [
+                "username"  => "admin",
+                "full_name" => "admin",
+                "email"     => "admin@plnpusdiklat.com",
+                "password"  => Hash::make("admin"),
+            ],
+            [
                 "username"  => "srob",
                 "full_name" => "srob",
                 "email"     => "srob@plnpusdiklat.com",
@@ -134,6 +141,7 @@ class UserSeeder extends Seeder
 
 
         $user = User::where("full_name", "wahyu")->first();
+        $userAdmin = User::where("full_name", "admin")->first();
         $role = Role::where("name", 'admin')->first();
         $permission = Permission::whereIn("name", [
             'profile',
@@ -152,6 +160,9 @@ class UserSeeder extends Seeder
 
         $user->assignRole($role->id);
         $user->syncPermissions($permission);
+
+        $userAdmin->assignRole($role->id);
+        $userAdmin->syncPermissions($permission);
         $this->command->info("admin created!");
 
     }
