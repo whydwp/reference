@@ -41,6 +41,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::resource('/kumpulanEbook', 'kumpulanEbookController');
     Route::post('/documen/{id}', 'MyReferenceController@komentar');
     Route::get('report', 'KelolaDocumentController@report')->name('report');
+    Route::get('reportAdmin', 'DocumentController@report')->name('reportAdmin');
     Route::get('reportcomen', 'ForumController@reportc')->name('reportcomen');
     Route::get('export', 'UserController@export')->name('export');
     Route::get('kategoriexport', 'KategoriController@reportkategori')->name('kategoriexport');
