@@ -153,7 +153,7 @@ Kelola User
                                         <td>{{ $row->full_name }}</td>
                                         <td>{{ $row->email }}</td>
                                         <td>{{ $row->username }}</td>
-                                        <td>{{ $row->kelolaUser->type}}</td>
+                                        <td>{{ $row->roles->pluck("name")->implode(", ")}}</td>
                                         <td style="text-align:center">
                                             {{-- @can("user-edit") --}}
                                             <a class="btn btn-round btn-success btn-md far fa-edit"

@@ -20,7 +20,7 @@ class CreateUserAuth extends Migration
             $table->string("email", 64);
             $table->string("username", 64);
             $table->string("password", 64);
-            $table->bigInteger("user_type_id");
+            $table->bigInteger("user_type_id")->nullable();
             $table->bigInteger("user_entity_id")->nullable();
             $table->string("user_key", 64)->nullable();
             $table->dateTime("login_at")->nullable();
