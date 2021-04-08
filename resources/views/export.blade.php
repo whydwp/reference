@@ -15,7 +15,7 @@
             <td>{{ $row->full_name }}</td>
             <td>{{ $row->email }}</td>
             <td>{{ $row->username }}</td>
-            <td>{{ $row->kelolaUser->type}}</td>
+            <td>{{ $row->roles->pluck("name")->implode(", ")}}</td>
         </tr>
         @endforeach
     </tbody>
