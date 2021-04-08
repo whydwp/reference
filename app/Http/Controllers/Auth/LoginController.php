@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
-{  
+{
     // public function __construct()
     // {
     //     $this->middleware('guest')->except('logout');
@@ -18,9 +18,8 @@ class LoginController extends Controller
     {
         $credentials = $request->only('username', 'password');
 
-        if (auth()->attempt($credentials)) {
-            if(Auth::check() && (Auth::user()->user_type_id == 1) )
-            {
+        if (Auth::attempt($credentials)) {
+            if( Auth::check() && Auth::user()->hasRole("superadmin") ) {
                 return redirect()->intended('dashboard');
             }
             else {
@@ -31,7 +30,6 @@ class LoginController extends Controller
 
         else {
             return redirect()->back()->with('failmessage', 'Username/Password anda salah!');
-
         }
 
 
