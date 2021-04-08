@@ -87,18 +87,15 @@ Input User
                             <h3 class="card-title">Setting Hak Akses</h3>
                         </div>
                         <div class="card-body">
-                            <div class="col-sm-12">
-                                <div class="form-check" >
-                                        @foreach($permission as $value)
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <input style="margin-left:4px; margin-right:5px;" class="form-check-input"type="checkbox" value="{{ $value->id }}" id="{{ $loop->iteration }}" name="permission[]">
-                                        &nbsp;&nbsp;
-                                        <label style="margin-left:18px; margin-right:1.8px;" class="form-check-label" for="{{ $loop->iteration }}">
-                                            {{ $value->name }}
-                                        </label>
-                                        @endforeach
+                            <div class="row">
+                                @foreach($permission as $value)
+                                    <div class="col-md-3">
+                                        <div class="checkbox-single">
+                                            <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}  {{ $value->name }}</label>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
