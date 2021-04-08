@@ -7,6 +7,8 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserImport implements ToModel, WithChunkReading, ShouldQueue
 {
@@ -18,14 +20,18 @@ class UserImport implements ToModel, WithChunkReading, ShouldQueue
 
     public function model(array $row)
     {
-       $user = new User([
-            'full_name'    => $row[1],
-            'email'        => $row[2],
-            'username'     => $row[3],
-            'password'     => Hash::make($row[5])
-        ]);
+       $user = User::updateOrCreate(
+            [
+                'email'        => $row[2],
+                'username'     => $row[3],
+            ],
+            [
+                'full_name'    => $row[1],
+                'password'     => ( isset($row[5]) ? Hash::make($row[5]) : Hash::make('password') )
+            ]
+        );
 
-        $role = Role::where("id", $row[4])->first();
+        $role = Role::where("name", $row[4])->first();
 
         $permissionSuperAdmin = Permission::pluck("id", "id")->all();
         $permissionAdmin = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
