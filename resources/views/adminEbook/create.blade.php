@@ -17,15 +17,15 @@ Input Buku
                 {{ session('error_message') }}
             @endif
             <div class="form-group">
-                <label for="judul_ebook">judul</label>
-                <input name="judul_ebook" id="judul_ebook" class="form-control @error('judul_ebook') is-invalid @enderror" placeholder="apa judulnya"
+                <label for="judul_ebook">Judul</label>
+                <input name="judul_ebook" id="judul_ebook" class="form-control @error('judul_ebook') is-invalid @enderror" placeholder="Masukan Judul"
                     value="{{old('judul_ebook')}}">
                     @error('judul_ebook')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label for="id_kategori">Kategori</label>
                         <select id="id_kategori" name="id_kategori" class="form-control @error('id_kategori') is-invalid @enderror">
@@ -41,7 +41,7 @@ Input Buku
                             <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
                             @endif
                             @endforeach
-                            <option selected disabled>Kategori</option>
+                            <option selected disabled>--Kategori--</option>
                         </select>
                         @error('id_kategori')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -49,34 +49,32 @@ Input Buku
                     </div>
                     <!-- text input -->
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <!-- text input -->
                     <div class="form-group ">
                         <label for="publisher">Penulis</label>
                         <input name="publisher" value="{{old('publisher')}}" id="publisher" class="form-control @error('publisher') is-invalid @enderror""
-                            placeholder="siapa penulisanya" >
+                            placeholder="Masukan Penulis" >
                            @error('publisher')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <!-- text input -->
                     <div class="form-group ">
                         <label for="tahun">Tahun Dibuat</label>
-                        <input name="tahun" id="tahun" class="form-control @error('tahun') is-invalid @enderror" placeholder="berapa tahunnya"
-                            value="{{old('tahun')}}">
-                            @error('tahun')
-                            <div class="invalid-feedback">{{$message}}</div>
-                            @enderror
+                        <input name="tahun" id="tahun" class="form-control @error('tahun') is-invalid @enderror"
+                            placeholder="Masukan Tahun" value="{{old('tahun')}}">
+                        @error('tahun')
+                        <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="deskripsi_ebook">Deskripsi</label>
-                <textarea name="deskripsi_ebook" value="{{old('deskripsi_ebook')}}" class="form-control @error('deskripsi_ebook') is-invalid @enderror" cols="30"
+                <textarea placeholder="Masukan Deskripsi" name="deskripsi_ebook" value="{{old('deskripsi_ebook')}}" class="form-control @error('deskripsi_ebook') is-invalid @enderror" cols="30"
                     rows="10"></textarea>
                     @error('deskripsi_ebook')
                     <div class="invalid-feedback">{{$message}}</div>

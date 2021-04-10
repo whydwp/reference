@@ -16,7 +16,9 @@ class PreviewController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:superadmin', ['only' => ['index']]);
+        // $this->middleware('role:superadmin', ['only' => ['index']]);
+
+        $this->middleware('permission:preview-list', ['only' => ['index', 'show']]);
     }
     // public function __construct3()
     // {

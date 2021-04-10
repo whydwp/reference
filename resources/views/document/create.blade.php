@@ -1,11 +1,9 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Input Dokumen
+<a href="{{ route('document.index')}}">Dokumen</a>/ Input Dokumen
 @endsection
-
 @section('content')
-
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -14,8 +12,8 @@ Input Dokumen
         <form method="post" action="{{ route('document.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="judul_dokumen">judul</label>
-                <input name="judul_dokumen" id="judul_dokumen" class="form-control @error('judul_dokumen') is-invalid @enderror" placeholder="apa judulnya"
+                <label for="judul_dokumen">Judul</label>
+                <input name="judul_dokumen" id="judul_dokumen" class="form-control @error('judul_dokumen') is-invalid @enderror" placeholder="Masukan Judul"
                     value="{{old('judul_dokumen')}}">
                     @error('judul_dokumen')
                     <div class="invalid-feedback">{{$message}}</div>
@@ -38,7 +36,7 @@ Input Dokumen
                             <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
                             @endif
                             @endforeach
-                            <option selected disabled>Kategori</option>
+                            <option selected disabled>--Kategori--</option>
                         </select>
                         @error('id_kategori')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -51,7 +49,7 @@ Input Dokumen
                     <div class="form-group ">
                         <label for="publisher">Penulis</label>
                         <input name="publisher" value="{{old('publisher')}}" id="publisher" class="form-control @error('publisher') is-invalid @enderror""
-                            placeholder="siapa penulisanya" >
+                            placeholder="Masukan Penulis" >
                            @error('publisher')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
@@ -63,7 +61,7 @@ Input Dokumen
                     <!-- text input -->
                     <div class="form-group ">
                         <label for="tahun">Tahun Dibuat</label>
-                        <input name="tahun" id="tahun" class="form-control @error('tahun') is-invalid @enderror" placeholder="berapa tahunnya"
+                        <input name="tahun" id="tahun" class="form-control @error('tahun') is-invalid @enderror" placeholder="Masukan Tahun"
                             value="{{old('tahun')}}">
                             @error('tahun')
                             <div class="invalid-feedback">{{$message}}</div>
@@ -74,9 +72,9 @@ Input Dokumen
                 <div class="col-sm-6">
                     <!-- text input -->
                     <div class="form-group">
-                        <label for="jumlah_halaman">jumlah halaman</label>
+                        <label for="jumlah_halaman">Jumlah Halaman</label>
                         <input name="jumlah_halaman" id="jumlah_halaman" class="form-control @error('jumlah_halaman') is-invalid @enderror"
-                            placeholder="berapa jumlahnya" value="{{old('jumlah_halaman')}}">
+                            placeholder="Masukan Jumlah Halaman" value="{{old('jumlah_halaman')}}">
                             @error('jumlah_halaman')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
@@ -86,7 +84,7 @@ Input Dokumen
             </div>
             <div class="form-group">
                 <label for="deskripsi_dokumen">Deskripsi</label>
-                <textarea name="deskripsi_dokumen" value="{{old('deskripsi_dokumen')}}" class="form-control @error('deskripsi_dokumen') is-invalid @enderror" cols="30"
+                <textarea name="deskripsi_dokumen" placeholder="Masukan Deskripsi" value="{{old('deskripsi_dokumen')}}" class="form-control @error('deskripsi_dokumen') is-invalid @enderror" cols="30"
                     rows="10"></textarea>
                     @error('deskripsi_dokumen')
                     <div class="invalid-feedback">{{$message}}</div>
@@ -95,7 +93,7 @@ Input Dokumen
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group @error('file') is-invalid @enderror">
-                        <label for="file" class="col-sm-4 control-label">File document </label>
+                        <label for="file" class="col-sm-4 control-label">File Dokumen </label>
                         <p style="margin-top: -10px; margin-left:10px !important;">file zip max 50Mb</p>
                         <input value="{{old('file')}}" type="file" name="file" class="form-control @error('file') is-invalid @enderror">
                         @error('file')

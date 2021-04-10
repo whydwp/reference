@@ -82,7 +82,7 @@ Input User
                 </div>
 
                 <div class="col-md-12">
-                    <div class="card card-danger">
+                    <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Setting Hak Akses</h3>
                         </div>

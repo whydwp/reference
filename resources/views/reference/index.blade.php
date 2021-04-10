@@ -249,7 +249,6 @@ Reference
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
                         @foreach ($reference as $id)
-
                         <div class="row tab-pane active" id="tab_1">
                             <div class="col px-8" style="margin-left: 15px !important; margin-right:20px;">
                                 <h5 style=" line-height: 30px; font-family: Roboto; margin-bottom: 13px !important;"
@@ -258,7 +257,7 @@ Reference
                             </div>
                         </div>
                         <div class="row startdoc">
-                            <div class="col-auto">
+                            <div class="col-auto" style="margin-left: 17px;">
                                 <a>
                                     @if($id->cover)
                                     <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
@@ -303,7 +302,7 @@ Reference
                                     <i class="far fa-eye"></i> {{$id->jumlah_view}}
                                 </a>
 
-                                <a class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</a>
+                                <span class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</span>
 
                                 <div class="float-right">
                                     <a href="{{route('reference.show',$id->id)}}">

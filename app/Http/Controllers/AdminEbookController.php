@@ -21,14 +21,20 @@ class AdminEbookController extends Controller
      */
      public function __construct()
     {
-        $this->middleware('role:admin', ['only' => ['index','show', 'create', 'store', 'edit', 'update', 'destroy']]);
+        //$this->middleware('role:admin', ['only' => ['index','show', 'create', 'store', 'edit', 'update', 'destroy']]);
 
+        $this->middleware('permission:ebook-list-admin', ['only' => ['index', 'show']]);
+        $this->middleware('permission:ebook-edit-admin', ['only' => ['index', 'update']]);
+        $this->middleware('permission:ebook-create-admin', ['only' => ['create', 'store']]);
+        //$this->middleware('permission:ebook-delete-admin', ['only' => ['delete']]);
+        // $this->middleware('permission:ebook-show', ['only' => ['show']]);
         //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
 
     public function index()
     {
-        $ebook = Ebook::OrderBy('created_at', 'desc')->where("user_id", Auth::user()->id)->paginate(5);
+        //$ebook = Ebook::OrderBy('created_at', 'desc')->where("user_id", Auth::user()->id)->paginate(5);
+        $ebook = Ebook::OrderBy('created_at', 'desc')->paginate(100000);
         $kategori = Kategori::all();
         $status = Status::all();
         $user = User::all();
@@ -69,7 +75,7 @@ class AdminEbookController extends Controller
             'tahun' => 'required|numeric',
             'publisher' => 'required|max:250',
             'file' => 'required|mimes:pdf,docx,pptx|max:1048576',
-            'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
+            //'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
             'id_kategori' => 'required|max:250',
 
         ];
@@ -80,7 +86,7 @@ class AdminEbookController extends Controller
             'tahun.required'           => 'tahun wajib diisi.',
             'publisher.required'         => 'publisher wajib diisi.',
             'file.required'         => 'file wajib diisi.',
-            'cover.required'         => 'cover wajib diisi.',
+            //'cover.required'         => 'cover wajib diisi.',
             'id_kategori.required'         => 'kategori wajib dipilih.',
 
         ];
@@ -94,19 +100,24 @@ class AdminEbookController extends Controller
 
         if ($request->file('file')->isValid()) {
             $file = $request->file('file');
-            $extention = $file->getClientOriginalExtension();
-            $namaFile = "ebook/" . date('YmdHis') . "." . $extention;
+            $extention = $file->getClientOriginalName();
+            $namaFile = "ebook/" . "." . $extention;
             $upload_path = 'uploads/ebook';
             $request->file('file')->move($upload_path, $namaFile);
             $ebook['file'] = $namaFile;
         }
-        if ($request->file('cover')->isValid()) {
-            $file = $request->file('cover');
-            $extention = $file->getClientOriginalExtension();
-            $namaCover = "ebook/" . $file . "." . $extention;
-            $upload_path = 'uploads/ebook';
-            $request->file('cover')->move($upload_path, $namaCover);
-            $ebook['cover'] = $namaCover;
+        $cover = $request->file('cover');
+        if ($cover) {
+            if ($request->file('cover')->isValid()) {
+                $file = $request->file('cover');
+                $extention = $file->getClientOriginalExtension();
+                $namaCover = "ebook/" . date('YmdHis') . "." . $extention;
+                $upload_path = 'uploads/ebook';
+                $request->file('cover')->move($upload_path, $namaCover);
+                $ebook['cover'] = $namaCover;
+            } else {
+                $cover =  'image/1.png';
+            }
         }
 
         Ebook::create($ebook);

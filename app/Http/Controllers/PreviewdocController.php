@@ -16,7 +16,7 @@ class PreviewdocController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin', ['only' => ['index']]);
+        $this->middleware('permission:preview-admin', ['only' => ['index', 'show']]);
     }
     // public function __construct3()
     // {

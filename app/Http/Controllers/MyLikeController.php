@@ -13,7 +13,9 @@ class MyLikeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:pusdiklat', ['only' => ['index']]);
+        //$this->middleware('role:pusdiklat', ['only' => ['index']]);
+
+        $this->middleware('permission:like', ['only' => ['index', 'show']]);
     }
 
     /**

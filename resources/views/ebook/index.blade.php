@@ -97,11 +97,15 @@ Buku
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
+                                    @can("ebook-delete-superadmin")
                                     <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
                                    {{-- @if(Auth::user()->user_type_id == 1) --}}
+                                   @endcan
+                                   @can("ebook-edit-superadmin")
                                     <a class="btn btn-round btn-info btn-md far fa-edit" href="{{ route('ebook.edit',[$row->id_ebook]) }}"></a>
                                     {{-- @endif
                                     --}}
+                                    @endcan
                                 </form>
                             </td>
                         </tr>

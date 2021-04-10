@@ -17,9 +17,10 @@ Komentar
                     </div>
                     <br />
                 <div class="col-md-10 offset-md-1 ">
-           
+                    @can("komentar-export")
                     <a href="{{route('reportcomen')}}" class="btn btn-info"><i class="far fa-file-excel"></i>
                 Export exel</a>
+                @endcan
                 </div>
                     {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
                     exel</a> --}}
@@ -56,8 +57,10 @@ Komentar
                                             {{ method_field('DELETE') }}
                                             {{-- <a class="btn btn-round btn-warning btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a>
                                             --}}
+                                            @can("komentar-delete")
                                             <button type="submit"
                                                 class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                                @endcan
                                             {{-- <form method="post" action="">
                                                                                             @csrf
                                                                                             {{method_field('DELETE')}}

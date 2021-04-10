@@ -67,5 +67,8 @@
                 </div>
             </div>
         </div>
+        {{-- <footer>
+            <img src="image/footer.svg" alt="" style="background-color: rgba(255, 255, 255, 0) !important;">
+        </footer> --}}
     </body>
 </html>

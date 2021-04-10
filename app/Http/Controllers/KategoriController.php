@@ -28,8 +28,14 @@ class KategoriController extends Controller
      */
      public function __construct()
     {
-        $this->middleware('role:superadmin', ['only' => ['index', 'create', 'edit', 'store', 'reportkategori', 'import', 'destroy']]);
+        //$this->middleware('role:superadmin', ['only' => ['index', 'create', 'edit', 'store', 'reportkategori', 'import', 'destroy']]);
 
+        $this->middleware('permission:kategori-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:kategori-edit', ['only' => ['index', 'update']]);
+        $this->middleware('permission:kategori-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:kategori-delete', ['only' => ['delete']]);
+        $this->middleware('permission:kategori-export', ['only' => ['reportkategori']]);
+        $this->middleware('permission:kategori-import', ['only' => ['import']]);
     }
     public function index()
     {

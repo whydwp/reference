@@ -131,18 +131,6 @@
                             </p>
                         </a>
                     </li>
-
-                    @can("user-list")
-                        <li class="nav-item">
-                            <a href="{{ route('user.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users-cog"></i>
-                                <p>
-                                    Kelola User
-                                </p>
-                            </a>
-                        </li>
-                    @endcan
-
                     <li class="nav-item">
                         <a href="{{route('reference.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-chalkboard-teacher"></i>
@@ -168,6 +156,57 @@
                             </p>
                         </a>
                     </li>
+                    @can("kategori-list")
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('kategori', ['id' => '1']) }}" class="nav-link"> --}}
+                        <a href="{{ route('kategori.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-random"></i>
+                            <p>
+                                Kategori
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("user-list")
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Kelola User
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("komentar-list")
+                    <li class="nav-item">
+                        <a href="{{route('forum.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                Kelola Komentar
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("kumpulan-buku")
+                    <li class="nav-item">
+                        <a href="{{ route('kumpulanEbook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Kumpulan Buku
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("ebook-list-superadmin")
+                    <li class="nav-item">
+                        <a href="{{ route('ebook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Kelola Buku Super Admin
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
                     {{-- <li class="nav-item">
                                     <a href="{{ route('document.index') }}" class="nav-link">
                     <i class="fas fa-file-alt"></i>
@@ -223,7 +262,58 @@
                             </p>
                         </a>
                     </li>
-
+                    
+                    @can("dokumen-list")
+                    <li class="nav-item">
+                        <a href="{{route('doc.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Kelola Dokumen
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("ebook-list-admin")
+                    <li class="nav-item">
+                        <a href="{{ route('adminEbook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Kelola Buku Admin
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("kategori-list")
+                    <li class="nav-item">
+                        {{-- <a href="{{ route('kategori', ['id' => '1']) }}" class="nav-link"> --}}
+                        <a href="{{ route('kategori.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-random"></i>
+                            <p>
+                                Kategori
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("komentar-list")
+                    <li class="nav-item">
+                        <a href="{{route('forum.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                            <p>
+                                Kelola Komentar
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can("ebook-list-superadmin")
+                    <li class="nav-item">
+                        <a href="{{ route('ebook.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Kelola Buku Super Admin
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
                 </ul>
             @endrole
         </nav>

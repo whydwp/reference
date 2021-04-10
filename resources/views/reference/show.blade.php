@@ -10,13 +10,13 @@
     <div class="col-md-12">
         <div class="list-group">
             <div class=" card list-group-item">
-                <a href="{{route('reference.index')}}" class="btn btn-info btn-xl">Kembali</a>
+                <a href="{{route('reference.index')}}" class="btn btn-info btn-xl"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
                  <hr>
                 <div class="row">
                     <div class="container" >
                         <div class="col-md-12">
                         {{-- @foreach ($reference as $item) --}}
-                            <label for="file" class="col-sm-2 control-label"></label>
+                            <label style="text-align:center; font-size:40px;" for="file"  class=" col-sm-12 control-label">{{$reference->judul_dokumen}}</label>
                             <div class="embed-responsive embed-responsive-4by3">
                                 <iframe class="embed-responsive-item" type="application / html5"
                                     src="{{ asset('uploads/'.$reference->file) }}#toolbar=0&navpanes=0&scrollbar=0"

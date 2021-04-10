@@ -10,7 +10,7 @@
 </div> -->
 <!-- <p>{{$path}}</p> -->
 <div class=" card list-group-item">
-    <a href="{{route('document.index')}}" class="btn btn-info btn-xl">Kembali</a>
+    <a href="{{route('document.index')}}" class="btn btn-info btn-xl"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
     <hr>
 
 <!-- <iframe frameborder="10" scrolling="yes" style="border:10px" src="{{ asset('uploads/document/20210120072730/ddcca874-5820-11eb-8b25-0cc47a792c0a_id_ddcca874-5820-11eb-8b25-0cc47a792c0a.html') }}#toolbar=0&navpanes=0&scrollbar=0" width="1110" height="1000"> -->

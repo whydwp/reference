@@ -21,8 +21,13 @@ class DocumentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin', ['only' => ['index', 'show', 'create', 'store', 'report', 'update', 'destroy','edit']]);
-
+        //$this->middleware('role:admin', ['only' => ['index', 'show', 'create', 'store', 'report', 'update', 'destroy','edit']]);
+        $this->middleware('permission:dokumen-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:dokumen-edit', ['only' => ['index', 'update']]);
+        $this->middleware('permission:dokumen-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:dokumen-delete', ['only' => ['delete']]);
+        $this->middleware('permission:dokumen-show', ['only' => ['show']]);
+        $this->middleware('permission:dokumen-export', ['only' => ['report']]);
         //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
 

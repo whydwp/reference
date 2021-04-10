@@ -73,7 +73,7 @@ Edit User
                 </div>
             </div>
         <div class="col-md-12">
-            <div class="card card-danger">
+            <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">Setting Hak Akses</h3>
                 </div>
@@ -96,7 +96,7 @@ Edit User
     </div>
             <div class="form-group">
                 <a href="{{route('user.index')}}" class="btn btn-warning btn-xl"><span class="fas fa-backward"></span> Kembali</a>
-                <button type="submit" class="btn btn-success btn-xl">Simpan</button>
+                <button type="submit" class="btn btn-success btn-xl"><span class="fas fa-pen-square"></span> Simpan</button>
 
             </div>
         </form>

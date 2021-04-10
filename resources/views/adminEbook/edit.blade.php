@@ -137,7 +137,7 @@ Edit Buku
             </div>
             <div class="form-group">
                <a href="{{route('adminEbook.index')}}" class="btn btn-warning btn-xl"><span class="fas fa-backward"></span> Kembali</a>
-                <button type="submit" name="tombol" class="btn btn-info pull-right">Update</button>
+                <button type="submit" name="tombol" class="btn btn-info pull-right"> <span class="fas fa-pen-square"></span> Update</button>
             </div>
         </form>
 

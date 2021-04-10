@@ -17,8 +17,10 @@ Buku
                 </div>
                 <br/>
        <div class="col-md-10 offset-md-1 ">
+           @can("ebook-create-admin")
                 <a href="{{ route('adminEbook.create') }}" class="btn btn-primary"><span class=" fas fa-plus-square"></span>
                     Tambah Buku</a>
+                    @endcan
                 </div>
                 <br>
        <div class="col-md-10 offset-md-1 ">
@@ -119,9 +121,14 @@ Buku
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
+                                   @if($row->user->full_name == Auth::user()->full_name)
+                                    <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                    @endif
+                                    @can("ebook-edit-admin")
                                     @if($row->user->full_name == Auth::user()->full_name)
                                     <a class="btn btn-round btn-info btn-md far fa-edit" href="{{ route('adminEbook.edit',[$row->id_ebook]) }}"></a>
-                                    @endif                                   
+                                    @endif
+                                    @endcan                                   
                                 </form>
                             </td>
                         </tr>

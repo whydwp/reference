@@ -18,7 +18,8 @@ class KumpulanEbookController extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:pusdiklat', ['only' => ['index']]);
+        
+        $this->middleware('permission:kumpulan-buku', ['only' => ['index', 'show']]);
     }
 
     public function index(Request $request)

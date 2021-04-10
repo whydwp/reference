@@ -19,9 +19,14 @@ class EbookController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:superadmin', ['only' => ['index','edit','update', 'destroy']]);
+        //$this->middleware('role:superadmin', ['only' => ['index','edit','update', 'destroy']]);
 
-        //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
+        $this->middleware('permission:ebook-list-superadmin', ['only' => ['index', 'show']]);
+        $this->middleware('permission:ebook-edit-superadmin', ['only' => ['index', 'update']]);
+        //$this->middleware('permission:ebook-create-superadmin', ['only' => ['create', 'store']]);
+        $this->middleware('permission:ebook-delete-superadmin', ['only' => ['delete']]);
+        // $this->middleware('permission:ebook-show', ['only' => ['show']]);
+        //$this->middleware('permission:dokumen-export', ['only' => ['report']]);
     }
 
     public function index(Request $request)

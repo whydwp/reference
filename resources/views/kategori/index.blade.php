@@ -17,16 +17,22 @@ Kategori
                 </div>
                 <br/>
        <div class="col-md-10 offset-md-1 ">
+           @can("kategori-create")
             <button data-target="#modal-default" data-toggle="modal" type="button"
                 class="btn btn-raised btn-primary"><span class="fas fa-plus-square"></span>
                 Tambah Kategori</button>
+                @endcan
                 <br>
                 <br>
+                @can("kategori-export")
               <a href="{{route('kategoriexport')}}" class="btn btn-info"><i class="far fa-file-excel"></i>
                 Export exel</a>
+                @endcan
+                @can("kategori-import")
               <button data-target="#modal-default1" data-toggle="modal" type="button" class="btn btn-raised btn-info"><span
                     class="fas fa-plus-square"></span>
                 Import Data</button>
+                @endcan
                 <p></p>
             </div>
             {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
@@ -179,9 +185,13 @@ Kategori
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
-                                <a href="" data-target="#modal-default2-{{$row->id_kategori}}" data-toggle="modal" type="button" class="btn btn-round btn-success btn-md far fa-edit"></span></a>
-                                    {{-- <a class="btn btn-round btn-warning btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a> --}}
+                                    @can("kategori-edit")
+                                    <a href="" data-target="#modal-default2-{{$row->id_kategori}}" data-toggle="modal" type="button" class="btn btn-round btn-success btn-md far fa-edit"></span></a>
+                                    @endcan    
+                                {{-- <a class="btn btn-round btn-warning btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a> --}}
+                                    @can("kategori-delete")
                                     <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                    @endcan
                                     {{-- <form method="post" action="">
                                                                                             @csrf
                                                                                             {{method_field('DELETE')}}

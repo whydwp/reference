@@ -18,8 +18,10 @@ class ForumController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:superadmin', ['only' => ['index', 'create', 'store', 'reportc','destroy']]);
-
+        // $this->middleware('role:superadmin', ['only' => ['index', 'create', 'store', 'reportc','destroy']]);
+        $this->middleware('permission:komentar-list', ['only' => ['index', 'show']]);
+        $this->middleware('permission:komentar-delete', ['only' => ['delete']]);
+        $this->middleware('permission:komentar-export', ['only' => ['reportc']]);
         //$this->middleware('role:pusdiklat', ['only' => ['index', 'show']]);
     }
 

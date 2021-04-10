@@ -18,7 +18,6 @@ Kelola User
                     <br />
                     <div class="col-md-10 offset-md-1 ">
                         @can("user-create")
-
                             <a href="{{ route('user.create') }}" class="btn btn-success"><span
                                     class=" fas fa-plus-square"></span>
                                 Tambah User</a>
@@ -161,10 +160,7 @@ Kelola User
                                         <td>{{ $row->username }}</td>
                                         <td>{{ $row->roles->pluck("name")->implode(", ")}}</td>
                                         <td style="text-align:center">
-                                            @can("user-edit")
-                                                <a class="btn btn-round btn-success btn-md far fa-edit"
-                                                 href="{{ route('user.edit',[$row->id]) }}"></a>
-                                            @endcan
+                                           
                                             @can("user-delete")
                                                 <form method="post" action="{{ route('user.destroy',[$row->id]) }}"
                                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
@@ -173,6 +169,9 @@ Kelola User
 
                                                     <button type="submit"
                                                         class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                                        @can("user-edit")
+                                                        <a class="btn btn-round btn-success btn-md far fa-edit" href="{{ route('user.edit',[$row->id]) }}"></a>
+                                                        @endcan
                                                 </form>
                                             @endcan
 
@@ -208,7 +207,7 @@ Kelola User
         $('#example1').DataTable({
             "paging": false,
             "lengthChange": true,
-            "searching": true,
+            "searching": false,
             "ordering": true,
             "info": true,
             "autoWidth": false,

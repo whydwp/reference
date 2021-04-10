@@ -103,17 +103,17 @@ Edit Documen
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
             </div>
-            
-                <label for="file" class="col-sm-2 control-label"></label>
-                <div class="col-sm-10">
-                    <iframe src="{{ asset('uploads/'.$document->file) }}" width="500" height="250">{{ asset('uploads/'.$document->file) }}</iframe>
+            <hr>
+                <label for="file" class="col-sm-2 control-label">File Dokumen</label>
+                <div class="col-sm-12 embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="{{ asset('uploads/'.$document->file) }}"  width="100%">{{ asset('uploads/'.$document->file) }}</iframe>
                        
                 </div>
             
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="file" class="col-sm-4 control-label">File document</label>
+                        {{-- <label for="file" class="col-sm-4 control-label">File document</label> --}}
                         <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" id="file">
                         @error('file')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -122,33 +122,31 @@ Edit Documen
                 </div>
 
             </div>
-                <label for="cover" class="col-sm-2 control-label"></label>
-                <div class="col-sm-10">
+            <hr>
+                <label for="cover" class="col-sm-12 control-label">Cover Dokumen</label>
+                <div class="col-sm-12 embed-responsive embed-responsive-4by3">
 
                     @if($document->cover)
-                    <img src="{{ asset('uploads/'.$document->cover) }}" class="img-thumbnail" width="200px"width="450" height="250">
+                    <img class="embed-responsive-item" src="{{ asset('uploads/'.$document->cover) }}" class="img-thumbnail" width="80%" >
                     @else
-                    <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                    <img class="embed-responsive-item" src="{{ asset('image/1.png') }}" class="img-thumbnail" width="80%">
                     @endif
-                   
                 </div>
-            
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="cover" class="col-sm-4 control-label">cover document</label>
+                        {{-- <label for="cover" class="col-sm-4 control-label">cover document</label> --}}
                         <input type="file" id="cover"name="cover" class="form-control @error('cover') is-invalid @enderror" id="cover">
                         @error('cover')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
                 </div>
-
             </div>
 
             <div class="form-group">
                <a href="{{route('document.index')}}" class="btn btn-warning btn-xl"><span class="fas fa-backward"></span> Kembali</a>
-                <button type="submit" name="tombol" class="btn btn-info pull-right">Update</button>
+                <button type="submit" name="tombol" class="btn btn-info pull-right"><span class="fas fa-pen-square"></span> Update</button>
             </div>
         </form>
 

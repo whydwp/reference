@@ -41,7 +41,7 @@ Edit Buku
                         <label for="id_status">Status</label>
                         <select id="id_status" name="id_status"
                             class="form-control @error('id_status') is-invalid @enderror">
-                            <option selected disabled style="font-weight: bold;">Status </option>
+                            <option selected disabled style="font-weight: bold;">--Status-- </option>
                             @foreach($status as $row )
                             <option value="{{ $row->id_status }}" @if($ebook->id_status == $row->id_status) Selected
                                 @endif>{{ $row->status }}
@@ -109,7 +109,7 @@ Edit Buku
                 <div class="form-group">
                     <a href="{{route('ebook.index')}}" class="btn btn-warning btn-xl"><span
                             class="fas fa-backward"></span> Kembali</a>
-                    <button type="submit" name="tombol" class="btn btn-info pull-right">Update</button>
+                    <button type="submit" name="tombol" class="btn btn-info pull-right"><span class="fas fa-pen-square"></span> Update</button>
                 </div>
         </form>
 
