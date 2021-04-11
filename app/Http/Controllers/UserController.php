@@ -64,10 +64,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get();;
-        $permission = Permission::get();
+        $roles = Role::get();
 
-        return view('user.create', compact('roles','permission'));
+        return view('user.create', compact('roles'));
     }
 
 
@@ -88,8 +87,24 @@ class UserController extends Controller
         $request->merge([ 'password' => bcrypt($request['password']) ]);
         $user = User::create($request->except('_token', '_method', 'role_id', 'permission'));
 
-        $user->removeRole($request->role_id);
-        $user->assignRole($request->role_id);
+        $role = Role::where("id", $request->role_id)->first();
+        $user->removeRole($role->id);
+        $user->assignRole($role->id);
+
+        $permissionSuperAdmin = Permission::pluck("id", "id")->all();
+        $permissionAdmin = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
+        $permissionUser = Permission::whereIn("name", ['profile', 'ebook-list', 'ebook-create', 'ebook-edit', 'ebook-delete', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
+
+        $user->assignRole($role->id);
+
+        if($role->name == "superadmin"){
+            $user->syncPermissions($permissionSuperAdmin);
+        }elseif($role->name == "admin"){
+            $user->syncPermissions($permissionAdmin);
+        }elseif($role->name == "user"){
+            $user->syncPermissions($permissionUser);
+        }
+
         $user->syncPermissions($request->permission);
 
         return redirect()->route('user.index')->with('status', 'User Berhasil Ditambahankan');

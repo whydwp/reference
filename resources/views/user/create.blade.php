@@ -81,25 +81,6 @@ Input User
                     <!-- text input -->
                 </div>
 
-                <div class="col-md-12">
-                    <div class="card card-info">
-                        <div class="card-header">
-                            <h3 class="card-title">Setting Hak Akses</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach($permission as $value)
-                                    <div class="col-md-3">
-                                        <div class="checkbox-single">
-                                            <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}  {{ $value->name }}</label>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
             </div>
 
 
