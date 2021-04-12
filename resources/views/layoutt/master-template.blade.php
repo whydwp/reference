@@ -50,10 +50,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             right: 25px;
             display: none;
         }
-        .text{
+
+        .text {
             color: #eee;
             font-weight: 500;
         }
+
         .footer {
             color: aliceblue;
         }
@@ -89,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
-    <link rel="shortcut icon" href="{{asset('now-ui-kit/assets/img/logo.svg')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="image/logo.png">
     <!-- Jquery -->
 
 
@@ -183,7 +185,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </section>
 
                         <!-- Main content -->
-                        <section class="content">
+                        <section style="margin-top: -30px;" class="content">
                             @yield('content')
                             <!-- Small boxes (Stat box) -->
 
@@ -215,7 +217,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <div class="text-center p-3 gradient2">
-            <span class="text" >Copyright &copy; PLN Pusdiklat - 2020</span>
+            <span class="text">Copyright &copy; PLN Pusdiklat - 2020</span>
         </div>
         {{-- <footer style="position:relative !important;"class="main-footer gradient2">
             <div class="container my-auto">

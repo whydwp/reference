@@ -33,18 +33,19 @@ Kumpulan Buku
                 </select> --}}
                 <br>
                 @if(Request::get('keyword'))
-                <a class="btn btn-info" href="{{ route('kumpulanEbook.index') }}"> < Back</a>
+                <a class="btn btn-info" href="{{ route('kumpulanEbook.index') }}"> <i
+                        class="fas fa-arrow-circle-left"></i> Back</a>
                 @endif
                 <br>
                 <br>
-                <div class="row">   
-                   <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
                         <form method="get" action="{{route('kumpulanEbook.index')}}">
                             <div class="form-group">
                                 <label for="keyword" class="col-sm-12 control-label">Pencarian Judul Buku</label>
                                 <div class="input-group input-group-lg">
-                                    <input style="hight: 90px;" type="search"  class="form-control form-control-lg" name="keyword"
-                                        value="{{Request::get('keyword')}}" placeholder="Judul Buku">
+                                    <input style="hight: 90px;" type="search" class="form-control form-control-lg"
+                                        name="keyword" value="{{Request::get('keyword')}}" placeholder="Judul Buku">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-lg btn-default">
                                             <i class="fa fa-search"></i>
@@ -59,13 +60,15 @@ Kumpulan Buku
                 @if ($kumpulan->count() == 0)
                 <div class="alert" style="background-image: linear-gradient(to right, #a2c2d4, #7effe3);">
                     <button type="button" class="close" data-dismiss="alert">X</button>
-                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ Request::get('keyword') }} </b><b> tidak ada Buku</b>
+                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ Request::get('keyword') }} </b><b> tidak ada
+                        Buku</b>
                 </div>
                 <br>
                 @elseif($kumpulan->count() >= 0)
                 <div class="alert" style="background-image: linear-gradient(to right, #a2c2d4, #7effe3);">
                     <button type="button" class="close" data-dismiss="alert">X</button>
-                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ Request::get('keyword') }} Terdapat {{$kumpulan->count('id')}} Buku</b>
+                    Hasil Pencarian Dokumen dengan Kategori : <b>{{ Request::get('keyword') }} Terdapat
+                        {{$kumpulan->count('id')}} Buku</b>
                 </div>
                 @endif
                 @endif
@@ -95,8 +98,7 @@ Kumpulan Buku
                         <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
                             {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
                             @if (strlen($id->deskripsi_dokumen) > 200) --}}
-                            <span data-toggle="modal"
-                                class="more">{{$id->deskripsi_ebook}}</span>
+                            <span data-toggle="modal" class="more">{{$id->deskripsi_ebook}}</span>
                             {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
                             <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca Selengkapnya</a>
                             @endif --}}
@@ -114,13 +116,15 @@ Kumpulan Buku
                         <br>
                         <br>
                         <div class="float-left">
-                        <a data-target="#modal-{{$id->id_ebook}}" data-toggle="modal" class="btn" style="background-color:#01a3a4;font-family:'Nunito';"
-                            href="{{ asset('uploads/'.$id->file) }}"><i class="fab fa-readme"></i> Lihat Buku</a>
-                        </a>
+                            <a data-target="#modal-{{$id->id_ebook}}" data-toggle="modal" class="btn"
+                                style="background-color:#01a3a4;font-family:'Nunito';"
+                                href="{{ asset('uploads/'.$id->file) }}"><i class="fab fa-readme"></i> Lihat Buku</a>
+                            </a>
                         </div>
                         <div class="float-right">
-                            <a class="btn" style="background-color: #55efc4; font-family:'Nunito';" href="{{ asset('uploads/'.$id->file) }}"
-                                download=""><i class="fas fa-download"></i> Unduh PDF</a>
+                            <a class="btn" style="background-color: #55efc4; font-family:'Nunito';"
+                                href="{{ asset('uploads/'.$id->file) }}" download=""><i class="fas fa-download"></i>
+                                Unduh PDF</a>
                             </a>
                         </div>
                     </div>
@@ -182,7 +186,7 @@ Kumpulan Buku
                         {{-- @foreach ($reference as $item) --}}
                         <label for="file" class="col-sm-2 control-label"></label>
                         <div class="embed-responsive embed-responsive-4by3">
-                           <iframe class="embed-responsive-item" type="application / html5"
+                            <iframe class="embed-responsive-item" type="application / html5"
                                 src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0" width="100%"
                                 height="10000">{{ asset('uploads/'.$id->file) }}</iframe>
                         </div>
