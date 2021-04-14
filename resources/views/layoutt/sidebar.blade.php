@@ -96,18 +96,26 @@
             </a>
             </li> --}}
             <li class="nav-item">
-                <a href="{{ route('user.index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-users-cog"></i>
-                    <p class="text-sidebar">
-                        Kelola User
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a href="{{ route('ebook.index') }}" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                     <p class="text-sidebar">
                         Kelola Buku
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('gambar.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-images"></i>
+                    <p class="text-sidebar">
+                        Slider Login
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('user.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-users-cog"></i>
+                    <p class="text-sidebar">
+                        Kelola User
                     </p>
                 </a>
             </li>

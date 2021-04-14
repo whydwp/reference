@@ -82,6 +82,7 @@ class UserController extends Controller
             'username'     => 'required|max:100|unique:user_auth',
             'email'        => 'required|email|max:255|unique:user_auth',
             'password'     => 'required|max:250',
+            'role_id'   => 'required'
         ]);
 
         $request->merge([ 'password' => bcrypt($request['password']) ]);
@@ -90,6 +91,7 @@ class UserController extends Controller
         $role = Role::where("id", $request->role_id)->first();
         $user->removeRole($role->id);
         $user->assignRole($role->id);
+        
 
         $permissionSuperAdmin = Permission::pluck("id", "id")->all();
         $permissionAdmin = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
@@ -101,7 +103,7 @@ class UserController extends Controller
             $user->syncPermissions($permissionSuperAdmin);
         }elseif($role->name == "admin"){
             $user->syncPermissions($permissionAdmin);
-        }elseif($role->name == "user"){
+        }elseif($role->name == "pusdiklat"){
             $user->syncPermissions($permissionUser);
         }
 

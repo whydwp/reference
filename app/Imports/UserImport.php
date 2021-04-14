@@ -34,8 +34,8 @@ class UserImport implements ToModel, WithChunkReading, ShouldQueue
         $role = Role::where("name", $row[4])->first();
 
         $permissionSuperAdmin = Permission::pluck("id", "id")->all();
-        $permissionAdmin = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
-        $permissionUser = Permission::whereIn("name", ['profile', 'ebook-list', 'ebook-create', 'ebook-edit', 'ebook-delete', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
+        $permissionAdmin = Permission::whereIn("name", ['profile', 'ebook-list', 'ebook-create', 'ebook-edit', 'ebook-delete', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'] )->pluck("id", "id")->all();
+        $permissionUser = Permission::whereIn("name", ['profile', 'reference', 'like', 'dashboard-user', 'kumpulan-buku'])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
 
@@ -43,7 +43,7 @@ class UserImport implements ToModel, WithChunkReading, ShouldQueue
             $user->syncPermissions($permissionSuperAdmin);
         }elseif($role->name == "admin"){
             $user->syncPermissions($permissionAdmin);
-        }elseif($role->name == "user"){
+        }elseif($role->name == "pusdiklat"){
             $user->syncPermissions($permissionUser);
         }
 

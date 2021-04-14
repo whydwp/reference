@@ -64,17 +64,20 @@ Document
                                 <div class="col-md-6">
                                     <form method="get" action="{{route('document.index')}}">
                                         <div class="form-group">
-                                            <label>Cari Kategori</label>
-                                            <select id="id_kategori" name="id_kategori" class="custom-select select2bs4"
-                                                style="width: 50%;">
-                                                <option selected disabled>Kategori</option>
-                                                @foreach($kategori as $row)
-                                                <option value="{{ $row->id_kategori }}">{{ $row->kategori }}</option>
-                                                @endforeach
-                                            </select>
-                                            <button type="submit" class="btn btn-lg btn-default">
-                                                <i class="fa fa-search"></i>
-                                            </button>
+                                            <div class="input-group input-group-lg">
+                                                <label>Kategori</label>
+                                                &nbsp;&nbsp;
+                                                <select id="id_kategori" name="id_kategori" class="custom-select select2bs4" style="width: 50%;">
+                                                    <option selected disabled>Kategori</option>
+                                                    @foreach($kategori as $row)
+                                                    <option value="{{ $row->id_kategori }}">{{ $row->kategori }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                <button type="submit" class="btn btn-lg btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

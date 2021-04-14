@@ -102,10 +102,10 @@ class UserSeeder extends Seeder
                 "password"  => Hash::make("admin"),
             ],
             [
-                "username"  => "srob",
-                "full_name" => "srob",
-                "email"     => "srob@plnpusdiklat.com",
-                "password"  => Hash::make("srob"),
+                "username"  => "andi",
+                "full_name" => "andi",
+                "email"     => "andi@plnpusdiklat.com",
+                "password"  => Hash::make("andi"),
             ],
         ];
 
@@ -138,7 +138,7 @@ class UserSeeder extends Seeder
         $this->command->info("superadmin created!");
 
 
-        $user = User::where("full_name", "srob")->first();
+        $user = User::where("full_name", "andi")->first();
         $role = Role::where("name", 'pusdiklat')->first();
         $permission = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
 

@@ -4,20 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('example-saml-auth')->group(function () {
     Route::name('logout')->post('logout', '\Aacotroneo\Saml2\Http\Controllers\Saml2Controller@logout');
-    
+  
     
 });
 
 // Route::get('/', function () {
 //     return view('general.login');
 // })->name('home');
-
-Route::get('/', function () {
-    return redirect('login');
-});
-
-Route::view('login', 'general.login');
-Route::view('loginn', 'general.loginn');
 Route::namespace('Auth')->group(function () {
     Route::post('login', 'LoginController@authenticate')->name('login');
     Route::get('logout', 'LoginController@logout')->name('logout');
@@ -35,6 +28,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/profil', 'ProfilController@index')->name('profil.index');
     Route::post('/update-profil/{id}', 'ProfilController@update')->name('update.profil');
     Route::match(['get', 'post'], '/edit/{id}', 'KategoriController@edit');
+    //Route::match(['get', 'post'], '/edit/{id}', 'sliderController@edit');
     Route::resource('/document', 'KelolaDocumentController');
     Route::resource('/doc', 'DocumentController');
     Route::resource('/kategori', 'KategoriController');
@@ -60,9 +54,18 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/previewdoc-{id}', 'PreviewdocController@index')->name('previewdoc');
     Route::post('/getjudul', 'MyReferenceController@getjudul');
     Route::post('/reference/{id}', 'MyReferenceController@insertData')->name('reference.insertData');
-
+    Route::resource('/gambar', 'GambarController');
     Route::get('locale/{locale}', function ($locale) {
         \Session::put('locale', $locale);
         return redirect()->back();
     });
 });
+
+Route::view('loginn', 'general.loginn');
+Route::get('/', function () {
+    return redirect('login');
+});
+
+Route::view('login', 'general.login');
+
+Route::get('/login', 'LoginController@index')->name('general.login');

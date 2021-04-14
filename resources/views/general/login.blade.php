@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login V4</title>
+    <title>Reference Learning</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -59,20 +59,20 @@
                     </div>
                 </div>
                 </div>
+                @foreach($slider as $sliders)
                 <div class="carousel-item">
-                   <div class="container-login100" style="background-image: url('now-ui-kit/assets/img/bg-pln.png');margin-left:-5px;">
+                   <div class="container-login100" style="background-image: url({{asset('uploads/'.$sliders->gambar)}});margin-left:-5px;">
+                    {{-- <img src="{{ asset('uploads/'.$sliders->gambar) }}" alt=""> --}}
                     <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="">
                         <form class="login100-form validate-form">
                             <img src="image/logo.png" alt="" style="display: block; margin: auto;">
                             <span class="login100-form-title p-b-49">
                                 Login
                             </span>
-                
-                            <div class="m-b-23">
-                                <span>Selamat Datang di Reference Learning!</span>
-                                <br>
-                                <span align="center">Masuk sebagai User untuk melanjutkan.</span>
-                            </div>
+                                <div style="margin-top: -30px;margin-left:40px;"" class=" m-b-23">
+                                    <span>Selamat Datang di Reference Learning!</span>
+                                    <span>Masuk sebagai User untuk melanjutkan.</span>
+                                </div>
                             <div class="container-login100-form-btn">
                                 <div class="wrap-login100-form-btn">
                                     <div class="login100-form-bgbtn"></div>
@@ -83,32 +83,10 @@
                     </div>
                 </div>
                 </div>
-                <div class="carousel-item">
-                   <div class="container-login100" style="background-image: url('now-ui-kit/assets/img/bg-pln.png');margin-left:-5px;">
-                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="">
-                        <form class="login100-form validate-form">
-                            <img src="image/logo.png" alt="" style="display: block; margin: auto;">
-                            <span class="login100-form-title p-b-49">
-                                Login
-                            </span>
-                
-                            <div class="m-b-23">
-                                <span>Selamat Datang di Reference Learning!</span>
-                                <br>
-                                <span align="center">Masuk sebagai User untuk melanjutkan.</span>
-                            </div>
-                            <div class="container-login100-form-btn">
-                                <div class="wrap-login100-form-btn">
-                                    <div class="login100-form-bgbtn"></div>
-                                    <a class="login100-form-btn" href="{{url('loginn')}}">Sign In With PLN SSO</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <footer>
+                @endforeach
+                {{-- <footer>
                     <div class="bg-footer" style="margin-left: -90x;"><img src="masuk/footer.svg" alt=""></div>
-                </footer>
+                </footer> --}}
             </div>
     </div>
 
