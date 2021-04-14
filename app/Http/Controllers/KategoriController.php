@@ -52,6 +52,7 @@ class KategoriController extends Controller
         
             $kategori = Kategori::paginate(10);
             $KategoriType = KategoriType::all();
+            return view('kategori.index', ['kategori' => $kategori],['KategoriType'=> $KategoriType]);
             
             //  $jumlah_like = Document::sum('id_kategori');
             //  $data = \DB::table('Dokumen')
@@ -66,7 +67,6 @@ class KategoriController extends Controller
             //     dd($data);     
           
             // $kategori = Kategori::all();
-            return view('kategori.index', ['kategori' => $kategori],['KategoriType'=> $KategoriType]);
         
     }
 
