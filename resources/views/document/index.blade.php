@@ -17,11 +17,15 @@ Document
                     </div>
                     <br />
                     <div class="col-md-10 offset-md-1 ">
+                        @can("dokumen-create")
                         <a href="{{ route('document.create') }}" class="btn btn-primary"><span
                                 class=" fas fa-plus-square"></span>
                             Tambah Dokumen</a>
+                        @endcan
+                        @can("dokumen-export")
                         <a href="{{ route('report') }}" class="btn btn-success"><i class="far fa-file-excel"></i>
                             Export exel</a>
+                        @endcan
                     </div>
                     {{-- <a href="{{route('user/export')}}" class="btn btn-success"><i class="far fa-file-excel"></i>
                     exel</a> --}}
@@ -144,13 +148,16 @@ Document
                                             onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                             @csrf
                                             {{ method_field('DELETE') }}
-
-                                            <a class="btn btn-round btn-info btn-md far fa-edit"
-                                                href="{{ route('document.edit',[$row->id]) }}"></a>
-                                            <button type="submit"
-                                                class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                            @can("dokumen-delete")
+                                            <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
+                                            @endcan
+                                            @can("dokumen-edit")
+                                            <a class="btn btn-round btn-info btn-md far fa-edit" href="{{ route('document.edit',[$row->id]) }}"></a>
+                                                @endcan
+                                                @can("preview-list")
                                             <a href="{{route('preview',[$row->id])}}"
                                                 class="btn bg-gradient-success far fa-eye"></a>
+                                                @endcan
                                             {{-- <form method="post" action="">
                                                             @csrf
                                                             {{method_field('DELETE')}}

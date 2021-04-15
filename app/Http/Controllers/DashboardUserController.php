@@ -21,7 +21,7 @@ class DashboardUserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:admin|pusdiklat', ['only' => ['index']]);
+        $this->middleware('role:updl|siswa', ['only' => ['index']]);
     }
 
 

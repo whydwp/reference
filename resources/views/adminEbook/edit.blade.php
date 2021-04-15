@@ -91,41 +91,36 @@ Edit Buku
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
-            
-            <label for="file" class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-                <iframe src="{{ asset('uploads/'.$ebook->file) }}" type="application / pptx" width="500"
+            <hr>
+            <label for="file" class="col-sm-4 control-label">File document</label>
+            <div class="embed-responsive embed-responsive-4by3" class="col-sm-12">
+                <iframe width="100%" height="1000"class="embed-responsive-item" src="{{ asset('uploads/'.$ebook->file) }}" type="application / pptx" width="500"
                     height="250">{{ asset('uploads/'.$ebook->file) }}</iframe>
-            
             </div>
-            
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="file" class="col-sm-4 control-label">File document</label>
+                        
                         <input type="file" name="file" class="form-control @error('file') is-invalid @enderror" id="file">
                         @error('file')
                         <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
                 </div>
-            
             </div>
-            <label for="cover" class="col-sm-2 control-label"></label>
-            <div class="col-sm-10">
-            
+            <hr>
+            <label for="cover" class="col-sm-4 control-label">cover document</label>
+            <div class="embed-responsive embed-responsive-4by3" class="col-sm-10">
                 @if($ebook->cover)
-                <img src="{{ asset('uploads/'.$ebook->cover) }}" class="img-thumbnail" width="200px" width="450" height="250">
+                <img class="embed-responsive-item" src="{{ asset('uploads/'.$ebook->cover) }}" class="img-thumbnail" width="100%" height="90%" >
                 @else
-                <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                <img class="embed-responsive-item"src="{{ asset('image/Picture1.png') }}" class="img-thumbnail" width="100%" height="90%">
                 @endif
-            
             </div>
-            
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <label for="cover" class="col-sm-4 control-label">cover document</label>
+                        
                         <input type="file" id="cover" name="cover" class="form-control @error('cover') is-invalid @enderror"
                             id="cover">
                         @error('cover')

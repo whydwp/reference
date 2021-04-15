@@ -20,7 +20,7 @@ class ProfilController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:superadmin|pusdiklat|admin', ['only' => ['index','update']]);
+        $this->middleware('role:updl|pusdiklat|siswa', ['only' => ['index','update']]);
     }
     public function index()
     {

@@ -153,7 +153,7 @@ return $settings = array(
         ),
         'support' => array(
             'givenName' => 'Support',
-            'emailAddress' => 'dev@pln-pusdiklat.co.id'
+            'emailAddress' => 'no@reply.com'
         ),
     ),
 
@@ -162,7 +162,7 @@ return $settings = array(
         'en-US' => array(
             'name' => 'Name',
             'displayname' => 'Display Name',
-            'url' => 'dev@pln-pusdiklat.co.id'
+            'url' => 'http://url'
         ),
     ),
 

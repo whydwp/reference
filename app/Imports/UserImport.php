@@ -27,23 +27,23 @@ class UserImport implements ToModel, WithChunkReading, ShouldQueue
             ],
             [
                 'full_name'    => $row[1],
-                'password'     => ( isset($row[5]) ? Hash::make($row[5]) : Hash::make('password') )
+                'password'     => ( isset($row[5]) ? Hash::make($row[5]) : Hash::make('P@ssw0rd') )
             ]
         );
 
         $role = Role::where("name", $row[4])->first();
 
         $permissionSuperAdmin = Permission::pluck("id", "id")->all();
-        $permissionAdmin = Permission::whereIn("name", ['profile', 'ebook-list', 'ebook-create', 'ebook-edit', 'ebook-delete', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'] )->pluck("id", "id")->all();
+        $permissionAdmin = Permission::whereIn("name", ['profile', 'ebook-list-admin', 'ebook-create-admin', 'ebook-edit-admin', 'ebook-delete-admin', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
         $permissionUser = Permission::whereIn("name", ['profile', 'reference', 'like', 'dashboard-user', 'kumpulan-buku'])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
 
-        if($role->name == "superadmin"){
+        if($role->name == "pusdiklat"){
             $user->syncPermissions($permissionSuperAdmin);
-        }elseif($role->name == "admin"){
+        }elseif($role->name == "updl"){
             $user->syncPermissions($permissionAdmin);
-        }elseif($role->name == "pusdiklat"){
+        }elseif($role->name == "siswa"){
             $user->syncPermissions($permissionUser);
         }
 

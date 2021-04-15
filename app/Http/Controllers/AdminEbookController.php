@@ -63,7 +63,7 @@ class AdminEbookController extends Controller
     public function store(Request $request)
     {
         $requestCreate = Ebook::where('user_id', Auth::user()->id)->count();
-        if ($requestCreate >= Ebook::DEFAULT_MAX_REQUEST_CREATE) {
+        if ($requestCreate >= Ebook::MAX_REQUEST_CREATE) {
             return redirect()->route('adminEbook.create')->with('warning', Ebook::ERROR_MESSAGE_LIMIT_MAX_REQUEST);;
         }
 

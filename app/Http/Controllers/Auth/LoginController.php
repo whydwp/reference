@@ -19,7 +19,7 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            if( Auth::check() && Auth::user()->hasRole("superadmin") ) {
+            if( Auth::check() && Auth::user()->hasRole("pusdiklat") ) {
                 return redirect()->intended('dashboard');
             }
             else {

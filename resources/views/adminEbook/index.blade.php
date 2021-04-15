@@ -121,9 +121,11 @@ Buku
                                     onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                     @csrf
                                     {{ method_field('DELETE') }}
-                                   @if($row->user->full_name == Auth::user()->full_name)
+                                    @can("ebook-delete-admin")
+                                    @if($row->user->full_name == Auth::user()->full_name)
                                     <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
                                     @endif
+                                    @endcan
                                     @can("ebook-edit-admin")
                                     @if($row->user->full_name == Auth::user()->full_name)
                                     <a class="btn btn-round btn-info btn-md far fa-edit" href="{{ route('adminEbook.edit',[$row->id_ebook]) }}"></a>

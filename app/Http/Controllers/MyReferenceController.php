@@ -23,7 +23,7 @@ class MyReferenceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:admin|pusdiklat', ['only' => ['index', 'getjudul', 'edit', 'update', 'store', 'report', 'addview', 'destroy','sort','show']]);
+        $this->middleware('role:updl|siswa', ['only' => ['index', 'getjudul', 'edit', 'update', 'store', 'report', 'addview', 'destroy','sort','show']]);
     }
 
     public function index(Request $request)

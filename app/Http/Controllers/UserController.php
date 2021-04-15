@@ -46,9 +46,9 @@ class UserController extends Controller
             });
         }
 
-        if(!Auth::user()->hasRole("superadmin")){
+        if(!Auth::user()->hasRole("pusdiklat")){
             $query->whereHas("roles", function($q) use ($request){
-                $q->where("name", '!=', "superadmin");
+                $q->where("name", '!=', "pusdiklat");
             });
         }
 
@@ -80,7 +80,7 @@ class UserController extends Controller
         $request->validate([
             'full_name'    => 'required|max:250',
             'username'     => 'required|max:100|unique:user_auth',
-            'email'        => 'required|email|max:255|unique:user_auth',
+            'email'        => 'required|email|max:255',
             'password'     => 'required|max:250',
             'role_id'   => 'required'
         ]);
@@ -91,23 +91,21 @@ class UserController extends Controller
         $role = Role::where("id", $request->role_id)->first();
         $user->removeRole($role->id);
         $user->assignRole($role->id);
-        
+
 
         $permissionSuperAdmin = Permission::pluck("id", "id")->all();
-        $permissionAdmin = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
-        $permissionUser = Permission::whereIn("name", ['profile', 'ebook-list', 'ebook-create', 'ebook-edit', 'ebook-delete', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
+        $permissionAdmin = Permission::whereIn("name", ['profile', 'ebook-list-admin', 'ebook-create-admin', 'ebook-edit-admin', 'ebook-delete-admin', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
+        $permissionUser = Permission::whereIn("name", ['profile', 'reference', 'like', 'dashboard-user', 'kumpulan-buku'])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
 
-        if($role->name == "superadmin"){
+        if ($role->name == "pusdiklat") {
             $user->syncPermissions($permissionSuperAdmin);
-        }elseif($role->name == "admin"){
+        } elseif ($role->name == "updl") {
             $user->syncPermissions($permissionAdmin);
-        }elseif($role->name == "pusdiklat"){
+        } elseif ($role->name == "siswa") {
             $user->syncPermissions($permissionUser);
         }
-
-        $user->syncPermissions($request->permission);
 
         return redirect()->route('user.index')->with('status', 'User Berhasil Ditambahankan');
     }
@@ -156,7 +154,7 @@ class UserController extends Controller
             ImportJob::dispatch($filename);
             return redirect()->back()->with(['success' => 'Upload success']);
         }
-        return redirect()->back()->with(['error' => 'Please choose file before']);
+        return redirect()->back()->with(['warning' => 'Please choose file before']);
 
     }
     /**
@@ -203,7 +201,7 @@ class UserController extends Controller
         $validasi = Validator::make($data, [
             'full_name' => 'required|max:250',
             'username'  => 'required|max:100|unique:user_auth,username,' . $id,
-            'email'     => 'required|email|max:255|unique:user_auth,email,' . $id,
+            'email'     => 'required|email|max:255' ,
             'password'  => 'sometimes|nullable|min:6',
         ]);
 

@@ -125,5 +125,14 @@
 
 </div>
 
-
+{{-- <script>
+    $(function () {
+    //Add text editor
+    $('#compose-textarea').summernote({
+        toolbar: [
+        ['insert', ['link']]
+        ],
+    });
+  })
+</script> --}}
 @endsection

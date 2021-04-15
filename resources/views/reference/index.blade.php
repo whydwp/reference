@@ -262,7 +262,7 @@ Reference
                                     @if($id->cover)
                                     <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
                                     @else
-                                    <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                    <img src="{{ asset('image/Picture1.png') }}" class="img-thumbnail" width="200px">
                                     @endif
                                 </a>
                             </div>
@@ -272,8 +272,11 @@ Reference
                                 <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
                                     {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
                                     @if (strlen($id->deskripsi_dokumen) > 200) --}}
+                                    
                                     <span data-target="#modal-{{$id->id}}" data-toggle="modal"
                                         class="more">{{$id->deskripsi_dokumen}}</span>
+
+                                        {{-- <a href="{{$id->deskripsi_dokumen}}">{{$id->judul_dokumen}}</a> --}}
                                     {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
                                     <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca
                                         Selengkapnya</a>

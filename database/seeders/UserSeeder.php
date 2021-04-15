@@ -54,11 +54,11 @@ class UserSeeder extends Seeder
 
             'ebook-list-admin',
             'ebook-delete-admin',
-            'ebook-list-superadmin',
-            'ebook-delete-superadmin',
             'ebook-create-admin',
             'ebook-edit-admin',
             'ebook-edit-superadmin',
+            'ebook-list-superadmin',
+            'ebook-delete-superadmin',
 
             'komentar-list',
             'komentar-delete',
@@ -77,9 +77,9 @@ class UserSeeder extends Seeder
 
 
         $roles = [
-            "superadmin",
-            "admin",
-            "pusdiklat"
+            "pusdiklat",
+            "updl",
+            "siswa"
         ];
 
         $users = [
@@ -130,7 +130,7 @@ class UserSeeder extends Seeder
 
         //assign-role-and-permission
         $user = User::where("full_name", "superadmin")->first();
-        $role = Role::where("name", 'superadmin')->first();
+        $role = Role::where("name", 'pusdiklat')->first();
         $permission = Permission::pluck("id", "id")->all();
 
         $user->assignRole($role->id);
@@ -139,7 +139,7 @@ class UserSeeder extends Seeder
 
 
         $user = User::where("full_name", "andi")->first();
-        $role = Role::where("name", 'pusdiklat')->first();
+        $role = Role::where("name", 'siswa')->first();
         $permission = Permission::whereIn("name", ['profile', 'reference','like','dashboard-user','kumpulan-buku'])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
@@ -149,7 +149,7 @@ class UserSeeder extends Seeder
 
         $user = User::where("full_name", "wahyu")->first();
         $userAdmin = User::where("full_name", "admin")->first();
-        $role = Role::where("name", 'admin')->first();
+        $role = Role::where("name", 'updl')->first();
         $permission = Permission::whereIn("name", [
             'profile',
             'ebook-list-admin',

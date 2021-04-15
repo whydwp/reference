@@ -58,13 +58,15 @@ Kelola User
                                                 <br>
                                                 hindari penulisan header
                                                 <br>
-                                                jika level gunakan angka
+                                                Kolom ke 1 : Nama
                                                 <br>
-                                                1 untuk updl
+                                                Kolom ke 2 : Email
                                                 <br>
-                                                2 untuk pusdiklat
+                                                Kolom ke 3 : Username
                                                 <br>
-                                                3 untuk siswa
+                                                Kolom ke 4 : Level
+                                                <br>
+                                                Kolom ke 5 : Password
                                             </span>
                                         </div>
                                         <div class="modal-footer justify-content-between">
@@ -88,9 +90,9 @@ Kelola User
                                     <form method="get" action="">
                                         <div class="form-group">
                                             <label>Level</label>
-                                            <select id="user_type_id" name="user_type_id"
+                                            <select id="user_type_id" name="role"
                                                 class="custom-select select2bs4" style="width: 50%;">
-                                                <option selected disabled>Level</option>
+                                                <option selected disabled>-Level-</option>
                                                 @foreach($roles as $row)
                                                     <option
                                                         @if( Request::has("role") && Request::get("role") == $row->name ) selected @endif value="{{ $row->name }}">{{ $row->name }}</option>
@@ -138,7 +140,7 @@ Kelola User
                             </div>
                             @endif
                             @include('alert.success')
-                            <table id="example1" class="table table-bordered table-hover">
+                            <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -204,13 +206,13 @@ Kelola User
 
 <script>
     $(function () {
-        $('#example1').DataTable({
+        $('#example2').DataTable({
             "paging": false,
             "lengthChange": true,
             "searching": false,
             "ordering": true,
             "info": true,
-            "autoWidth": false,
+            "autoWidth": true,
             "responsive": true,
 
         });

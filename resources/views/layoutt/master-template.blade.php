@@ -91,6 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
     <link rel="shortcut icon" type="image/x-icon" href="image/logo.png">
     <!-- Jquery -->
 
@@ -110,7 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script src="{{asset('chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
-    </script>
+   <script src="{{asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
