@@ -69,7 +69,7 @@ Input User
                         <label for="user_type_id">Level</label>
                         <select id="role_id" name="role_id" class="form-control">
                             @foreach($roles as $row )
-                            <option value="{{ $row->name }}">
+                           <option value="{{ $row->id }}">
                                 {{ $row->name }}
                             </option>
                             @endforeach
