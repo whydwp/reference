@@ -13,37 +13,37 @@ use Spatie\Permission\Models\Permission;
 class UserImport implements ToModel, WithChunkReading, ShouldQueue
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
 
     public function model(array $row)
     {
-       $user = User::updateOrCreate(
+        $user = User::updateOrCreate(
             [
                 'email'        => $row[2],
                 'username'     => $row[3],
             ],
             [
                 'full_name'    => $row[1],
-                'password'     => ( isset($row[5]) ? Hash::make($row[5]) : Hash::make('P@ssw0rd') )
+                'password'     => (isset($row[5]) ? Hash::make($row[5]) : Hash::make('password'))
             ]
         );
 
         $role = Role::where("name", $row[4])->first();
 
         $permissionSuperAdmin = Permission::pluck("id", "id")->all();
-        $permissionAdmin = Permission::whereIn("name", ['profile', 'ebook-list-admin', 'ebook-create-admin', 'ebook-edit-admin', 'ebook-delete-admin', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
+        $permissionAdmin = Permission::whereIn("name", ['profile', 'ebook-list', 'ebook-create', 'ebook-edit', 'ebook-delete', 'dokumen-list', 'dokumen-create', 'dokumen-edit', 'dokumen-delete', 'reference', 'dashboard-user', 'like'])->pluck("id", "id")->all();
         $permissionUser = Permission::whereIn("name", ['profile', 'reference', 'like', 'dashboard-user', 'kumpulan-buku'])->pluck("id", "id")->all();
 
         $user->assignRole($role->id);
 
-        if($role->name == "pusdiklat"){
+        if ($role->name == "pusdiklat") {
             $user->syncPermissions($permissionSuperAdmin);
-        }elseif($role->name == "updl"){
+        } elseif ($role->name == "updl") {
             $user->syncPermissions($permissionAdmin);
-        }elseif($role->name == "siswa"){
+        } elseif ($role->name == "siswa") {
             $user->syncPermissions($permissionUser);
         }
 

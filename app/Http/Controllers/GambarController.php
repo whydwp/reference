@@ -58,7 +58,7 @@ class GambarController extends Controller
         }
 
         Slider::create($slider);
-        return redirect()->route('gambar.index')->with('success', 'Dokumen Berhasil Ditambahankan');
+        return redirect()->route('gambar.index')->with('success', 'Gambar Berhasil Ditambahankan');
     }
 
     /**
@@ -80,7 +80,8 @@ class GambarController extends Controller
      */
     public function edit($id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        return view('slider.edit', compact('slider'));
     }
 
     /**
@@ -92,7 +93,31 @@ class GambarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
+            $slider = Slider::findOrFail($id);
+            $item = $request->all();
+            // dd($item);
+            if ($request->hasFile('gambar')) {
+                if ($request->file('gambar')->isValid()) {
+                    Storage::disk('upload')->delete($slider->gambar);
+
+                    $cover = $request->file('gambar');
+                    $extention = $cover->getClientOriginalExtension();
+                    $namaCover = "gambar/" . date('YmdHis') . "." . $extention;
+                    $upload_path = 'uploads/gambar';
+                    $request->file('gambar')->move($upload_path, $namaCover);
+                    $item['gambar'] = $namaCover;
+                }
+            }
+
+            $slider->update($item);
+            // $kategoriType = $request->all();
+            // KategoriType::where(['kategori_type_id' => $id])->update(['kategoriType' => $kategoriType['kategoriType'],]);
+            // dd('$kategoriType');
+            //return view('kategori.index', compact('kategoriType', 'item'));
+        return redirect()->route('gambar.index')->with('status', 'gambar Berhasil diupdate');
+        
     }
 
     /**
@@ -106,6 +131,6 @@ class GambarController extends Controller
         $slider = Slider::findOrFail($id);
         $slider->delete();
         Storage::disk('upload')->delete($slider->file);
-        return redirect()->route('gambar.index')->with('toast_success', 'Data Document Berhasil dihapus');
+        return redirect()->route('gambar.index')->with('toast_success', 'Data Gambar Berhasil dihapus');
     }
 }

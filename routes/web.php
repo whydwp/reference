@@ -5,12 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('example-saml-auth')->group(function () {
     Route::name('logout')->post('logout', '\Aacotroneo\Saml2\Http\Controllers\Saml2Controller@logout');
 
-    
-
     // Route::get('/', function () {
     //     return redirect('login');
     // });
-    
 });
 
 // Route::get('/', function () {
@@ -34,7 +31,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::get('/profil', 'ProfilController@index')->name('profil.index');
     Route::post('/update-profil/{id}', 'ProfilController@update')->name('update.profil');
     Route::match(['get', 'post'], '/edit/{id}', 'KategoriController@edit');
-    //Route::match(['get', 'post'], '/edit/{id}', 'sliderController@edit');
+    // Route::match(['get', 'post'], '/edit/{id}', 'GambarController@edit');
     Route::resource('/document', 'KelolaDocumentController');
     Route::resource('/doc', 'DocumentController');
     Route::resource('/kategori', 'KategoriController');
@@ -70,7 +67,7 @@ Route::view('loginn', 'general.loginn');
 
 Route::get('/', function () {
     return redirect('ReferenceLearning');
-});
+})->name('home');
 
 Route::view('ReferenceLearning', 'general.login');
 

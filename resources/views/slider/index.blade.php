@@ -17,13 +17,78 @@ Document
                     </div>
                     <br />
                     <div class="col-md-10 offset-md-1 ">
-                        <a href="{{ route('gambar.create') }}" class="btn btn-primary"><span
+                        
+                        <a href="" data-target="#modal-default" data-toggle="modal"class="btn btn-primary"><span
                                 class=" fas fa-plus-square"></span>
                             Tambahkan Dokumen</a>
                     </div>
                     <br />
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Gambar</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="post" action="{{ route('gambar.store')}}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <div class="modal-body">
+                                            <label>Masukan Gambar</label><p></p>
+                                            <img id="gambar_load" width="100%" height="100%" />
+                                            <p >file png,jpg,jpeg max 5 Mb</p>
+                                            <input id="preview_gambar" type="file" name="gambar" class="form-control" placeholder=" yuk masukan gambar"
+                                                required>
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
 
-
+                    @foreach ($slider as $item)
+                    <div class="modal fade" id="modal-default2-{{$item->id}}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Kategori</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="POST" action="{{ url('/edit/'. $item->id) }}">
+                                    @csrf
+                    
+                                    <div class="form-group">
+                                        <div class="modal-body">
+                                            <label for="cover" class="col-sm-12 control-label">Edit Gambar</label>
+                                            <div class="col-sm-12 embed-responsive embed-responsive-4by3">
+                                                <img class="embed-responsive-item" src="{{ asset('uploads/'.$item->gambar) }}" class="img-thumbnail" width="80%">
+                                            </div>
+                                            <label>Edit Gambar</label>
+                                            <input type="file" name="gambar" class="form-control" placeholder=" yuk masukan kategori"
+                                                required value="{{$item->gambar}}">{{old($item->gambar)}}
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-success btn-xl"><i class="far fa-save"></i> Simpan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    @endforeach
                     <!-- /.card-header -->
 
                     <div class="card-body">
@@ -47,7 +112,7 @@ Document
                                         onsubmit="return confirm('Apakah anda yakin akan menghapus data ini ?')">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <a href="" data-target="#modal-default2-{{$row->id}}" data-toggle="modal" type="button"
+                                        <a href="{{ route('gambar.edit',[$row->id]) }}" 
                                             class="btn btn-round btn-success btn-md far fa-edit"></span></a>
                                         <button type="submit" class="btn btn-round btn-warning fas fa-trash-alt"></i></button>
                                         </form>

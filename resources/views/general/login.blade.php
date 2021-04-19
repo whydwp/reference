@@ -36,32 +36,9 @@
        <div id="demo" class="carousel slide container-login100" data-ride="carousel">
             <!-- The slideshow -->
             <div class="carousel-inner" >
-                <div class="carousel-item active">
-                   <div class="container-login100" style="background-image: url('now-ui-kit/assets/img/bg-pln.png');margin-left:-5px;">
-                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="">
-                        <form class="login100-form validate-form">
-                            <img class="logocenter"style="display: block; margin: auto;"src="image/logo.png" alt="">
-                            <br>
-                            <span class="login100-form-title p-b-49">
-                                Login
-                            </span>
-                            <div style="margin-top: -30px;margin-left:40px;"" class="m-b-23">
-                                <span>Selamat Datang di Reference Learning!</span>
-                                <span>Masuk sebagai User untuk melanjutkan.</span>
-                            </div>
-                            <div class="container-login100-form-btn">
-                                <div class="wrap-login100-form-btn">
-                                    <div class="login100-form-bgbtn"></div>
-                                    <a class="login100-form-btn" href="{{url('loginn')}}">Sign In With PLN SSO</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                </div>
-                @foreach($slider as $sliders)
-                <div class="carousel-item">
-                   <div class="container-login100" style="background-image: url({{asset('uploads/'.$sliders->gambar)}});margin-left:-5px;">
+                @foreach($slider as $key => $sliders)
+                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+                   <div class="container-login100" style="background-image: url({{asset('uploads/'.$sliders->gambar)}});margin-left:1px;">
                     {{-- <img src="{{ asset('uploads/'.$sliders->gambar) }}" alt=""> --}}
                     <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="">
                         <form class="login100-form validate-form">
