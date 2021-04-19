@@ -92,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('chartjs/Chart.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="image/logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('image/logo.png')}}">
     <!-- Jquery -->
 
 
