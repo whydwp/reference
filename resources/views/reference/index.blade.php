@@ -434,7 +434,7 @@ Reference
                                     @if($id->cover)
                                     <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
                                     @else
-                                    <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                    <img src="{{ asset('image/Picture1.png') }}" class="img-thumbnail" width="200px">
                                     @endif
                                 </a>
                             </div>

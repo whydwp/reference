@@ -138,7 +138,7 @@ class UserController extends Controller
         // // membuat nama file unik
         // return redirect()->back()->with(['error' => 'Please choose file before']);
         $this->validate($request, [
-            'file' => 'required|mimes:xls,xlsx'
+            'file' => 'required|mimes:xls,xlsx,csv'
         ]);
 
         if ($request->hasFile('file')) {

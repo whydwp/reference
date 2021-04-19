@@ -54,19 +54,24 @@ Kelola User
                                             <label>Masukan Data</label>
                                             <input type="file" name="file" class="form-control"
                                                 placeholder=" yuk masukan data" required>
-                                            <span> NB :
+                                            <span> Catatan :
                                                 <br>
                                                 hindari penulisan header
                                                 <br>
-                                                Kolom ke 1 : Nama
+                                                Kolom ke 1 : Nomor
                                                 <br>
-                                                Kolom ke 2 : Email
+                                                Kolom ke 2 : Nama
                                                 <br>
-                                                Kolom ke 3 : Username
+                                                Kolom ke 3 : Email
                                                 <br>
-                                                Kolom ke 4 : Level
+                                                Kolom ke 4 : Username
                                                 <br>
-                                                Kolom ke 5 : Password
+                                                Kolom ke 5 : Level
+                                                <br>
+                                                Kolom ke 6 : Password
+                                                <br>
+                                                <span>urutan kolom sesuai contoh file berikut : <a style=" font-family:'Nunito';" href="{{ asset('uploads/contoh.xlsx') }}" download=""><i class="fas fa-download"></i> 
+                                                    contoh.xlsx</a></span>
                                             </span>
                                         </div>
                                         <div class="modal-footer justify-content-between">
