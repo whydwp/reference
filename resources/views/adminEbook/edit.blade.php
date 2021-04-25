@@ -5,7 +5,9 @@ Edit Buku
 @endsection
 
 @section('content')
-
+@push('addon-style')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -42,7 +44,7 @@ Edit Buku
                             </option>
                             @endif
                             @endforeach
-                            <option selected disabled style="font-weight: bold;">Non Teknis : </option>
+                            <option disabled style="font-weight: bold;">Non Teknis : </option>
                             @foreach($kategori as $row )
                             @if($row->kategori_type_id == 2)
                             <option value="{{ $row->id_kategori }}" @if($ebook->id_kategori == $row->id_kategori) Selected
@@ -84,9 +86,8 @@ Edit Buku
             </div>
             <div class="form-group">
                 <label for="deskripsi_ebook">Deskripsi</label>
-                <textarea id="deskripsi_dokumen" name="deskripsi_ebook"
-                    class="form-control @error('deskripsi_ebook') is-invalid @enderror" cols="30"
-                    rows="10">{{$ebook->deskripsi_ebook}}</textarea>
+                <textarea name="deskripsi_ebook"
+                    class="form-control @error('deskripsi_ebook') is-invalid @enderror" style="height: 500px !important;">{!!$ebook->deskripsi_ebook!!}</textarea>
                 @error('deskripsi_ebook')
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror
@@ -140,5 +141,13 @@ Edit Buku
 
 </div>
 
-
+@push('addon-script')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript">
+    $('#summernote').summernote({
+    tabsize: 2,
+    height: 300
+    });
+</script>
+@endpush
 @endsection

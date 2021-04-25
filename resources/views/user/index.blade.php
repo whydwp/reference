@@ -141,7 +141,7 @@ Kelola User
                             @endif
                             @if(Request::get('role'))
                             <div class="alert alert-success alert-block">
-                                Hasil Pencarian User dengan Kategori : <b>{{ Request::get('role') }}</b>
+                                Hasil Pencarian User dengan Level : <b>{{ Request::get('role') }}</b>
                             </div>
                             @endif
                             @include('alert.success')

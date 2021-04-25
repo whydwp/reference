@@ -223,6 +223,13 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $kategori = $request->all();
+        //$request = Kategori::where('kategori_type_id', $request->kategori_type_id)->get();
+        // if($request != 'kategor_type_id'){
+        //     $request->validate([
+        //         'kategori'     => 'required|max:500|unique:kategori',
+        //     ]);
+        // }
+            
         Kategori::create($kategori);
         return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Ditambahankan');
     }
@@ -249,10 +256,24 @@ class KategoriController extends Controller
         if($request->isMethod('post')){
             $item =$request->all();
             // dd($item);
+            // $rules = [
+            //     'required|max:100|unique:kategori,kategori,' . $id,
+
+            // ];
+            // $messages = [
+            //     'judul_ebook.unique'          => 'Yah sudah ada tuh.',
+
+            // ];
+            // $validator = Validator::make($request->all(), $rules,$messages);
+
+            // if ($validator->fails()) {
+            //     return redirect()->route('kategori.index')->withErrors($validator)->withInput($request->all());
+            // }
             Kategori::where(['id_kategori'=>$id])->update([
                 'kategori'=>$item['kategori'],
                 'kategori_type_id' => $item['kategori_type_id'],
                 ]);
+
             // $kategoriType = $request->all();
             // KategoriType::where(['kategori_type_id' => $id])->update(['kategoriType' => $kategoriType['kategoriType'],]);
             // dd('$kategoriType');

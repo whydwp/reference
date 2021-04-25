@@ -5,7 +5,9 @@ Input Documen
 @endsection
 
 @section('content')
-
+@push('addon-style')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -86,8 +88,7 @@ Input Documen
             </div>
             <div class="form-group">
                 <label for="deskripsi_dokumen">Deskripsi</label>
-                <textarea name="deskripsi_dokumen" value="{{old('deskripsi_dokumen')}}" class="form-control @error('deskripsi_dokumen') is-invalid @enderror" cols="30"
-                    rows="10"></textarea>
+                <textarea name="deskripsi_dokumen" id="summernote" value="{{old('deskripsi_dokumen')}}" class="form-control @error('deskripsi_dokumen') is-invalid @enderror" style="height: 600px;"></textarea>
                     @error('deskripsi_dokumen')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
@@ -126,6 +127,14 @@ Input Documen
     </div>
 
 </div>
-
+@push('addon-script')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript">
+    $('#summernote').summernote({
+    tabsize: 2,
+    height: 300
+    });
+</script>
+@endpush
 
 @endsection

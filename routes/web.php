@@ -52,6 +52,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate'], function () {
     Route::post('importkategori', 'KategoriController@import')->name('importkategori');
     Route::post('/likedislike', 'KategoriController@likedislike')->name('likedislike');
     Route::post('/viewadd', 'MyReferenceController@addview')->name('viewadd');
+    Route::post('/viewaddd', 'MyLikeController@adddview')->name('viewaddd');
     Route::post('/filter', 'KategoriController@filter')->name('filter');
     Route::get('/preview-{id}', 'PreviewController@index')->name('preview');
     Route::get('/previewdoc-{id}', 'PreviewdocController@index')->name('previewdoc');

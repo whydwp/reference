@@ -5,7 +5,9 @@ Edit Documen
 @endsection
 
 @section('content')
-
+@push('addon-style')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -42,7 +44,7 @@ Edit Documen
                             </option>
                             @endif
                             @endforeach
-                            <option selected disabled style="font-weight: bold;">Non Teknis : </option>
+                            <option  disabled style="font-weight: bold;">Non Teknis : </option>
                             @foreach($kategori as $row )
                             @if($row->kategori_type_id == 2)
                             <option value="{{ $row->id_kategori }}" @if($document->id_kategori == $row->id_kategori) Selected
@@ -97,8 +99,8 @@ Edit Documen
             </div>
             <div class="form-group">
                 <label for="deskripsi_dokumen">Deskripsi</label>
-                <textarea id="deskripsi_dokumen" name="deskripsi_dokumen"  class="form-control @error('deskripsi_dokumen') is-invalid @enderror" cols="30"
-                    rows="10">{{$document->deskripsi_dokumen}}</textarea>
+                <textarea id="summernote" name="deskripsi_dokumen"  class="form-control @error('deskripsi_dokumen') is-invalid @enderror" cols="30"
+                    rows="10">{!!$document->deskripsi_dokumen!!}</textarea>
                     @error('deskripsi_dokumen')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
@@ -153,6 +155,14 @@ Edit Documen
     </div>
 
 </div>
-
+@push('addon-script')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript">
+    $('#summernote').summernote({
+    tabsize: 2,
+    height: 300
+    });
+</script>
+@endpush
 
 @endsection

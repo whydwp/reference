@@ -358,7 +358,7 @@ Reference
                                     {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
                                     @if (strlen($id->deskripsi_dokumen) > 200) --}}
                                     <span data-target="#modal-{{$id->id}}" data-toggle="modal"
-                                        class="more">{{$id->deskripsi_dokumen}}</span>
+                                        class="more">{!!$id->deskripsi_dokumen!!}</span>
                                     {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
                                     <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca
                                         Selengkapnya</a>
@@ -445,7 +445,7 @@ Reference
                                     {{-- {{ str_limit($id->deskripsi_dokumen, 200, '') }}
                                     @if (strlen($id->deskripsi_dokumen) > 200) --}}
                                     <span data-target="#modal-{{$id->id}}" data-toggle="modal"
-                                        class="more">{{$id->deskripsi_dokumen}}</span>
+                                        class="more">{!!$id->deskripsi_dokumen!!}</span>
                                     {{-- <span id="more">{{ substr($id->deskripsi_dokumen, 200) }}</span>
                                     <a href="javascript:void(0)" onclick="myFunction()" id="myBtn"> Baca
                                         Selengkapnya</a>
@@ -547,7 +547,7 @@ Reference
             </div>
             <div class="form-group">
                 <div class="modal-body">
-                    <p align="justify">{{$id->deskripsi_dokumen}}</p>
+                    <p align="justify">{!!$id->deskripsi_dokumen!!}</p>
                     <hr>
                     <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}
                     </h5>

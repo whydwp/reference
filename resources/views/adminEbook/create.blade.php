@@ -5,7 +5,9 @@ Input Buku
 @endsection
 
 @section('content')
-
+@push('addon-style')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -84,7 +86,7 @@ Input Buku
                 <div class="col-sm-6">
                     <div class="form-group @error('file') is-invalid @enderror">
                         <label for="file" class="col-sm-4 control-label">File document </label>
-                        <p style="margin-top: -10px; margin-left:10px !important;">file zip max 50Mb</p>
+                        <p style="margin-top: -10px; margin-left:10px !important;">file pdf maksimal 10 Mb</p>
                         <input value="{{old('file')}}" type="file" name="file" class="form-control @error('file') is-invalid @enderror">
                         @error('file')
                         <div class="invalid-feedback">{{$message}}</div>
@@ -114,5 +116,13 @@ Input Buku
 
 </div>
 
-
+@push('addon-script')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript">
+    $('#summernote').summernote({
+    tabsize: 2,
+    height: 300
+    });
+</script>
+@endpush
 @endsection

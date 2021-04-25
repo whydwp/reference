@@ -85,10 +85,10 @@ Buku
                             @else
                             <td><span class="small-box " style="background-color: #00ccff; text-align: center; font-weight:500;">Pending</span></td>
                             @endif
-                            <td>{{ $row->publisher }}</td>
+                            <td>{{ $row->user->full_name }}</td>
                             <td>{{ $row->kategori->kategori}}</td>
                             @if($row->keterangan)
-                            <td>{{ $row->keterangan}}</td>
+                            <td>{!! $row->keterangan!!}</td>
                             @else
                             <td>Belum ada</td>
                             @endif

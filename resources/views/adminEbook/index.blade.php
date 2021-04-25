@@ -93,6 +93,7 @@ Buku
                             <th>Judul</th>
                             <th>Kategori</th>
                             <th>Status</th>
+                            <th>From</th>
                             <th>Keterangan</th>
                             <th>Action</th>
                         </tr>
@@ -111,8 +112,9 @@ Buku
                             @else
                              <td><span class="small-box " style="background-color: #00ccff; text-align: center; font-weight:500;">Pending</span></td>
                              @endif
+                             <td>{{$row->user->full_name}}</td>
                             @if($row->keterangan)
-                            <td>{{ $row->keterangan}}</td>
+                            <td>{!! $row->keterangan!!}</td>
                             @else
                             <td>Belum ada</td>
                             @endif

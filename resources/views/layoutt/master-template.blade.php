@@ -82,6 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
            background-image: linear-gradient(to right, #004d78, #7effe3); 
         } */
     </style>
+    @stack('prepend-style')
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     {{-- <link href="//db.onlinewebfonts.com/c/3dd6e9888191722420f62dd54664bc94?family=Myriad+Pro" rel="stylesheet">
@@ -102,12 +103,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Select2 -->
     <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-
+    @stack('addon-style')
     {{-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+   @stack('prepend-script')
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
     {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
-
+    {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="{{asset('chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
@@ -218,7 +224,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <div class="text-center p-3 gradient2">
-            <span class="text">Copyright &copy; PLN Pusdiklat - 2020</span>
+            <span class="text">Copyright &copy; PLN Pusdiklat - 2021</span>
         </div>
         {{-- <footer style="position:relative !important;"class="main-footer gradient2">
             <div class="container my-auto">
@@ -249,5 +255,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		});
 });
 </script>
-
+@stack('addon-script')
 </html>

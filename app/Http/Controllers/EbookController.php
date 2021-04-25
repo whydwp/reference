@@ -33,7 +33,7 @@ class EbookController extends Controller
     {
      
         // $kategori = Kategori::all();
-        $ebook = Ebook::OrderBy('id_status','desc')->paginate(1000000000);
+        $ebook = Ebook::OrderBy('created_at','desc')->paginate(1000000000);
         $status = Status::all();
         $filterKeyword = $request->get('keyword');
         $nama_status = '';
@@ -158,35 +158,13 @@ class EbookController extends Controller
         $ebook = Ebook::findOrFail($id);
 
         $input = $request->all();
-        $rules = [
-                // 'judul_ebook' => 'required|max:250',
-                // 'deskripsi_ebook' => 'required',
-                // 'tahun' => 'required|numeric',
-                // 'publisher' => 'required|max:250',
-                'id_status' => 'required|max:250',
-                // 'file' => 'required|mimes:pdf,docx,pptx|max:1048576',
-                // // 'cover' => 'required|mimes:jpeg,jpg,png,pdf|max:5048',
-                // 'id_kategori' => 'required|max:250',
+        
 
-            ];
+        // $validator = Validator::make($request->all(), $rules, $messages);
 
-        $messages = [
-            // 'judul_ebook.required'          => 'Nama wajib diisi.',
-            // 'deskripsi_ebook.required'      => 'Deskripsi wajib diisi.',
-            // 'tahun.required'           => 'tahun wajib diisi.',
-            // 'publisher.required'         => 'publisher wajib diisi.',
-            'id_status.required'         => 'jumlah halaman wajib diisi.',
-            // 'file.required'         => 'file wajib diisi.',
-            // // 'cover.required'         => 'cover wajib diisi.',
-            // 'id_kategori.required'         => 'kategori wajib dipilih.',
-
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->route('ebook.edit', [$id])->withErrors($validator)->withInput($request->all());
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->route('ebook.edit', [$id])->withErrors($validator)->withInput($request->all());
+        // }
         if ($request->hasFile('file')) {
             if ($request->file('file')->isValid()) {
                 Storage::disk('upload')->delete($ebook->cover);

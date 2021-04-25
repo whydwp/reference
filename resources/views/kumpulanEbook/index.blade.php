@@ -192,7 +192,7 @@ Kumpulan Buku
                         </div>
                     </div>
                     <br>
-                    <p align="justify">{{$id->deskripsi_ebook}}</p>
+                    <p align="justify">{!!$id->deskripsi_ebook!!}</p>
                     <hr>
                     <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}</h5>
                 </div>

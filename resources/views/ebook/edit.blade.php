@@ -5,7 +5,9 @@ Edit Buku
 @endsection
 
 @section('content')
-
+@push('addon-style')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -92,17 +94,16 @@ Edit Buku
             </div>
             <div class="form-group">
                 <label for="deskripsi_ebook">Deskripsi</label>
-                <textarea id="deskripsi_dokumen" name="deskripsi_ebook"
+                <textarea name="deskripsi_ebook" 
                     class="form-control @error('deskripsi_ebook') is-invalid @enderror" cols="30" rows="10"
-                    disabled>{{$ebook->deskripsi_ebook}}</textarea>
+                    disabled>{!!$ebook->deskripsi_ebook!!}</textarea>
                 @error('deskripsi_ebook')
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="keterangan">Keterangan</label>
-                <textarea id="keterangan" name="keterangan" class="form-control " cols="30"
-                    rows="10">{{$ebook->keterangan}}</textarea>{{old('keterangan')}}
+                <textarea id="summernoteno" name="keterangan" class="form-control " style="height: 400px !important;">{{$ebook->keterangan}}</textarea>{{old('keterangan')}}
             </div>
             <br>
             <div class="row">
@@ -116,6 +117,16 @@ Edit Buku
     </div>
 
 </div>
-
+@push('addon-script')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+        $('#summernote').summernote('disable');
+        });
+        $(document).ready(function() {
+        $('#summernoteno').summernote();
+        });
+</script>
+@endpush
 
 @endsection

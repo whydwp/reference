@@ -31,7 +31,7 @@ class KumpulanEbookController extends Controller
         // dd($status);
         // $nama_status = '';
         $filterKeyword = $request->get('keyword');
-        $kumpulan = Ebook::orderBy('id_status', 'asc')->where('id_status', $status->id_status)->paginate(10);
+        $kumpulan = Ebook::orderBy('created_at', 'desc')->where('id_status', $status->id_status)->paginate(10);
         if ($filterKeyword) {
             //dijalankan jika ada pencarian
             $kumpulan = Ebook::where('judul_ebook', 'LIKE', "%$filterKeyword%")->paginate(10);
