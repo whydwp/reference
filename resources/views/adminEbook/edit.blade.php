@@ -5,9 +5,7 @@ Edit Buku
 @endsection
 
 @section('content')
-@push('addon-style')
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-@endpush
+
 <div class="col-md-12">
     <!-- general form elements disabled -->
     <!-- /.card-header -->
@@ -141,13 +139,5 @@ Edit Buku
 
 </div>
 
-@push('addon-script')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script type="text/javascript">
-    $('#summernote').summernote({
-    tabsize: 2,
-    height: 300
-    });
-</script>
-@endpush
+
 @endsection

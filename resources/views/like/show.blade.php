@@ -53,7 +53,7 @@
                         <hr>
 
                         {{-- @if($reference->id_forum == $komentar->id) --}}
-                        <div class="card direct-chat direct-chat-primary">
+                        {{-- <div class="card direct-chat direct-chat-primary">
                             <div class="card-header ui-sortable-handle" style="cursor: move;">
                                 <h2 class="card-title">Komentar</h2>
 
@@ -109,7 +109,7 @@
                                 </form>
                             </div>
                             <!-- /.card-footer-->
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>

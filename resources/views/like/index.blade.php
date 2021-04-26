@@ -47,13 +47,7 @@ Like
                             </a>
 
                             <a class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</a>
-                            <div class="float-right">
-                                <a href="{{route('like.show',$id->id)}}">
-                                    <button type="button" class="btn btn-block bg-gradient-warning previewdocc" data-id="{{$id->id}}"
-                                        data-jmlhview="{{$id->jumlah_view}}" data-token="{{ csrf_token() }}" data-toggle=" modal" data-target="#modal-xl"><i
-                                            class="fas fa-book-open"></i> Baca</button>
-                                </a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -77,8 +71,8 @@ Like
 </div> 
 
 @foreach ($getuserlikes as $id)
-<div class="modal fade" id="modal-{{$id->id}}">
-    <div class="modal-dialog">
+<div class="modal fade bd-example-modal-xl" id="modal-{{$id->id}}">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col px-8">
@@ -91,8 +85,15 @@ Like
                 </button>
             </div>
             <div class="form-group">
+                <div class="col-md-12">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" type="application / html5"
+                            src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0" width="100%"
+                            height="1000"></iframe>
+                    </div>
+                </div>
                 <div class="modal-body">
-                    <p align="justify">{{$id->deskripsi_dokumen}}</p>
+                    <p align="justify">{!!$id->deskripsi_dokumen!!}</p>
                     <hr>
                     <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->namakategori}} </h5>
                 </div>
