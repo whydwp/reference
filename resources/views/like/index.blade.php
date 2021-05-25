@@ -21,7 +21,7 @@ Like
                             <img src="{{ asset('uploads/'.$id->cover) }}"
                                 class="img-thumbnail"width="200px">
                                 @else
-                                <img src="{{ asset('image/1.png') }}" class="img-thumbnail" width="200px">
+                                <img src="{{ asset('image/Picture1.png') }}" class="img-thumbnail" width="200px">
                                 @endif
                         </a>
                     </div>
@@ -87,9 +87,10 @@ Like
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item" type="application / html5"
-                            src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0" width="100%"
-                            height="1000"></iframe>
+                       <object data="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">
+                        <iframe type="application/html5" class="embed-responsive-item"
+                            src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">{{ asset('uploads/'.$id->file) }}</iframe>
+                    </object>
                     </div>
                 </div>
                 <div class="modal-body">

@@ -185,14 +185,17 @@ Kumpulan Buku
                     <div class="col-md-12">
                         {{-- @foreach ($reference as $item) --}}
                         <label for="file" class="col-sm-2 control-label"></label>
-                        <div class="embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item" type="application / html5"
-                                src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0" width="100%"
-                                height="10000">{{ asset('uploads/'.$id->file) }}</iframe>
-                        </div>
+                       <div class="embed-responsive embed-responsive-4by3">
+                    
+                        <object data="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">
+                            <iframe type="application/pdf" class="embed-responsive-item"
+                                src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">{{ asset('uploads/'.$id->file) }}</iframe>
+                        </object>
+                    
+                    </div>
                     </div>
                     <br>
-                    <p align="justify">{!!$id->deskripsi_ebook!!}</p>
+                    <p align="justify">{{$id->deskripsi_ebook}}</p>
                     <hr>
                     <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->kategori->kategori}}</h5>
                 </div>
