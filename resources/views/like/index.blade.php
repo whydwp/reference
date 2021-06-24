@@ -1,7 +1,7 @@
 @extends('layoutt.master-template')
 
 @section('title')
-Like 
+Like
 @endsection
 
 @section('content')
@@ -17,12 +17,11 @@ Like
                 <div class="row">
                     <div class="col-auto">
                         <a>
-                           @if($id->cover) 
-                            <img src="{{ asset('uploads/'.$id->cover) }}"
-                                class="img-thumbnail"width="200px">
-                                @else
-                                <img src="{{ asset('image/Picture1.png') }}" class="img-thumbnail" width="200px">
-                                @endif
+                            @if($id->cover)
+                            <img src="{{ asset('uploads/'.$id->cover) }}" class="img-thumbnail" width="200px">
+                            @else
+                            <img src="{{ asset('image/Picture1.png') }}" class="img-thumbnail" width="200px">
+                            @endif
                         </a>
                     </div>
                     <div class="col px-4 float-right">
@@ -30,7 +29,8 @@ Like
                             <h3 class="media-heading">{{ strtolower($id->judul_dokumen)  }}</h3>
                             <br>
                             <p style=" margin-top: 3px !important; margin-bottom: 18px !important" align="justify">
-                                <span data-target="#modal-{{$id->id}}" data-toggle="modal" class="more">{{$id->deskripsi_dokumen}}</span>
+                                <span data-target="#modal-{{$id->id}}" data-toggle="modal"
+                                    class="more">{{$id->deskripsi_dokumen}}</span>
                             </p>
                             <h5 id="id_kategori" name="id_kategori">Kategori : {{$id->namakategori}} </h5>
                             <br>
@@ -47,7 +47,7 @@ Like
                             </a>
 
                             <a class="tahun" style="color : #aaa !important;" href=""> | Create : {{$id->tahun}}</a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ Like
                         <td colspan="10">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                            {{ $getuserlikes->links('pagination::bootstrap-4') }}
+                                    {{ $getuserlikes->links('pagination::bootstrap-4') }}
                                 </ul>
                             </nav>
                         </td>
@@ -68,7 +68,7 @@ Like
 
         </div>
     </div>
-</div> 
+</div>
 
 @foreach ($getuserlikes as $id)
 <div class="modal fade bd-example-modal-xl" id="modal-{{$id->id}}">
@@ -87,10 +87,10 @@ Like
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="embed-responsive embed-responsive-4by3">
-                       <object data="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">
-                        <iframe type="application/html5" class="embed-responsive-item"
-                            src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">{{ asset('uploads/'.$id->file) }}</iframe>
-                    </object>
+                        <object data="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">
+                            <iframe type="application/html5" class="embed-responsive-item"
+                                src="{{ asset('uploads/'.$id->file) }}#toolbar=0&navpanes=0&scrollbar=0">{{ asset('uploads/'.$id->file) }}</iframe>
+                        </object>
                     </div>
                 </div>
                 <div class="modal-body">
@@ -111,7 +111,7 @@ Like
 </div>
 @endforeach
 
-<script >
+<script>
     $(document).ready(function() {
   
     var showChar = 400;  
@@ -202,7 +202,7 @@ Like
     })
 </script>
 <script src="">
-     $(document).on("click", ".previewdocc", function() {
+    $(document).on("click", ".previewdocc", function() {
         var id = $(this).data('id');
         var jmlhview = $(this).data('jmlhview');
 

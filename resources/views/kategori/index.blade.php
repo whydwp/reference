@@ -59,6 +59,15 @@ Kategori
                                         jika baris kategori maka header kategori
                                         <br>
                                         jika baris Golongan maka header type
+                                        dengan angka :
+                                        <br>
+                                        1 untuk teknis
+                                        <br>
+                                        2 untuk non teknis
+                                        <br>
+                                        <span>urutan kolom sesuai contoh file berikut : <a style=" font-family:'Nunito';"
+                                                href="{{ asset('uploads/contoh_kategori.xlsx') }}" download=""><i class="fas fa-download"></i>
+                                                contoh.xlsx</a></span>
                                     </span>
                                 </div>
                                 <div class="modal-footer justify-content-between">
